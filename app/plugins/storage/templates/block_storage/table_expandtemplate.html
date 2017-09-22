@@ -1,0 +1,52 @@
+<import src="$parent.$parent.$parent.selectionData" target="data"/>
+<oct-next-prev-ctrl/>
+
+<div class="col-md-12 detail-page">
+    <h2 class="oc-heading page-title-no-top-margin">{{"storage.block_storage.details.header" | translate}}: {{data.name}}</h2>
+    <div class="col-header"></div>
+    <table>
+        <tbody>
+            <tr class="item-line">
+                <td class="item-label-short">{{ "common.port" | translate | uppercase }}</td>
+                <td>{{ (data.port).toString() | formCpg}}</td>
+            </tr>
+            <tr class="item-line">
+                <td class="item-label-short">{{ "common.username" | translate | uppercase }}</td>
+                <td>{{ data.username }}</td>
+            </tr>
+            <tr class="item-line">
+                <td class="item-label-short">{{ "storage.block_storage.table.row.label.san_username" | translate | uppercase }}</td>
+                <td>{{ data.san_username }}</td>
+            </tr>
+            <tr class="item-line">
+                <td class="item-label-short">{{ "storage.block_storage.table.row.label.transport_type" | translate | uppercase }}</td>
+                <td>{{ data.transport_type }}</td>
+            </tr>
+            <tr class="item-line">
+                <td class="item-label-short">{{ "storage.block_storage.table.header.storeserv_backend_count" | translate | uppercase }}</td>
+                <td>{{ data.backend_count }}</td>
+            </tr>
+            <tr class="item-line">
+                <td class="item-label-short">{{ "storage.block_storage.table.header.storeserv_backend" | translate | uppercase }}</td>
+                <td>{{ data.backends | formCpg }}</td>
+            </tr>
+            <tr class="item-line">
+                <td class="item-label-short">{{ "storage.block_storage.table.row.label.cpg_count" | translate | uppercase }}</td>
+                <td>{{ data.cpg_count }}</td>
+            </tr>
+            <tr class="item-line">
+                <td class="item-label-short">{{ "storage.block_storage.table.row.label.registered_cpgs" | translate | uppercase }}</td>
+                <td>{{ data['registered_cpgs'] | formCpg }}</td>
+            </tr>
+            <tr ng-if="data['iscsi_ip_address'] != undefined ||data['hp3par_iscsi_ips'] != undefined ">
+                <td class="item-label-short">{{ "storage.register.content.blockstoragedevice.iscsiconfiguration.ipaddress" | translate | uppercase }}</td>
+                <td ng-if="data['iscsi_ip_address'] != undefined">
+                    {{ data['iscsi_ip_address'] | formCpg }}
+                </td>
+                <td ng-if="data['hp3par_iscsi_ips'] != undefined">
+                    {{ data['hp3par_iscsi_ips'] | formCpg }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

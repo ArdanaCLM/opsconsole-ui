@@ -1,0 +1,8 @@
+<div class="oc-notif {{message.color}}">
+    <span class="oc-notif-icon"></span>
+    <span class="toast-message col-md-12" >{{message.message | translate}}</span>
+    <!-- These were no longer needed bring them back if we need multiple notifications on login screen.
+    <button class="toastbtn prev" ng-click="changeMessage('prev')" style="display:block;"></button>
+    <button class="toastbtn next" ng-click="changeMessage('next')" style="display:block;"></button>-->
+    <button class="toastbtn remove" ng-click="remove()" style="display:block;"></button>
+</div>

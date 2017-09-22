@@ -1,0 +1,62 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+@import '_palette.scss';
+@import '_common.scss';
+
+// Gap between boxes in the heatmap
+$gap: 2px;
+$box-size: 40px;
+
+ocheatmap {
+    // Permit multiple heatmaps to reside next to each other horizontally
+    @extend .inline;
+
+    .title {
+        background: $grommet-icon-grey;
+        font: {
+            size: 14px;
+            weight: 700;
+        }
+        color: $clear_button_text_color;
+        line-height: 35px;
+        height: 30px;
+        text-indent: 9px;
+        margin-right: $gap;
+    }
+
+    span {
+        text-align: center;
+        display: inline-block;
+        width: $box-size;
+        height: $box-size;
+        line-height: 1.1 * $box-size;
+        color: $grommet-white;
+        font: {
+            size: 16px;
+            weight: $font-weight-semi-bold;
+        }
+        margin: {
+           top: $gap;
+           left: 0px;
+           right: $gap;
+           bottom: 0px;
+        }
+
+        background: $oc-alarm-unknown-color;
+    }
+    .ok {
+        background: $oc-alarm-ok-color;
+    }
+    .warning {
+        background: $oc-alarm-warning-color;
+    }
+    .critical {
+        background: $oc-alarm-critical-color;
+    }
+    .unknown {
+        background: $oc-alarm-unknown-color;
+    }
+
+    // Leave a little vertical space between this map and the one below
+    margin-bottom: 1 + 2 * $gap;
+}

@@ -1,0 +1,10 @@
+<div class="input-group">
+  <div class="input-group-btn">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{type}} <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu">
+      <li><a value="string" ng-click="selectType($event)">String</a></li>
+      <li><a value="number" ng-click="selectType($event)">Number</a></li>
+    </ul>
+  </div>
+  <input type="text" class="form-control" placeholder="{{inputPlaceholder}}" ng-model="value">
+</div>

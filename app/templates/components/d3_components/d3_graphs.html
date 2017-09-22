@@ -1,0 +1,62 @@
+<div id="{{ id }}" class="charts_top">
+    <div ng-show="!loading && potentialError" class="chart-error">
+      <i class="ardana-icon ardana-icon-Error_outline"></i>
+      <div class="chart-error-text" ng-bind="'common.chart_error' | translate"></div>
+    </div>
+    <modal-overlay show-attribute="loading" class="chart-spinner"></modal-overlay>
+    <div ng-class="{'no-data': !loading && no_data}" class="d3_charts">
+        <div class="chart-header" ng-if="actionable">
+          <span class="chart-title" ng-class="chartTitleData.styleClass">
+            {{chartTitleData.title | translate}}
+          </span>
+          <span class="actionRow image-padding" style="float:right">
+              <div class="btn-group popupadjust" uib-dropdown>
+                  <button type="button" class="dropdown-toggle ardana-icon ardana-icon-More" uib-dropdown-toggle/>
+                  <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                      <li ng-if="!menuItem.show || (menuItem.show && menuItem.show(config))"
+                          ng-repeat="menuItem in actionMenu">
+                          <button ng-click="menuItem.action(config)"
+                                  class="actionMenuItem">{{ menuItem.label | translate }}</button>
+                      </li>
+                  </ul>
+              </div>
+          </span>
+        </div>
+        <div ng-show="!loading && no_data" class="title text-center no_data">{{'common.no_data' | translate}}</div>
+    </div>
+    <div ng-show="!no_data">
+        <div class="d3_charts_footer">
+            <div class="chart-buttons">
+                <div class="lengend-action-header" ng-if="legendConfig.legendButtons.length > 0">{{'common.date_range' | translate | uppercase}}:</div>
+                <div class="lengend-action-buttons" ng-repeat="button in legendConfig.legendButtons"
+                     ng-class="{'lengend-action-buttons-first':$index == 0}">
+                    <oc-radio
+                            value="{{button.value}}"
+                            name="{{button.name}}"
+                            ng-model="legendConfig.legendButtonsValue"
+                            select="legendButtonClick($event, id)"
+                            label="{{button.label}}"
+                            ></oc-radio>
+                </div>
+            </div>
+            <div class="chart-legend">
+                <div class='my-legend'>
+                    <div class='legend-scale'>
+                        <ul class='legend-labels'>
+                            <li ng-repeat="legend in legendConfig.legendLabels" ng-if="$index % 2 == 0">
+                                <!--<span ng-style='background:{{ legend.color }};'></span>{{ legend.label }}-->
+                                <span ng-style="legendSwatchStyle(legend)"></span>{{ legend.label | translate }}
+
+                            </li>
+                        </ul>
+                        <ul class='legend-labels'>
+                            <li ng-repeat="legend in legendConfig.legendLabels" ng-if="$index % 2 == 1">
+                                <span ng-style="legendSwatchStyle(legend)"></span>{{ legend.label | translate }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

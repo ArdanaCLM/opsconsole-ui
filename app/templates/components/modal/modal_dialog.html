@@ -1,0 +1,34 @@
+<div class="oc-modal-wrapper">
+    <div class="oc-modal">
+        <div class="oc-modal-header">
+            <span ng-show="headertemplateurl" ng-include="headertemplateurl"></span>
+            <span ng-show="!headertemplateurl && type=='error'"><i class="ardana-icon ardana-icon-Critical_L color-critical"></i></span>
+            <span ng-show="!headertemplateurl && type=='warning'"><i class="ardana-icon ardana-icon-Alert color-warning"></i></span>
+            <span ng-show="!headertemplateurl" ng-bind="headerTitle | translate"></span>
+            <span ng-show="(closable() || isClosable)" align="right" class="close_modal"
+                  ng-class="{'error-close-modal ardana-icon ardana-icon-Close': type=='error' || type=='warning' }"
+                  ng-click="closeModal()"></span>
+        </div>
+        <div class="oc-modal-body">
+            <div class="oc-modal-body-indent">
+                <div class="oc-scrolling-body-indent">
+                    <ng-form name="modalForm" ng-transclude class="oc-modal-content-form"></ng-form>
+                </div>
+            </div>
+        </div>
+        <div class="oc-modal-footer" ng-class="{nofooter: nomodalfooter}">
+            <div class="oc-modal-footer-indent">
+                <span ng-show="footertemplateurl" ng-include="footertemplateurl"></span>
+                <span ng-show="!footertemplateurl">
+                  <button ng-show="type=='confirm' && subtype!='acknowledge'" class="oc-btn oc-btn-primary float-right" ng-bind="'common.confirm' | translate" ng-disabled="modalForm.$invalid" ng-click="commit()"></button>
+                  <button ng-show="type=='confirm' && subtype=='acknowledge'" class="oc-btn oc-btn-primary float-right" ng-bind="'common.ok' | translate" ng-click="closeModal()"></button>
+                  <button ng-show="(type=='error' || type=='warning') && subtype=='close'" class="oc-btn oc-btn-primary float-right" ng-bind="'common.close' | translate" ng-click="closeModal()"></button>
+                  <button class="oc-btn oc-btn-default float-right" ng-show="subtype!=='acknowledge' && subtype!=='close'" ng-class="{'float-right': type=='error' || type=='warning'}" ng-bind="'common.cancel' | translate" ng-click="closeModal()"></button>
+                </span>
+            </div>
+        </div>
+        <modal-drawer name="modalDrawer" no-header="nodrawerheader"></modal-drawer>
+        <fti-help-drawer ng-if="showFtiHelp" name="ftiHelpDrawer"></fti-help-drawer>
+    </div>
+</div>
+<div class="modal-content-backdrop"></div>

@@ -1,0 +1,87 @@
+<!-- template for compute baremetal instance node details page -->
+<import src="$parent.$parent.$parent.selectedData" target="data"/>
+<import src="$parent.$parent.$parent" target="baremetalInstCtrl"/>
+
+<div class="col-md-12 detail-page">
+    <h2 class="oc-heading page-title">{{ 'compute.baremetal.instance.detail' | translate }}: {{ (data.instance_name && data.instance_name !== 'None') ? data.instance_name : data.instance_uuid}}</h2>
+    <div ng-if="data.instance_uuid" class="col-container">
+        <div class="col-container less-padding-top">
+            <div class="left-col long">
+                <h3 class="oc-heading section-title">{{ 'compute.baremetal.instance.subdetail' | translate }}</h3>
+                <table>
+                    <tbody>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "common.name" | translate | uppercase }}</td>
+                            <td>{{data.instance_name}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "common.uuid" | translate | uppercase }}</td>
+                            <td>{{data.instance_uuid}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "common.node" | translate | uppercase }}</td>
+                            <td>{{data.node}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "common.host" | translate | uppercase }}</td>
+                            <td>{{data.instanceDetails.host}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "common.status" | translate | uppercase }}</td>
+                            <td>{{data.instance_status}}</td>
+                        </tr>
+                        <!-- some message keys are reused from compute instance -->
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.compute_instances.table.row.label.image" | translate | uppercase }}</td>
+                            <td>{{data.instanceDetails.image}}</td>
+                            </td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.compute_instances.table.row.label.time" | translate | uppercase }}</td>
+                            <td>{{data.instanceDetails.date_created}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.baremetal.instance.powerstate" | translate | uppercase }}</td>
+                            <td>{{data.instanceDetails.power_state}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.compute_instances.table.row.label.task" | translate | uppercase }}</td>
+                            <td>{{data.instanceDetails.task}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.compute_instances.table.row.label.key" | translate | uppercase }}</td>
+                            <td>{{data.instanceDetails.key}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.compute_instances.table.row.label.flavor" | translate | uppercase }}</td>
+                            <td>{{data.instanceDetails.flavor}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.compute_instances.table.row.label.project" | translate | uppercase }}</td>
+                            <td>{{data.instanceDetails.project}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="right-col short">
+                <div class="text-area less-padding-top">
+                    <div class="text-left-col">
+                        <h3 class="oc-heading section-title">{{"compute.compute_instances.table.row.label.address" | translate}}</h3>
+                        <div class="text-line" ng-repeat="ip in data.instanceDetails.ip_addresses">{{ip}}</div>
+                    </div>
+                    <div>
+                        <div class="col-header less-padding-top">{{"compute.compute_instances.table.row.label.meta" | translate}}</div>
+                        <div class="text-line" ng-repeat="meta in data.instanceDetails.metadata">{{meta}}</div>
+                    </div>
+                </div>
+            </div>
+        </div> <!--end of col-container -->
+    </div>
+     <div class="button-area">
+        <button class="oc-btn oc-btn-default"
+                ng-bind="'compute.baremetal.instance.delete_instance' | translate"
+                ng-click="closeModal(); baremetalInstCtrl.showConfirmDeleteInstanceModal()"
+                ng-disabled="!baremetalInstCtrl.isValidToActivateDeleteInstance(data)">
+        </button>
+    </div>
+</div>

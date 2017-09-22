@@ -1,0 +1,94 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+
+.panel_tile {
+  width: 460px !important;
+  height: 420px !important;
+  position: relative;
+  background-color: white;
+  display: inline-table;
+  margin: 10px;
+  vertical-align: center;
+  background-repeat: no-repeat;
+  background-position: 2% 3%;
+  background-size: 25px 20px;
+
+  .content {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 15%;
+  }
+
+}
+
+.footer_panel {
+  font-size: 12px;
+  width: 470px !important;
+  height: 100px !important;
+  margin-top: 300px;
+  margin-left: 20px;
+  margin-bottom: 5px;
+  display: inline-flex;
+}
+
+.panel_tile:before {
+  content: "";
+  display: block;
+}
+
+.panel_tile_image {
+  //Change this background URL Automatically
+  background-image: url("/images/icons/infra/host.png");
+}
+
+.panelcontent {
+  margin-left: 25px;
+  height: 250px;
+  width: 450px;
+  margin-right: 5px;
+}
+
+.panelgraphtitle {
+  font-size: 18px;
+  height: 30px;
+  width: 450px;
+  text-align: center;
+  margin-top: 10px;
+  color: rgba(4, 32, 35, 0.26);
+}
+
+.footer-title-1 {
+
+  width: 225px;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.footer-number-format {
+  text-align: center;
+  font-size: 24px;
+  color: rgba(4, 32, 35, 0.26);
+}
+
+.footer-text-format {
+  margin-left: 30px;
+  font-size: 14px;
+  color: rgba(4, 32, 35, 0.26);
+}
+
+.plotLegendDiv > table {
+  width: 100%;
+  margin-left: 20px;
+  margin-top: 15px;
+  .legendColorBox {
+    width: 14px;
+  }
+  .legendColorBox > div:first-child {
+    border: 0px !important;
+  }
+  .legendLabel {
+    padding-left: 4px;
+  }
+}

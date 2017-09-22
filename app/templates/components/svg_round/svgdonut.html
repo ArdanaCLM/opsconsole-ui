@@ -1,0 +1,50 @@
+<div class="header">
+  <div class="text">{{ctitle}}</div>
+</div>
+<figure>
+  <svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg"  ng-hide="withold == 'graph'">
+    <g class="arcOk" ng-if="data.ok.eAngle">
+      <path donutd = "data.ok"></path>
+    </g>
+
+    <g class="arcWarning" ng-if="data.warning.eAngle">
+      <path donutd = "data.warning"></path>
+    </g>
+
+    <g class="arcCritical" ng-if="data.critical.eAngle">
+      <path donutd = "data.critical"></path>
+    </g>
+
+    <g class="arcUnknown" ng-if="data.unknown.eAngle">
+      <path donutd = "data.unknown"></path>
+    </g>
+    <g>
+      <text x="72" y="78" fill="black" font-size="34px" text-anchor="middle">{{data.ok.count + data.warning.count + data.critical.count + data.unknown.count}}</text>
+      <text x="72" y="90" fill="black" font-size="15px" text-anchor="middle">{{'common.alarms' | translate}}</text>
+    </g>
+  </svg>
+  <figcaption ng-hide="withold == 'legend'">
+    <ul class="labels">
+      <li>
+        <span class="condition critical"></span>
+        <span class="title">{{ 'alarm.filter.status.critical' | translate | uppercase }}</span>
+        <span class="count">{{data.critical.count}}</span>
+      </li>
+      <li>
+        <span class="condition warning"></span>
+        <span class="title">{{ 'alarm.filter.status.warn' | translate | uppercase }}</span>
+        <span class="count">{{data.warning.count}}</span>
+      </li>
+      <li>
+        <span class="condition unknown"></span>
+        <span class="title">{{ 'alarm.filter.status.unknown' | translate | uppercase }}</span>
+        <span class="count">{{data.unknown.count}}</span>
+      </li>
+      <li>
+        <span class="condition ok"></span>
+        <span class="title">{{ 'alarm.filter.status.ok' | translate | uppercase }}</span>
+        <span class="count">{{data.ok.count}}</span>
+      </li>
+    </ul>
+  </figcaption>
+</figure>

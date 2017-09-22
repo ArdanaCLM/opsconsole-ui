@@ -1,0 +1,61 @@
+<div class="left-form">
+    <oc-input name="hp_storevirtual_name"
+              value="$parent.bsRegisterControl.registerVSADevice.clustername"
+              label="storage.register.content.blockstoragedevice.general.clustername"
+              placeholder="storage.register.content.blockstoragedevice.general.clustername.placeholder"
+              oc-tooltip="'storage.register.content.blockstoragedevice.general.clustername.tooltip'"
+              validate="englishonly"
+              validate-text="ocvalidate.englishonly"
+              oc-required="true"
+              type="text">
+    </oc-input>
+
+    <oc-input name="hp_storevirtual_ip"
+              value="$parent.bsRegisterControl.registerVSADevice.ipaddress"
+              label="storage.register.content.blockstoragedevice.general.ipaddress_vsa"
+              placeholder="storage.register.content.blockstoragedevice.general.ipaddress_vsa.placeholder"
+              oc-tooltip="'storage.register.content.blockstoragedevice.general.ipaddress_vsa.tooltip'"
+              validate-text="ocvalidate.ipaddr_hostname"
+              validate="ipaddr_hostname"
+              oc-required="true"
+              type="text">
+    </oc-input>
+
+    <oc-input name="hp_storevirtual_port"
+              value="$parent.bsRegisterControl.registerVSADevice.portnumber"
+              label="storage.register.content.blockstoragedevice.general.portnumber"
+              oc-tooltip="'storage.register.content.blockstoragedevice.general.portnumber_vsa.tooltip'"
+              validate-text="ocvalidate.port"
+              validate="port"
+              oc-required="true"
+              type="text">
+    </oc-input>
+
+    <oc-input name="hp_storevirtual_account_username"
+              value="$parent.bsRegisterControl.registerVSADevice.username"
+              label="storage.register.content.blockstoragedevice.general.accountconfigruation.username"
+              placeholder="storage.register.content.blockstoragedevice.general.accountconfigruation.username.placeholder"
+              oc-tooltip="'storage.register.content.blockstoragedevice.general.accountconfigruation.username.tooltip'"
+              validate-text="ocvalidate.name"
+              oc-required="true"
+              type="text">
+    </oc-input>
+
+    <div class='register-password-input'>
+        <oc-input name="hp_storevirtual_account_password"
+                  value="$parent.bsRegisterControl.registerVSADevice.password"
+                  label="storage.register.content.blockstoragedevice.general.accountconfigruation.password"
+                  placeholder="storage.register.content.blockstoragedevice.general.accountconfigruation.password.placeholder"
+                  oc-tooltip="'storage.register.content.blockstoragedevice.general.accountconfigruation.password.tooltip'"
+                  validate-text="ocvalidate.password"
+                  oc-required="true"
+                  type="{{ $parent.bsRegisterControl.registerVSADevice.showPass ? 'text' : 'password'}}">
+        </oc-input>
+
+        <div class="register-showpass">
+            <i class="gi-2x ardana-icon view-color"
+               ng-class="{'ardana-icon-View_pressed': $parent.bsRegisterControl.registerVSADevice.showPass, 'ardana-icon-View': !$parent.bsRegisterControl.registerVSADevice.showPass}"
+               ng-click="$parent.bsRegisterControl.toggleRegisterShowPass('vsa')"></i>
+        </div>
+    </div>
+</div>

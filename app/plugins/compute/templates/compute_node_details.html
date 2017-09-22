@@ -1,0 +1,204 @@
+<import src="computeDetails.hostData" target="data"/>
+<div class="detail-page">
+    <h2 class="oc-heading page-title">{{"compute.compute_nodes.details.subtitle" | translate}}: {{data.name}}</h2>
+    <div class="col-container">
+        <div class="left-col">
+            <table>
+                <tbody>
+                <tr ng-if="data['type'] == 'esxcluster'" class="item-line">
+                    <td class="item_label">{{"compute.details.vcenter_name" | translate | uppercase}}</td>
+                    <td>{{computeDetails['details'].data.vcenter_name | defaultStr:"NA"}}</td>
+                </tr>
+                <tr class="item-line">
+                    <td class="item-label" style="width: 250px;">{{"compute.compute_nodes.table.row.label.contains" | translate }}
+                        <div class="oc-info ardana-icon ardana-icon-Unknown_L vert-offset-top-half"
+                             uib-tooltip="{{'compute.tooltip.contains' | translate}}"
+                             tooltip-placement="right"></div>
+                    </td>
+                    <td>
+                        {{data['instances'] >= 0 ? data['instances'] : 0}} {{"compute.table.row.header.instances" | translate}}
+                    </td>
+                </tr>
+                <tr class="item-line">
+                    <td class="item-label">{{"compute.compute_nodes.table.row.label.technology" | translate}}
+                        <div class="oc-info ardana-icon ardana-icon-Unknown_L"
+                             uib-tooltip="{{'compute.tooltip.technology' | translate}}"
+                             tooltip-placement="right"></div>
+                    </td>
+                    <td>{{computeDetails['details'].data.technology || data.hypervisor_display_name}}</td>
+                </tr>
+                <tr class="item-line">
+                    <td class="item-label">{{"compute.compute_nodes.table.header.state" | translate |uppercase}}</td>
+                    <td>{{data.stateStr}}</td>
+                </tr>
+                <tr class="item-line">
+                    <td class="item-label">{{"compute.details.server_group.header" | translate |uppercase}}</td>
+                    <td ng-if="computeDetails['details'].data.ardana['server-group'] !== undefined">
+                        {{computeDetails['details'].data.ardana['server-group'] | uppercase}}
+                    </td>
+                    <td ng-if="computeDetails['details'].data.ardana['server-group'] === undefined">{{"compute.notavailable.data" |
+                        translate | uppercase}}
+                    </td>
+                </tr>
+                <tr class="item-line">
+                    <td class="item-label" style="width: 250px;">{{"compute.details.host_count.header" | translate |uppercase}}</td>
+                    <td ng-if="computeDetails['details'].data.host_count !== undefined">{{$parent.$parent.$parent.$parent.computeDetails.details.data.host_count |
+                        uppercase}}
+                    </td>
+                    <td ng-if="computeDetails['details'].data.host_count === undefined">{{"compute.notavailable.data" | translate | uppercase}}
+                    </td>
+                </tr>
+                <tr class="item-line" ng-if="data.region">
+                    <td class="item-label" style="width: 250px;">{{"compute.details.region.header" | translate |uppercase}}</td>
+                    <td>{{data.region | uppercase}}</td>
+                </tr>
+                <tr class="item-line">
+                    <td class="item-label">{{"compute.details.service_host.header" | translate | uppercase}}</td>
+                    <td>{{data.service_host}}</td>
+                </tr>
+                <tr class="item-line">
+                    <td class="item-label">{{"compute.compute_nodes.table.header.ip_address" | translate | uppercase}}</td>
+                    <td ng-if="data.ip_address !== 'UNSET'">{{data.ip_address}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!-- action buttons corresponding to row actions -->
+           <div ng-show="$root.appConfig.env === 'stdcfg'" class="button-area">
+                <button class="oc-btn oc-btn-primary"
+                        ng-bind="'compute.compute_nodes.button.activate' | translate"
+                        ng-click="activateComputeHost(data)"
+                        ng-if="isValidToShowComputeHostButton(data, 'activate') && !loadingDetailsDataFlag">
+                </button>
+                <button class="oc-btn oc-btn-primary"
+                        ng-bind="'compute.compute_nodes.button.deactivate' | translate"
+                        ng-click="deactivateComputeHost(data)"
+                        ng-if="isValidToShowComputeHostButton(data, 'deactivate') && !loadingDetailsDataFlag">
+                </button>
+                <button class="oc-btn oc-btn-primary"
+                        ng-bind="'compute.compute_nodes.button.delete' | translate"
+                        ng-click="deleteComputeHost(data)"
+                        ng-if="isValidToShowComputeHostButton(data, 'delete') && !loadingDetailsDataFlag">
+                </button>
+           </div>
+        </div>
+    </div>
+
+</div>
+<div class="col-md-12 detail-page">
+    <div class="col-container">
+        <div class="left-col">
+            <h3 class="oc-heading section-title">{{"common.host.compute.utilization" | translate}}</h3>
+            <div class="chart-area" style="min-height: 190px;">
+                <div class="host-utilization-details" ng-show="!loadingDetailsDataFlag">
+                    <div class="host-utils">
+                        <svghorseshoe percentage
+                                      data="computeDetails.hostUtilsData_compute"
+                                      max="computeDetails.hostUtilsData_compute.max"
+                                      unit="computeDetails.hostUtilsData_compute.unit"
+                                      label="computeDetails.hostUtilsData_compute.label"
+                                      ctitle="computeDetails.hostUtilsData_compute.title"/>
+                    </div>
+                    <div class="host-utils">
+                        <svghorseshoe percentage
+                                      data="computeDetails.hostUtilsData_memory"
+                                      max="computeDetails.hostUtilsData_memory.max"
+                                      unit="computeDetails.hostUtilsData_memory.unit"
+                                      ctitle="computeDetails.hostUtilsData_memory.title"/>
+                    </div>
+                    <div class="host-utils">
+                        <svghorseshoe percentage
+                                      data="computeDetails.hostUtilsData_storage"
+                                      max="computeDetails.hostUtilsData_storage.max"
+                                      unit="computeDetails.hostUtilsData_storage.unit"
+                                      ctitle="computeDetails.hostUtilsData_storage.title"/>
+                    </div>
+                </div>
+                <div align="center">
+                    <ocloading ng-show="loadingDetailsDataFlag"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-col">
+            <h3 class="oc-heading section-title">{{"compute.compute_nodes.details.alarm_details" | translate}}</h3>
+            <div>
+                <svgdonut data="computeDetails.hostAlarmData.data"
+                          ctitle="computeDetails.hostAlarmData.title"/>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-12 detail-page">
+    <div class="col-container">
+        <div class="left-col">
+            <h3 class="oc-heading section-title">{{"compute.compute_nodes.table.row.label.allocation" | translate}}</h3>
+            <div class="chart-area">
+                <div class="chart">
+                    <svghorseshoe percentage
+                                  data="computeDetails.allotted_cpu"
+                                  max="computeDetails.allotted_cpu.max"
+                                  unit="computeDetails.allotted_cpu.unit"
+                                  label="computeDetails.allotted_cpu.label"
+                                  ctitle="computeDetails.allotted_cpu.title"/>
+                </div>
+                <div class="chart">
+                    <svghorseshoe percentage
+                                  data="computeDetails.allotted_memory"
+                                  max="computeDetails.allotted_memory.max"
+                                  unit="computeDetails.allotted_memory.unit"
+                                  ctitle="computeDetails.allotted_memory.title"/>
+                </div>
+                <div class="chart">
+                    <svghorseshoe percentage
+                                  data="computeDetails.allotted_storage"
+                                  max="computeDetails.allotted_storage.max"
+                                  unit="computeDetails.allotted_storage.unit"
+                                  ctitle="computeDetails.allotted_storage.title"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ardana actions from drilldonw from other places-->
+<div ng-if="computeHostServiceFromDetail">
+     <stackablemodal id="askEncryptionStackableArdanaId2" name="askEncryptionStackableArdanaName2"
+                     showAttribute="computeHostServiceFromDetail.askEncryptionModalArdana._show"
+                     modalTemplateUrl="'compute/templates/ardana/encryption_compute_node.html'"
+                     closeaction="computeHostServiceFromDetail.askEncryptionModalArdana.stackableScope.clearAndClose">
+     </stackablemodal>
+
+     <!-- logview for error message of action-->
+    <stackablemodal id="logViewArdanaModalId2" name="logViewArdanaModalName2"
+                    showAttribute="computeHostServiceFromDetail.logViewArdana.show"
+                    modalTemplateUrl="'compute/templates/ardana/log_view.html'">
+    </stackablemodal>
+
+     <!--confirm delete host ardana -->
+    <opsmodal showAttribute="computeHostServiceFromDetail.showConfirmDeleteModalFlag"
+              type="confirm"
+              commit-action="computeHostServiceFromDetail.commitDeleteHost_Ardana"
+              header-title="compute.compute_nodes.ardana.delete.confirm.title">
+        <div ng-include="'compute/templates/ardana/delete_host_confirm.html'"></div>
+        <modal-overlay show-attribute="computeHostServiceFromDetail.updatingHostOverlayFlag"></modal-overlay>
+    </opsmodal>
+
+    <!--confirm deactivate host ardana -->
+    <opsmodal showAttribute="computeHostServiceFromDetail.showConfirmDeactivateModalFlag"
+              type="confirm"
+              commit-action="computeHostServiceFromDetail.commitDeactivateHost_Ardana"
+              header-title="compute.compute_nodes.ardana.deactivate.title">
+        <div ng-include="'compute/templates/ardana/deactivate_host_confirm.html'"></div>
+        <modal-overlay show-attribute="computeHostServiceFromDetail.updatingHostOverlayFlag"></modal-overlay>
+    </opsmodal>
+
+    <!--confirm activate host ardana -->
+    <opsmodal showAttribute="computeHostServiceFromDetail.showConfirmActivateModalFlag"
+              type="confirm"
+              commit-action="computeHostServiceFromDetail.commitActivateHost_Ardana"
+              header-title="compute.compute_nodes.ardana.activate.title">
+        <div ng-include="'compute/templates/ardana/activate_host_confirm.html'"></div>
+        <modal-overlay show-attribute="computeHostServiceFromDetail.updatingHostOverlayFlag"></modal-overlay>
+    </opsmodal>
+</div>

@@ -1,0 +1,74 @@
+<div ng-controller="BllTestController">
+
+    <div class="col-md-6">
+        <div class="dlg-text">Target (Service):</div>
+    </div>
+    <div class="col-md-6">
+        <div class="dlg-text">Operation:</div>
+    </div>
+
+    <div class="col-md-6">
+        <input name="service_name" type="text" ng-model='bll_target' style="width: 80%"/>
+    </div>
+    <div class="col-md-6">
+        <input name="operation" type="text" ng-model='bll_operation' style="width: 80%"/>
+    </div>
+
+    <div class="col-md-12">
+        <br>
+        <button class="button" ng-click="testBll()">Make BLL Request</button>
+        <br><br>
+    </div>
+
+    <div class="col-md-6">
+        <table>
+            <tbody>
+            <tr>Request (Your JSON Data)</tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <table>
+            <tbody>
+            <tr>Request X-Auth Token (read-only)</tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-6">
+        <table>
+            <tbody>
+            <tr>
+                <textarea ng-model="bll_request_body_content" style="height:200px;width: 100%"></textarea>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <table>
+            <tbody>
+            <tr>
+                <textarea ng-model="bll_x_auth_token" style="height:200px;width: 100%" readonly></textarea>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-12">
+        <table>
+            <tbody>
+            <tr>BLL Response (read-only)</tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-8">
+        <table>
+            <tbody>
+            <tr>
+                <textarea ng-model="bll_response_body_content" style="height:400px;width: 100%" readonly></textarea>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+<import src="$parent.$parent.$parent" target="ctrl"/>
+<ocloading class="center" ng-show="ctrl.loadingUtilizationData"></ocloading>
+<div class='map_container'ng-repeat="map in ctrl.cluster_util_memory_maps">
+    <dynamic-heat-map name="{{map.title}}" data="map.data" columns="20" clickfunc="ctrl.heatmapDrill"/>
+</div>

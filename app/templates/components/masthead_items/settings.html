@@ -1,0 +1,61 @@
+<!-- masthead settings content for popover -->
+<import src="$parent.$parent.$parent" target="sCtrl"/>
+<div class="settings-popover">
+  <div class="popover-header">
+    {{ 'masthead.settings.account_settings' | translate }}
+  </div>
+  <div ng-hide="sCtrl.loading || sCtrl.dataError">
+      <ng-form name="settings_form">
+      <oc-input name="username"
+                value="sCtrl.user.username"
+                label="masthead.settings.user_name"
+                validate="username"
+                validate-text="ocvalidate.username"
+                oc-disabled="sCtrl.user.username==='admin'"
+                type="text">
+      </oc-input>
+      <oc-input name="email"
+                value="sCtrl.user.email"
+                label="masthead.settings.email"
+                validate="email"
+                validate-text="ocvalidate.email"
+                oc-disabled="sCtrl.noProject"
+                placeholder="masthead.settings.placeholder.email"
+                type="text">
+      </oc-input>
+      <div class="oc-validate-warning" ng-if="sCtrl.noProject">
+        <div class="text">{{ 'masthead.settings.warn.noproject' | translate }}</div>
+      </div>
+      <div class='settings-password-input' ng-if="sCtrl.user.username !== 'admin'">
+        <oc-input name="password"
+                  value="sCtrl.user.password"
+                  label="masthead.settings.new_password"
+                  type="{{sCtrl.showPass ? 'text' : 'password'}}">
+        </oc-input>
+        <div class="settings-showpass">
+          <i class="gi-2x ardana-icon view-color"
+             ng-class= "{'ardana-icon-View_pressed': sCtrl.showPass, 'ardana-icon-View': !sCtrl.showPass}"
+             ng-click="sCtrl.toggleShowPass()"></i>
+        </div>
+      </div>
+      </ng-form>
+  </div>
+  <div class="oc-validate-error" ng-if="sCtrl.dataError">
+    <div class="text">{{ 'masthead.settings.error.retrieveuser' | translate }}</div>
+  </div>
+  <div ng-show="sCtrl.loading">
+    <ocloading></ocloading>
+  </div>
+  <div class="popover-btns account-btns">
+      <button class="oc-btn oc-btn-default"
+              ng-bind="'common.cancel' | translate"
+              ng-click="sCtrl.cancelAccountSettingsModal(settings_form);closeModal()">
+            </button>
+      <button class="oc-btn oc-btn-primary"
+              ng-click="sCtrl.update(settings_form)"
+              ng-disabled="settings_form.$pristine || settings_form.$invalid || sCtrl.noProject || sCtrl.dataError">
+        {{ 'masthead.settings.update_button' | translate}}
+      </button>
+  </div>
+  <modal-overlay class="popover-item settings_overlay" show-attribute="sCtrl.showOverlay"></modal-overlay>
+</div>

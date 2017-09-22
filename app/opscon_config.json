@@ -1,0 +1,9 @@
+{
+    "integerated_logging_url":"index.html#/dashboard/file/logstash.json",
+    "integerated_audit_url":"#/dashboard/file/audit",
+    "activity_feed_url":"#/dashboard/file/activity",
+    "default_route": "/general/dashboard_alarms_summary",
+    "debug_mode": "false",
+    "dev_mode": false,
+    "console_logging" : ["warn", "error", "log", "info", "debug"]
+}

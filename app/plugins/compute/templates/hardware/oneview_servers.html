@@ -1,0 +1,41 @@
+<div ng-controller="HardwareOneviewController">
+    <!--template for hardware oneview table page-->
+    <div class="compute_hardware_main">
+        <!--hardware oneview table -->
+        <octable selectable transformable expandable pageable actionmenu enumfilter sortcontrol
+                 modelname="hardwareData"
+                 configname="hardwareTableConfig"
+                 loadflag="hardwareDataLoading"
+                 expand-template-url="compute/templates/hardware/oneviewservers_table_expandtemplate.html"
+                 tile-template-url="compute/templates/hardware/oneviewservers_table_tiletemplate.html">
+            <oct-std-header></oct-std-header>
+        </octable>
+        <stackablemodal
+                name="createClusterModal"
+                showAttribute="showCreateClusterModalFlag"
+                modalTemplateUrl="'compute/templates/hardware/create_cluster.html'">
+        </stackablemodal>
+        <!-- confirm reserve hardware -->
+        <opsmodal showAttribute="showConfirmReserveHardwareModalFlag"
+                  type="confirm"
+                  header-title="compute.hardware.reserve.confirm"
+                  commit-action="commitReserveHardware">
+            <div ng-include="'compute/templates/hardware/reserve_oneviewhardware_confirm.html'"></div>
+            <modal-overlay show-attribute="showModalOverlayFlag"></modal-overlay>
+        </opsmodal>
+        <!-- confirm unreserve hardware -->
+        <opsmodal showAttribute="showConfirmUnreserveHardwareModalFlag"
+                  type="confirm"
+                  header-title="compute.hardware.unreserve.confirm"
+                  commit-action="commitUnreserveHardware">
+            <div ng-include="'compute/templates/hardware/unreserve_oneviewhardware_confirm.html'"></div>
+            <modal-overlay show-attribute="showModalOverlayFlag"></modal-overlay>
+        </opsmodal>
+        <opsmodal showAttribute="showNotEnoughTimeModalFlag"
+                  type="confirm" subtype="acknowledge"
+                  header-title="compute.hardware.create_cluster.timeout.title">
+            <div ng-include="'compute/templates/hardware/not_enough_time.html'"></div>
+        </opsmodal>
+    </div>
+
+</div>

@@ -1,0 +1,105 @@
+<!-- template for system networking table expand -->
+<import src="$parent.$parent.$parent.oneNetworkData" target="data"/>
+<import src="$parent.$parent.$parent" target="networkingCtrl"/>
+
+<div class="col-md-12 system-networking">
+    <h2 ng-if="data.readonly==false" class="oc-heading page-title">{{ 'system.networking.edit' | translate }}: {{data.name}}</h2>
+    <h2 ng-if="data.readonly==true" class="oc-heading page-title">{{ 'system.networking.details' | translate }}: {{data.name}}</h2>
+    <ocloading ng-show="networkingCtrl.showModalOverlayFlag"></ocloading>
+    <div class="col-container">
+    <table ng-if="data.readonly==true">
+        <tbody>
+            <tr class="item-line">
+                <td class="item-label">{{ "system.networking.name" | translate | uppercase }}</td>
+                <td class="item-value">{{data.name}}</td>
+            </tr>
+            <tr class="item-line">
+                <td class="item-label">{{ "system.networking.vlanid" | translate | uppercase }}</td>
+                <td class="item-value">{{data.vlanid}}</td>
+            </tr>
+            <tr class="item-line">
+                <td class="item-label long-text">{{ "system.networking.cidr" | translate | uppercase }}</td>
+                <td class="item-value">{{data.cidr}}</td>
+            </tr>
+            <tr class="item-line">
+                <td class="item-label">{{ "system.networking.gatewayip" | translate | uppercase }}</td>
+                <td class="item-value">{{data.gatewayip}}</td>
+            </tr>
+            <tr class="item-line">
+                <td class="item-label">{{ "system.networking.iprange" | translate | uppercase }}</td>
+                <td class="item-list-value">
+                    <ul class="item-list" type="none">
+                        <li ng-repeat="range in data.ranges_readonly">{{range}}</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ng-form ng-if="data.readonly==false" name="systemEditNetworkForm">
+        <oc-input name="name"
+                  value="data.name"
+                  label="common.name"
+                  oc-disabled="true"
+                  type="text">
+        </oc-input>
+        <!-- <oc-input name="type"
+                  value="data.type"
+                  label="common.type"
+                  oc-disabled="true"
+                  type="text">
+        </oc-input> -->
+        <oc-input name="vlanid"
+                  value="data.vlanid"
+                  label="system.networking.vlanid"
+                  oc-disabled="true"
+                  type="text">
+        </oc-input>
+        <oc-input name="cidr"
+                  value="data.cidr"
+                  label="system.networking.cidr"
+                  oc-disabled="true"
+                  type="text">
+        </oc-input>
+        <oc-input name="gatewayip"
+                  value="data.gatewayip"
+                  label="system.networking.gatewayip"
+                  oc-required="data.gatewayIpRequired"
+                  placeholder="{{ 'system.networking.ip.placeholder' | translate }}"
+                  oc-tooltip="'system.networking.gatewayip.tooltip'"
+                  validate="networkingCtrl.validateGatewayIp"
+                  custom-validate-text="networkingCtrl.invalidGatewayIpMsg"
+                  type="gatewayip"
+                  action="networkingCtrl.removeGatewayIp(data)"
+                  button-label="common.remove">
+        </oc-input>
+        <oc-input label="system.networking.iprange"
+                  type="iprange"
+                  action="networkingCtrl.showAddIpRangeModal(data.ranges)"
+                  button-label="system.networking.addiprange"
+                  name="addIPRange"
+                  placeholder=""
+                  ranges="data.ranges"
+                  oc-disabled="data.rangesDisabled">
+        </oc-input>
+        <div class="update-buttons">
+            <button class="oc-btn oc-btn-default"
+                    ng-bind="'common.cancel' | translate"
+                    ng-click="networkingCtrl.cancelEditNetworkModal();closeModal()">
+            </button>
+            <button class="oc-btn oc-btn-primary"
+                    ng-bind="'system.networking.update' | translate"
+                    ng-click="networkingCtrl.showConfirmUpdateNetworkModal(data)"
+                    ng-disabled="!networkingCtrl.isDataChanged(data) || systemEditNetworkForm.$invalid">
+            </button>
+        </div>
+    </ng-form>
+    </div>
+    <!-- confirm update networking -->
+    <opsmodal showAttribute="networkingCtrl.showConfirmUpdateNetworkModalFlag"
+              type="confirm"
+              header-title="system.networking.update.confirm"
+              commit-action="networkingCtrl.commitEditNetwork">
+        <div ng-include="'system/templates/sys_networking/update_network_confirm.html'"></div>
+        <modal-overlay show-attribute="networkingCtrl.sysNetworkDataUpdating"></modal-overlay>
+    </opsmodal>
+</div>

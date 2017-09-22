@@ -1,0 +1,4 @@
+{
+    "bll_test.home": "名前",
+    "bll_test.update_response_error": "応答部が失敗した更新するために呼び出します"
+}

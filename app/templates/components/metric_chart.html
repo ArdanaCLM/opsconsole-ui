@@ -1,0 +1,10 @@
+<span ng-if="enabled">
+    <span ng-switch="wide" ng-if="$parent.chart_config.type == 'multiline' || $parent.chart_config.type == 'multibar' || $parent.chart_config.type == 'multiarea'">
+        <d3-multi-chart data="$parent.$parent.data" graphtype="$parent.$parent.chart_config.type" config="$parent.$parent.chart_config" width="1140" height="360" ng-switch-when="true"></d3-multi-chart>
+        <d3-multi-chart data="$parent.$parent.data" graphtype="$parent.$parent.chart_config.type" config="$parent.$parent.chart_config" width="565" height="360" ng-switch-when="false"></d3-multi-chart>
+    </span>
+    <span ng-switch="wide" ng-if="chart_config.type != 'multiline' && chart_config.type != 'multibar' && $parent.chart_config.type != 'multiarea'">
+        <d3-bars data="$parent.$parent.data" graphtype="$parent.$parent.chart_config.type" config="$parent.$parent.chart_config" width="1140" height="360" ng-switch-when="true"></d3-bars>
+        <d3-bars data="$parent.$parent.data" graphtype="$parent.$parent.chart_config.type" config="$parent.$parent.chart_config" width="565" height="360" ng-switch-when="false"></d3-bars>
+    </span>
+</span>

@@ -1,0 +1,19 @@
+<div class="octable_header_wrapper_row">
+  <div class="header-btn">
+      <import src="$parent.$parent.$parent" target="ctrl"></import>
+      <button class="oc-btn oc-btn-default" ng-click="ctrl.showAddWidgetModal($index)" ng-disabled="ctrl.loadingMetrics">{{'monitoring_dashboard.add_widget' | translate}}</button>
+      <button class="oc-btn oc-btn-default" ng-click="ctrl.initiateChartCreation($index)"
+              ng-disabled="ctrl.loadingMetrics">{{'monitoring_dashboard.create_chart' | translate}}</button>
+      <button class="oc-btn oc-btn-default" ng-click="ctrl.editTab($index)">{{'monitoring_dashboard.edit_tab' | translate}}</button>
+      <button class="oc-btn oc-btn-default" ng-click="ctrl.initDeleteTab($index)" ng-disabled="$index == 0 && $parent.$parent.$parent.tabList.length == 1">{{'monitoring_dashboard.delete_tab' | translate}}</button>
+  </div>
+</div>
+
+<div class="grid-container" dragula="'dashboard-items'" dragula-model="tabbedpage.items">
+  <div ng-repeat="item in tabbedpage.items" class="chart-spacing" ng-class="{'col-md-12':item.wide && item.type == 'chart', 'col-md-6':!item.wide && item.type == 'chart', 'col-md-4':item.type == 'card', 'col-md-3':item.type == 'metric'}" dragula-scope="$parent" dragula-model="$parent.tabbedpage.items">
+      <metric-chart ng-if="item.type == 'chart'" metric="item"></metric-chart>
+      <dashboard-alarm-card ng-if="item.type == 'card'" card="item"></dashboard-alarm-card>
+      <dashboard-metric-card ng-if="item.type == 'metric'" card="item"></dashboard-metric-card>
+  </div>
+</div>
+<div class="col-md-12 chart-page-bottom"/>

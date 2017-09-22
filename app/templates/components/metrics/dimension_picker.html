@@ -1,0 +1,43 @@
+<import src="$parent.$parent.$parent" target="ctrl"></import>
+
+<div class="col-md-7 metric-selector">
+  <h2 class="oc-heading">{{'dimension_picker.title' | translate}}</h2>
+  <h3 class="oc-heading">{{'dimension_picker.list_title' | translate}}<button class="oc-btn oc-btn-primary float-right" ng-click="ctrl.selectDimension()">{{'dimension_picker.add_dimension' | translate}}</button></h3>
+</div>
+<div class="enum_filter_wrapper col-md-7 metric-selector">
+    <div class="octable_header_wrapper_enum_row enumerated_filter_control">
+        <span class="enum_filter_icon">
+          <i class="ardana-icon ardana-icon-Filter"></i>
+        </span>
+        <span class="enum_filter_input">
+          <input type="text" ng-model="dimensionFilter"/>
+        </span>
+        <span class="enum_filter_clear" ng-click="dimensionFilter=''">
+          <i class="ardana-icon ardana-icon-Close"></i>
+        </span>
+    </div>
+</div>
+<div class="dimension-selector-header col-sm-8">
+  <div class="dimension-header first">
+    {{'dimension_picker.select' | translate}}
+  </div>
+  <div class="dimension-header">
+    {{'dimension_picker.dimensions' | translate}}
+  </div>
+</div>
+<ocloading ng-show="ctrl.loadingDimensions"></ocloading>
+<div ng-repeat="dimension in ctrl.currentDimensions | fuzzy: dimensionFilter" ng-hide="ctrl.loadingDimensions">
+  <div class="metric-picker-item col-sm-8">
+    <div class="select">
+      <oc-checkbox
+        oc-disabled="!dimension.$canSelect"
+        ng-model="ctrl.selectedCurrentDimensions[$index]"></oc-checkbox>
+    </div>
+    <div
+      class="dimension"
+      click-proxy="oc-checkbox[oc-disabled='!dimension.$canSelect'] input"
+      ng-class="{pointer: dimension.$canSelect}">
+        {{dimension.key}}={{dimension.value}}
+    </div>
+  </div>
+</div>

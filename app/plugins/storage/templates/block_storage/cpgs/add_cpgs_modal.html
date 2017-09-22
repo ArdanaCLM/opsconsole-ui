@@ -1,0 +1,28 @@
+<import src="$parent.$parent.$parent" target="bsAddCPGControl"/>
+
+<span class="common_modal_header">
+    {{ "storage.block_storage.manage_cpgs.header" | translate }}: {{ "common.register_item" | translate:{item: "CPGs"} }}
+</span>
+
+<div class="col-md-12">
+    <span>{{ "storage.block_storage.manage_cpgs.select_available" | translate }}:</span>
+    <ul class="list-group available-cpg-list">
+        <li class="list-group-item" ng-repeat="cpg in bsAddCPGControl.available_cpgs">
+            <input type="checkbox" ng-model="cpg.val" ng-click="bsAddCPGControl.addCPGs(cpg.name, cpg.val)">
+            {{ cpg.name }}
+        </li>
+    </ul>
+</div>
+
+<div style="margin-top: 50px"></div>
+<div class="oc-btn-group">
+    <button class="oc-btn oc-btn-default"
+            ng-bind="'common.cancel' | translate"
+            ng-click="closeModal()">
+    </button>
+    <button class="oc-btn oc-btn-primary"
+            ng-bind="'storage.block_storage.cpgs.add' | translate"
+            ng-click="bsAddCPGControl.addCPGToBll(closeModal())"
+            ng-disabled="bsAddCPGControl.selected_cpgs_list.length === 0">
+    </button>
+</div>

@@ -1,0 +1,387 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+@import '../../../styles/components/_palette.scss';
+
+@import '../../../styles/components/_icons.scss';
+
+button.close {
+  margin-top: -40px;
+}
+
+.close {
+  font-size: 50px !important;
+  opacity: 0.8 !important;
+  filter: alpha(opacity=80) !important;
+}
+
+.panel-heading {
+  padding: 15px 15px !important;
+}
+
+.networks_list_modal_title{
+  line-height: 60px;
+  margin-left: 20px;
+  font-size: 24px;
+  color: $header_title_color;
+}
+
+.networking-checks-2 {
+  width: 100%;
+  position: relative;
+  padding: 12px 0px 0px 0px;
+}
+
+.dlg-text{
+  padding: 15px 5px 5px 0px;
+}
+
+.dlg-text-top{
+  padding: 35px 5px 5px 0px;
+}
+
+.dlg-text-top-bar {
+  @extend .dlg-text-top;
+  border-bottom: #778899;
+  border-bottom: solid 1px black;
+}
+
+.dlg-select {
+  width: 100%;
+  padding: 3px 3px 3px 10px;;
+  font-weight:300;
+  background-color: $oc-login-edit-bg-color !important;
+  font-style: normal;
+  font-size: 18px;
+  text-decoration: none;
+  color: $oc-login-dark-gray;
+  text-align: left;
+  border-color: transparent !important;
+  outline-style: none !important;
+}
+
+.dlg-text-small {
+  font-weight: 300;
+  font-style: normal;
+  font-size: 13px;
+}
+
+.dlg-input{
+  padding: 3px 3px 3px 0px;;
+  font-weight:300;
+  background-color: $oc-login-edit-bg-color !important;
+  font-style: normal;
+  font-size: 18px;
+  text-decoration: none;
+  color: $oc-login-dark-gray;
+  text-align: left;
+  border-color: transparent !important;
+  outline-style: none !important;
+}
+
+.networks-med-modal {
+  .oc-modal-wrapper {
+    .oc-modal {
+      height: 700px;
+      .oc-modal-drawer {
+        .oc-body-drawer {
+          height: 480px;
+        }
+      }
+    }
+  }
+}
+
+.networks-small-modal {
+  .oc-modal-wrapper {
+    .oc-modal {
+      height: 550px;
+      .oc-modal-drawer {
+        .oc-body-drawer {
+          height: 330px;
+        }
+      }
+    }
+  }
+}
+
+.networks_content_box{
+  padding: 5px 10px 10px 5px !important;
+  .inner_table {
+    border: 1px solid $soft-border-color;
+    background-color: white;
+    width: 100%;
+    margin: 0px 0px 40px 0px;;
+  }
+
+  .content_label_top{
+    color: darkgray;
+    text-align: center;
+    font-size: 14px;
+    line-height: 22px;
+    padding-top: 5px;
+  }
+
+  .content_label_bottom{
+    color: darkgray;
+    text-align: center;
+    font-size: 14px;
+    line-height: 22px;
+    padding-bottom: 5px;
+  }
+
+  //@extend .content_label;
+
+  .content_value  {
+    text-align: center;
+    font-size: 48px;
+  }
+
+  tr{
+    line-height: 48px;
+  }
+}
+
+
+.panel-title {
+  font-size: 30px !important;
+}
+
+.col-md-12.networking-modal-btn {
+  margin-top: 15px;
+  margin-left: -20px;
+}
+
+span.heading-text {
+  padding-left: 15px;
+  font-weight: bold;
+}
+
+.small-filter {
+  width: 50%;
+  float: right;
+}
+
+.instance-warning {
+  background-image: url($warning_icon);
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  height: 24px;
+  width: 24px;
+}
+
+.col-md-1 .instance-warning {
+  width: 48px;
+  height: 48px;
+  background-size: 48px 48px;
+  margin-left: -25px;
+  margin-top: 5px;
+}
+
+.instance-warning {
+  background-image: url('/images/icons/status/warning.svg');
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  height: 24px;
+  width: 24px;
+}
+
+.align-left {
+  float: left;
+}
+
+.align-right {
+  display: flex;
+  margin-left: 20px;
+  margin-top: 3px;
+}
+
+.panel-footer {
+  height: 56px !important;
+}
+
+
+.navbar-default {
+  background-color: #F0F0F0 !important;
+  border-color: #F0F0F0 !important;
+}
+
+/* New SCSS */
+.networking_main {
+  .octable {
+    min-width: 900px !important;
+  }
+}
+
+div.networking_expandpanel > table > thead{
+  border: none;
+  //white-space: nowrap;
+}
+
+.networking-blade-title-big {
+  font-weight: bold;
+  font-size: 16px;
+  width: 100%;
+}
+
+.networking-blade-title-small {
+  padding-right: 10px;
+  white-space: nowrap;
+  text-overflow: clip;
+  line-height: 35px;
+  text-align: left;
+}
+
+.networking_blade_header {
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.networking_blade_header_small {
+  font-weight: normal;
+}
+
+.networking-tile-top {
+  padding: 10px 0px 3px 15px;
+  white-space: nowrap;
+  text-overflow: clip;
+  line-height: 35px;
+}
+
+.expanded_networking_label{
+  border-right: solid 1px black;
+  padding-right: 10px;
+  white-space: nowrap;
+  text-overflow: clip;
+  line-height: 35px;
+}
+
+.expanded_networking_label_left {
+  @extend .expanded_networking_label;
+  text-align: left;
+}
+
+.expanded_networking_value_left {
+  white-space: nowrap;
+  text-overflow: clip;
+  text-align: left;
+  padding: 0px !important;
+}
+
+.networking-tile-data {
+  padding: 15px;
+}
+
+.networking-blade-data {
+  padding: 3px;
+}
+
+.expanded_networking_label_right{
+  @extend .expanded_networking_label;
+  text-align: right;
+}
+
+.expanded_networking_value{
+  padding-left: 10px;
+  white-space: normal;
+  text-overflow: clip;
+  line-height: 35px;
+  text-align: left;
+}
+
+#table-row-expand {
+  table#expand-table-col1,
+  table#expand-table-col3 {
+    margin: 10px 0px;
+    border-right: 1px solid #000000;
+  }
+
+  table#expand-table-col2,
+  table#expand-table-col4,
+  table#expand-table-col5,
+  table#expand-table-col6 {
+    margin: 10px 0px;
+  }
+
+  #expand-table-col1 tr td,
+  #expand-table-col2 tr td {
+    padding-bottom: 10px;
+    padding-right: 15px;
+  }
+
+  .col-md-2 {
+    width: 13% !important;
+    float: left;
+  }
+
+  .right-pad {
+    padding-right: 5%;
+  }
+
+  .col-md-2_5 {
+    width: 18% !important;
+    float: left;
+  }
+
+  #expand-table-col3 tr td {
+    padding-bottom: 50px;
+    padding-right: 15px;
+    text-align: right;
+  }
+
+  #expand-table-col4 tr td,
+  #expand-table-col5 tr td,
+  #expand-table-col6 tr td {
+    padding-bottom: 30px;
+    vertical-align: top;
+    padding-right: 5%;
+  }
+
+  #expand-table-col1 tr td.cell-bottom {
+    padding-bottom: 50px;
+  }
+}
+
+/** Styles for blade view **/
+#table-blade-compact {
+  .col-md-2 {
+    width: 13% !important;
+    float: left;
+  }
+
+  .col-md-3 {
+    float: left;
+    margin-top: -10px;
+    margin-left: -15px;
+  }
+
+  .col-md-2_5 {
+    width: 12% !important;
+    float: left;
+    margin-top: 3.5%;
+  }
+
+  #expand-table-col4 tr td,
+  #expand-table-col5 tr td,
+  #expand-table-col6 tr td {
+    padding-bottom: 20px;
+    vertical-align: top;
+    padding-right: 10px;
+  }
+}
+
+div.segmentation_ids_contents > textarea {
+  width: 60%;
+  height: 155px;
+  background-color: $oc-login-edit-bg-color;
+  border: none;
+}
+
+.bolded-text {
+  font-weight: 600;
+}
+
+.network_subtitle {
+  font-style: normal;
+  font-size: 14px;
+  font-weight: 300;
+}

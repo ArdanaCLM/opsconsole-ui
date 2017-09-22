@@ -1,0 +1,95 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+.menu-wrapper {
+  background-color: white;
+  border-right: 1px solid $grommet-black;
+  position: absolute;
+  left: -292px;
+  top: 132px;
+  z-index:100;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 195px;
+  @media only screen and (min-width: 1465px){
+    width: 292px;
+  }
+
+  &.active {
+    left: 0px;
+  }
+
+  @include transition(left 0.25s ease);
+  .menu {
+    width: 290px;
+    padding-top: 5px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: top;
+    ul {
+      list-style: none;
+      padding: 0;
+      li {
+        list-style:none;
+        cursor: pointer;
+        &.active {
+          background-color: $grommet-silver;
+        }
+        .section {
+          width: 195px;
+          padding: 11px 22px 5px 5px;
+          text-transform: uppercase;
+          .section-icon {
+            color: $grommet-icon-grey;
+            font-size: 24px;
+            position: relative;
+            top: 3px;
+            right: -2px;
+          }
+          .expanded-icon {
+            float: right;
+            font-size: 18px;
+            color: $grommet-green;
+            padding-top: 5px;
+          }
+        }
+        @media only screen and (min-width: 1465px){
+          .section {
+            width: 290px;
+            padding: 11px 22px 5px 17px;
+          }
+        }
+
+        .section:hover {
+          background-color: $grommet-silver;
+        }
+        a {
+          text-decoration: none;
+          color: $grommet-menu-grey;
+          padding-left: 10px
+        }
+        a.header {
+          font-weight: $font-weight-semi-bold;
+          font-size: 16px;
+        }
+
+        > ul li {
+          padding: 7px 0px 5px 44px;
+          width: 290px;
+          font-size: 14px;
+          a {
+            display: block;
+            width: 100%;
+          }
+          > ul li {
+            text-transform: none;
+            padding: 7px 0px 5px 20px;
+            color: red;
+          }
+        }
+        > ul li:hover {
+          background-color: $grommet-silver;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,208 @@
+{
+    "links": [
+        {
+            "rel": "self",
+            "href": "http://192.168.10.4:8080/v2.0/alarms?name=cpu.system_perc&dimensions=hostname%3Adevstack&state=UNDETERMINED"
+        },
+        {
+            "rel": "next",
+            "href": "http://192.168.10.4:8080/v2.0/alarms?offset=f9935bcc-9641-4cbf-8224-0993a947ea83&name=cpu.system_perc&dimensions=hostname%3Adevstack&state=UNDETERMINED"
+        }
+    ],
+    "elements": [
+        {
+            "id": "f9935bcc-9641-4cbf-8224-0993a947ea83",
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "http://192.168.10.4:8080/v2.0/alarms/f9935bcc-9641-4cbf-8224-0993a947ea83"
+                },
+                {
+                    "rel": "state-history",
+                    "href": "http://192.168.10.4:8080/v2.0/alarms/f9935bcc-9641-4cbf-8224-0993a947ea83/state-history"
+                }
+            ],
+            "alarm_definition": {
+                "severity": "LOW",
+                "id": "b7e5f472-7aa5-4254-a49a-463e749ae817",
+                "links": [
+                    {
+                        "href": "http://192.168.10.4:8080/v2.0/alarm-definitions/b7e5f472-7aa5-4254-a49a-463e749ae817",
+                        "rel": "self"
+                    }
+                ],
+                "name": "high cpu and load"
+            },
+            "metrics": [
+                {
+                    "name": "cpu.system_perc",
+                    "dimensions": {
+                        "hostname": "devstack"
+                    }
+                }
+            ],
+            "state": "OK",
+            "lifecycle_state":"ACKNOWLEDGED",
+            "link":"http://somesite.com/this-alarm-info",
+            "state_updated_timestamp": "2015-03-20T21:04:49.000Z",
+            "updated_timestamp":"2015-03-20T21:04:49.000Z",
+            "created_timestamp": "2015-03-20T21:03:34.000Z"
+        },
+
+        {
+            "id": "f9935bcc-9641-4cbf-8224-0993a947ea84",
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "http://192.168.10.4:8080/v2.0/alarms/f9935bcc-9641-4cbf-8224-0993a947ea84"
+                },
+                {
+                    "rel": "state-history",
+                    "href": "http://192.168.10.4:8080/v2.0/alarms/f9935bcc-9641-4cbf-8224-0993a947ea84/state-history"
+                }
+            ],
+            "alarm_definition": {
+                "severity": "LOW",
+                "id": "b7e5f472-7aa5-4254-a49a-463e749ae818",
+                "links": [
+                    {
+                        "href": "http://192.168.10.4:8080/v2.0/alarm-definitions/b7e5f472-7aa5-4254-a49a-463e749ae818",
+                        "rel": "self"
+                    }
+                ],
+                "name": "high cpu and load"
+            },
+            "metrics": [
+                {
+                    "name": "cpu.system_perc",
+                    "dimensions": {
+                        "hostname": "devstack"
+                    }
+                }
+            ],
+            "state": "ALARM",
+            "lifecycle_state":"OPEN",
+            "link":"http://somesite.com/this-alarm-info",
+            "state_updated_timestamp": "2015-03-20T21:04:49.000Z",
+            "updated_timestamp":"2015-03-20T21:04:49.000Z",
+            "created_timestamp": "2015-03-20T21:03:34.000Z"
+        },
+
+        {
+            "id": "f9935bcc-9641-4cbf-8224-0993a947ea84",
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "http://192.168.10.4:8080/v2.0/alarms/f9935bcc-9641-4cbf-8224-0993a947ea84"
+                },
+                {
+                    "rel": "state-history",
+                    "href": "http://192.168.10.4:8080/v2.0/alarms/f9935bcc-9641-4cbf-8224-0993a947ea84/state-history"
+                }
+            ],
+            "alarm_definition": {
+                "severity": "LOW",
+                "id": "b7e5f472-7aa5-4254-a49a-463e749ae818",
+                "links": [
+                    {
+                        "href": "http://192.168.10.4:8080/v2.0/alarm-definitions/b7e5f472-7aa5-4254-a49a-463e749ae818",
+                        "rel": "self"
+                    }
+                ],
+                "name": "high cpu and load"
+            },
+            "metrics": [
+                {
+                    "name": "cpu.system_perc",
+                    "dimensions": {
+                        "hostname": "devstack"
+                    }
+                }
+            ],
+            "state": "ALARM",
+            "lifecycle_state":"RESOLVED",
+            "link":"http://somesite.com/this-alarm-info",
+            "state_updated_timestamp": "2015-03-20T21:04:49.000Z",
+            "updated_timestamp":"2015-03-20T21:04:49.000Z",
+            "created_timestamp": "2015-03-20T21:03:34.000Z"
+        },
+
+        {
+            "id": "f9935bcc-9641-4cbf-8224-0993a947ea84",
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "http://192.168.10.4:8080/v2.0/alarms/f9935bcc-9641-4cbf-8224-0993a947ea84"
+                },
+                {
+                    "rel": "state-history",
+                    "href": "http://192.168.10.4:8080/v2.0/alarms/f9935bcc-9641-4cbf-8224-0993a947ea84/state-history"
+                }
+            ],
+            "alarm_definition": {
+                "severity": "LOW",
+                "id": "b7e5f472-7aa5-4254-a49a-463e749ae818",
+                "links": [
+                    {
+                        "href": "http://192.168.10.4:8080/v2.0/alarm-definitions/b7e5f472-7aa5-4254-a49a-463e749ae818",
+                        "rel": "self"
+                    }
+                ],
+                "name": "high cpu and load"
+            },
+            "metrics": [
+                {
+                    "name": "cpu.system_perc",
+                    "dimensions": {
+                        "hostname": "devstack"
+                    }
+                }
+            ],
+            "state": "OK",
+            "lifecycle_state":"RESOLVED",
+            "link":"http://somesite.com/this-alarm-info",
+            "state_updated_timestamp": "2015-03-20T21:04:49.000Z",
+            "updated_timestamp":"2015-03-20T21:04:49.000Z",
+            "created_timestamp": "2015-03-20T21:03:34.000Z"
+        },
+
+        {
+            "id": "f9935bcc-9641-4cbf-8224-0993a947ea84",
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "http://192.168.10.4:8080/v2.0/alarms/f9935bcc-9641-4cbf-8224-0993a947ea84"
+                },
+                {
+                    "rel": "state-history",
+                    "href": "http://192.168.10.4:8080/v2.0/alarms/f9935bcc-9641-4cbf-8224-0993a947ea84/state-history"
+                }
+            ],
+            "alarm_definition": {
+                "severity": "LOW",
+                "id": "b7e5f472-7aa5-4254-a49a-463e749ae818",
+                "links": [
+                    {
+                        "href": "http://192.168.10.4:8080/v2.0/alarm-definitions/b7e5f472-7aa5-4254-a49a-463e749ae818",
+                        "rel": "self"
+                    }
+                ],
+                "name": "high cpu and load"
+            },
+            "metrics": [
+                {
+                    "name": "cpu.system_perc",
+                    "dimensions": {
+                        "hostname": "devstack"
+                    }
+                }
+            ],
+            "state": "UNDETERMINED",
+            "lifecycle_state":"OPEN",
+            "link":"http://somesite.com/this-alarm-info",
+            "state_updated_timestamp": "2015-03-20T21:04:49.000Z",
+            "updated_timestamp":"2015-03-20T21:04:49.000Z",
+            "created_timestamp": "2015-03-20T21:03:34.000Z"
+        }
+    ]
+}

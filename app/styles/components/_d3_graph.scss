@@ -1,0 +1,336 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+d3-bars, d3-multi-chart {
+  text {
+    font-size: 40px
+  }
+
+  .no_data {
+    line-height: 300px;
+  }
+
+  text.inner-circle {
+    font-weight: 400;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  text.inner-text {
+    font-weight: 400;
+    font-size: 36px;
+    font-family: 'MetricHPE-Web';
+    text-align: center;
+    font-style: normal;
+    text-transform: uppercase;
+  }
+
+  path {
+    stroke: $oc-graph-blue-1;
+    stroke-width: 2;
+    fill: none;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: $grommet-charcoal;
+    shape-rendering: crispEdges;
+    stroke-width: 2;
+  }
+
+  .grid .tick {
+    stroke: $grommet-icon-grey;
+    stroke-opacity: 0.7;
+  }
+
+  .grid path {
+    stroke-width: 0;
+  }
+
+  .area {
+    fill: $oc-graph-blue-3;
+  }
+
+  #tooltip {
+    //position: absolute;
+    position: fixed;
+    width: 100px;
+    height: auto;
+    padding: 10px;
+    background-color: $grommet-white;
+    border: 1px solid $grommet-black;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  #tooltip.hidden {
+    display: none;
+  }
+
+  #tooltip p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 12px;
+    vertical-align: middle;
+    .value {
+      font-weight: 700;
+    }
+
+    .date {
+      font-size: 10px;
+    }
+  }
+
+  .line {
+    fill: none;
+    stroke: $oc-graph-blue-1;
+    stroke-width: 2px;
+  }
+
+  .overlay {
+    fill: none;
+    shape-rendering: crispEdges;
+    pointer-events: all;
+  }
+
+  .focus circle {
+    fill: none;
+    stroke: $oc-graph-blue-1;
+  }
+
+  .focus text {
+    font-size: 10px;
+    font-family: "MetricHPE-Web";
+  }
+
+  d3-bars, d3-multi-chart {
+    margin: 10px;
+    padding-top: 20px;
+  }
+
+  svg {
+    display: block;
+    margin: auto;
+  }
+
+  .charts_top {
+    position: relative;
+    box-shadow: $grommet-box-shadow;
+    div.chart-error {
+      color: $grommet-white;
+      width: 100%;
+      min-height: 75px;
+      overflow-y: auto;
+      background-color: $grommet-red;
+      padding: 15px;
+      i.ardana-icon.ardana-icon-Error_outline {
+        font-size: 25px;
+        position: absolute;
+      }
+      div.chart-error-text {
+        @extend .inline;
+        font-size: 18px;
+        padding-left: 50px;
+      }
+    }
+  }
+
+  div.d3_charts, .charts_top {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 25px;
+    background-color: $grommet-white;
+    /*  padding-top: 45px;*/
+  }
+
+  .chart-header {
+    height: 60px;
+    border-bottom: 1px solid $grommet-unknown-grey;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .chart-title {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 60px;
+    width: 75%;
+    margin-right: none;
+  }
+
+  .default-title-class {
+    text-align: left;
+  }
+
+  .lengend-action-header, .lengend-action-buttons {
+    margin-right: 15px;
+  }
+
+  .lengend-action-buttons-first {
+    margin-left: 30px !important;
+  }
+
+  .lengend-action-buttons {
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  .lengend-action-header {
+    margin-left: 30px;
+    margin-top: 10px;
+    font-weight: normal;
+    font-size: 14px;
+    color: $grommet-menu-grey;
+  }
+
+  .d3_charts_footer {
+
+    .my-legend {
+      margin-top: 5px;
+      margin-right: 10px;
+    }
+
+    .my-legend .legend-scale ul {
+      margin: 0;
+      margin-bottom: 5px;
+      padding: 0;
+      list-style: none;
+    }
+    .my-legend .legend-scale ul li {
+      display: inline-block;
+      font-size: 12px;
+      color: $grommet-menu-grey;
+      list-style: none;
+      line-height: 18px;
+      vertical-align: text-top;
+      margin-right: 20px;
+      max-width: 300px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .my-legend ul.legend-labels li span {
+      display: inline-block;
+      height: 9px;
+      width: 9px;
+      margin-right: 5px;
+      margin-left: 10px;
+    }
+  }
+
+  svg.bg-color {
+    background-color: $grommet-white;
+  }
+
+  .axis text {
+    font: 10px sans-serif;
+  }
+
+  .axis path {
+    fill: none;
+    stroke: $grommet-unknown-grey;
+    stroke-width: 1px;
+  }
+
+  .axis line {
+    fill: none;
+    stroke: $grommet-unknown-grey;
+    stroke-width: 1px;
+  }
+
+  .x_minor {
+    stroke: $grommet-unknown-grey;
+    stroke-width: 1px;
+  }
+
+  .y_minor:nth-child(odd) {
+    stroke: $grommet-unknown-grey;
+  }
+
+  .y_minor:nth-child(even) {
+    stroke: $grommet-cloud;
+  }
+
+  .tick text {
+    font-family: "MetricHPE-Web";
+    font-size: 12px;
+    color: $grommet-menu-grey;
+  }
+
+  .d3_charts_footer {
+    width: 100%;
+    .chart-buttons, .chart-legend {
+      float: left;
+    }
+
+    .chart-legend {
+      width: 100%;
+      margin-left: 20px;
+    }
+
+    .chart-buttons {
+      width: 100%;
+    }
+  }
+
+  .d3_charts {
+    &.no-data svg {
+      display: none;
+    }
+    .axis-label {
+        font-size: 1em;
+    }
+    button {
+      background-position: 0px 4px;
+      width: 32px;
+      height: 32px;
+      background-color: transparent;
+      border: none;
+      background-repeat: no-repeat;
+    }
+
+    button.dropdown-toggle {
+      margin-top: 17px;
+      margin-right: 15px;
+      font-size: 25px;
+      width: 24px;
+      height: 24px;
+      float: right;
+    }
+
+    .btn-group.open .dropdown-toggle {
+      box-shadow: none;
+    }
+
+    .dropdown-menu.hasInput {
+      outline-style: ridge;
+      outline-color: $oc-highlight;
+    }
+
+    button.actionMenuItem, li.actionMenuItem {
+      background-image: none;
+      width: 100%;
+      //line-height: 31px;
+      color: black;
+      text-align: left;
+      padding-left: 20px;
+    }
+
+    li.actionMenuSubheader {
+      color: $oc-highlight;
+      border-bottom: 1px solid $soft-border-color;
+    }
+
+    .grid line {
+      stroke: $grommet-red;
+    }
+
+    .grid .minor line {
+      stroke-opacity: .5;
+    }
+
+  }
+
+}

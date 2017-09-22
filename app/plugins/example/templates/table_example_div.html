@@ -1,0 +1,18 @@
+<import src="$parent.$parent.$parent.selectionData" target="data"/>
+<div>
+    <button ng-click="showId(data)">{{"example.button.showid" | translate}}</button>
+    <table>
+        <tr>
+            <td>{{"example.column.name" | translate}}:</td>
+            <td>{{data.something}}</td>
+        </tr>
+        <tr>
+            <td>{{"example.column.price" | translate}}:</td>
+            <td>{{data.price}}</td>
+        </tr>
+        <tr>
+            <td>{{"example.column.notes" | translate}}:</td>
+            <td>{{data.notes}}</td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,14 @@
+<div class="tabbed-page-container">
+    <ul class="nav nav-tabs">
+        <li class="oc-h3" ng-repeat="tabbedpage in pagelist" ng-click="showTab($index)"
+            ng-class="{'selected': tabbedpage.show, 'available': !tabbedpage.show}">
+            {{tabbedpage.header | translate}}</li>
+    </ul>
+    <div class="page-content">
+        <div class="content-form" ng-repeat="tabbedpage in pagelist" ng-show="tabbedpage.show">
+            <ng-form name="tabbedPageForm">
+                <ng-include src="tabbedpage.templatePath"></ng-include>
+            </ng-form>
+        </div>
+    </div>
+</div>

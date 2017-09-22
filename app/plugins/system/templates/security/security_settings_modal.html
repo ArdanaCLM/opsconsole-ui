@@ -1,0 +1,47 @@
+<import src="$parent.$parent.modalForm" target="modalForm"></import>
+<import src="$parent.data" target="data"></import>
+<div class="control-section left-hand">
+	<div class="control-heading" ng-bind="'system.ldap.directory_server_prompt' | translate | uppercase"></div>
+	<div class="control-label">{{'system.ldap.ip_address_prompt' | translate}}</div>
+	<input name="server" class="control-input" type="text" required placeholder="{{'system.ldap.ip_address_placeholder' | translate}}" ng-model="data.server" oc-validate="ipaddr_hostname" />
+	<error-span text="ocvalidate.ipaddr_hostname" condition="modalForm.server"></error-span>
+	<div class="control-label">{{'system.ldap.port_number_prompt' | translate}}</div>
+	<input name="port" class="control-input" type="number" required placeholder="{{'system.ldap.port_number_placeholder' | translate}}" ng-model="data.port" oc-validate="port"/>
+	<error-span text="ocvalidate.port" condition="modalForm.port"></error-span>
+	<div class="control-label">{{'system.ldap.certificate_prompt' | translate}}</div>
+	<textarea name="cert" class="control-input certificate-text" type="text" ng-model="data.cert" ng-required="ldap_type == 'ad'"/>
+	<error-span></error-span>
+	<div class="control-heading">
+		{{'system.ldap.authentication_credentials_prompt' | translate | uppercase}}
+		<div class="oc-info ardana-icon ardana-icon-Unknown_L" uib-tooltip="{{'system.ldap.authentication_info' | translate}}" tooltip-placement="right"></div>
+	</div>
+	<div class="control-label">{{'common.username' | translate}}</div>
+	<input name="user" class="control-input" type="text" required placeholder="{{'system.ldap.username_placeholder' | translate}}" ng-model="data.user" oc-validate="ldap_search_path"/>
+	<error-span text="system.ldap.validate_user_dn" condition="modalForm.user"></error-span>
+	<div class="control-label">{{'common.password' | translate}}:</div>
+	<input ng-if="show_password" name="password" ng-model="data.password" class="control-input" required placeholder="{{'system.ldap.password_placeholder' | translate}}" oc-validate="required" type="text"/>
+	<input ng-if="!show_password" name="password"  ng-model="data.password" class="control-input" required placeholder="{{'system.ldap.password_placeholder' | translate}}"  type="password"/>
+	<div class="control-label">{{'system.users.show_password.prompt' | translate}}
+		<input type="checkbox" ng-model="show_password"/>
+	</div>
+	<error-span text="system.ldap.validate_password" condition="modalForm.password"></error-span>
+</div>
+<div class="control-section right-hand">
+	<div class="control-heading" ng-bind="'system.ldap.directory_configuration_prompt' | translate | uppercase"></div>
+	<div class="control-label">{{'system.ldap.directory_prompt' | translate}}</div>
+	<input name="base_dn" class="control-input" type="text" required placeholder="{{'system.ldap.directory_name_placeholder' | translate}}" ng-model="data.base_dn" oc-validate="ldap_search_path"/>
+	<error-span text="system.ldap.validate_domain" condition="modalForm.base_dn"></error-span>
+	<div class="control-label">{{'system.ldap.directory_type_prompt' | translate}}</div>
+	<select name="directory" class="control-input" required ng-model="data.directory">
+		<option value="AD">Active Directory</option>
+		<option value="OpenLDAP">OpenLDAP</option>
+	</select>
+	<error-span></error-span>
+
+	<div class="control-label">{{'system.ldap.username_attribute_prompt' | translate}}</div>
+	<input name="user_attr" class="control-input" type="text" required placeholder="{{'system.ldap.username_attribute_placeholder' | translate}}" ng-model="data.user_attr" oc-validate="ldap_user_attribute"/>
+	<error-span text="system.ldap.validate_user_attribute" condition="modalForm.user_attr"></error-span>
+	<div class="control-label">{{'system.ldap.user_tree_prompt' | translate}}</div>
+	<input name="user_dn" class="control-input" type="text" required placeholder="{{'system.ldap.user_tree_placeholder' | translate}}" ng-model="data.user_dn" oc-validate="ldap_search_path"/>
+	<error-span text="system.ldap.validate_search_path" condition="modalForm.user_dn"></error-span>
+</div>

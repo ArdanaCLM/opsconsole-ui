@@ -1,0 +1,31 @@
+<import src="$parent.$parent.$parent" target="ctrl"></import>
+<h2 class="oc-heading">{{'metric_picker.title' | translate}}</h2>
+<h3 class="oc-heading">{{'metric_picker.list_title' | translate}}</h3>
+<div class="enum_filter_wrapper col-md-7 metric-selector">
+    <div class="octable_header_wrapper_enum_row enumerated_filter_control">
+        <span class="enum_filter_icon ardana-icon ardana-icon-Filter">
+        </span>
+        <span class="enum_filter_input">
+          <input type="text" ng-model="metricFilter"/>
+        </span>
+        <span class="enum_filter_clear ardana-icon ardana-icon-Close" ng-click="metricFilter=''">
+        </span>
+    </div>
+</div>
+<div class="metric-selector-header col-md-7">
+  <div class="metric-header">
+    {{'metric_picker.metrics' | translate}}
+  </div>
+</div>
+
+<div ng-repeat="metric in (ctrl.metricList | fuzzy: metricFilter)">
+  <div class="metric-picker-item col-md-7">
+    <oc-radio
+      name="metricPicker"
+      ng-model="ctrl.definition.metric"
+      value="{{metric}}"
+      select="ctrl.selectMetric(metric)"
+      label="{{metric}}"></oc-radio>
+  </div>
+  <div class="col-md-5 metric-picker-blocker"></div>
+</div>

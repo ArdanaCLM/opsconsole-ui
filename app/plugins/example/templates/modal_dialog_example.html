@@ -1,0 +1,76 @@
+<button ng-click="showHideModal()">show modal</button>
+<button ng-click="showHideSmallerModal()">show smaller modal</button>
+<button ng-click="showHideViewlistModal()">show viewlist modal</button>
+<button ng-click="showHideNoFooterModal()">show nofooter modal</button>
+
+<opsmodal showAttribute="myModalFlag" closable
+          headerTemplateUrl="example/templates/modal_dialog_example_header.html"
+          footerTemplateUrl="example/templates/modal_dialog_example_footer.html"
+          commit-action="commitactionfun" close-action="closeactionfun">
+          <!-- it is possible to put the nodrawerheader attribute in opsmodal to hide the header of the drawer
+           does NOT hide the modal header, only the drawer header-->
+
+    <div ng-include="'example/templates/modal_dialog_example_content.html'"></div>
+</opsmodal>
+this content will get covered by the modal when it pops
+
+<opsmodal showAttribute="mySmallerModalFlag" closable class="example_modal_alt_size"
+          headerTemplateUrl="example/templates/modal_dialog_example_header.html"
+          footerTemplateUrl="example/templates/modal_dialog_example_footer.html">
+    <!-- it is possible to put the nodrawerheader attribute in opsmodal to hide the header of the drawer
+     does NOT hide the modal header, only the drawer header-->
+
+    <div ng-include="'example/templates/modal_dialog_example_content.html'"></div>
+</opsmodal>
+
+<opsmodal showAttribute="showListViewSelectorModal" closable
+          headerTemplateUrl="example/templates/modal_dialog_example_header.html"
+          footerTemplateUrl="example/templates/modal_viewlist_footer.html"
+          commit-action="viewlistcommit">
+    <div ng-include="'example/templates/modal_viewlist_content.html'"></div>
+</opsmodal>
+
+<opsmodal showAttribute="myNoFooterModalFlag" closable
+          headerTemplateUrl="example/templates/modal_dialog_example_header.html"
+          nomodalfooter="true" close-action="closeactionfun">
+
+     <div ng-include="'example/templates/modal_dialog_example_content.html'"></div>
+</opsmodal>
+
+
+
+<br><br>
+<div>
+    html code for smaller modal (remove class="example_modal_alt_size" to get the normal modal):
+    <pre>
+&lt;opsmodal showAttribute="mySmallerModalFlag" closable class="example_modal_alt_size"
+          headerTemplateUrl="example/templates/modal_dialog_example_header.html"
+          footerTemplateUrl="example/templates/modal_dialog_example_footer.html"&gt;
+
+    &lt;div ng-include="'example/templates/modal_dialog_example_content.html'"&gt;&lt;/div&gt;
+        &lt;/opsmodal&gt;
+    </pre>
+</div>
+
+
+<div>
+    CSS code for smaller modal:
+    <pre>
+.example_modal_alt_size{
+  .oc-modal-wrapper{
+    .close_modal {
+      left: 95%;
+    }
+    .oc-modal {
+      height: 300px;
+      width: 600px;
+      .oc-modal-drawer {
+        .oc-body-drawer {
+          height: 90px;
+        }
+      }
+    }
+  }
+}
+    </pre>
+</div>

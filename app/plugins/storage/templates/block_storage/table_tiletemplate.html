@@ -1,0 +1,41 @@
+<div class="system_blade_header">{{ data.name }}
+</div>
+<div>
+    {{ data['display_type'] }}
+</div>
+<br>
+
+<div class="font-style">
+    <p>{{ "common.ip_address_prompt" | translate | uppercase }}:
+        {{ data["ipaddress"] | ipAndPortFilter:data["port"] }}</p>
+
+    <p>{{ "common.created" | translate | uppercase }}: {{ data["created_at"] }}</p>
+</div>
+
+<div class="col-md-4" style="margin-top: 20px">
+    <table id="blade-compact3">
+        <tbody>
+        <tr>
+            <td class="registercpgcount">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p class="labelsettings">  {{ "storage.block_storage.table.row.label.registered_cpgs" |translate |uppercase }}:
+                        </p>
+                        <span ng-class="{'badge countspacing':data['cpg_count'].toString() != 'Not Applicable', 'badge-na':data['cpg_count'].toString() == 'Not Applicable'}"> {{ data["cpg_count"] }} </span>
+                    </div>
+                </div>
+            </td>
+
+            <td class="registercpgcount">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p class="labelsettings"> {{ "storage.block_storage.table.header.backend_count" |translate |uppercase }}
+                            : </p>
+                        <span class="badge countspacing"> {{ data["backend_count"] }}  </span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

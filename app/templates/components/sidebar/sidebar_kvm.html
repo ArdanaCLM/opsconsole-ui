@@ -1,0 +1,68 @@
+<div id="content" class="other_content">
+    <div class="bottom-content">
+        <div class="bottom-content-left">
+            <p class="os_creads">
+                {{ "sidebar.right_panel.content.os_creds" | translate }}
+            </p>
+
+            <div class="sidebar-input">
+                <div class="username">
+                    <label>{{ "sidebar.right_panel.content.username" | translate }}</label>
+                    <input type="text" ng-attr-id="{{ node.id + '_username' }}"
+                           ng-keyup="validations($event, node.hypervisor)" required
+                           onchange="angular.element(this).scope().sidebarInputChanged(this, angular.element(this).scope().node.hypervisor)"/>
+                </div>
+                <div class="password">
+                    <label>{{ "sidebar.right_panel.content.password" | translate }}</label>
+                    <input type="password" ng-attr-id="{{ node.id + '_password' }}"
+                           ng-keyup="validations($event, node.hypervisor)" required
+                           onchange="angular.element(this).scope().sidebarInputChanged(this, angular.element(this).scope().node.hypervisor)"/>
+
+                    <div class="control-label show_password">{{ 'system.users.show_password.prompt' | translate }}
+                        <input type="checkbox" ng-model="show_kvm_password" ng-click="copy_password(node.id)"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-content-right">
+            <p class="conf">
+                {{ "sidebar.right_panel.content.conf" | translate }}
+            </p>
+
+            <div class="sidebar-input">
+                <div class="cloud_truck_data">
+                    <label>{{ "sidebar.right_panel.content.teamed_nics" | translate }}
+                        <div class="oc-info ardana-icon ardana-icon-Unknown_L"
+                             uib-tooltip="{{ 'compute.activate.tooltip.truck' | translate:{type:'KVM'} }}"
+                             tooltip-placement="right"></div>
+                    </label>
+                    <input type="text" ng-attr-id="{{ node.id + '_trunk_data' }}"
+                           ng-keyup="validations($event, node.hypervisor)" required
+                           onchange="angular.element(this).scope().sidebarInputChanged(this, angular.element(this).scope().node.hypervisor)"/>
+                </div>
+            </div>
+
+            <p class="conf" ng-if="$root.isDvrEnabled">
+                {{ "sidebar.right_panel.content.external_network" | translate | uppercase }}
+            </p>
+
+            <div class="sidebar-input" ng-if="$root.isDvrEnabled">
+                <div class="cloud_truck_data">
+                    <label>{{ "sidebar.right_panel.content.external_nic" | translate }}:
+                        <div class="oc-info ardana-icon ardana-icon-Unknown_L"
+                             uib-tooltip="{{ 'compute.activate.tooltip.external_nic' | translate:{type:'KVM'} }}"
+                             tooltip-placement="right"></div>
+                    </label>
+                    <input type="text" ng-attr-id="{{ node.id + '_external_interface' }}"
+                           ng-keyup="validations($event, node.hypervisor)" required
+                           onchange="angular.element(this).scope().sidebarInputChanged(this, angular.element(this).scope().node.hypervisor)"/>
+                </div>
+            </div>
+            <div class="apply_settings">
+                <input type="checkbox" ng-attr-id="{{ node.id + '_isChecked' }}"
+                       ng-click="ShowWarning($event, node.name, node.hypervisor, $parent.$parent.$parent.$parent.$parent.$parent.modalDrawer)"/>
+                {{ "sidebar.right_panel.content.apply_settings" | translate: {type: "KVM"} }}
+            </div>
+        </div>
+    </div>
+</div>

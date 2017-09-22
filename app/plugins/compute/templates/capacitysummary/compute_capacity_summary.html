@@ -1,0 +1,21 @@
+<div ng-controller="ComputeCapacitySummaryController">
+  <div class="capacity-card-container">
+    <dashboard-metric-card card="card" ng-repeat="card in capacityCards" />
+  </div>
+  <tabbedpage pagelist="graphTabs" not-routing="true" />
+  <h3 class="oc-heading section-title-column">{{'compute_summary.capacity.capacity_quota' | translate}}</h3>
+  <projectpicker label="common.projectpicker.label" project="currentProject" project-id="currentProjectId" />
+  <div class="capacity-card-container project">
+    <dashboard-metric-card card="card" ng-repeat="card in projectCapacityCards" />
+  </div>
+  <tabbedpage pagelist="projectGraphTabs" not-routing="true" />
+  <br>
+  <tabbedpage pagelist="heatMapTabs" not-routing="true" />
+  <stackablemodal
+    id="instanceDetails"
+    name="instanceDetails"
+    showAttribute="showInstanceDetails"
+    modalTemplateUrl="'compute/templates/capacitysummary/compute_instance_detail.html'"
+    closeaction="computeHostService.askEncryptionModalArdana.stackableScope.clearAndClose">
+  </stackablemodal>
+</div>

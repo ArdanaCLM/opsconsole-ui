@@ -1,0 +1,195 @@
+<div container ng-controller="metricCardExampleController">
+    <style>
+     pre {
+         margin-bottom: 80px;
+     }
+    </style>
+    <!-- -->
+    metric card example
+    <br>
+    <br>
+    <br>
+
+    <metriccard
+        type="'range'"
+        ctitle="'test1'"
+        data="metricCardData1"
+        ctitleback="'SERVICE VOLUME'"
+        slideover="'Kevin t-bone jerky cow. Sausage flank cow, pancetta t-bone strip steak sirloin pork rump pork chop bresaola brisket kielbasa. Brisket drumstick spare ribs shoulder short ribs pork chop strip steak corned beef kevin flank tail pastrami beef ribs boudin. Ham spare ribs meatball hamburger, porchetta tongue pork loin bacon.'"
+        showCondition="'true'">
+    </metriccard>
+    <br>
+    <br>
+    <br>
+    <p>HTML Code:</p>
+    <pre>
+        &lt;metriccard
+            type="'range'"
+            ctitle="'test1'"
+            data="metricCardData1"
+            ctitleback="'SERVICE VOLUME'"
+            slideover="'Kevin t-bone jerky cow. Sausage flank cow, pancetta t-bone strip steak sirloin pork rump pork chop bresaola brisket kielbasa. Brisket drumstick spare ribs shoulder short ribs pork chop strip steak corned beef kevin flank tail pastrami beef ribs boudin. Ham spare ribs meatball hamburger, porchetta tongue pork loin bacon.'"
+            showCondition="'true'"&gt;
+    </pre>
+
+    <metriccard type="'range'" ctitle="'test2'" data="metricCardData2" showCondition="false"></metriccard>
+    <br>
+    <br>
+    <br>
+    <p>HTML Code:</p>
+    <pre>
+        &lt;metriccard type="'range'" ctitle="'test2'" data="metricCardData2" showCondition="false"&gt;
+    </pre>
+
+    <metriccard
+        type="'range'"
+        ctitle="'test3'"
+        data="metricCardData3"
+        ctitleback="'Test 3 Back'"
+        slideover="'Kevin t-bone jerky cow. Sausage flank cow, pancetta t-bone strip steak sirloin pork rump pork chop bresaola brisket kielbasa. Brisket drumstick spare ribs shoulder short ribs pork chop strip steak corned beef kevin flank tail pastrami beef ribs boudin. Ham spare ribs meatball hamburger, porchetta tongue pork loin bacon.'"
+        showCondition="true">
+    </metriccard>
+    <br>
+    <br>
+    <br>
+    <p>HTML Code:</p>
+    <pre>
+        &lt;metriccard
+            type="'range'"
+            ctitle="'test3'"
+            data="metricCardData3"
+            ctitleback="'Test 3 Back'"
+            slideover="'Kevin t-bone jerky cow. Sausage flank cow, pancetta t-bone strip steak sirloin pork rump pork chop bresaola brisket kielbasa. Brisket drumstick spare ribs shoulder short ribs pork chop strip steak corned beef kevin flank tail pastrami beef ribs boudin. Ham spare ribs meatball hamburger, porchetta tongue pork loin bacon.'"
+            showCondition="true"&gt;
+    </pre>
+
+    <metriccard
+        type="'range'"
+        ctitle="'test4'"
+        data="metricCardData4"
+        showCondition="true">
+    </metriccard>
+    <br>
+    <br>
+    <br>
+    <p>HTML Code:</p>
+    <pre>
+        &lt;metriccard
+            type="'range'"
+            ctitle="'test4'"
+            data="metricCardData4"
+            showCondition="true"&gt;
+    </pre>
+
+    <metriccard
+        type="'range'"
+        ctitle="'test5'"
+        data="metricCardData5"
+        ctitleback="'BOOK TITLE'"
+        slideover="'So Long, and Thanks for all the Fish'"
+        showCondition="true">
+    </metriccard>
+    <br>
+    <br>
+    <br>
+    <p>HTML Code:</p>
+    <pre>
+        &lt;metriccard
+            type="'range'"
+            ctitle="'test5'"
+            data="metricCardData5"
+            ctitleback="'BOOK TITLE'"
+            slideover="'So Long, and Thanks for all the Fish'"
+            showCondition="true"&gt;
+    </pre>
+
+    <p>Data format for range:</p>
+    <pre>
+      $scope.metricCardData5 = {
+          'value': 34,
+          'unit': 'ms',
+          'range': '631 iops (min) - 221 iops (max)',
+          'condition': 'ok' | 'warn' | 'critical' | 'unknown'
+      }
+    </pre>
+
+    <metriccard
+        type="'alarmDonut'"
+        ctitle="'test6'"
+        data="metricCardData6"
+        ctitleback="'Round is cool'"
+        slideover="'Its a shape.'">
+    </metriccard>
+    <br>
+    <br>
+    <br>
+    <p>HTML Code:</p>
+    <pre>
+        &lt;metriccard
+            type="'alarmDonut'"
+            ctitle="'test6'"
+            data="metricCardData6"
+            ctitleback="'Round is cool'"
+            slideover="'Its a shape.'"&gt;
+    </pre>
+
+    <metriccard
+        type="'alarmList'"
+        ctitle="'test7'"
+        data="metricCardData6">
+    </metriccard>
+    <br>
+    <br>
+    <br>
+    <p>HTML Code:</p>
+    <pre>
+        &lt;metriccard
+            type="'alarmList'"
+            ctitle="'test7'"
+            data="metricCardData6"&gt;
+    </pre>
+
+    <p>Data format for alarms (list or donut): </p>
+    <pre>
+      $scope.metricCardData6 = {
+          'ok':{count:10},
+          'warning':{count:20},
+          'critical':{count:9},
+          'unknown':{count:1}
+      }
+    </pre>
+
+    <metriccard
+        type="'horseshoeGraph'"
+        ctitle="'TEST8'"
+        data="metricCardHorseshoeData"
+        ctitleback="'Metric Card with Horseshoe Graph'"
+        slideover="'Descriptions for the horseshoe graph'"/>
+    <br>
+    <br>
+    <br>
+    <p>HTML Code:</p>
+    <pre>
+        &lt;metriccard
+            type="'horseshoeGraph'"
+            ctitle="'TEST8'"
+            data="metricCardHorseshoeData"
+            ctitleback="'Metric Card with Horseshoe Graph'"
+            slideover="'Descriptions for the horseshoe graph'"/&gt;
+    </pre>
+
+    <p>Data format for horseshoe graph</p>
+    <pre>
+      $scope.metricCardHorseshoeData = {
+          'data': {'count': 10},
+          'max': 12,
+          'unit': 'GB',
+          'label': 'TOTAL'
+      }
+    </pre>
+</div>
+
+
+
+
+

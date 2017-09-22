@@ -1,0 +1,110 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+
+.oc-notif {
+  position: absolute;
+  z-index: 2;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  margin: 10px;;
+  white-space: normal;
+  font-size: 16px;
+  font-weight: normal;
+  display: flex;
+}
+
+.notif-icon-base {
+  background-size: 32px 32px;
+  background-repeat: no-repeat;
+  background-position: left;
+  width: 40px;
+}
+
+.toast-red {
+  background-color: $oc-icon-error;
+  color: $oc-toast-white;
+  .oc-notif-icon {
+    @extend .notif-icon-base;
+    background-image: url($error_icon);
+  }
+}
+
+.toast-yellow {
+  background-color: $oc-icon-warning;
+  color: $oc-toast-black;
+  .oc-notif-icon {
+    @extend .notif-icon-base;
+    background-image: url($notif_icon_warning);
+  }
+}
+
+.toast-green {
+  background-color: $oc-graph-green-2;
+  color: $oc-toast-white;
+  .oc-notif-icon {
+    @extend .notif-icon-base;
+    background-image: url($ok_icon);
+  }
+}
+
+.ng-hide-notification {
+  /* hides element */
+  display:block!important;
+  position:absolute;
+  top:-9999px;
+  left:-9999px;
+  line-height:0;
+  opacity:0;
+  padding:0px;
+  height: 0%;
+}
+
+.ng-show-notification {
+  font-size: 30px;
+}
+
+.toast-message {
+  padding: 10px 40px;
+}
+
+.toastbtn {
+  height: 32px;
+  width: 32px;
+  background-repeat: no-repeat;
+  border: none;
+  background-color: transparent;
+}
+
+.toastbtn.disabled {
+  opacity: 0.5;
+}
+
+.toastbtn.prev {
+  background-position: right;
+  background-image: url($page_prev_icon);
+}
+
+.toastbtn.next {
+  background-position: right;
+  background-image: url($page_next_icon);
+}
+
+.toastbtn.remove {
+  background-position: right;
+  background-image: url($close_icon);
+}
+
+.oc-validate-error {
+  color:$control_invalid_color;
+}
+
+.oc-validate-warning {
+  color:$control_warning_color;
+}
+
+error-span.warning .oc-validate-error {
+  color: $control_warning_color;
+}

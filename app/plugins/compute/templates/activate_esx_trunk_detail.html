@@ -1,0 +1,74 @@
+<import src="$parent.$parent" target="modalCtrl"></import>
+<import src="$parent.$parent.trunk" target="trunk"></import>
+<div class="detail-page">
+    <h2 class="oc-heading page-title" ng-if="!modalCtrl.editMode">
+        {{'compute.activate_esx.add_cloud_trunk' | translate}}</h2>
+    <h2 class="oc-heading page-title" ng-if="modalCtrl.editMode">
+        {{'compute.activate_esx.edit.cloud_trunk' | translate}}</h2>
+
+    <div class="details-input-area-container">
+        <oc-input
+            label="compute.activate_esx.trunk_name"
+            type="text"
+            value="modalCtrl.trunk.inputCloudTrunkName"
+            name="inputCloudTrunkName"
+            validate="englishonly"
+            validate-text="ocvalidate.englishonly"
+            oc-required="true"
+            placeholder="compute.activate_esx.trunk_name_default">
+        </oc-input>
+        <oc-input
+            label="compute.activate_esx.trunk_interface"
+            type="text"
+            value="modalCtrl.trunk.inputCloudTrunkInterface"
+            name="inputCloudTrunkInterface"
+            validate="englishonly_list"
+            validate-text="ocvalidate.englishonly_list"
+            oc-required="true"
+            oc-tooltip="'compute.activate_esx.cloud_trunk_interface.tooltip'"
+            placeholder="compute.activate_esx.trunk_interface_default">
+        </oc-input>
+        <oc-input
+            label="compute.activate_esx.trunk_mtu"
+            type="text"
+            value="modalCtrl.trunk.inputCloudTrunkMtu"
+            validate="modalCtrl.validateMtu"
+            validate-text="compute.activate_esx.trunk_mtu.validate"
+            name="inputCloudTrunkMtu"
+            oc-required="true"
+            oc-tooltip="'compute.activate_esx.trunk_mtu.tooltip'"
+            placeholder="compute.activate_esx.trunk_mtu_default">
+        </oc-input>
+        <oc-input
+            label="compute.activate_esx.trunk_network_name"
+            type="select"
+            select-options="modalCtrl.networkNameList"
+            value="modalCtrl.trunk.inputCloudTrunkNetworkName"
+            name="inputCloudTrunkNetworkName"
+            oc-required="true"
+            placeholder="compute.activate_esx.trunk_network_name_default">
+        </oc-input>
+    </div>
+
+    <div class="oc-btn-group button-area">
+        <button
+            class="oc-btn oc-btn-default"
+            ng-bind="'common.cancel' | translate"
+            ng-click="closeModal()">
+        </button>
+        <button
+            class="oc-btn oc-btn-primary"
+            ng-if="!modalCtrl.editMode"
+            ng-bind="'common.add' | translate"
+            ng-disabled="modalForm.$invalid"
+            ng-click="modalCtrl.addCloudTrunkData(trunk)">
+        </button>
+        <button
+            class="oc-btn oc-btn-primary"
+            ng-if="modalCtrl.editMode"
+            ng-bind="'common.update' | translate"
+            ng-disabled="modalCtrl.checkEditDisabled()"
+            ng-click="modalCtrl.updateCloudTrunkData()">
+        </button>
+    </div>
+</div>

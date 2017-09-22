@@ -1,0 +1,242 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+@import '_palette.scss';
+@import '_icons.scss';
+@import '_common.scss';
+
+
+metriccard {
+  position: relative;
+  display: inline-block;
+  border: none;
+  width: 287px;
+  height: 255px;
+  vertical-align: top;
+
+  .popupadjust {
+      position: relative;
+      top: 10px;
+      right: -22px;
+  }
+
+  .content {
+      width: 276px;
+      height: 249px;
+      position: absolute;
+      background: white;
+      box-shadow: $grommet-box-shadow;
+  }
+  .content.animatable {
+      animation-name: slideOverOut;
+      animation-duration: 0.5s;
+  }
+
+  .content.active {
+      left: 0px;
+  }
+  .content.active.animatable {
+      animation-name: slideOverIn;
+      animation-duration: 0.5s;
+  }
+
+  .content {
+      svgdonut {
+          position: absolute;
+          top: -10px;
+          left: 70px;
+      }
+
+      .dataArea {
+          margin-top:50px;
+          width: 100%;
+          text-align: center;
+
+          .total {
+              font-size: 34px;
+              line-height: 1;
+          }
+
+          span {
+              display: inline-block;
+              min-width: 40px;
+              max-width: 60px;
+              height: 40px;
+              line-height: 45px;
+              color: #fff;
+              font-size: 18px;
+              margin: 0;
+          }
+          .ok {
+              background: $oc-alarm-ok-color;
+          }
+          .warning {
+              background: $oc-alarm-warning-color;
+          }
+          .critical {
+              background: $oc-alarm-critical-color;
+          }
+          .unknown {
+              background: $oc-alarm-unknown-color;
+          }
+      }
+
+      svghorseshoe {
+      }
+  }
+
+  >div>.header {
+    height: 60px;
+    text-align: left;
+    line-height: 1;
+    margin: 0;
+    padding-left: 24px;
+    border-bottom: 1px solid $grommet-unknown-grey;
+    .text {
+      @extend .inline;
+      height: 60px;
+      width: 215px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      line-height: 60px;
+      font-size: 16px;
+      &.short {
+        width: 170px;
+      }
+    }
+    .ardana-icon-More {
+      font-size: 23px;
+      line-height: 28px;
+    }
+    .dropDown {
+        cursor: pointer;
+    }
+
+    .dropdown-toggle {
+        font-size: 23px;
+        line-height: 28px;
+    }
+
+    .dropdown-menu li {
+      font-size: 18px;
+      line-height: 2;
+      padding-left: 10px;
+      &:hover {
+        background-color: $grommet-green;
+        color: $grommet-white;
+      }
+    }
+  }
+
+  svgdonut {
+      margin-top: 60px;
+  }
+
+  .value {
+      text-align: center;
+      height: 24px;
+      font-size: 36px;
+      line-height: 1;
+      margin-bottom: 5px;
+      margin-top: 75px;
+
+      span.unit {
+          font-size: 24px;
+      }
+  }
+
+  .range {
+      text-align: center;
+      text-align: center;
+      font-size: 14px;
+      color: $grommet-charcoal;
+  }
+
+  .condition {
+      position: absolute;
+      left: 18px;
+      bottom: 16px;
+      font-size: 34px;
+  }
+  .condition.ardana-icon-Active_L {
+      color: $grommet-green;
+  }
+  .condition.ardana-icon-Alert_pressed {
+      color: $grommet-yellow;
+  }
+  .condition.ardana-icon-Critical_L {
+      color: $grommet-red;
+  }
+  .condition.ardana-icon-Unknown_L {
+      color: $grommet-grey;
+  }
+
+
+  .slideoverMsg {
+      width: 276px;
+      height: 249px;
+      position: absolute;
+      top: 0;
+      left: -287px;
+      background: white;
+      box-shadow: $grommet-box-shadow;
+
+      h6 {
+          margin: 45px 0 0px 15px;
+          font-size: 16px;
+      }
+
+      p {
+          margin: 0 15px 15px 15px;
+          font-size: 12px;
+          line-height: 1.5;
+      }
+  }
+
+  .slideoverMsg.animatable {
+      animation-name: slideOverOut;
+      animation-duration: 0.5s;
+  }
+
+  .slideoverMsg.active {
+      left: 0px;
+  }
+  .slideoverMsg.active.animatable {
+      animation-name: slideOverIn;
+      animation-duration: 0.5s;
+  }
+
+  .slideoverIcon {
+      position: absolute;
+      right: 0;
+      top: 0;
+      display: block;
+      width: 35px;
+      height: 35px;
+      background: #def;
+      border: 1px dashed gray;
+      text-align: right;
+      padding: 4px 5px 0 0;
+  }
+  .slideoverIcon:after {
+      position: absolute;
+      top: 0;
+      right: 0px;
+      content: ' ';
+      width: 80px;
+      height: 30px;
+      background: #fff;
+      border-top: 1px dashed gray;
+      transform: rotate(45deg);
+  }
+}
+
+@keyframes slideOverIn {
+    0%   {left: -287px;}
+    100%   { left: 0;}
+}
+
+@keyframes slideOverOut {
+    0%   {left: 0;}
+    100%   { left: -287px;}
+}

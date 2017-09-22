@@ -1,0 +1,38 @@
+
+
+<octable selectable transformable actionmenu expandable enumfilter sortcontrol pageable
+         configname="tableConfig"
+         modelname="tableData"
+         loadflag="tableLoading"
+         tile-template-url="example/templates/table_example_tiletemplate.html">
+    <oct-std-header></oct-std-header>
+</octable>
+
+<p>Select items in the table to add notifications.</p>
+<select ng-model="notificationMessage" ng-options="message.name for message in messagesAvailable"></select>
+<select ng-model="notificationSeverity" ng-options="severity.name for severity in messagesSeveritiesAvailable"></select>
+<button
+  class="oc-btn oc-btn-primary"
+  ng-bind="'Add Table Notification'"
+  ng-click="addNotifications()"></button>
+
+<button
+  class="oc-btn oc-btn-primary"
+  ng-bind="'Remove Table Notification'"
+  ng-click="removeNotifications()"></button></br>
+
+<p>Add toast notification.</p>
+<select ng-model="toastNotificationMessage" ng-options="message.name for message in messagesAvailable"></select>
+<select ng-model="toastNotificationSeverity" ng-options="severity.name for severity in messagesSeveritiesAvailable"></select>
+<button
+  class="oc-btn oc-btn-primary"
+  ng-bind="'Add Toast Notification'"
+  ng-click="addToastNotifications()"></button>
+
+<p>Add Application notification.</p>
+<select ng-model="applicationNotificationMessage" ng-options="message.name for message in messagesAvailable"></select>
+<select ng-model="applicationNotificationSeverity" ng-options="severity.name for severity in messagesSeveritiesAvailable"></select>
+<button
+  class="oc-btn oc-btn-primary"
+  ng-bind="'Add Application Notification'"
+  ng-click="addApplicationNotification()"></button>

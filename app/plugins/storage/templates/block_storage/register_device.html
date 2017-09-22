@@ -1,0 +1,47 @@
+<!-- template for register block storage modal -->
+<import src="$parent.$parent.$parent" target="bsRegisterControl"/>
+<div class="dr-register col-md-12 detail-page">
+    <h2 class="oc-heading page-title">{{ 'storage.register.header.title' | translate }}</h2>
+    <ng-form name="bsRegisterControl.bsRegisterBSForm">
+        <oc-input
+                label="storage.register.content.blockstoragedevice.title"
+                type="select"
+                value="bsRegisterControl.deviceTypeItem.item"
+                name="registerdevice"
+                select-options="bsRegisterControl.deviceTypeItem.items"></oc-input>
+
+        <div style="margin-top: 50px"></div>
+
+        <!-- This panel is for 3PAR FC -->
+        <div ng-if="bsRegisterControl.deviceTypeItem.item == 'hp_3par_fc'">
+            <div ng-include="'storage/templates/block_storage/register_fc_device.html'"></div>
+        </div>
+
+        <!-- This panel is for 3PAR ISCSI -->
+        <div ng-if="bsRegisterControl.deviceTypeItem.item == 'hp_3par_iscsi'">
+            <div ng-include="'storage/templates/block_storage/register_iscsi_device.html'"></div>
+        </div>
+
+        <!-- This panel is for VSA -->
+        <div ng-if="bsRegisterControl.deviceTypeItem.item == 'hp_storevirtual'">
+            <div ng-include="'storage/templates/block_storage/register_vsa_device.html'"></div>
+        </div>
+
+        <div class="form-seperator"></div>
+        <div class="oc-btn-group">
+            <button class="oc-btn oc-btn-default"
+                    ng-bind="'common.cancel' | translate | uppercase"
+                    ng-disabled="bsRegisterControl.register_device_inprogress"
+                    ng-click="bsRegisterControl.register_device_modal_close()">
+            </button>
+            <button class="oc-btn oc-btn-primary"
+                    ng-bind="'storage.register.footer.button.title' | translate | uppercase"
+                    ng-click="bsRegisterControl.registerDevice()"
+                    ng-disabled="bsRegisterControl.bsRegisterBSForm.$invalid || bsRegisterControl.showRegisterDeviceProgressFlag || bsRegisterControl.deviceTypeItem.item == 'select' ">
+            </button>
+        </div>
+    </ng-form>
+</div>
+
+
+<modal-overlay show-attribute="bsRegisterControl.showRegisterDeviceProgressFlag"></modal-overlay>

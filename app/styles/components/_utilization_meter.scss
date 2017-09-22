@@ -1,0 +1,70 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+.simple_meter_container{
+  font-size: 14px;
+  height: 24px;
+  display: flex;
+  vertical-align: middle;
+  line-height: 20px;
+  white-space: nowrap;//TODO - make this work on compute nodes without the nowrap whitespace, this will be trouble!
+  .table_inline_meter{
+    width: 100%;
+  }
+
+  &.table_meter_container{
+    min-width:100px;
+    position: relative;
+    bottom: -10px;
+  }
+}
+
+.simple_meter_inner_container{
+  vertical-align: middle;
+  width: 80%;
+  float: left;
+  .meter-background {
+    height: 3px;
+    display: flex;
+    .background-gradient-1 {
+      background-color: $grommet-meter-gradient-1;
+      width: 25%;
+    }
+    .background-gradient-2 {
+      background-color: $grommet-meter-gradient-2;
+      width: 25%;
+    }
+    .background-gradient-3 {
+      background-color: $grommet-meter-gradient-3;
+      width: 25%;
+    }
+    .background-gradient-4 {
+      background-color: $grommet-meter-gradient-4;
+      width: 25%;
+    }
+  }
+}
+
+.simple_meter_cell{
+  vertical-align: top;
+  height: 3px;
+}
+
+.simple_meter_cell_filled{
+  @extend .simple_meter_cell;
+  background-color: $grommet-menu-grey;
+  position: relative;
+  top: -3px;
+  &.overflow-filled {
+    background-color: $grommet-red;
+  }
+}
+
+.simplemeter_align_text{
+  position: relative;
+  top: -5px;
+  margin-left: auto;
+  float: right;
+  &.overflow-text {
+    color: $grommet-red;
+  }
+}

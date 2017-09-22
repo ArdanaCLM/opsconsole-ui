@@ -1,0 +1,10 @@
+<div class="view_controls">
+    <button class="solid_table_btn" ng-click="solidTable($event)"
+            ng-if="showTransformControls" ng-class="{'selected': displayStandardTable}">
+            <span class="listsort ardana-icon ardana-icon-List_Sort"/>
+    </button>
+    <button class="tile_table_btn" ng-click="tileTable($event)"
+            ng-if="showTransformControls" ng-class="{'selected': displayTiles}">
+        <span class="cardsort ardana-icon ardana-icon-Card_Sort"/>
+    </button>
+</div>

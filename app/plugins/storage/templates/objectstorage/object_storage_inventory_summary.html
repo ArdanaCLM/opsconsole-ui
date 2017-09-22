@@ -1,0 +1,43 @@
+<div id="object_storage_inventory" ng-controller="ObjectStorageInventorySummaryController">
+    <div class="object-upper">
+        <h3 class="oc-heading section-title">{{ "storage.object_storage.inventory_performance.title" | translate }}</h3>
+        <div class="metric_tiles">
+            <div class="tiles" ng-repeat="tile in inventory_tiles">
+                <metriccard type="tile.type" ctitle="tile.title" data="tile.data" showCondition="tile.condition" ctitleback="tile.ctitleback" slideover="tile.slideover"> </metriccard>
+            </div>
+        </div>
+    </div>
+
+    <div class="object-lower">
+        <tabbedpage not-routing="true" pageList="objectInventorySummaryPages"></tabbedpage>
+    </div>
+
+    <div class="object-lower">
+        <h3 class="oc-heading section-title">{{ "storage.object_storage.inventory_summary.title" | translate }}</h3>
+        <div class="metric_tiles">
+            <div class="tiles" ng-repeat="tile in alarm_tiles">
+                <metriccard type="tile.type" ctitle="tile.title" subtype="tile.subtype" data="tile.data"> </metriccard>
+            </div>
+        </div>
+    </div>
+
+    <div class="object-lower">
+        <h3 class="oc-heading section-title">{{ "compute.inventory.health_focused.title" | translate}}</h3>
+        <div class="heat-map" ng-repeat="cluster in healthFocusedData">
+            <ocheatmap ctitle="cluster.name" clickfunc="healthFocusedHeatMapClick" dataset='cluster.data' style="max-width: 336px;"/>
+        </div>
+    </div>
+
+    <div class="object-lower">
+        <h3 class="oc-heading section-title">{{ "storage.object_storage.cpu.load_average.title" | translate}}</h3>
+        <div class="cpu-load-focused-heatmap">
+            <div class="title">Size equals Cores of CPU, color saturation equals utilization.</div>
+            <div class="heat-map" ng-repeat="cluster in cpuLoadAverageHeatMapData">
+                <dynamic-heat-map data="cluster.data" name="{{cluster.name}}" clickfunc="healthFocusedHeatMapClick" columns="7"></dynamic-heat-map>
+            </div>
+        </div>
+    </div>
+    <stackablemodal name="healthFocusedStackModal" showAttribute="healthFocusedStackModalFlag"
+                    modalTemplateUrl="'storage/templates/objectstorage/inventorysummary/inventory_summary_heatmap_stack_modal.html'">
+    </stackablemodal>
+</div>

@@ -1,0 +1,17 @@
+<div ng-if="type != 'freeflow'" class="dynamic-heatmap">
+  <div class="dyn-title" style="width: {{(57*columns)-2}}px">{{name | translate}}</div>
+  <div ng-repeat="row in cells" class="dyn-row" ng-class="{'first-row': $first, 'last-row': $last}" style="width: {{(57*columns)-2}}px">
+    <div ng-repeat="cell in row" class="dyn-cell {{cell.class}}" ng-class="{last: $last, first: $first}" ng-click="action(cell)">
+      <div class="dyn-label">
+        {{cell.title}}
+      </div>
+    </div>
+  </div>
+  <div class="heatmap-overlay" style="width: {{(57*columns)-2}}px" ng-class="{show: showOverlay}">
+    <div class="remove" ng-click="hideOverlay()">
+      <i class="ardana-icon ardana-icon-Close"></i>
+    </div>
+    <div class="heatmap-overlay-content" ng-include="overlay"></div>
+  </div>
+</div>
+<div ng-if="type == 'freeflow'" class="freeflow"></div>

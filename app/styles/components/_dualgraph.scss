@@ -1,0 +1,289 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+
+dualgraph.grid-item-wide {
+  position: relative;
+  text-align: center;
+  display: block;
+  float: left;
+  margin-left: 15px;
+  cursor: pointer;
+
+  .header .text {
+    width: 100%!important;
+    font-size: 18px;
+    line-height: 40px;
+  }
+
+  .upperGraph, .lowerGraph {
+    position: relative;
+    height: 176px;
+  }
+    canvas.donut {
+      background: url($empty_donut_graph);
+    }
+
+  canvas.bar {
+    position: absolute;
+    bottom: 35px;
+    left: 5px;
+    border-bottom: 1px solid #999;
+  }
+  label span {
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+    width: 33%;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .lowerGraph label {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  .upperGraph label {
+    position: absolute;
+    display: inline-block;
+    left: 50%;
+    width: 50%;
+    margin-left: -25%;
+    top: 50%;
+    height: 50%;
+    margin-top: -10%;
+    font-weight: bold;
+    text-align: center;
+    pointer-events: none;
+
+    .oc-value {
+      display: inline-block;
+      font-size: 48px;
+      line-height: 48px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background-color: transparent;
+    }
+
+    .oc-value.shadowText {
+      text-shadow: 1px 1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000;
+    }
+
+    .oc-unit {
+      font-size: 14px;
+      background-color: transparent;
+      color: #999999;
+      padding: 2px;
+      margin-top: -12px;
+    }
+  }
+}
+
+dualgraph-wide.grid-item-wide {
+  position: relative;
+  text-align: center;
+  display: block;
+  float: left;
+  margin-left: 15px;
+  width: 950px;
+  height: 135px;
+
+  .header .text {
+    width: 100%;
+    text-align: left;
+    padding-left: 20px;
+    font-size: 16px;
+    line-height: 32px;
+  }
+
+  .leftGraph, .rightGraph {
+    position: relative;
+    width: 570px;
+    height: 60px;
+    float: left;
+
+    canvas.stack {
+    }
+
+    label, canvas {
+      float: left;
+      font-weight: normal;
+    }
+
+    label.overall .oc-value {
+      display: inline-block;
+      width: 100px;
+      font-size: 48px;
+      line-height: 48px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background-color: transparent;
+    }
+
+    label.overall .oc-unit {
+      font-size: 14px;
+      margin-top: -12px;
+      color: #999;
+    }
+
+    label.datum {
+      border: 1px solid #ddd;
+      padding: 0 2px;
+      min-width: 58px;
+      height: 60px;
+      margin-left: 9px;
+
+      .oc-value {
+        font-size: 26px;
+        line-height: 30px;
+        margin-top: 11px;
+      }
+
+      .oc-unit {
+        font-size: 12px;
+        color: #999;
+      }
+    }
+  }
+
+  .rightGraph {
+    width: 365px;
+  }
+
+}
+
+dualgraph-small.grid-item-wide {
+  position: relative;
+  text-align: center;
+  display: block;
+  float: left;
+  margin-left: 15px;
+  width: 250px;
+  height: 218px;
+
+  .header .text {
+    width: 100%;
+    font-size: 16px;
+    line-height: 32px;
+  }
+
+  .topView {
+    height: 55px;
+    text-align: left;
+    padding: 1px 0 0 8px;
+
+    label.datum {
+      width: 48px;
+      height: 53px;
+      color: #fff;
+      margin: 0 0 0 6px;
+      line-height: 53px;
+      font-size: 26px;
+      font-weight: normal;
+      text-align: center;
+    }
+  }
+
+  .btmGraph {
+    position: relative;
+    text-align: left;
+    padding-top: 12px;
+
+    canvas {
+      margin: 0 0 0 15px;
+      width: 215px;
+      height: 90px;
+    }
+
+    .dataLabels {
+      z-index: 500;
+      position: absolute;
+      top: 13px;
+      left: 0;
+    }
+
+    label.datum {
+      display: block;
+      width: 30px;
+      margin-left: 25px;
+      text-align: center;
+      line-height: 26px;
+      color: #fff;
+      z-index: 100;
+      font-weight: normal;
+    }
+
+    .belowThreshold {
+      color: #000;
+    }
+
+  }
+
+}
+
+dualgraph-cntr {
+  position: relative;
+  clear: left;
+  display: inline-block;
+  width: 950px;
+  border: 1px solid #ddd;
+  background: #fff;
+  margin-left: 15px;
+
+  h2 {
+    position: absolute;
+    z-index: 100;
+    top: 12px;
+    left: 20px;
+    margin: 0;
+    font-size: 16px;
+    color: #999;
+
+    a.btnExpand {
+      position: relative;
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      text-indent: -90000em;
+      margin-left: 15px;
+    }
+      a.btnExpand:after {
+        content: '0';
+        position: absolute;
+        width: 13px;
+        height: 13px;
+        border-right: 4px solid #333;
+        border-bottom: 4px solid #333;
+        top: 3px;
+        left: 0;
+        -ms-transform: rotate(-45deg); /* IE 9 */
+        -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
+        transform: rotate(-45deg);
+      }
+      a.btnExpand.closeable:after {
+        -ms-transform: rotate(-135deg); /* IE 9 */
+        -webkit-transform: rotate(-135deg); /* Chrome, Safari, Opera */
+        transform: rotate(-135deg);
+        top: 5px;
+      }
+  }
+
+  dualgraph-wide.grid-item-wide {
+    border: none;
+    margin: 0;
+    width: 948px;
+  }
+
+  .zoneContainer {
+    clear: both;
+    display: block;
+    width: 100%;
+    max-height: 476px;
+    overflow-y: auto;
+  }
+} 

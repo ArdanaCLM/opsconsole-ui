@@ -1,0 +1,39 @@
+<div ng-controller="AuthenticationController">
+    <div id="login-background" class="col-md-8"/>
+    <div id="login-block" class="col-md-4">
+        <div id="opscon-login-logo" style="width:auto; display:inline-block;">
+            <img class="login-branded-logo" src="images/icons/logos/login-logo.png">
+        </div>
+        <div id='login-white-box-stdcfg'>
+            <div id="product-title-ops">
+                <span>{{ 'branding.product.login.title' | translate }}</span><br>
+                <span>{{ 'common.ops_console' | translate }}</span>
+            </div>
+
+            <ng-form name="loginForm">
+                <div id="username_border_frame" ng-class="{'login-edit-error' : auth_error }">
+                    <div class="login-text">
+                        <span>{{ 'common.account' | translate }}</span>
+                    </div>
+                    <input placeholder="{{ 'login.user.placeholder' | translate }}" ng-disabled="authenticating" ng-class="(auth_error) ? 'login-edit ng-pristine ng-invalid' : 'login-edit ng-pristine ng-valid'" ng-model="user.name" autofocus="" autocomplete="off" ng-required="'true'">
+                </div>
+                <div id="password_border_frame" ng-class="{'login-edit-error' : auth_error }">
+                    <div class="login-text">
+                        <span>{{ 'common.password' | translate }}</span>
+                    </div>
+                    <input placeholder="{{ 'login.password.placeholder' | translate }}" ng-show="!showpass" ng-disabled="authenticating" ng-class="(auth_error) ? 'login-edit ng-pristine ng-invalid' : 'login-edit ng-pristine ng-valid'" type="password" ng-model="user.password" ng-keydown="checkEnter($event)" autocomplete="off" ng-required="'true'">
+                    <input placeholder="{{ 'login.password.placeholder' | translate }}" ng-show="showpass" ng-disabled="authenticating" ng-class="(auth_error) ? 'login-edit ng-pristine ng-invalid' : 'login-edit ng-pristine ng-valid'" type="text" ng-model="user.password" ng-keydown="checkEnter($event)" autocomplete="off" ng-required="'true'">
+                    <span class="ardana-icon logineye" ng-click="showpass = !showpass" ng-class="{'ardana-icon-View' : !showpass, 'ardana-icon-View_pressed' : showpass}"></span>
+                </div>
+            </ng-form>
+            <div id="login-btn">
+               <button id="submit" ng-if="!authenticating" class="oc-btn oc-btn-big oc-btn-commit" ng-disabled="loginForm.$invalid" ng-click="authenticate()">{{ 'common.login' | translate | uppercase}}</button>
+               <ocloading ng-if="authenticating"/>
+            </div>
+        </div>
+        <div id="login-error-box" ng-if="auth_error">
+            <span class="login-error-icon ardana-icon ardana-icon-Error_outline"></span>
+            <span class="login-error-message" >{{ auth_error_message }}</span>
+        </div>
+    </div>
+</div>

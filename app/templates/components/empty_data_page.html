@@ -1,0 +1,25 @@
+<!--template for empty data or server error page -->
+<div id="emptyDataNoServerId" class="empty-data-page" ng-show="showAttribute===true">
+    <div class="icon-items">
+        <div class="big-margin" ng-if="type==='nodata'">
+            <i class="ardana-icon ardana-icon-Personal_computer icon-big-size"></i>
+        </div>
+        <div class="small-margin" ng-if="type==='servererror'">
+            <i class="ardana-icon ardana-icon-Alert icon-mid-size"></i>
+        </div>
+    </div>
+    <div ng-if="type==='servererror'" class="error-text">{{ 'common.error' | translate | uppercase}}</div>
+    <div ng-class="{'error-reason': type==='servererror'}">{{reasonMessage}}</div>
+    <!-- recommended action -->
+    <div ng-if="actionMessage && type==='servererror'">
+        <div>{{actionMessage}}</div>
+        <div ng-if="action">
+            <a class="error-action pointer link-color" ng-click="doAction()">{{ actionLabel }}</a>
+        </div>
+    </div>
+    <div ng-if="action && type==='nodata'">
+        <div>
+            <a class="pointer link-color" ng-click="doAction()">{{ actionLabel }}</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<div class="col-md-12 detail-page">
+    <h2 class="oc-heading page-title-no-top-margin">{{"compute.compute_instances.header.detail" | translate}}:  {{data.name}}</h2>
+    <div class="col-container">
+        <div class="left-col">
+            <h3 class="oc-heading section-title">{{"compute.compute_instances.header.detail" | translate}}</h3>
+            <table>
+                <tbody>
+                    <tr class="item-line">
+                        <td class="item-label">{{"compute.compute_instances.table.header.name" | translate}}</td>
+                        <td>{{data.name}}</td>
+                    </tr>
+                    <tr class="item-line">
+                        <td class="item-label">{{"compute.compute_instances.table.header.host" | translate}}</td>
+                        <td class="clickable" ng-click="showHostTable(data.host)">{{data.host}}</td>
+                    </tr>
+                    <tr class="item-line">
+                        <td class="item-label">{{"compute.compute_instances.table.header.status" | translate}}</td>
+                        <td class="item-value-cap" ng-if="data.host_alive_status"> {{ 'common.instance.status.description.' + data.host_alive_status | translate | uppercase }} {{data.host_alive_status_value_meta_detail}}</td>
+                    </tr>
+                    <tr class="item-line">
+                        <td class="item-label">{{"compute.compute_instances.table.header.image" | translate}}</td>
+                        <td>{{data.image}}</td>
+                    </tr>
+                    <tr class="item-line">
+                        <td class="item-label">{{"compute.compute_instances.table.row.label.time" | translate}}</td>
+                        <td>{{data.time}}</td>
+                    </tr>
+                    <tr class="item-line">
+                        <td class="item-label">{{"compute.compute_instances.table.row.label.power" | translate}}</td>
+                        <td class="item-value-cap">{{data.power_state | lowercase}}</td>
+                    </tr>
+                    <tr class="item-line">
+                        <td class="item-label">{{"compute.compute_instances.table.row.label.task" | translate}}</td>
+                        <td>{{data.task_state}}</td>
+                    </tr>
+                    <tr class="item-line">
+                        <td class="item-label">{{"compute.compute_instances.table.row.label.key" | translate}}</td>
+                        <td>{{data.key_name}}</td>
+                    </tr>
+                    <tr class="item-line">
+                        <td class="item-label">{{"compute.compute_instances.table.row.label.flavor" | translate}}</td>
+                        <td>{{data.flavor}}</td>
+                    </tr>
+                    <tr class="item-line">
+                        <td class="item-label">{{"compute.compute_instances.table.row.label.project" | translate}}</td>
+                        <td>{{data.project}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="right-col">
+            <h3 class="oc-heading section-title">{{"compute.compute_instances.header.usage" | translate}}</h3>
+            <div class="chart-area">
+                <div class="chart">
+                    <svghorseshoe data="data.usage_chart_cpu.data"
+                                  max="data.usage_chart_cpu.max"
+                                  dynsummary="data.usage_chart_cpu.label"
+                                  ctitle="data.usage_chart_cpu.title"
+                                  percentage>
+                    </svghorseshoe>
+                </div>
+                <div class="chart">
+                    <svghorseshoe data="data.usage_chart_memory.data"
+                                  max="data.usage_chart_memory.max"
+                                  dynsummary="data.usage_chart_memory.label"
+                                  ctitle="data.usage_chart_memory.title"
+                                  percentage>
+                    </svghorseshoe>
+                </div>
+            </div>
+            <div class="text-area">
+                <div class="col-md-6 no-padding-left">
+                    <h3 class="oc-heading section-title">{{"compute.compute_instances.table.row.label.address" | translate}}</h3>
+                    <div class="text-line-wrap" ng-repeat="ip in data.ip_addresses">{{ip}}</div>
+                </div>
+                <div class="col-md-6 no-horizon-padding">
+                    <h3 class="oc-heading section-title">{{"compute.compute_instances.table.row.label.meta" | translate}}</h3>
+                    <div class="text-line-wrap" ng-repeat="meta in data.meta">{{meta}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

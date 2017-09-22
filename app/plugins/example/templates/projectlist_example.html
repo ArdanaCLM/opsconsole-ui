@@ -1,0 +1,23 @@
+
+<div container ng-controller="ProjectListExampleController" style="height:1024px;">
+
+<div>
+    <h3>Current project selected: {{projectFilter}}</h3>
+</div>
+<div class="capQuotaDetails">
+    <div class="row">
+        <h4 class="col-md-4">{{'example.demo.projectlist.title' | translate}}</h4>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <projectpicker project="projectFilter" label="common.projectpicker.label"></projectpicker>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <h4 class="col-md-4">Html Code:</h4>
+</div>
+<pre>
+    &lt;projectpicker project="projectFilter" label="common.projectpicker.label"(OPTIONAL PARAMETER)&gt;&lt;/projectpicker&gt;
+</pre>

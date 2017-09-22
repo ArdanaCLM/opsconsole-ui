@@ -1,0 +1,8 @@
+<div ng-if="showTitle" class="title">{{ctitle | translate}}</div>
+<div>
+   <span ng-repeat="item in dataset"
+         ng-class="getClasses(item)"
+         ng-click="callClickFunc(item)">
+       {{ item.value || '&nbsp;' }}
+   </span>
+</div>

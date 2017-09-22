@@ -1,0 +1,14 @@
+<div class="col-md-12">
+    <span class="subtitle"><oc-translate text="{{ 'alarm_explorer.setCndtn.details.title' | translate: {total: selectedDataLength} }}"></oc-translate>
+    </span>
+    <hr class="slimhr">
+    <span class="system_details_header">{{ 'alarm_explorer.setCndtn.details.subtitle' | translate }}</span>
+    <br>
+    <select name="type" class="sort_control_drop wide_select_box"
+            ng-change="toggleSetConditionButton()"
+            ng-options="(type.name | translate) for type in conditionTypes"
+            ng-model="$parent.$parent.$parent.conditionType">
+        <option value="">{{'alarm_explorer.setCndtn.dropdown.default' | translate}}
+        </option>
+    </select>
+</div>

@@ -1,0 +1,39 @@
+<import src="$parent.$parent.$parent" target="bsEditControl"/>
+<div class="dr-register">
+    <span class="common_modal_header">{{ 'storage.edit.header.title' | translate }}</span>
+    <ng-form name="bsEditControl.bsEditBSForm">
+
+        <div style="margin-top: 50px"></div>
+
+        <!-- This panel is for 3PAR FC -->
+        <div ng-if="bsEditControl.deviceTypeItem.item == 'hp_3par_fc'">
+            <div ng-include="'storage/templates/block_storage/edit_fc_device.html'"></div>
+        </div>
+
+        <!-- This panel is for 3PAR ISCSI -->
+        <div ng-if="bsEditControl.deviceTypeItem.item == 'hp_3par_iscsi'">
+            <div ng-include="'storage/templates/block_storage/edit_iscsi_device.html'"></div>
+        </div>
+
+        <!-- This panel is for VSA -->
+        <div ng-if="bsEditControl.deviceTypeItem.item == 'hp_storevirtual'">
+            <div ng-include="'storage/templates/block_storage/edit_vsa_device.html'"></div>
+        </div>
+
+        <div class="form-seperator"></div>
+        <div class="oc-btn-group">
+            <button class="oc-btn oc-btn-default"
+                    ng-bind="'common.cancel' | translate"
+                    ng-disabled="bsEditControl.showEditDeviceProgressFlag"
+                    ng-click="bsEditControl.close_edit_device_modal()">
+            </button>
+            <button class="oc-btn oc-btn-primary"
+                    ng-bind="'storage.edit.footer.button.title' | translate"
+                    ng-click="bsEditControl.callEditForBll()"
+                    ng-disabled="bsEditControl.bsEditBSForm.$invalid || bsEditControl.showEditDeviceProgressFlag ">
+            </button>
+        </div>
+    </ng-form>
+</div>
+
+<modal-overlay show-attribute="bsEditControl.showEditDeviceProgressFlag"></modal-overlay>

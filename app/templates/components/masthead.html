@@ -1,0 +1,42 @@
+<!--masthead-->
+<div class="oc-navbar">
+  <div class="container">
+    <div class="menu-button inline" ng-show="$root.hasNavigation === true">
+       <i class="ardana-icon ardana-icon-Menu menu-size"
+          ng-class="{'selected': showMenu}"
+          ng-click="toggle_menu()">
+       </i>
+    </div>
+    <div class="title inline">
+      <div class="title-text inline">
+        <div class="text-no-icon">{{"branding.masthead.title" | translate}}</div>
+      </div>
+    </div>
+    <div class="popover-items inline">
+      <div masthead-popover popover-content-name="drilldown"
+           ng-if="$root.appConfig.env === 'stdcfg'"
+           class="popover-item">
+        <i class="ardana-icon ardana-icon-App"></i>
+      </div>
+      <div masthead-popover popover-content-name="notification"
+           class="popover-item">
+        <i class="ardana-icon ardana-icon-Notification"></i>
+        <div ng-class=" { 'countError': notificationHasError } "
+             class="count" ng-if="notificationCount && notificationCount > 0">{{notificationCount}}</div>
+      </div>
+      <!--<div masthead-popover popover-content-name="help"
+           class="popover-item">
+             <i class="ardana-icon ardana-icon-Help"></i>
+      </div>-->
+      <div masthead-popover popover-content-name="account"
+           class="popover-item">
+        <i class="ardana-icon ardana-icon-User_settings"></i>
+      </div>
+    </div>
+  </div>
+  <div class="breadcrumbs">
+    <div class="container">
+      <div ng-repeat="item in breadcrumbs" class="bc-item" ng-bind="item | translate" ng-class="{'semibold' : $first}"></div>
+    </div>
+  </div>
+</div>

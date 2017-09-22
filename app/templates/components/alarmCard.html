@@ -1,0 +1,49 @@
+<import src="$parent.cardData" target="cardData"/>
+
+<div class="header">
+	<div class="text">{{ ctrl.ctitle | translate | uppercase }}</div>
+    <span class="dropDown" dropdown ng-if="!ctrl.static">
+        <div class="btn-group popupadjust" uib-dropdown>
+            <span class="dropdown-toggle ardana-icon ardana-icon-More" id="{{'alarm-card-'+ctrl.ctitle}}" uib-dropdown-toggle>
+            </span>
+            <ul class="dropdown-menu" role="menu" uib-dropdown-menu aria-labelledby="{{'alarm-card-'+ctrl.ctitle}}">
+                <li ng-repeat="menuItem in ctrl.amenu"
+                    class="lineItem"
+                    ng-if="!($index === 2 && ctrl.idx === 0) && !($index === 3 && ctrl.idx === (cardData.length - 2) )"
+                    ng-show="!menuItem.show || (menuItem.show && menuItem.show(config))">
+                    <div ng-click="menuItem.action(ctrl.idx)"
+                            class="actionMenuItem">{{ menuItem.label | translate }}</div>
+                </li>
+            </ul>
+        </div>
+    </span>
+</div>
+<div class="upperRow">
+	<div class="datum critical" ng-class="{zero : !ctrl.data || ctrl.data.critical == 0, pointer: ctrl.vclick}" ng-click="dataClick($event,'critical', ctrl.data)">
+		<div class="oc-value">{{ctrl.data.critical}}</div>
+		<div class="oc-unit">
+			{{'alarm.filter.status.critical' | translate| uppercase}}
+		</div>
+	</div>
+
+	<div class="datum warning" ng-class="{zero : !ctrl.data || ctrl.data.warning == 0, pointer: ctrl.vclick}" ng-click="dataClick($event,'warn', ctrl.data)">
+		<div class="oc-value">{{ctrl.data.warning}}</div>
+		<div class="oc-unit">
+			{{'alarm.filter.status.warn' | translate| uppercase}}
+		</div>
+	</div>
+
+	<div class="datum unknown" ng-class="{zero : !ctrl.data || ctrl.data.unknown == 0, pointer: ctrl.vclick}" ng-click="dataClick($event,'unknown', ctrl.data)">
+		<div class="oc-value">{{ctrl.data.unknown}}</div>
+		<div class="oc-unit">
+			{{'alarm.filter.status.unknown' | translate| uppercase}}
+		</div>
+	</div>
+
+    <div class="datum total" ng-class="{zero : !ctrl.data || ctrl.total == 0, pointer: ctrl.vclick}" ng-click="dataClick($event,'total', ctrl.data)">
+		<div class="oc-value">{{ctrl.data.total}}</div>
+		<div class="oc-unit">
+			{{'alarm.filter.status.total' | translate| uppercase}}
+		</div>
+	</div>
+</div>

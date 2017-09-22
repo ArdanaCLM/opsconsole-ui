@@ -1,0 +1,36 @@
+<span ng-if="rowSelectionCount > 0 && !selectedRowActionsMenuDisable">
+    <button ng-if="tableConfig.multiSelectActionMenuConfig.length>0" class="oc-btn oc-btn-default"
+            ng-click="tableConfig.multiSelectActionMenuConfig[0].action(getSelectedData())"
+            ng-disabled="tableConfig.multiSelectActionMenuConfig[0].disabled == true">
+        {{tableConfig.multiSelectActionMenuConfig[0].label | translate | uppercase}}
+    </button>
+    <button ng-if="tableConfig.multiSelectActionMenuConfig.length>1 && rowSelectionCount > 0" class="oc-btn oc-btn-default"
+            ng-click="tableConfig.multiSelectActionMenuConfig[1].action(getSelectedData())"
+            ng-disabled="tableConfig.multiSelectActionMenuConfig[1].disabled == true">
+        {{tableConfig.multiSelectActionMenuConfig[1].label | translate | uppercase}}
+    </button>
+    <button ng-if="tableConfig.multiSelectActionMenuConfig.length>2 && rowSelectionCount > 0" class="oc-btn oc-btn-default"
+            ng-click="tableConfig.multiSelectActionMenuConfig[2].action(getSelectedData())"
+            ng-disabled="tableConfig.multiSelectActionMenuConfig[2].disabled == true">
+        {{tableConfig.multiSelectActionMenuConfig[2].label | translate | uppercase}}
+    </button>
+    <div class="btn-group row_selection_control_menu" ng-if="selectedRowActionsMenu  && tableConfig.multiSelectActionMenuConfig.length>3  && rowSelectionCount > 0" ng-disabled="selectedRowActionsMenuDisable">
+        <button type="button" class="oc-btn oc-btn-default dropdown-toggle"
+                data-toggle="dropdown"
+                ng-disabled="selectedAction.disabled == true">
+            {{'table.dropdown.more' | translate | uppercase}} <i class="ardana-icon ardana-icon-Drop-down_Arrow"></i>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="selectedAction in tableConfig.multiSelectActionMenuConfig"
+                ng-hide="selectedAction.show !== undefined && !selectedAction.show"
+                ng-if="$index > 2">
+                <button ng-click="selectedAction.action(getSelectedData())"
+                        ng-disabled="selectedAction.disabled == true"
+                        class="multirowActionItem"
+                        ng-class="{'disabled': selectedAction.disabled}">
+                    {{ selectedAction.label | translate}}
+                </button>
+            </li>
+        </ul>
+    </div>
+</span>

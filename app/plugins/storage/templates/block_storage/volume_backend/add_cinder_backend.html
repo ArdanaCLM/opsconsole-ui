@@ -1,0 +1,138 @@
+<h2 class="oc-heading page-title">{{ "storage.block_storage.backend.create.title" | translate }}</h2>
+<import src="$parent.$parent.$parent" target="bsAddBackendControl"/>
+
+<div class="block_drivers">
+    <div class="col-md-12">
+        <h3 class="oc-heading section-title-column">{{ "storage.block_storage.backend.create.backendconfiguration" | translate }}</h3>
+        <select class="activate-compute-dlg-select" ng-model="bsAddBackendControl.driver_type"
+                ng-change="bsAddBackendControl.driverTypeOnChange()"
+                ng-options="item.name for item in bsAddBackendControl.driver_type_choices track by item.value"></select>
+    </div>
+</div>
+
+<div class="volume-backend-table">
+    <div class="col-md-12 registeredcpgs"
+         ng-if="bsAddBackendControl.driver_type.value != 'select' && bsAddBackendControl.driver_type.value != 'vsa'">
+        <div>
+            <span>{{ "storage.block_storage.backend.create.available.registered.cpgs" | translate }}</span>
+            <hr class="hr-ruler"/>
+        </div>
+    </div>
+
+    <div class="col-md-12 registeredcpgs"
+         ng-if="bsAddBackendControl.driver_type.value != 'select' && bsAddBackendControl.driver_type.value == 'vsa'">
+        <div>
+            <span>{{ "storage.block_storage.backend.create.available.registered.clusters" | translate }}</span>
+            <hr class="hr-ruler"/>
+        </div>
+    </div>
+
+    <div class="col-md-12 registeredcpgs" ng-if="bsAddBackendControl.driver_type.value == 'hp_3par_fc'">
+        <div class="hp3par_table backend-list">
+            <octable enumfilter selectable tableid="volumeBackendAddTable"
+                     loadflag="$parent.bsAddBackendControl.driverCPGLoadingFlag"
+                     modelname="$parent.bsAddBackendControl.driver_cpg_list"
+                     configname="$parent.bsAddBackendControl.hp3par_cpg_config">
+            </octable>
+        </div>
+    </div>
+
+    <div class="col-md-12 registeredcpgs" ng-if="bsAddBackendControl.driver_type.value == 'hp_3par_iscsi'">
+        <div class="hp3par_table backend-list">
+            <octable enumfilter selectable tableid="volumeBackendAddTable"
+                     loadflag="$parent.bsAddBackendControl.driverCPGLoadingFlag"
+                     modelname="$parent.bsAddBackendControl.driver_cpg_list"
+                     configname="$parent.bsAddBackendControl.hp3par_cpg_config">
+            </octable>
+        </div>
+    </div>
+
+    <div class="col-md-12 registeredcpgs" ng-if="bsAddBackendControl.driver_type.value == 'vsa'">
+        <div class="hp3par_table backend-list">
+            <octable enumfilter selectable tableid="volumeBackendAddTable"
+                     loadflag="$parent.bsAddBackendControl.driverCPGLoadingFlag"
+                     modelname="$parent.bsAddBackendControl.driver_cpg_list"
+                     configname="$parent.bsAddBackendControl.vsa_config">
+            </octable>
+        </div>
+    </div>
+</div>
+
+<div id="volumetypepanel" ng-if="bsAddBackendControl.showVolBackendBottomPanel">
+    <ng-form name="$parent.bsAddBackendControl.addBackendForm">
+        <div class="col-md-12 volumetypesection">
+            <div>
+                <span>{{ "storage.block_storage.backend.volumetype" | translate | uppercase }}</span>
+                <hr class="hr-ruler"/>
+            </div>
+
+            <div class="col-md-12">
+                <label>
+                    <input type="radio" name="volume_types" value="existing_vol"
+                           ng-click="$parent.bsAddBackendControl.checkDriverBackendValidation()"
+                           ng-model="$parent.bsAddBackendControl.volume_types.value">
+                    <span>{{ "storage.block_storage.backend.create.volumetype.existing" | translate | uppercase }}</span>
+                </label>
+
+                <div ng-show="$parent.bsAddBackendControl.volume_listLoadingFlag"
+                     style="margin-top: -20px;margin-left:10px;">
+                    <ocloading></ocloading>
+                </div>
+                <select class="activate-compute-dlg-select"
+                        ng-model="$parent.bsAddBackendControl.volume_type_choice"
+                        ng-change="$parent.bsAddBackendControl.checkDriverBackendValidation(config, drawer_form)"
+                        ng-disabled="$parent.bsAddBackendControl.volume_types.value != 'existing_vol' ||
+                                $parent.bsAddBackendControl.volumeNoData"
+                        ng-show="!$parent.bsAddBackendControl.volume_listLoadingFlag"
+                        ng-options="item.name for item in $parent.bsAddBackendControl.existing_volume_types track by item.value "></select>
+            </div>
+
+            <div class="col-md-12">
+                <div style="float: left; width: 20%; margin-top:20px;">
+                    <label>
+                        <input type="radio" name="volume_types" value="new_vol"
+                               ng-disabled="$parent.bsAddBackendControl.volume_listLoadingFlag"
+                               ng-click="$parent.bsAddBackendControl.checkDriverBackendValidation(config, drawer_form)"
+                               ng-model="$parent.bsAddBackendControl.volume_types.value">
+                        <span>{{ "storage.block_storage.backend.create.volumetype.new" | translate | uppercase }}</span>
+                    </label>
+                </div>
+                <div style="float: left; width: 47.5%; margin-top:20px; margin-left:10px;">
+                    <input type="text" id="new-volume-type" class="control-input" required
+                           ng-disabled="$parent.bsAddBackendControl.volume_types.value != 'new_vol' || $parent.bsAddBackendControl.volume_listLoadingFlag"
+                           ng-keyup="$parent.bsAddBackendControl.checkDuplicateVolumeType(config, drawer_form)"
+                           ng-click="$parent.bsAddBackendControl.checkDuplicateVolumeType(config, drawer_form)"
+                           ng-model="$parent.bsAddBackendControl.new_volume_type.value"/>
+
+                </div>
+            </div>
+            <span class="oc-validate-error" style="margin-left: 12.5em;"
+                  ng-show="$parent.bsAddBackendControl.isNewVolumeTypeEmpty">{{ "ocvalidate.required" | translate }}</span>
+            <span class="oc-validate-error" style="margin-left: 12.5em;"
+                  ng-show="$parent.bsAddBackendControl.VolumeTypeDuplicate">{{ "storage.block_storage.backend.create.volumetype.duplicate.msg" | translate }}</span>
+
+
+            <div class="col-md-12">
+                <p style="margin-top:20px;">
+                    <b>{{ "storage.block_storage.backend.create.volumetype.note" | translate }}: </b>
+                    {{ "storage.block_storage.backend.create.volumetype.note.message" | translate }}</p>
+            </div>
+            <!--
+            <div ng-include="'storage/templates/block_storage/volume_backend/extra_specs.html'"></div>
+            -->
+        </div>
+    </ng-form>
+</div>
+
+<div class="form-seperator"></div>
+<div class="oc-btn-group">
+    <button class="oc-btn oc-btn-default"
+            ng-bind="'common.cancel' | translate"
+            ng-click="bsAddBackendControl.onDriverCancel(closeModal())">
+    </button>
+    <button class="oc-btn oc-btn-primary"
+            ng-bind="'storage.block_storage.backend.create' | translate"
+            ng-click="bsAddBackendControl.onDriverCommit(closeModal())"
+            ng-disabled="bsAddBackendControl.enableRegisterBackendFlag">
+    </button>
+</div>

@@ -1,0 +1,166 @@
+<div class="oc-input" ng-class="{error: (inputForm.$invalid && inputForm.$dirty) || error, disabled: disabled}">
+  <div
+    class="input-label"
+    ng-class="{select: type == 'select'}"
+    ng-show="((inputForm.$valid || inputForm.$pristine) && !error ) || !(type == 'text' || type == 'password' || type == 'ip' ||
+              type == 'gatewayip' || type == 'address')"
+    ng-click="showList()">
+      {{label | translate}}
+
+      <div ng-if="ocTooltip"
+           class="oc-info ardana-icon ardana-icon-Unknown_L vert-offset-top-half"
+           uib-tooltip="{{ocTooltip | translate}}"
+           tooltip-placement="right">
+       </div>
+  </div>
+  <div
+    class="input-label error"
+    ng-show="(inputForm.$invalid && inputForm.$dirty)  && (type == 'text' || type == 'password')"
+    ng-click="showList()">
+    {{(validateText || label) | translate}}
+
+    <div ng-if="ocTooltip"
+         class="oc-info ardana-icon ardana-icon-Unknown_L vert-offset-top-half"
+         uib-tooltip="{{ocTooltip | translate}}"
+         tooltip-placement="right">
+     </div>
+  </div>
+  <div
+    class="input-label error"
+    ng-show="(inputForm.$invalid && inputForm.$dirty)  && (type == 'ip' || type == 'gatewayip' || type == 'address')">
+    {{ customValidateText }}
+
+    <div ng-if="ocTooltip"
+         class="oc-info ardana-icon ardana-icon-Unknown_L vert-offset-top-half"
+         uib-tooltip="{{ocTooltip | translate}}"
+         tooltip-placement="right">
+     </div>
+  </div>
+  <ng-form name="inputForm">
+    <!-- Regular html input           -->
+    <input
+      ng-show="type == 'text' || type == 'password' || type == 'ip' || type == 'gatewayip' || type == 'address'"
+      name="{{name}}"
+      type="{{type}}"
+      placeholder="{{placeholder | translate}}"
+      oc-validate="validate"
+      ng-model="value"
+      ng-disabled="disabled"
+      ng-required="required && (type == 'text' || type == 'password' || type == 'ip' || type == 'gatewayip' || type == 'address')"
+      ng-readonly="readonly">
+    </input>
+
+    <!-- select alternative           -->
+    <div
+      ng-show="type == 'select' && !selectedOption"
+      class="select-placeholder"
+      ng-click="showList()">
+        {{placeholder | translate}}
+    </div>
+    <div
+      ng-show="type == 'select' && selectedOption"
+      class="select-placeholder active"
+      ng-class="{'active': !disabled}"
+      ng-click="showList()">
+        {{selectedOption.label || selectedOption | translate}}
+    </div>
+    <input
+      type="hidden"
+      ng-model="value"
+      ng-required="required && type == 'select'"/>
+    <div
+      ng-show="type == 'select'"
+      class="oc-select-list"
+      ng-class="{'list-shown': select_active}">
+        <div
+          ng-repeat="option in selectOptions || internalSelectOptions"
+          ng-click="selectOption(option)">
+            {{(option.label || option) | translate}}
+        </div>
+    </div>
+
+    <!-- multi select -->
+    <div
+      ng-show="type == 'multiselect'"
+      class="multiselect">
+        <div ng-repeat="option in selectOptions || internalSelectOptions">
+          <oc-checkbox ng-model="option[selectValue]"></oc-checkbox>
+          <span ng-bind="option.label"></span>
+        </div>
+    </div>
+
+    <!-- multi select for notification-->
+    <div
+      ng-show="type == 'multiselect-notification'"
+      class="multiselect-notif">
+        <table class="full-width">
+            <tr>
+                <th class="col-sm-6">{{ 'common.table.headers.name' | translate | uppercase }}</th>
+                <th class="col-sm-6">{{ 'common.type' | translate | uppercase }}</th>
+            </tr>
+            <tr>
+                <td class="col-sm-6">
+                <div ng-repeat="option in selectOptions || internalSelectOptions">
+                  <oc-checkbox ng-model="option[selectValue]"></oc-checkbox>
+                  <span ng-bind="option.label | truncTextDisplayFilter:30"></span>
+                </div>
+                </td>
+                <td class="col-sm-6">
+                    <div ng-repeat="option in selectOptions || internalSelectOptions">
+                      <span ng-bind="option.type | truncTextDisplayFilter:20"></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <!-- button type                  -->
+    <div class="button-value"
+      ng-show="type == 'button'">
+        {{placeholder | translate}}
+    </div>
+    <div ng-if="type == 'dimension'" class="inline dimension-container">
+      <div class="inline dimension" ng-repeat="dimension in dimensions">
+        <i class="remove ardana-icon ardana-icon-Close" ng-click="removeDimension(dimension)"/>
+        {{dimension.key}}={{dimension.value}}
+      </div></br>
+    </div>
+    <div ng-if="type == 'matchby'" class="inline dimension-container">
+      <div class="inline dimension" ng-repeat="dimension in dimensions">
+        <i class="remove ardana-icon ardana-icon-Close" ng-click="removeDimension(dimension)"/>
+        {{dimension}}
+      </div></br>
+    </div>
+
+    <div ng-if="type == 'collection'" class="inline dimension-container">
+      <div class="inline dimension" ng-repeat="item in collection" ng-show="item.value">
+        <i class="remove ardana-icon ardana-icon-Close" ng-click="falsifyFromCollection(item)"/>
+        {{item.title}}
+      </div></br>
+    </div>
+    <div ng-if="type == 'iprange'" class="inline dimension-container narrower">
+      <div class="dimension range-list" ng-repeat="item in ranges">
+        <i ng-if="!item.readonly"
+           class="remove ardana-icon ardana-icon-Close" ng-click="removeRange(item)"/>
+        {{item.range}}
+      </div></br>
+    </div>
+    <button
+      ng-disabled="disabled || (type == 'dimension' && !metric) || type == 'matchby' && !metric || (type == 'gatewayip' && value == '')"
+      ng-if="type == 'button' || type == 'dimension' || type == 'matchby' || type == 'collection' || type == 'iprange' || (type == 'gatewayip' && !required)"
+      class="oc-btn oc-btn-secondary oc-btn-input-small float-right" ng-class="{'gatewayip-remove-btn': type=='gatewayip'}"
+      ng-click="action()">{{buttonLabel | translate}}
+    </button>
+
+    <textarea
+      ng-model="value"
+      ng-show="type == 'textarea'"
+      name="{{name}}"
+      placeholder="{{placeholder | translate}}"
+      oc-validate="validate"
+      ng-disabled="disabled"
+      ng-required="required && (type == 'textarea')"
+    ></textarea>
+  </ng-form>
+</div>

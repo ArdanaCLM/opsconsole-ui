@@ -1,0 +1,41 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+.oc-application-notification {
+  height: 72px;
+  &.error, &.warning, &.success {
+    color: white;
+  }
+  &.error {
+    background-color: $grommet-red;
+  }
+  &.warning {
+    background-color: $grommet-yellow;
+  }
+  &.info {
+    background-color: $grommet-white;
+    color: $grommet-grey;
+    border-bottom: 1px solid $table-header-border-color;
+    .text, .remove {
+      color: $grommet-black;
+    }
+  }
+  &.success {
+    background-color: $grommet-green;
+  }
+  .icon, .text, .remove {
+    @extend .inline;
+    margin-top: 18px;
+  }
+  .icon, .remove {
+    font-size: 30px;
+  }
+  .text {
+    font-size: 18px;
+    margin-left: 25px;
+    margin-top: 22px;
+  }
+  .remove {
+    cursor: pointer;
+    float: right;
+  }
+}

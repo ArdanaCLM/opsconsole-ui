@@ -1,0 +1,88 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+.listColumnContainer {
+  height: 100%;
+  .listColumnTitle{
+    height: 40px;
+    line-height: 35px;
+  }
+  .listTableContainer {
+    border: 1px solid $soft-border-color;
+    height: 70%;
+    width: 100%;
+    overflow-y: scroll;
+    .listTable {
+      width: 100%;
+      tr {
+        line-height: 35px;
+        height: 35px;
+        cursor: pointer;
+        td:first-child{
+          padding-left: 25px;
+        }
+        &.currentRowSelection {
+          td:first-child {
+            background-image: url($row-arrow-selection-image);
+            background-repeat: no-repeat;
+            background-position: left center;
+          }
+        }
+        &.listViewStatusOk {
+          color: white;
+          background-color: $oc-graph-blue-1;
+          .statusColumn{
+            background-image: url($icon-check-white);
+          }
+        }
+        &.listViewStatusError {
+          background-color: $status-error-color;
+          text: white;
+          .statusColumn{
+            background-image: url($error_icon_colored);
+          }
+        }
+        &.listViewStatusSkip {
+          background-color:$editable_table_border_color_2;
+          color: black;
+          .statusColumn{
+            background-image: url($icon-x-white);
+          }
+        }
+        &.listViewStatusDisabled {
+          background-color:white;
+          color: $disabled-button-color;
+          cursor: pointer;
+          .statusColumn{
+            background-image: url($icon-state-unreachable);
+          }
+        }
+        td{
+          padding-left: 2px;
+        }
+        .statusColumn{
+          width: 35px;
+          background-repeat:no-repeat;
+          background-position: center;
+        }
+      }
+    }
+  }
+
+  .listViewButtonContainer{
+    padding:20px;
+  }
+}
+
+.listViewContainer,
+.listViewParentContainer{
+  height: 100%;
+}
+
+.modal_listview_rhs_header {
+  line-height: 35px;
+  height: 40px;
+}
+
+.modal_listview_rhs_content {
+  height: 65%;
+}

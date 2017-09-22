@@ -1,0 +1,11 @@
+<div class="dimension-selector">
+  <div class="dimension" ng-repeat="(key, dimension) in selectedOptions">
+    <div class="dimension-inner-text">
+      {{dimension.key}}={{dimension.value}}
+    </div>
+    <span class="remove" ng-click="removeDimension(key)">&times;</span>
+  </div>
+  <div ng-if="dropdownSelector" class="dimension new" ng-click="showDrawer()">
+    {{'dimension_selector_add' | translate}}
+  </div>
+</div>

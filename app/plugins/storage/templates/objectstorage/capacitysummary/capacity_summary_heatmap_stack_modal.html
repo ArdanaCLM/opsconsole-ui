@@ -1,0 +1,106 @@
+<div class="row">
+    <div class="col-xs-12 host-details-header">
+        {{ $parent.$parent.$parent.clusterName }}: {{ $parent.$parent.$parent.hostname }}{{ "storage.object_storage.health_focused.heat_map.stack.modal.details" | translate }}</div>
+</div>
+
+<div class="row vert-offset-top-2">
+    <div class="col-xs-12 host-details-title">
+        {{ $parent.$parent.$parent.clusterName }}: {{ $parent.$parent.$parent.hostname }}{{ "storage.object_storage.health_focused.heat_map.stack.modal.host.details" | translate }}</div>
+</div>
+<div class="row vert-offset-top-1">
+    <div class="col-xs-6">
+
+        <div class="col-xs-4">
+            <svghorseshoe percentage data="$parent.$parent.$parent.heatmapCompute.data"
+                          max="$parent.$parent.$parent.heatmapCompute.max"
+                          ctitle="$parent.$parent.$parent.heatmapCompute.label"
+                          label="''">
+            </svghorseshoe>
+        </div>
+
+        <div class="col-xs-4">
+            <svghorseshoe percentage data="$parent.$parent.$parent.heatmapMemory.data"
+                          max="$parent.$parent.$parent.heatmapMemory.max"
+                          unit="$parent.$parent.$parent.heatmapMemory.unit"
+                          ctitle="$parent.$parent.$parent.heatmapMemory.label"
+                          label="''">
+            </svghorseshoe>
+        </div>
+        <div class="col-xs-4">
+            <svghorseshoe percentage data="$parent.$parent.$parent.heatmapStorage.data"
+                          max="$parent.$parent.$parent.heatmapStorage.max"
+                          unit="$parent.$parent.$parent.heatmapStorage.unit"
+                          ctitle="$parent.$parent.$parent.heatmapStorage.label"
+                          label="''">
+            </svghorseshoe>
+        </div>
+
+
+        </svghorseshoe>
+    </div>
+    <div class="col-xs-6 custom-metriccard-style-health-focused">
+        <metriccard type="'range'" ctitle="'storage.object_storage.health_focused.heat_map.stack.modal.filesystem.util'"
+                    data="$parent.$parent.$parent.fileSystemUtilizationData"
+                    showCondition="false"></metriccard>
+        <metriccard type="'range'"
+                    ctitle="'storage.object_storage.health_focused.heat_map.stack.modal.filesystem.mount'"
+                    data="$parent.$parent.$parent.fileSystemMountData"
+                    showCondition="false"></metriccard>
+    </div>
+</div>
+
+<div class="row vert-offset-top-2" id="heatmap-lower">
+    <div class="col-xs-6">
+        <div>
+            <svgdonut data="$parent.$parent.$parent.storageAlarmData.data"
+                      ctitle="$parent.$parent.$parent.storageAlarmData.title"/>
+        </div>
+
+        <div class="col-xs-12 vert-offset-top-1">
+            <div class="host-details-title col-xs-12">
+                {{ "storage.object_storage.health_focused.heat_map.stack.modal.alarms" | translate:{"hostname": $parent.$parent.$parent.hostname.toUpperCase(), "count": $parent.$parent.$parent.heatmapAlarmsCount} }}
+            </div>
+
+            <div class="col-xs-12 alarms-list vert-offset-top-1">
+                <ocloading ng-if="$parent.$parent.$parent.alarmsLoadingFlag"></ocloading>
+                <div ng-repeat="(id, alarm) in $parent.$parent.$parent.heatmapAlarms" class="alarms">
+                    <div class="health-left">
+                        <div class="ardana-icon2 condition"
+                             ng-class="$parent.$parent.$parent.$parent.getAlarmClass(alarm.status)"></div>
+                        <div class="alarm-text-upper">
+                            <div class="alarm-desc alarms-font">
+                                {{ alarm.name }}
+                            </div>
+                            <div class="alarm-desc alarms-font2">
+                                {{alarm.description}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="host-details-title col-xs-12">
+            {{ "storage.object_storage.health_focused.heat_map.stack.modal.filesystems" | translate:{"hostname": $parent.$parent.$parent.hostname.toUpperCase(), "count": $parent.$parent.$parent.fileSystemCount} }}
+        </div>
+        <div class="col-xs-12 zero-padding">
+            <ocloading ng-if="$parent.$parent.$parent.fileSystemLoadingFlag"></ocloading>
+            <div ng-repeat="(disk, val) in $parent.$parent.$parent.fileSystemData" class="alarms">
+                <div class="health-left">
+                    <div class="alarm-text-upper">
+                        <div class="alarm-desc alarms-font" style="color: black; font-weight: 400;">
+                            <span style="font-weight: 600;">{{ disk }}</span>
+                            {{ "storage.object_storage.health_focused.heat_map.stack.modal.filesystems.list.upper" | translate:{"total":(val.size/(1024*1024*1024)).toFixed(2), "utilized":(val.used/val.size*100).toFixed(1) } }}
+                        </div>
+                        <div class="alarm-desc alarms-font2">
+                            {{"storage.object_storage.health_focused.heat_map.stack.modal.filesystems.mounted" | translate}}:
+                            <span ng-bind="$parent.$parent.$parent.$parent.getCheckMountStatus(val.check_mounts)"></span>
+                            {{ "storage.object_storage.health_focused.heat_map.stack.modal.filesystems.list.lower" | translate:{"total":(val.size/(1024*1024*1024)).toFixed(2), "utilized":(val.used/(1024*1024*1024)).toFixed(2), "avail":((val.size - val.used)/(1024*1024*1024)).toFixed(2) } }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

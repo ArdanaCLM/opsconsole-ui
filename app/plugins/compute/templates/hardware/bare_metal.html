@@ -1,0 +1,48 @@
+<div ng-controller="HardwareBaremetalController">
+    <div ng-show="showEmptyDataPageBaremetalFlag==false && initBareMetalDataLoading==false">
+        <octable pageable transformable selectable actionmenu enumfilter sortcontrol
+                 modelname="bare_metal_list"
+                 configname="bare_metal_table_config"
+                 loadflag="bareMetalDataLoading"
+                 tile-template-url="compute/templates/hardware/bare_metal_table_tiletemplate.html">
+            <oct-std-header></oct-std-header>
+        </octable>
+    </div>
+    <stackablemodal name="registerBareMetal"
+                    showAttribute="registerBareMetalVisible" modalTemplateUrl="registerBareMetalTemplate">
+    </stackablemodal>
+    <stackablemodal name="registerBareMetal"
+                    showAttribute="editBareMetalVisible" modalTemplateUrl="editBareMetalTemplate">
+    </stackablemodal>
+    <stackablemodal name="provisionBareMetal"
+                    showAttribute="provisionBareMetalVisible" modalTemplateUrl="provisionBareMetalTemplate">
+    </stackablemodal>
+    <!-- confirm delete baremetal modal -->
+    <opsmodal showAttribute="removeBareMetalModalFlag"
+              type="confirm"
+              header-title="compute.remove.baremetal.modal.header"
+              commit-action="unregisterBareMetalConfirm">
+        <div ng-include="'compute/templates/hardware/remove_bare_metal_content.html'"></div>
+        <modal-overlay show-attribute="baremetalDeletionInProgress"></modal-overlay>
+    </opsmodal>
+    <!-- show error modal -->
+    <opsmodal showAttribute="infoBareMetalModalFlag"
+              type="error"
+              header-title="{{ baremetalInfoModalBoxConfig.header }}"
+              is-closable="true">
+        <div ng-include="'compute/templates/hardware/info_bare_metal_content.html'"></div>
+    </opsmodal>
+
+    <!-- show empty data page when data is empty or data error for baremetal table-->
+    <empty-data-page show-attribute="showEmptyDataPageBaremetalFlag"
+                     type="emptyDataPage.baremetal.type"
+                     reason-message="emptyDataPage.baremetal.reasonMessage"
+                     action-message="emptyDataPage.baremetal.actionMessage"
+                     action-label="emptyDataPage.baremetal.actionLabel"
+                     action="emptyDataPage.baremetal.action">
+    </empty-data-page>
+    <!-- init table loading page mask -->
+    <div class="empty-data-page" ng-if="initBareMetalDataLoading">
+        <ocloading></ocloading>
+    </div>
+</div>

@@ -1,0 +1,2 @@
+<span class="oc-validate-error" ng-if="(isBoolean  && booleanCondition == 'false') || (condition.$invalid && condition.$dirty) || (localCondition.$invalid && localCondition.$dirty) || (nodirty && condition.$invalid) || (nodirty && localCondition.$invalid)">{{ text | translate }}</span>
+<span ng-if="(isBoolean  && booleanCondition == 'true') || (!condition.$invalid || !condition.$dirty) || (!localCondition.$invalid || !localCondition.$dirty)">&nbsp;</span>

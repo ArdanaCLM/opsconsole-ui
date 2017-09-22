@@ -1,0 +1,71 @@
+<!-- template for create and edit notification --->
+<import src="$parent.$parent.$parent" target="notifCtrl"></import>
+<modal-overlay show-attribute="notifCtrl.showUpdateNotificationProgress==true"></modal-overlay>
+<div class="col-md-8 notification-method">
+    <h2 ng-show="notifCtrl.isCreateNotification==true"
+         class="oc-heading page-title">{{ 'notification_methods.create.title' | translate }}</h2>
+    <h2 ng-show="notifCtrl.isCreateNotification==false"
+         class="oc-heading page-title">{{ 'notification_methods.edit.table.title' | translate }} {{notifCtrl.updateNotificationData.name}}</h2>
+    <div class="col-container">
+    <ng-form name="notifCtrl.createNotificationForm">
+    <oc-input label="notification_methods.table.header.name"
+              placeholder="notification_methods.table.header.name.placeholder"
+              type="text"
+              value="notifCtrl.updateNotificationData.name"
+              name="inputName"
+              oc-required="true">
+    </oc-input>
+    <!-- drop down notification types -->
+    <oc-input label="notification_methods.table.header.type"
+              type="select"
+              value="notifCtrl.updateNotificationData.type"
+              name="inputType"
+              oc-required="true"
+              select-options="notifCtrl.addressKeyOptions">
+    </oc-input>
+    <div ng-switch on="notifCtrl.updateNotificationData.type">
+        <div ng-switch-default>
+        <oc-input label="notification_methods.edit.header.address"
+                  type="address"
+                  value="notifCtrl.updateNotificationData.address"
+                  name="inputDescription"
+                  validate="notifCtrl.validateAddressKeyInput"
+                  custom-validate-text="notifCtrl.invalidAddressKeyMsg"
+                  placeholder="{{ notifCtrl.addressPlaceholder }}"
+                  oc-required="true">
+        </oc-input>
+        </div>
+    </div>
+
+    <div ng-if="notifCtrl.updateNotificationData.type == 'WEBHOOK'" class="period-set">
+        <oc-checkbox ng-model="notifCtrl.notifyPeriod.value"></oc-checkbox>
+        <span ng-bind="notifCtrl.notifyPeriod.label"></span>
+    </div>
+
+    <div class="update-buttons">
+        <div ng-show="notifCtrl.isCreateNotification==true">
+        <button class="oc-btn oc-btn-default"
+                ng-click="notifCtrl.closeCreateModal()">
+            {{"common.cancel" | translate}}
+        </button>
+        <button class="oc-btn oc-btn-primary"
+                ng-click="notifCtrl.commitCreateNotification()"
+                ng-disabled="notifCtrl.createNotificationForm.$invalid || notifCtrl.createNotificationForm.$pristine">
+            {{"notification_methods.create.title" | translate}}
+        </button>
+        </div>
+        <div ng-show="notifCtrl.isCreateNotification==false">
+        <button class="oc-btn oc-btn-default"
+                ng-click="notifCtrl.closeEditModal()">
+            {{"common.cancel" | translate}}
+        </button>
+        <button class="oc-btn oc-btn-primary"
+                ng-click="notifCtrl.commitEditNotification()"
+                ng-disabled="!notifCtrl.isInputValid() || !notifCtrl.hasInputChanged()">
+            {{"notification_methods.edit.table.update" | translate}}
+        </button>
+        </div>
+   </div>
+   </ng-form>
+   </div>
+</div>

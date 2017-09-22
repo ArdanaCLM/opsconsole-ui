@@ -1,0 +1,11 @@
+<div align="right">
+    <button class="oc-btn oc-btn-big oc-btn-default" ng-click="closeModal()">
+        {{"common.cancel" | translate | uppercase}}
+    </button>
+    <button
+      class="oc-btn oc-btn-big oc-btn-primary"
+      ng-click="$parent.$parent.downloadCSV()"
+      ng-disabled="modalForm.$invalid">
+        {{"monitoring_dashboard.download_csv" | translate | uppercase}}
+    </button>
+</div>

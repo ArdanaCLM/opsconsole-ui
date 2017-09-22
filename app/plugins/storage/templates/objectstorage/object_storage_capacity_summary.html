@@ -1,0 +1,49 @@
+<div id="object_storage_performance" ng-controller="ObjectStorageCapacitySummaryController">
+    <div class="performance-upper">
+        <h3 class="oc-heading section-title">{{ "storage.object_storage.capacity_summary.title" | translate }}</h3>
+        <div class="metric_tiles">
+            <div class="tiles" ng-repeat="tile in capacity_tiles">
+                <metriccard type="tile.type" ctitle="tile.title" data="tile.data" showCondition="tile.condition"> </metriccard>
+            </div>
+        </div>
+    </div>
+
+    <div class="object-lower">
+        <tabbedpage not-routing="true" pageList="capacitySummaryChartPages"></tabbedpage>
+    </div>
+
+    <div class="object-lower">
+        <h3 class="oc-heading section-title">{{ "storage.object_storage.utilization_focused.title" | translate }}</h3>
+        <div class="utilization-focused-heatmap">
+            <div class="title">{{ "storage.object_storage.utilization_focused.comment" | translate }}</div>
+            <div class="heat-map" ng-repeat="cluster in utilizationFocusedData">
+                <dynamic-heat-map data="cluster.data" name="{{cluster.name}}" clickfunc="utilizationFocusedHeatMapClick" columns="7"></dynamic-heat-map>
+            </div>
+        </div>
+    </div>
+
+    <stackablemodal name="utilizationFocusedStackModal" showAttribute="utilizationFocusedStackModalFlag"
+                    modalTemplateUrl="'storage/templates/objectstorage/capacitysummary/capacity_summary_heatmap_stack_modal.html'">
+    </stackablemodal>
+
+    <div class="object-lower" ng-show="!topTenProjectLoading">
+        <h3 class="oc-heading section-title">{{ "storage.object_storage.top_10_projects.title" | translate }}</h3>
+        <oc-top-ten sortby="rawSize" data="top_10_projects" ng-show="top_10_projects.length>0" legend="true"></oc-top-ten>
+    </div>
+
+    <div class="object-lower" ng-cloak>
+        <h3 class="oc-heading section-title">{{ "storage.object_storage.top_10_projects.capacity_detail.title" | translate }}</h3>
+        <projectpicker project="selected_project.name" project-id="selected_project.id" label="common.projectpicker.label"></projectpicker>
+    </div>
+
+    <div class="metric_tiles">
+        <div class="tiles" ng-repeat="tile in selected_project_tiles">
+            <metriccard type="tile.type" ctitle="tile.title" data="tile.data" showCondition="false"> </metriccard>
+        </div>
+    </div>
+
+    <div class="object-lower">
+        <tabbedpage not-routing="true" pageList="select_projectChartPages"></tabbedpage>
+    </div>
+
+</div>

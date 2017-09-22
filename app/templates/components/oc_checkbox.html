@@ -1,0 +1,10 @@
+<i
+  class="ardana-icon"
+  click-proxy="[type='checkbox']"
+	ng-class="{'ardana-icon-Checkbox':!value, 'ardana-icon-Check':value, disabled: ocDisabled()}"></i>
+<input
+  style="display:none;"
+	type="checkbox"
+	name="{{name}}"
+	ng-model="value"
+	ng-disabled="ocDisabled()"/>

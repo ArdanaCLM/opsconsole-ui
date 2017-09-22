@@ -1,0 +1,29 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+.editable-table-buttons {
+	margin-top: 5px;
+	margin-bottom: 15px;
+	width: 100%;
+}
+
+.editable-table-editor {
+	border-top: 1px solid $editable_table_editor_separator_color;
+	border-bottom: 1px solid $editable_table_editor_separator_color;
+	table {
+		width:100%;
+		thead tr th {
+			height: 34px;
+		}
+		tbody tr td:not(:last-child)  {
+			padding-right: 5px;
+
+		}
+	}
+	.editing-buttons {
+		margin: 5px;
+		overflow: auto;
+		button {
+			float: right;
+		}
+	}
+}

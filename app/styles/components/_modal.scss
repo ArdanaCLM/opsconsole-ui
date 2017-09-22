@@ -1,0 +1,291 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+.modal-content-backdrop{
+  position: fixed;
+  background-color: $modal_background_color;
+  opacity: 0.5;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}
+
+.close_modal{
+  background-image: url($close_icon);
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  left: 97%;
+  margin-top: 10px;
+  cursor: pointer;
+  &.error-close-modal {
+    left: 91%;
+    margin-top: 0px;
+    background-image: none;
+  }
+}
+
+
+
+.oc-modal-wrapper{
+  position: fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  width:100%;
+  z-index: 1001;
+  margin-top: 50px;
+  overflow-y: auto;
+  overflow-x: auto;
+  .oc-modal {
+    height: 856px;
+    width: 1146px;
+    margin: 0 auto;
+    z-index: 9;
+    background-color: white;
+    position: relative;
+    overflow: hidden;
+
+    .oc-modal-header {
+      height: 60px;
+      background-color: $fti_modal_header_color;
+    }
+    .oc-modal-body {
+      height: calc(100% - 60px - 77px);
+      .oc-modal-body-indent {
+        margin: 15px;
+        height: calc(100% - 30px);
+        width: calc(100% - 30px);
+        overflow-y: auto;
+        .oc-scrolling-body-indent {
+          height: 100%;
+          margin: 0 20px 0 15px;
+        }
+      }
+    }
+    .oc-modal-content-form > div{
+      height: 100%;
+    }
+    .oc-modal-footer {
+      position: relative;
+      bottom: 0px;
+      border-top: 1px solid $dividing-line;
+      height: 77px;
+      top: -15px;
+      .oc-modal-footer-indent {
+        margin: 19px;
+        .right {
+          float: right;
+        }
+      }
+    }
+    .oc-modal-drawer {
+      position: absolute;
+      height: calc(100% - 60px);
+      width: 100%;
+      background-color: white;
+      @include transition(top 0.5s ease);
+      top: 856px;
+      &.active {
+        top: 60px;
+      }
+      .oc-header-drawer {
+        height: 45px;
+        background-color: $oc-highlight;
+        color: white;
+        width: 100%;
+        font-size: 18px;
+        padding-top: 10px;
+        padding-left: 45px;
+      }
+      .oc-body-drawer {
+        width: 100%;
+        height: calc( 796px - 45px - 71px - 50px );
+        margin-top: 25px;
+        margin-bottom: 25px;
+        padding-right: 50px;
+        padding-left: 50px;
+        overflow-y: auto;
+        .highlight {
+          color: $oc-highlight;;
+        }
+        .drawer-header {
+          border-bottom: 1px solid $separator_color;
+          font-size: 16px;
+          padding-bottom: 5px;
+        }
+      }
+      .oc-footer-drawer {
+        width: 100%;
+        background-color: $fti_modal_drawer_bg_color;
+        border-top: 1px solid $separator_color;
+        height: 71px;
+        padding-left: 50px;
+        padding-top: 23px;
+        padding-bottom: 23px;
+        padding-right: 50px;
+      }
+    }
+  }
+}
+
+@media (max-height: 906px) {
+  .oc-modal-wrapper {
+    margin-top: 0px;
+    .oc-modal {
+      max-height: 700px;
+      .oc-modal-drawer .oc-body-drawer {
+        max-height: 473px;
+      }
+    }
+  }
+}
+
+@media (max-height: 700px) {
+  .oc-modal-wrapper .oc-modal {
+    max-height: 575px;
+    .oc-modal-drawer .oc-body-drawer {
+      max-height: 349px;
+    }
+  }
+}
+
+@media (max-width: 1146px) {
+  .oc-modal-wrapper .oc-modal {
+    width: 100%;
+  }
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $oc-highlight;
+  opacity: 0.8;
+  z-index: 900;
+  .center {
+    height: 68px;
+    width: 200px;
+    position: absolute;
+    top: calc(50% - ( 68px / 2 ) );
+    left: calc(50% - ( 200px / 2 ) );
+    .overlay-spinner .sk-spinner.sk-spinner-three-bounce div {
+      background-color: white;
+    }
+    .overlay-text {
+      color:white;
+      text-align: center;
+    }
+  }
+  .detail-center {
+    height: 30px;
+    width: 550px;
+    position: absolute;
+    top: calc(55% - ( 30px / 2 ) );
+    left: calc(50% - ( 550px / 2 ) );
+    .overlay-detail-text {
+      color:white;
+      text-align: left;
+    }
+  }
+}
+
+modal-overlay.drawer .modal-overlay {
+  left: 331px;
+  right: 0;
+  bottom: 0;
+  width: 1244px;
+}
+
+.nofooter{
+  display: none;
+}
+
+opsmodal[type="confirm"] > .oc-modal-wrapper > .oc-modal {
+  width: 495px;
+  height: 275px;
+  > .oc-modal-header {
+    height: 35px;
+    font-size: 20px !important;
+    font-weight: $font-weight-semi-bold;
+    padding-left: 10px;
+    padding-top: 5px;
+    color: $grommet-menu-grey;
+    background-color: $grommet-white;
+    border-bottom: 1px solid $grommet-silver;
+    .close_modal {
+      display: none;
+    }
+  }
+  > .oc-modal-body {
+    height: 173px;
+    color: $grommet-menu-grey;
+    .oc-modal-body-indent {
+      overflow: visible;
+    }
+    .confirm-center {
+      padding-top: 40px;
+      font-size: 18px;
+      &.less-padding-top {
+        padding-top: 20px;
+      }
+      &.no-padding-top {
+        padding-top: 0px;
+      }
+    }
+  }
+  > .oc-modal-footer {
+    height: 67px;
+    border-top: 1px solid $grommet-grey;
+    > .oc-modal-footer-indent {
+      margin: 12px;
+    }
+  }
+}
+
+opsmodal[type="error"], opsmodal[type="warning"] {
+  .oc-modal-wrapper > .oc-modal {
+    width: 600px;
+    height: 412px;
+    padding: 24px;
+    > .oc-modal-header {
+      height: 35px;
+      font-size: 24px !important;
+      font-weight: $font-weight-semi-bold;
+      color: $grommet-menu-grey;
+      background-color: $grommet-white;
+    }
+    > .oc-modal-body {
+      height: 300px;
+      color: $grommet-menu-grey;
+      > .oc-modal-body-indent {
+        overflow: visible;
+        margin: 0px;
+        > .oc-scrolling-body-indent {
+            height: 100%;
+            margin: 0px;
+        }
+      }
+      .error-content {
+        font-size: 16px;
+        padding-top: 10px;
+        font-weight: $font-weight-semi-bold;
+      }
+    }
+    > .oc-modal-footer {
+      height: 67px;
+      border-top: none;
+      > .oc-modal-footer-indent {
+        margin: 0px;
+      }
+    }
+  }
+}

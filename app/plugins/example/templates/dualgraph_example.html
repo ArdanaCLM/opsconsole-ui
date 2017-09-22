@@ -1,0 +1,49 @@
+<div container ng-controller="dualgrapgh_example">
+  <div class="row">
+      <dualgraph data="test_alarm_data1" ctitle="'Alarm 1'" class="grid-item-wide"></dualgraph>
+      <dualgraph data="test_alarm_data2" ctitle="'Alarm 2'" class="grid-item-wide"></dualgraph>
+      <dualgraph data="test_alarm_data3" ctitle="'Alarm 3'" class="grid-item-wide"></dualgraph>
+      <dualgraph data="test_alarm_data4" ctitle="'Alarm 4'" class="grid-item-wide"></dualgraph>
+      <dualgraph-wide data="test_alarm_data4" ctitle="'Alarm 4 - WIDE'" class="grid-item-wide"></dualgraph-wide>
+      <dualgraph-small data="test_alarm_data4" ctitle="'Alarm 4 - SMALL'" class="grid-item-wide"></dualgraph-small>
+      <dualgraph-cntr data="test_alarm_data4" ctitle="'Alarm 4 - Region'" class=""></dualgraph-cntr>
+  </div>
+</div>
+
+<br><br>
+
+HTML Code:
+<pre>
+    /* full size card of dualgraph alarm data */
+    &lt;dualgraph data="JSONDATA" ctitle="TITLE OF CARD" class="grid-item-wide" &gt;&lt;/dualgraph&gt;
+
+    /* container for use when topology data is present for region / zone locations on alarms */
+    &lt;dualgraph-cntr data="JSONDATA" ctitle="TITLE OF CARD" class="grid-item-wide" &gt;&lt;/dualgraph&gt;
+
+        &lt;dualgraph-wide data="JSONDATA" ctitle="TITLE OF CARD" class="grid-item-wide" &gt;&lt;/dualgraph&gt;
+
+        &lt;dualgraph-small data="JSONDATA" ctitle="TITLE OF CARD" class="grid-item-wide" &gt;&lt;/dualgraph&gt;
+</pre>
+
+<br>
+
+example of JSONDATA:
+<pre>
+    {[
+        condition: "OPEN"
+        dimension: "process_name=nova-compute,component=nova-compute,hostname=devstack,service=compute",
+        history: undefined, /* history is filled in only after specific call to details modal is made...seperate call */
+        id: "021fdc7a-eb81-4d3e-8e10-58edc2f350aa",
+        lastCheck: "2015-07-23T14:10:17.000Z",
+        name: "Process Check",
+        severity: "HIGH",
+        state: "OK",
+        statusInfo: "http://somesite.com/this-alarm-info",
+        ui_status: "OK"
+    ],
+    [...],
+    [...],
+    [...],
+    [...],
+    [...]};
+</pre>

@@ -1,0 +1,52 @@
+<div id="block_storage_main">
+
+    <octable selectable pageable transformable actionmenu expandable enumfilter sortcontrol
+             tableid="mainStorageTable"
+             modelname="block_storage_data"
+             configname="block_storage_table_config"
+             loadflag="blockdeviceDataLoading"
+             expand-template-url="storage/templates/block_storage/table_expandtemplate.html"
+             tile-template-url="storage/templates/block_storage/table_tiletemplate.html">
+        <oct-std-header></oct-std-header>
+    </octable>
+
+    <stackablemodal showAttribute="showRegisterDeviceModal" name="registerBlockStorageModal"
+                    closeaction="register_device_modal_close"
+                    modalTemplateUrl="'storage/templates/block_storage/register_device.html'">
+    </stackablemodal>
+
+    <stackablemodal showAttribute="unregisterDeviceModalFlag" name="unBlockStorageModal"
+                    modalTemplateUrl="'storage/templates/block_storage/unregister_device.html'">
+    </stackablemodal>
+
+    <stackablemodal showAttribute="editDeviceFlag" name="editBlockStorageModal"
+                    modalTemplateUrl="'storage/templates/block_storage/edit_device.html'">
+    </stackablemodal>
+
+    <opsmodal showAttribute="showUNRegisterConfirmModal" id="unRegisterConfirmModal" class="bs_confirm_modal"
+              headerTemplateUrl="storage/templates/block_storage/unregister_device_confirm_header.html"
+              footerTemplateUrl="storage/templates/block_storage/unregister_device_confirm_footer.html">
+        <div ng-include="'storage/templates/block_storage/unregister_device_confirm.html'"></div>
+    </opsmodal>
+
+    <stackablemodal showAttribute="manageCPGsFlag" name="configurationCPGModalWindow"
+                    modalTemplateUrl="'storage/templates/block_storage/cpgs/manage_cpgs.html'">
+    </stackablemodal>
+
+    <opsmodal showAttribute="showRemoveCPGConfirmModal" id="removeCPGConfirmModal" class="bs_confirm_modal"
+              headerTemplateUrl="storage/templates/block_storage/cpgs/remove_cpgs_confirm_header.html"
+              footerTemplateUrl="storage/templates/block_storage/cpgs/remove_cpgs_confirm_footer.html">
+        <div ng-include="'storage/templates/block_storage/cpgs/remove_cpgs_confirm_content.html'"></div>
+    </opsmodal>
+
+    <stackablemodal showAttribute="showManageCinderModal" name="manageCinderStackModal"
+              modalTemplateUrl="'storage/templates/block_storage/volume_backend/manage_cinder.html'">
+    </stackablemodal>
+
+    <opsmodal showAttribute="removeBackendModalFlag" id="removeBackendConfirmModal" class="bs_confirm_modal"
+              headerTemplateUrl="storage/templates/block_storage/volume_backend/remove_cinder_header.html"
+              footerTemplateUrl="storage/templates/block_storage/volume_backend/remove_cinder_footer.html">
+        <div ng-include="'storage/templates/block_storage/volume_backend/remove_cinder_content.html'"></div>
+    </opsmodal>
+
+</div>

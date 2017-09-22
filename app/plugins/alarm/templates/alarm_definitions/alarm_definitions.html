@@ -1,0 +1,45 @@
+<div id="alarm_definition_main" ng-controller="AlarmDefinitionsController">
+
+    <div ng-show="showEmptyDataPageFlag==false && initAlarmDefinitionDataLoadingFlag==false">
+        <octable selectable pageable transformable actionmenu enumfilter sortcontrol expandable
+                 modelname="alarmDefinitionData"
+                 configname="alarmTableConfig"
+                 loadflag="alarmDefinitionDataLoadingFlag"
+                 tile-template-url="alarm/templates/alarm_definitions/table_tiletemplate.html"
+                 class="alarmtable">
+            <oct-std-header></oct-std-header>
+        </octable>
+    </div>
+
+    <div ng-controller="AlarmDefinitionCreationController">
+      <stackablemodal
+          name="createAlarmDefinition"
+          showAttribute="showCreateModalFlag"
+          modalTemplateUrl="'alarm/templates/alarm_definitions/edit_alarm_definition.html'">
+      </stackablemodal>
+    </div>
+
+
+    <opsmodal
+      showAttribute="showDeleteModalFlag"
+      type="confirm"
+      header-title="alarm_definitions.delete.modal.title"
+      commit-action="confirmDefinitionDelete">
+        <div ng-include="'alarm/templates/alarm_definitions/delete_alarm_definition.html'"></div>
+        <modal-overlay show-attribute="$parent.$parent.showDeleteModalOverlayFlag"></modal-overlay>
+    </opsmodal>
+
+    <!-- show empty data page when data error for alarm definitions table -->
+    <empty-data-page show-attribute="showEmptyDataPageFlag"
+                 type="emptyDataPage.type"
+                 reason-message="emptyDataPage.reasonMessage"
+                 action-message="emptyDataPage.actionMessage"
+                 action-label="emptyDataPage.actionLabel"
+                 action="emptyDataPage.action">
+    </empty-data-page>
+    <!-- init table loading page mask -->
+    <div class="empty-data-page" ng-if="initAlarmDefinitionDataLoadingFlag">
+        <ocloading></ocloading>
+    </div>
+
+</div>

@@ -1,0 +1,28 @@
+<!--template for hardware table tile template -->
+<div class="top-line">
+    <button type="button" class="btn btn-default selectControlButton tile-select-btn" ng-click="rowSelectionOccurred(data)"></button>
+    <div title="{{data.name}}" class="item-name" ng-class="{'selectable-and-status' : data.name.length > 25}">{{data.name}}</div>
+</div>
+<div class="state-line">{{data.ace_state}}, {{data.power_state}}</div>
+<div class="scrollable-tile">
+    <table class="full-width">
+        <tbody>
+            <tr class="text-line">
+                <td class="text-line-label">{{"compute.hardware.model" | translate}}</td>
+                <td class="text-line-value">{{data.short_model}}</td>
+            </tr>
+            <tr class="text-line">
+                <td class="text-line-label">{{"compute.hardware.usedby" | translate}}</td>
+                <td class="text-line-value">{{data.usedby}}</td>
+            </tr>
+            <tr class="text-line">
+                <td class="text-line-label">{{"compute.hardware.ov_appliance" | translate}}</td>
+                <td class="text-line-value">{{data.oneview_name}}</td>
+            </tr>
+            <tr class="text-line">
+                <td class="text-line-label">{{"compute.hardware.hypervisor" | translate}}</td>
+                <td class="text-line-value">{{data.hypervisor}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

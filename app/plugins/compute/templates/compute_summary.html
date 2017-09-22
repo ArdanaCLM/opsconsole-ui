@@ -1,0 +1,15 @@
+<div ng-controller="ComputeSummaryController">
+
+<div class="octable_header_wrapper_row std-margin-top compute grid-container">
+    <div ng-repeat="item in itemList" class="chart-spacing" ng-class="{'col-md-12':item.wide && item.type == 'chart', 'col-md-6':!item.wide && item.type == 'chart', 'col-md-4':item.type == 'card', 'col-md-3':item.type == 'metric'}" dragula-scope="$parent" dragula-model="$parent.itemList">
+        <metric-chart ng-if="item.type == 'chart'" metric="item"></metric-chart>
+        <dashboard-alarm-card ng-if="item.type == 'card'" card="item"></dashboard-alarm-card>
+        <dashboard-metric-card ng-if="item.type == 'metric'" card="item"></dashboard-metric-card>
+    </div>
+</div>
+
+<div class="row oldComputeGrid">
+  <grid config="grid"></grid>
+</div>
+
+</div>

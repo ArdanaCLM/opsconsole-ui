@@ -1,0 +1,170 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+dynamic-heat-map {
+  .color-no-data {
+    background-color: $grommet-grey;
+  }
+  .color-0 {
+    background-color: hsl(177,40,90);
+  }
+  .color-10 {
+    background-color: hsl(177,43,86);
+  }
+  .color-20 {
+    background-color: hsl(177,46,82);
+  }
+  .color-30 {
+    background-color: hsl(177,49,78);
+  }
+  .color-40 {
+    background-color: hsl(177,52,74);
+  }
+  .color-50 {
+    background-color: hsl(177,55,70);
+  }
+  .color-60 {
+    background-color: hsl(177,58,66);
+  }
+  .color-70 {
+    background-color: hsl(177,61,62);
+  }
+  .color-80 {
+    background-color: hsl(177,64,58);
+  }
+  .color-90 {
+    background-color: hsl(177,67,54);
+  }
+  .color-100 {
+    background-color: hsl(177,70,50);//#2dd3ca
+  }
+  .freeflow {
+    position: relative;
+    background-color: #FFF;
+    .free-flow-cell, .free-flow-cell-label {
+      position: absolute;
+      @extend .inline;
+      margin: 1px;
+    }
+    .free-flow-cell-label {
+      padding: 5px;
+      &[small="true"] {
+        .line-1, .line-2, .line-3 {
+          display: none;
+        }
+      }
+    }
+  }
+  .dynamic-heatmap {
+    margin: 2px;
+    position: relative;
+    .heatmap-overlay {
+      height: 350px;
+      background-color: $grommet-white;
+      display: none;
+      position: absolute;
+      top: 0;
+      z-index: 15;
+      &.show {
+        display: inline-block;
+      }
+      .remove {
+        font-size: 24px;
+        float: right;
+        margin-top: 10px;
+        margin-right: 25px;
+        cursor: pointer;
+      }
+      .heatmap-overlay-content {
+        margin:15px;
+      }
+    }
+    .dyn-title {
+      background-color: $grommet-icon-grey;
+      color: $grommet-black;
+      font-weight: bold;
+      margin-bottom: 2px;
+      padding-left: 4px;
+      padding-top: 4px;
+    }
+    .dyn-row {
+      &.first-row {
+        .dyn-cell {
+          margin-top: 0;
+        }
+      }
+      &.lase-row {
+        .dyn-cell {
+          margin-bottom: 0;
+        }
+      }
+      .dyn-cell {
+        margin: 1px;
+        width: 55px;
+        height: 55px;
+        @extend .inline;
+        cursor: pointer;
+        &.last {
+          margin-right: 0;
+        }
+        &.first {
+          margin-left: 0;
+        }
+        &.small {
+          .dyn-label {
+            margin-top: 18px;
+            margin-left: 17px;
+          }
+        }
+        &.medium {
+          width: 56px;
+          &.left {
+            margin-right: 0;
+            .dyn-label {
+              display: none;
+            }
+          }
+          &.right {
+            margin-left: 0;
+            .dyn-label {
+              margin-top: 18px;
+              margin-left: -11px;
+            }
+          }
+        }
+        &.large {
+          width: 56px;
+          height: 56px;
+          &.upper-left {
+            margin-right: 0;
+            margin-bottom: 0;
+            .dyn-label {
+              display: none;
+            }
+          }
+          &.upper-right {
+            margin-left: 0;
+            margin-bottom: 0;
+            .dyn-label {
+              display: none;
+            }
+          }
+          &.lower-left {
+            margin-right: 0;
+            margin-top: 0;
+            .dyn-label {
+              display: none;
+            }
+          }
+          &.lower-right {
+            margin-left: 0;
+            margin-top: 0;
+            .dyn-label {
+              margin-top: -11px;
+              margin-left: -11px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

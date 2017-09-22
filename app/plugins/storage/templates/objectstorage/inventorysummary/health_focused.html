@@ -1,0 +1,6 @@
+<div class="heat-map" ng-repeat="cluster in $parent.$parent.$parent.healthFocusedData">
+    <dynamic-heat-map data="cluster.data" name="{{cluster.name}}" columns="20"></dynamic-heat-map>
+</div>
+<stackablemodal name="healthFocusedStackModal" showAttribute="$parent.$parent.$parent.healthFocusedStackModalFlag"
+                modalTemplateUrl="'storage/templates/objectstorage/inventorysummary/inventory_summary_heatmap_stack_modal.html'">
+</stackablemodal>

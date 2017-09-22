@@ -1,0 +1,218 @@
+<div ng-controller="TimeseriesExampleController">
+    <div style="float:left;margin-bottom:20px;">
+        Area Chart
+        <timeseries data="dataArea" config="optionsArea"></timeseries>
+    </div>
+    <div style="float:right;margin-bottom:20px;">
+        Stacked Area Chart
+        <timeseries data="dataStackedArea" config="optionsStackedArea"></timeseries>
+    </div>
+
+    <div style="float:left;margin-bottom:20px;">
+        Line Chart
+        <timeseries data="dataLine" config="optionsLine" wide=true></timeseries>
+    </div>
+    <div style="float:left;margin-bottom:20px;">
+        <timeseries data="dataLine1Hour" config="optionsLine1Hour"></timeseries>
+    </div>
+    <div style="float:right;margin-bottom:20px;">
+        <timeseries data="dataLine8Hours" config="optionsLine8Hours"></timeseries>
+    </div>
+    <div style="float:left;margin-bottom:20px;">
+        <timeseries data="dataLine7Days" config="optionsLine7Days" wide=true></timeseries>
+    </div>
+
+    <div style="float:left;margin-bottom:20px;">
+        Bar Chart
+        <timeseries data="dataBar" config="optionsBar" wide=true></timeseries>
+    </div>
+
+    <div style="float:left;margin-bottom:20px;">
+        Stacked Bar Chart
+        <timeseries data="dataStackedBar" config="optionsStackedBar" wide=true></timeseries>
+    </div>
+</div>
+
+Parameters:
+<pre>
+The following are parameters you can use when using the 'timeseries' directive:
+- data (required)
+      array of graph data in [timestamp, value] format
+- config (required)
+      graph configuration object which contains the following properties:
+        * title (required)
+              graph title string
+        * type (required)
+              graph type string: 'line', 'area', 'stackedArea', 'bar', 'stackedBar'
+        * actionMenu (optional, no action menus if not provided)
+              object contains action menu config:
+                - label   (menu label string)
+                - action  (menu function definition)
+        * timeUnit (optional, use Flot's label if not provided)
+              time unit string for x-axis labels: 'minute', 'hour', 'day'
+- wide (optional)
+      boolean indicates a wide graph, if not specified the graph size will be regular
+</pre>
+
+
+Html Code:
+<pre>
+&lt;div ng-controller="TimeseriesExampleController"&gt;
+    &lt;div style="float:left;margin-bottom:20px;"&gt;
+        Area Chart
+        &lt;timeseries <mark>data="dataArea" config="optionsArea"</mark>&gt;&lt;/timeseries&gt;
+    &lt;/div&gt;
+    &lt;div style="float:right;margin-bottom:20px;"&gt;
+        Stacked Area Chart
+        &lt;timeseries <mark>data="dataStackedArea" config="optionsStackedArea"</mark>&gt;&lt;/timeseries&gt;
+    &lt;/div&gt;
+
+    &lt;div style="float:left;margin-bottom:20px;"&gt;
+        Line Chart
+        &lt;timeseries <mark>data="dataLine" config="optionsLine" wide=true</mark>&gt;&lt;/timeseries&gt;
+    &lt;/div&gt;
+    &lt;div style="float:left;margin-bottom:20px;"&gt;
+        &lt;timeseries <mark>data="dataLine1Hour" config="optionsLine1Hour"</mark>&gt;&lt;/timeseries&gt;
+    &lt;/div&gt;
+    &lt;div style="float:right;margin-bottom:20px;"&gt;
+        &lt;timeseries <mark>data="dataLine8Hours" config="optionsLine8Hours"</mark>&gt;&lt;/timeseries&gt;
+    &lt;/div&gt;
+    &lt;div style="float:left;margin-bottom:20px;"&gt;
+        &lt;timeseries <mark>data="dataLine7Days" config="optionsLine7Days" wide=true</mark>&gt;&lt;/timeseries&gt;
+    &lt;/div&gt;
+
+    &lt;div style="float:left;margin-bottom:20px;"&gt;
+        Bar Chart
+        &lt;timeseries <mark>data="dataBar" config="optionsBar" wide=true</mark>&gt;&lt;/timeseries&gt;
+    &lt;/div&gt;
+
+    &lt;div style="float:left;margin-bottom:20px;"&gt;
+        Stacked Bar Chart
+        &lt;timeseries <mark>data="dataStackedBar" config="optionsStackedBar" wide=true</mark>&gt;&lt;/timeseries&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+Controller code:
+<pre>
+  var p = ng.module('plugins');
+
+  p.controller('TimeseriesExampleController', ['$scope', '$http',
+      function($scope, $http) {
+          var actions = [{
+              label: 'common.edit',
+              action: function(data) {
+                  console.log('Edit button clicked');
+                  alert('Edit button clicked');
+              }
+          }, {
+              label: 'common.delete',
+              action: function(data) {
+                  console.log('Delete button clicked');
+                  alert('Delete button clicked');
+              }
+          }];
+
+          $scope.optionsArea = {
+              title: 'MEM.USABLE_PERC, MEM.TOTAL_MB',
+              type: 'area',
+              actionMenu: actions
+          };
+          $scope.dataArea = [
+              {
+                  "label": "MEM.USABLE_PERC",
+                  "data": [
+                      [1196463600000, 0],
+                      [1196550000000, 0],
+                      [1196636400000, 0],
+                      [1196722800000, 77],
+                      [1196809200000, 3636],
+                      [1196895600000, 3575],
+                      [1196982000000, 2736],
+                      [1197068400000, 1086],
+                      [1197154800000, 676],
+                      [1197241200000, 1205],
+                      [1197327600000, 906],
+                      [1197414000000, 710],
+                      [1197500400000, 639],
+                      [1197586800000, 540],
+                      [1197673200000, 435],
+                      [1197759600000, 301],
+                      [1197846000000, 575]
+                  ]
+              },
+              {
+                  "label": "MEM.TOTAL_MB",
+                  "data": [
+                      [1196463600000, 575],
+                      [1196550000000, 301],
+                      [1196636400000, 435],
+                      [1196722800000, 77],
+                      [1196809200000, 540],
+                      [1196895600000, 639],
+                      [1196982000000, 710],
+                      [1197068400000, 906],
+                      [1197154800000, 1205],
+                      [1197241200000, 676],
+                      [1197327600000, 1086],
+                      [1197414000000, 2736],
+                      [1197500400000, 3575],
+                      [1197586800000, 3636],
+                      [1197673200000, 77],
+                      [1197759600000, 0],
+                      [1197846000000, 0]
+                  ]
+              }
+          ];
+
+          $scope.optionsStackedArea = angular.copy($scope.optionsArea);
+          $scope.optionsStackedArea.type = 'stackedArea';
+          $scope.dataStackedArea = angular.copy($scope.dataArea);
+
+          $scope.dataLine = [];
+          $scope.dataLine1Hour = [];
+          $scope.dataLine8Hours = [];
+          $scope.dataLine7Days = [];
+          $http.get('./sample_data/sample_data.json').then(function (response) {
+              $scope.dataLine = response.data.timeseriesdata || [];
+              $scope.dataLine1Hour = response.data.timeseriesdata1hour || [];
+              $scope.dataLine8Hours = response.data.timeseriesdata8Hours || null;
+              $scope.dataLine7Days = response.data.timeseriesdata7Days || null;
+          });
+          $scope.optionsLine = {
+              title: 'CPU.SYSTEM_PERC',
+              type: 'line'
+          };
+          $scope.optionsLine1Hour = {
+              title: 'CPU.SYSTEM_PERC - Last 60 Minutes',
+              type: 'line',
+              timeUnit: 'minute'
+          };
+          $scope.optionsLine8Hours = {
+              title: 'CPU.SYSTEM_PERC - Last 8 Hours',
+              type: 'line',
+              timeUnit: 'hour'
+          };
+          $scope.optionsLine7Days = {
+              title: 'CPU.SYSTEM_PERC - Last 7 Days',
+              type: 'line',
+              timeUnit: 'day'
+          };
+
+          $scope.dataBar = angular.copy($scope.dataArea);
+          $scope.dataBar[0].label = 'CPU Idle';
+          $scope.dataBar[0].data = $scope.dataBar[0].data.slice(3, 15);
+          $scope.dataBar[1].label = 'CPU Wait';
+          $scope.dataBar[1].data = $scope.dataBar[1].data.slice(3, 15);
+          $scope.optionsBar = {
+              title: 'CPU Idle vs. CPU Wait',
+              type: 'bar'
+          };
+
+          $scope.dataStackedBar = angular.copy($scope.dataBar);
+          $scope.optionsStackedBar = angular.copy($scope.optionsBar);
+          $scope.optionsStackedBar.type = 'stackedBar';
+          $scope.optionsStackedBar.actionMenu = actions;
+      }
+  ]);
+</pre>

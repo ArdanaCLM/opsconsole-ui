@@ -1,0 +1,51 @@
+<!--template for compute baremetal instances table page-->
+<div class="compute_baremetal_instances_main"
+     ng-show="showEmptyDataPageFlag==false && initBaremetalInstanceDataLoading==false ">
+    <!--baremetal instances/inventories table -->
+    <octable selectable transformable expandable pageable actionmenu enumfilter sortcontrol
+             modelname="baremetalInstanceData"
+             configname="baremetalInstanceTableConfig"
+             loadflag="baremetalInstanceDataLoading"
+             expand-template-url="compute/templates/baremetalinstances/nodes_table_expandtemplate.html"
+             tile-template-url="compute/templates/baremetalinstances/nodes_table_tiletemplate.html">
+        <oct-std-header></oct-std-header>
+    </octable>
+    <!-- node details dialog -->
+    <stackablemodal name="computeBaremetalNodeDetailsModal" showAttribute="showNodeDetailsModalFlag"
+                    modalTemplateUrl="'compute/templates/baremetalinstances/nodes_table_expandtemplate.html'">
+    </stackablemodal>
+    <!-- instance details dialog -->
+    <stackablemodal name="computeBaremetalInstanceDetailsModal" showAttribute="showInstanceDetailsModalFlag"
+                    modalTemplateUrl="'compute/templates/baremetalinstances/instance_details.html'">
+    </stackablemodal>
+
+    <!-- confirm delete node -->
+    <opsmodal showAttribute="showConfirmDeleteNodeModalFlag"
+              type="confirm"
+              header-title="compute.baremetal.instance.delete.node.confirm"
+              commit-action="commitDeleteNode">
+        <div ng-include="'compute/templates/baremetalinstances/delete_node_confirm.html'"></div>
+        <modal-overlay show-attribute="dataDeletingOverlayFlag"></modal-overlay>
+    </opsmodal>
+     <!-- confirm delete instance -->
+    <opsmodal showAttribute="showConfirmDeleteInstanceModalFlag"
+              type="confirm"
+              header-title="compute.baremetal.instance.delete.confirm"
+              commit-action="commitDeleteInstance">
+        <div ng-include="'compute/templates/baremetalinstances/delete_instance_confirm.html'"></div>
+        <modal-overlay show-attribute="dataDeletingOverlayFlag"></modal-overlay>
+    </opsmodal>
+</div>
+
+<!-- show empty data page when data is empty or data error for compute baremetal instance table -->
+<empty-data-page show-attribute="showEmptyDataPageFlag"
+             type="emptyDataPage.type"
+             reason-message="emptyDataPage.reasonMessage"
+             action-message="emptyDataPage.actionMessage"
+             action-label="emptyDataPage.actionLabel"
+             action="emptyDataPage.action">
+</empty-data-page>
+<!-- init table loading page mask -->
+<div class="empty-data-page" ng-if="initBaremetalInstanceDataLoading">
+    <ocloading></ocloading>
+</div>

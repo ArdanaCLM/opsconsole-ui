@@ -1,0 +1,108 @@
+<div ng-controller="HeatmapExampleController">
+    <button ng-click="randomizeData()">randomize data</button>
+    <br/>
+
+    Simple heatmap:
+    <br/>
+    <ocheatmap dataset='heatMapData'/>
+
+    <br/>
+    <br/>
+    Simple heatmap with a component title:
+    <br/>
+    <ocheatmap ctitle="'CLUSTER 1'" dataset='heatMapData'/>
+
+    <br/>
+    <br/>
+    Several titled heatmaps together:
+    <br/>
+    <ocheatmap ctitle="'CLUSTER 1'" dataset='heatMapData' style="max-width: 336px;"/>
+    <ocheatmap ctitle="title2" dataset='heatMapData' style="max-width: 336px;"/>
+    <ocheatmap ctitle="title3" dataset='heatMapData' style="max-width: 336px;"/>
+    <ocheatmap ctitle="'CLUSTER 4'" dataset='heatMapData' style="max-width: 336px;"/>
+
+    <br/>
+    <br/>
+    Clickable heatmap to caller-supplied function:
+    <br/>
+    <ocheatmap clickfunc="myfunc" dataset='heatMapData'/>
+</div>
+
+<br/>
+Html Code:
+<pre>
+Simple heatmap:
+&lt;br/&gt;
+&lt;ocheatmap dataset='heatMapData'/&gt;
+
+&lt;br/&gt;
+&lt;br/&gt;
+Simple heatmap with a component title:
+&lt;br/&gt;
+&lt;ocheatmap ctitle="'CLUSTER 1'" dataset='heatMapData'/&gt;
+
+&lt;br/&gt;
+&lt;br/&gt;
+Several titled heatmaps together:
+&lt;br/&gt;
+&lt;ocheatmap ctitle="'CLUSTER 1'" dataset='heatMapData' style="max-width: 336px;"/&gt;
+&lt;ocheatmap ctitle="title2" dataset='heatMapData' style="max-width: 336px;"/&gt;
+&lt;ocheatmap ctitle="title3" dataset='heatMapData' style="max-width: 336px;"/&gt;
+&lt;ocheatmap ctitle="'CLUSTER 4'" dataset='heatMapData' style="max-width: 336px;"/&gt;
+
+&lt;br/&gt;
+&lt;br/&gt;
+Clickable heatmap to caller-supplied function:
+&lt;br/&gt;
+&lt;ocheatmap clickfunc="myfunc" dataset='heatMapData'/&gt;
+</pre>
+Note that if displaying multiple heatmaps on the same row, it is desirable to set their width
+to be a multiple of 42 (the size of a heatmap item plus its border).  Otherwise the title
+will extend to the right beyond the last item on the right.
+
+<br/>
+<br/>
+
+Controller code:
+<pre>
+  var p = ng.module('plugins');
+
+  p.controller('HeatmapExampleController', ['$scope', '$http', function($scope, $http) {
+      $scope.title2 = 'Cluster 2';//just an example, typically would pass in some data model object
+      $scope.title3 = 'Cluster 3';//just an example, typically would pass in some data model object
+
+      $scope.myfunc = function(data) {
+          alert('Clicked on id ' +data.id+ ' which has '+data.value+' alarms');
+      };
+
+      $scope.heatMapData = [];
+
+      // load from a REST service
+      $http.get('http://someservice').then(function(response){
+          $scope.heatMapData = response.data || [];
+      });
+  });
+
+</pre>
+
+Data format:
+<pre>
+  {'value' : 3, state : 'ok', ...}
+</pre>
+The data may have required to have a <tt>state</tt> that controls the color to be used, and
+it may have a <tt>value</tt> field containing the value to display in the heatmap box.
+
+Valid states are:
+<ul>
+    <li>critical</li>
+    <li>warning</li>
+    <li>ok</li>
+    <li>unknown</li>
+</ul>
+If a value is not truthy, then the box will be empty; therefore a value of 0 will yield an
+empty box.  The heatmap  will be displayed in the same order that they appear in the data, so
+if it is desired to group them by <tt>state</tt> or some other criteria, this should be
+handled by the caller.
+
+If a click function is supplied, it will receive a single argument containing the data corresponding to the
+item clicked.

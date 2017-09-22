@@ -1,0 +1,37 @@
+<!-- template for host utilization details -->
+<div ng-show="!hostUtilsDataLoadingFlag" class="host-utilization-details">
+    <div ng-show="hostUtilsData.compute.max != 0" class="host-utils">
+        <svghorseshoe percentage
+                      data="hostUtilsData.compute.data"
+                      max="hostUtilsData.compute.max"
+                      unit="hostUtilsData.compute.unit"
+                      label="hostUtilsData.compute.label"
+                      ctitle="hostUtilsData.compute.title"
+                      altsummary="{{'common.host.compute.utilization' | translate}}"/>
+    </div>
+    <div ng-show="hostUtilsData.compute.max == 0" class="host-utils">
+        <svghorseshoe percentage
+                      data="hostUtilsData.compute.data"
+                      max="hostUtilsData.compute.max"
+                      unit="hostUtilsData.compute.unit"
+                      label="hostUtilsData.compute.label"
+                      ctitle="hostUtilsData.compute.title"/>
+    </div>
+    <div class="host-utils">
+        <svghorseshoe percentage
+                      data="hostUtilsData.memory.data"
+                      max="hostUtilsData.memory.max"
+                      unit="hostUtilsData.memory.unit"
+                      ctitle="hostUtilsData.memory.title"/>
+    </div>
+    <div class="host-utils">
+        <svghorseshoe percentage
+                      data="hostUtilsData.storage.data"
+                      max="hostUtilsData.storage.max"
+                      unit="hostUtilsData.storage.unit"
+                      ctitle="hostUtilsData.storage.title"/>
+    </div>
+</div>
+<div>
+    <ocloading ng-show="hostUtilsDataLoadingFlag"/>
+</div>

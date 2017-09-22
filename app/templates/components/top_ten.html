@@ -1,0 +1,54 @@
+<div ng-if="sortby === 'size' || sortby === 'rawSize'" class="top-ten">
+  <div class="top-ten-legend-top" ng-if="legend">
+      <ul>
+          <li ng-repeat="i in [0,1,2,3,4,5,6,7,8,9,10]">
+              {{0.100 * i * maxSizeDisp | number:2}}
+          </li>
+      </ul>
+      <h5 ng-if="legendtitle">{{legendtitle}}</h5>
+      <h5 ng-if="!legendtitle">{{maxSizeLegend}}</h5>
+  </div>
+  <div ng-repeat="item in data | orderBy: '-rawSize'" class="top-ten-item">
+    <div class="top-ten-label">
+      <div class="top-ten-label-line-1">
+        {{item.name}}
+      </div>
+      <div class="top-ten-label-line-2">
+        {{'top-ten.size' | translate}}: <span>{{item.size}}</span>
+      </div>
+    </div>
+    <div class="top-ten-bar">
+      <div class="top-ten-bar-content" style="width: {{item.rawSize / maxSize * 100}}%;"></div>
+    </div>
+  </div>
+  <div class="top-ten-legend">
+    <div class="legend-box"></div>{{'top-ten.rawSize' | translate}}
+  </div>
+</div>
+
+<div  ng-if="sortby !== 'size' && sortby !== 'rawSize'" class="top-ten">
+  <div class="top-ten-legend-top" ng-if="legend">
+      <ul>
+          <li ng-repeat="i in [0,1,2,3,4,5,6,7,8,9,10]">
+              {{10 * i}}
+          </li>
+      </ul>
+      <h5>{{legendtitle}}</h5>
+  </div>
+  <div ng-repeat="item in data | orderBy: '-utilization'" class="top-ten-item">
+    <div class="top-ten-label">
+      <div class="top-ten-label-line-1">
+        {{item.name}}
+      </div>
+      <div class="top-ten-label-line-2">
+        {{'top-ten.utilized' | translate}}: <span>{{item.size}}</span>
+      </div>
+    </div>
+    <div class="top-ten-bar">
+      <div class="top-ten-bar-content" style="width: {{item.utilization}}%;"></div>
+    </div>
+  </div>
+  <div class="top-ten-legend">
+    <div class="legend-box"></div>{{'top-ten.utilization' | translate}}
+  </div>
+</div>

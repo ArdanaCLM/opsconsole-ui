@@ -1,0 +1,23 @@
+<!-- template for register block storage modal -->
+<import src="$parent.$parent.$parent" target="bsUnRegisterControl"/>
+
+<span class="unregister_device_modal_header">{{ "storage.unregister.device.heading" | translate }}</span>
+
+<octable enumfilter selectable modelname="bsUnRegisterControl.unregisterDevices_data"
+         configname="bsUnRegisterControl.unregister_devices_table_config" tableid="unRegisterTable">
+    <oct-std-header></oct-std-header>
+</octable>
+
+<div class="oc-btn-group">
+    <button class="oc-btn oc-btn-default"
+            ng-bind="'common.cancel' | translate"
+            ng-click="bsUnRegisterControl.closeUnRegisterModal()">
+    </button>
+    <button class="oc-btn oc-btn-primary"
+            ng-bind="'storage.unregister.device.button.unregister' | translate"
+            ng-click="bsUnRegisterControl.loadConfirmationModal()"
+            ng-disabled="bsUnRegisterControl.selectedDatas.length == 0 || bsUnRegisterControl.showunRegisterDeviceProgressFlag">
+    </button>
+</div>
+
+<modal-overlay show-attribute="bsUnRegisterControl.showunRegisterDeviceProgressFlag"></modal-overlay>

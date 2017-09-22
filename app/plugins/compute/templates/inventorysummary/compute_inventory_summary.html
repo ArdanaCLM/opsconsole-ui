@@ -1,0 +1,18 @@
+<div class="compute_inventory_summary" ng-controller="ComputeInventorySummaryController">
+    <div class="inventory_card_section row">
+        <div class="inventory_card col-md-3 pointer" ng-repeat="card in inventory_cards">
+            <metriccard type="card.type" ctitle="card.title" data="card.data" click="cardDrill($index)"></metriccard>
+        </div>
+    </div>
+
+    <div class="tab_section">
+        <tabbedpage not-routing="true" pageList="computeInventorySummaryHealthPages"></tabbedpage>
+    </div>
+
+    <div class="tab_section">
+        <tabbedpage not-routing="true" pageList="computeInventorySummaryUtilizationPages"></tabbedpage>
+    </div>
+
+    <stackablemodal name="heatmapDrilldownModal" showAttribute="showHeatmapDrillDown"
+        modalTemplateUrl="'compute/templates/inventorysummary/heatmap_drilldown.html'"></stackablemodal>
+</div>

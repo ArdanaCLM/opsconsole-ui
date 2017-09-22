@@ -1,0 +1,156 @@
+<div class="octable">
+    <stackablemodal name="tableDetails" showAttribute="showTableDetails"
+                    modalTemplateUrl="expandTemplateUrl">
+    </stackablemodal>
+    <table class="table" id="standard_table" ng-if="displayStandardTable" ng-class="{'withborder' : border}">
+        <thead>
+            <th ng-if="selectable" class="selectableHeader" />
+            <th ng-repeat="header in tableConfig.headers | filter:filterHiddenColumns" ng-click="colSortClick($event, header)"
+                column-sort="{{header.sortfield}}"
+                column-sort-type="{{header.type}}"
+                ng-class="{'sortable': !header.nosort}"
+                ng-class="applySortIconClass(header)">
+                {{header.name | translate | uppercase}}<span ng-hide="suppresscolon">:</span></th>
+            <th ng-if="actionable" class="actionableHeader" />
+        </thead>
+        <tbody>
+            <tr ng-repeat-start="data in filteredItems = (tableData | filter:filterString | filter:tableFilters | filter:pageFilter)"
+                ng-class="getRowClass(data)">
+                <td ng-if="selectable" class="selectRow" ng-click="rowSelectionOccurred(data)" ng-class="getSelectButtonClass(data)"/>
+                <td ng-repeat="header in tableConfig.headers | filter:filterHiddenColumns"
+                    ng-click="expandOrCheck(($first || !selectable), data, $event)"
+                    ng-class="getCellClass(data, data[header.displayfield], header)">
+                    <span ng-if="isNotApplicable(data,header)" class="notApplicableIconCell" style="margin: auto;"
+                          uib-tooltip="{{'common.no_data_available' | translate}}"
+                          tooltip-placement="right"/>
+                          <!--ng-include="'images/icons/status/unknown_32x32.svg'"/>-->
+                    <span ng-bind-html='data[header.displayfield] | tableDisplayFilter:header.filter'
+                          ng-if="!header.specialColumnType && !isNotApplicable(data,header) && !header.isNotHtmlSafe"></span>
+                    <span ng-bind='data[header.displayfield] | tableDisplayFilter:header.filter'
+                          ng-if="!header.specialColumnType && !isNotApplicable(data,header) && header.isNotHtmlSafe"></span>
+
+                    <!-- begin percentmeter specialColumnType -->
+                    <span ng-if="header.specialColumnType === 'percentmeter' && !isNotApplicable(data,header) || header.specialColumnType === 'reversepercentmeter' && !isNotApplicable(data,header)">
+                        <div class="simple_meter_container table_meter_container">
+                            <ocsimplemeter ng-if="header.specialColumnType === 'reversepercentmeter'" reversefill
+                                           includepercentsign class="table_inline_meter"
+                                           fillPct="{{data[header.sortfield]}}" value="{{data[header.displayfield]}}">
+                            </ocsimplemeter>
+                            <ocsimplemeter ng-if="header.specialColumnType === 'percentmeter'"
+                                           includepercentsign class="table_inline_meter"
+                                           fillPct="{{data[header.sortfield] | calcPercent:data[header.specialTotalField] }}" value="{{data[header.displayfield] | calcPercent:data[header.specialTotalField] }}">
+                            </ocsimplemeter>
+                        </div>
+                    </span>
+
+                    <!-- begin custom specialColumnType -->
+                    <span ng-if="header.specialColumnType === 'link' && !isNotApplicable(data,header)">
+                        <a ng-click="header.linkAction(data)" class="table_action_link"
+                           ng-if="header.isNotHtmlSafe"
+                           ng-bind='data[header.displayfield] | tableDisplayFilter:header.filter'></a>
+                        <a ng-click="header.linkAction(data)" class="table_action_link"
+                           ng-if="!header.isNotHtmlSafe"
+                           ng-bind-html='data[header.displayfield] | tableDisplayFilter:header.filter'></a>
+                    </span>
+
+                    <!-- begin custom specialColumnType -->
+                    <span ng-if="header.specialColumnType === 'custom' && !isNotApplicable(data,header)">
+                        <span ng-bind-html='header.customDisplayFilter(data)'></span>
+                    </span>
+
+                    <!-- check for help tooltip -->
+                    <span ng-if="header.helpTooltip && (header.tooltipShow === undefined || header.tooltipShow(data))">
+                        <span class="oc-info ardana-icon ardana-icon-Unknown_L" uib-tooltip="{{header.helpTooltip(data[header.displayfield])}}"
+                              tooltip-placement="{{header.tooltipplacement || 'right'}}"></span>
+                    </span>
+
+                </td>
+                <td ng-if="actionable" class="actionRow image-padding" ng-click="tableActionMenuOpenClose($event, data)">
+                    <div class="btn-group popupadjust" uib-dropdown is-open="data.$actionMenuOpen">
+                        <button type="button" class="dropdown-toggle" uib-dropdown-toggle>
+                            <i class="ardana-icon ardana-icon-More more-icon"></i>
+                        </button>
+                        <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                            <li ng-if="expandable && !data.$expanded && !tableConfig.expandAction">
+                                <button class="actionMenuItem"
+                                        ng-click="expandSelection(data)">{{"table.expandSelection" | translate}}
+                                </button>
+                            </li>
+                            <li ng-repeat="menuItem in tableConfig.actionMenuConfig"
+                                ng-hide="!data.$actionMenuState[menuItem.name].show">
+                                <button ng-click="menuItem.action(data)"
+                                        ng-disabled="data.$actionMenuState[menuItem.name].disable"
+                                        class="actionMenuItem"
+                                        ng-class="{'disabled': data.$actionMenuState[menuItem.name].disable}">{{menuItem.label | translate}}</button>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr ng-if="data.$notification" class="table-notification" ng-class="data.$notification.type">
+              <td ng-if="selectable"></td>
+              <td class="notification-message">
+                {{data.$notification.text | translate}}
+              </td>
+              <!-- Fill in the rest of the row -->
+              <td ng-repeat="header in tableConfig.headers | filter:filterHiddenColumns"></td>
+            </tr>
+            <tr ng-repeat-end ng-if="expandable && data.$expanded" class="expandRow">
+                <!--td colspan="{{getExpandedColspan()}}"><div ng-include="getExpandTemplateUrl()"></div></td-->
+            </tr>
+            <tr ng-show="filteredItems.length === 0 && !loading"><td colspan="100%" style="text-align:center;">{{ 'common.notabledata' | translate }}</td></tr>
+            <tr ng-hide="!loading"><td colspan="100%" style="text-align:center;"><div class="table_loading_container"><ocloading/></div></td></tr>
+        </tbody>
+    </table>
+    <div id="tile_grid" ng-if="displayTiles" class="row">
+        <div ng-hide="filteredItems.length || loading" class="tile_no_data_msg" >{{ 'common.notabledata' | translate }}</div>
+        <div ng-hide="!loading"><ocloading/></div>
+        <div ng-repeat="data in filteredItems = (tableData | filter:filterString | filter:tableFilters  | filter:pageFilter)"
+             ng-class="(data.$expanded == true && tileexpandable == true) ? 'col-md-12' : ($parent.$parent.$parent.bkrstConfig != undefined ? 'col-md-6' : 'col-md-4')"
+             class="tableTile">
+            <div class="table_wrapper_padder">
+                <div class="btn-group" ng-class="{'popupadjust' : data.$expanded}" uib-dropdown is-open="data.$tileActionMenuOpen"
+                     ng-if="tableConfig.actionMenuConfig.length > 0" ng-click="tileActionMenuOpenClose($event, data)">
+                    <button type="button" class="dropdown-toggle embedded-btn" uib-dropdown-toggle>
+                        <i class="ardana-icon ardana-icon-More more-icon"></i>
+                    </button>
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                        <li ng-if="expandable && !data.$expanded && !tableConfig.expandAction">
+                            <button class="actionMenuItem"
+                                    ng-click="expandSelection(data)">{{"table.expandSelection" | translate}}
+                            </button>
+                        </li>
+                        <li ng-repeat="menuItem in tableConfig.actionMenuConfig"
+                            ng-hide="!data.$actionMenuState[menuItem.name].show">
+                            <button ng-click="menuItem.action(data)"
+                                    ng-disabled="data.$actionMenuState[menuItem.name].disable"
+                                    class="actionMenuItem"
+                                    ng-class="{'disabled': data.$actionMenuState[menuItem.name].disable}">{{menuItem.label | translate}}</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-12 tile-view">
+                    <div ng-include="getTileTemplateUrl()" ng-if="!(tileexpandable && data.$expanded)"  class="full-width tile-content"
+                        ng-click="expandRow($event, data)"
+                        ng-class="getRowClass(data)"></div>
+                    <div ng-if="data.$notification" class="table-notification" ng-class="data.$notification.type">
+                        <div class="notification-message">
+                            {{data.$notification.text | translate}}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="table-page-controls">
+      <button class="pagebtn first" ng-click="doPage('first')" style="display:none;"></button>
+      <button class="pagebtn prev" ng-click="doPage('prev')" style="display:none;"></button>
+      <!-- TODO - add numeric page input here -->
+      <button class="pagebtn next" ng-click="doPage('next')" style="display:none;"></button>
+      <button class="pagebtn last" ng-click="doPage('last')" style="display:none;"></button>
+      <div class="table-page-desc" ng-if="tableConfig.pageConfig.maxPage != 0">{{'table.page_desciptor' | translate: tableConfig.pageConfig }}</div>
+    </div>
+</div>

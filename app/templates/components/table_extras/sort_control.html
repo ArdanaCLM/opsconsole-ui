@@ -1,0 +1,6 @@
+<select class="sort_control_drop"
+        ng-options="(header.name | translate | sortLabelFilter | uppercase ) for header in tableConfig.headers | filter: checkSortAllow"
+        ng-model="tableSortHeader"
+        ng-change="sortValueChanged(tableSortHeader)"
+        ng-click="sortValueClicked(tableSortHeader)"
+        ng-if="showSortControl"></select>

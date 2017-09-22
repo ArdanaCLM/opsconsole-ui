@@ -1,0 +1,21 @@
+<div class="oc-modal-drawer" ng-class="{active: presented}">
+	<div class="oc-header-drawer" ng-hide="noHeader">
+		{{config.titleKey | translate}}
+	</div>
+    <div class="oc-body-drawer">
+        <ng-form name="drawer_form">
+            <div ng-if="config && config.template" ng-include="config.template"></div>
+        </ng-form>
+    </div>
+    <div class="oc-footer-drawer">
+        <button class="oc-btn oc-btn-small oc-btn-primary float-right" ng-show="!read_only"
+                ng-click="commit()" ng-disabled="!presented || drawer_form.$invalid || disablecommit"
+                ng-hide="config.hidecommit">
+            {{config.commit | translate}}
+        </button>
+        <button class="oc-btn oc-btn-small float-right" ng-class="{'oc-btn-primary' : config.hidecommit, 'oc-btn-default' : !config.hidecommit}"
+                ng-click="cancel()" ng-disabled="!presented || config.disablecancel" ng-hide="config.hidecancel">
+            {{config.cancel | translate}}
+        </button>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+<import src="$parent.$parent.$parent" target="ctrl"></import>
+<h2 class="oc-heading" ng-show="!ctrl.chartEditing">{{'monitoring_dashboard.create.title' | translate}}</h2>
+<h2 class="oc-heading" ng-show="ctrl.chartEditing">{{'monitoring_dashboard.edit_chart' | translate }}: {{$parent.$parent.chartNameToEdit}}</h2>
+<h3 class="oc-heading">{{'monitoring_dashboard.chart_definition' | translate}}</h3>
+<div class="left-form">
+  <oc-input
+    name="inputName"
+    type="text"
+    value="ctrl.newChart.name"
+    label="common.table.headers.name"
+    placeholder="common.table.headers.name.placeholder"
+    oc-required="true"></oc-input>
+  <oc-input
+    name="chartTimeRange"
+    type="select"
+    value="ctrl.newChart.timeRange"
+    select-options="ctrl.chartTimeRanges"
+    label="monitoring_dashboard.chart_time_range"></oc-input>
+  <oc-input
+    name="chartUpdateRate"
+    type="select"
+    value="ctrl.newChart.updateRate"
+    select-options="ctrl.chartUpdateRates"
+    label="monitoring_dashboard.chart_update_rate"></oc-input>
+  <oc-input
+    name="chartType"
+    type="select"
+    value="ctrl.newChart.chartType"
+    select-options="ctrl.chartTypes"
+    label="monitoring_dashboard.chart_type"></oc-input>
+  <oc-input
+    name="chartSize"
+    type="select"
+    value="ctrl.newChart.chartSize"
+    select-options="ctrl.chartSizes"
+    label="monitoring_dashboard.chart_size"></oc-input>
+</div>
+<h2 class="oc-heading"></h2>
+<h3 class="oc-heading">{{'monitoring_dashboard.added_data' | translate}}</h3>
+<div class="left-form">
+  <oc-input
+    label="alarm_definitions.edit.modal.metric"
+    type="button"
+    action="ctrl.addStack('components/metrics/metric_picker.html')"
+    button-label="alarm_definitions.edit.select_metric"
+    name="inputMetric"
+    placeholder="{{ctrl.currentMetric}}"></oc-input>
+  <oc-input
+    type="dimension"
+    dimensions="ctrl.selectedDimensions"
+    metric="ctrl.currentMetric"
+    action="ctrl.addStack('components/metrics/dimension_picker.html')"
+    name="inputDimension"></oc-input>
+  <oc-input
+    name="chartElementFunction"
+    type="select"
+    value="ctrl.selectedFunction"
+    select-options="ctrl.functionList"
+    label="monitoring_dashboard.create_chart.math_function"
+    class="last-chart-create"
+    oc-disabled="!ctrl.currentMetric"></oc-input>
+  <button
+    class="oc-btn oc-btn-default"
+    ng-click="ctrl.addDataToChart(ctrl.currentMetric, ctrl.selectedDimensions, ctrl.selectedFunction); ctrl.currentMetric=undefined; ctrl.definition=undefined; ctrl.selectedDimensions=[]; ctrl.selectedFunction = 'AVG';"
+    ng-disabled="ctrl.newChart.chartElements.length > 5 || !ctrl.currentMetric">{{'monitoring_dashboard.add_data_to_chart' | translate}}</button>
+</div>
+<div class="right-form">
+  <div class="chart-element-list">
+    <div class="control-label">{{'monitoring_dashboard.metrics_and_dimensions' | translate}}:</div>
+    <div class="chart-element-item" ng-repeat="(key, element) in ctrl.newChart.chartElements">
+      <div class="first-line">{{element.metric}} - {{element.mathFunction}}</div>
+      <div class="second-line">
+        <span ng-repeat="(key, dimension) in element.dimensions">{{dimension.key}}={{dimension.value}}<span ng-if="key != element.dimensions.length-1">,&nbsp;</span></span>
+      </div>
+      <span class="remove ardana-icon ardana-icon-Close" ng-click="ctrl.removeChartElement(key)"></span>
+    </div>
+  </div>
+</div>
+<h2 class="oc-heading"></h2>
+<button
+  class="oc-btn oc-btn-default"
+  ng-click="ctrl.chartCreateModal.closeModal()">
+    {{'common.cancel' | translate}}
+</button>
+<button
+  ng-show="!ctrl.chartEditing"
+  class="oc-btn oc-btn-primary"
+  ng-click="ctrl.createChart()"
+  ng-disabled="modalForm.$invalid || ctrl.newChart.chartElements.length == 0 || !ctrl.newChart || ctrl.newChart.name.length == 0">
+    {{'monitoring_dashboard.create_chart' | translate}}
+</button>
+<button
+  ng-show="ctrl.chartEditing"
+  class="oc-btn oc-btn-primary"
+  ng-click="ctrl.editChart()"
+  ng-disabled="modalForm.$invalid || !ctrl.chartChanged || ctrl.newChart.chartElements.length == 0 || !ctrl.newChart || ctrl.newChart.name.length == 0">
+    {{'monitoring_dashboard.edit_chart' | translate}}
+</button>
+<div class="modal-banner error" ng-if="chartErrorFlag">
+    <div class="icon"></div>
+    <div class="long-text">{{errorMessage}}</div>
+</div>

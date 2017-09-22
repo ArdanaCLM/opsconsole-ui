@@ -1,0 +1,106 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+
+//Allow custom widths to be set
+@mixin stackable-width($width) {
+  .stackable-modal-wrapper .stackable-modal-content {
+    width: $width;
+    right: -$width;
+  }
+}
+
+@include stackable-width(100%);
+
+.stackable-modal-wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left:15%;
+  width: 85%;
+  z-index: 1001;
+
+  .close-button {
+    font-size: 18px;
+    position: absolute;
+    padding: 5px;
+    margin: 20px;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    right: 0;
+    cursor: pointer;
+  }
+
+  .stackable-modal-content {
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    background-color: white;
+    transition-property: all;
+    transition-duration: 1s;
+    position: absolute;
+    overflow-y: auto;
+    box-shadow: -1px -1px 0 1px rgba(0,0,0,0.15);
+
+    &.tab-slide {
+      right: 0%;
+      top: 0%;
+    }
+
+    &.tab-second {
+      right: 1%;
+      top: 2%;
+      &.tab-deep {
+        box-shadow: none;
+      }
+    }
+
+    .tab-pane {
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+    .content-form {
+      height: 100%;
+      width: 100%;
+      padding: 24px 48px 0 72px;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    &.content-0 {
+      z-index: 11;
+    }
+    &.content-1 {
+      z-index: 13;
+    }
+    &.content-2 {
+      z-index: 15;
+    }
+    &.content-3 {
+      z-index: 17;
+    }
+
+    .error-banner {
+      height: 100px;
+      width: 98%;
+      background-color: red;
+      color: white;
+      margin-bottom: 50px;
+      display: flex;
+      .error-icon {
+        margin: 35px 20px 35px 35px;
+        font-size: 24px;
+      }
+      .error-body {
+        display: block;
+        .error-header {
+          font-weight: $font-weight-semi-bold;
+          text-transform: uppercase;
+          padding-top: 30px;
+        }
+      }
+    }
+  }
+}

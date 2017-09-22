@@ -1,0 +1,12 @@
+<!-- template for alarm service card -->
+<div>
+    <span ng-repeat="sum in ctrl.service_summary track by $index" >
+        <div ng-if="!((sum.service_key == 'others' || sum.service_key == 'undefined') && sum.total == 0)"
+             class="datum total {{ sum.service_key }}"
+             ng-click="dataClick($event, sum.service_key)"
+             ng-class="{ zero : sum.total == 0 }">
+            <div class="oc-value">{{ sum.total }}</div>
+            <div class="oc-unit">{{ sum.service_name }}</div>
+        </div>
+    </span>
+</div>

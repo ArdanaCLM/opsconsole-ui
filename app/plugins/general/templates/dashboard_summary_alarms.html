@@ -1,0 +1,53 @@
+<div class="alarmList" ng-controller="DashboardControllerAlarms">
+    <h3 class="oc-heading section-title">{{'general.dashboard.alarm.new.title' | translate}}</h3>
+    <div class="latest-alarms-container">
+        <div class="top-line">
+            <oc-translate text="{{ 'alarm.summary.new.subtitle' | translate: {date: displayLatestRefreshTime.date} }}"></oc-translate>
+            <div class="top-line-right" ng-click="showConfigureMenuFlag = !showConfigureMenuFlag">
+                <div class="configure">{{'alarm.summary.new.configure' | translate}}</div>
+                <button type="button" class="config-button">
+                    <i class="ardana-icon ardana-icon-Actions"></i>
+                </button>
+            </div>
+        </div>
+        <!--modal-overlay show-attribute="!alarmsSummary.loaded"></modal-overlay-->
+        <div class="bottom-container">
+            <div class="chart-container">
+                <alarmcard data="newAlarms" ctitle="'New Alarms' | uppercase" class="grid-item-wide flat newAlarms" vclick="valueClick" aclick="showHideTblModal">
+                </alarmcard>
+            </div>
+            <div ng-show="showConfigureMenuFlag" class="config-menu">
+                <oc-input class="config-dropdown" label="general.dashboard.alarm.new.dropdown.title" type="select" value="deltaRefreshTime" select-options="timeOptions">
+                </oc-input>
+            </div>
+        </div>
+    </div>
+
+    <div class="buttonRow col-md-12">
+        <h3 class="oc-heading section-title-inline">{{'common.alarmsummary.title' | translate}}</h3>
+        <button class="oc-btn oc-btn-primary summary-button float-right" ng-click="launchNewDynCardModal()">{{'general.dashboard.card.new.label' | translate}}</button>
+    </div>
+
+    <div class="summaryAlarms col-md-12 alarmCardList">
+        <alarmcard ng-repeat="(idx, alarm) in cardCountList" static="$last" data="alarm" ctitle="alarm.ctitle" class="grid-item-wide" vclick="valueClick" aclick="showHideTblModal" amenu="menuActions" idx="idx">
+        </alarmcard>
+    </div>
+
+
+    <!-- alarm detail dialog -->
+    <stackablemodal name="dashAlarmListModal" showAttribute="listModalFlag" modalTemplateUrl="'general/templates/modal_alarm_summary_table.html'">
+        <modal-overlay show-attribute="allSummaryModalOverlayFlag || allSummaryModalOverlayFlagMultiple"></modal-overlay>
+    </stackablemodal>
+
+    <!-- alarm card creation dialog -->
+    <stackablemodal name="cardCreationModal" showAttribute="cardCreateModalFlag" modalTemplateUrl="'general/templates/card_create.html'">
+        <modal-overlay show-attribute="allSummaryModalOverlayFlag || allSummaryModalOverlayFlagMultiple"></modal-overlay>
+    </stackablemodal>
+
+    <opsmodal showAttribute="showDeleteConfirm" type="confirm"
+      commit-action="delDynCard"
+      header-title="monitoring_dashboard.delete.modal.title">
+        <div ng-include="'alarm/templates/dashboard/delete_chart_confirm.html'"></div>
+        <modal-overlay show-attribute="$parent.$parent.showProgress"></modal-overlay>
+    </opsmodal>
+</div>

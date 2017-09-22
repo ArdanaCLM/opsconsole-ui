@@ -1,0 +1,20 @@
+{
+    "plugintest.home": "プラグインのテスト - ユーザー情報",
+    "plugintest.user": "ユーザー情報",
+    "plugintest.user_info": "ユーザー情報:",
+    "plugintest.auth_token": "認証トークン",
+    "plugintest.auth_token_expires": "トークンの有効期限します。",
+    "plugintest.projects": "プロジェクト:",
+    "plugintest.project_name": "プロジェクト名",
+    "plugintest.project_id": "プロジェクト",
+    "plugintest.item": "項目",
+    "plugintest.value": "値",
+    "plugintest.rootscope": "ルート スコープ",
+    "plugintest.cookie": "クッキー ",
+    "plugintest.build_version": "ビルド バージョン",
+    "plugintest.build_time": "ビルド時間",
+    "plugintest.build_sha": "ビルド SHA",
+    "plugintest.commit_date": "日付をコミットします。",
+    "plugintest.id": "イド",
+    "plugintest.name": "名前"
+}

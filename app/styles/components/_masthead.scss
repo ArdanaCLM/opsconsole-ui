@@ -1,0 +1,127 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+#ops_console_body{
+  min-width: 926px;
+}
+
+.oc-navbar {
+  height: 132px;
+  background-color: white;
+  border-bottom: 2px solid $grommet-masthead-border;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 998;
+  min-width: 926px;
+  .container {
+    margin-top: 40px;
+    margin-bottom: 3px;
+    div.inline {
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
+
+  .breadcrumbs {
+    width: 100%;
+    height: 52px;
+    border-top: 1px solid $grommet-masthead-breadcrumb-border;
+    .container {
+      margin-top: 15px;
+      font-size: 18px;
+      background-color: white;
+      color: $grommet-masthead-breadcrumb-color;
+      div.bc-item {
+        @extend .inline;
+        &.semibold{
+          font-weight: $font-weight-semi-bold;
+        }
+        &:not(:first-child) {
+          margin-left: 15px;
+          &:before {
+            margin-right: 15px;
+            content: '/';
+            color: $grommet-black;
+          }
+        }
+        &:hover {
+          color: $grommet-black;
+        }
+      }
+    }
+  }
+
+  .menu-button {
+    margin-bottom: 1px;
+    margin-right: 20px;
+    width: 24px;
+    height: 24px;
+    .menu-size {
+      font-size: 1.5em;
+    }
+    .selected {
+      color: $grommet-green;
+    }
+    :hover{
+      cursor: pointer;
+    }
+  }
+  .title {
+    color: #767676;
+    img {
+      height: 62px;
+      margin-top: 7px;
+    }
+    div.title-text {
+      div.line {
+        margin-left: 15px;
+        &:nth-child(1) {
+          font-weight: bold;
+          font-size: 28px;
+          .registered {
+            font-weight: normal;
+          }
+        }
+        &:nth-child(2) {
+          font-weight: 300;
+          font-size: 16px;
+          margin-top: -5px;
+        }
+      }
+      div.text-no-icon {
+        margin-left: 7px;
+        font-size: 24px;
+        font-weight: 500;
+        color: black;
+      }
+    }
+  }
+  .popover-items {
+    float: right;
+    .popover-item {
+      min-width: 24px;
+      height: 24px;
+      cursor: pointer;
+      @extend .inline;
+      margin-left: 70px;
+      font-size: 25px;
+      &.selected {
+        color: $grommet-green;
+      }
+      .count {
+        @extend .inline;
+        font-size: 16px;
+        color: white;
+        background-color: #5A5A5A;
+        padding-top: 3px;
+        padding-left: 5px;
+        padding-right: 5px;
+        //margin-left: 25px;
+        margin-top: 2px;
+        &.countError{
+          background-color: #cc0000;
+        }
+      }
+    }
+  }
+}

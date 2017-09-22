@@ -1,0 +1,85 @@
+<div container ng-controller="PlotExampleController">
+    <ocplot id="plotChart" dataset="graphData1"></ocplot>
+
+    <div class="panel_tile panel_tile_image">
+        <div class="panelgraphtitle"> {{ 'example.plot.BarGraph' | translate | uppercase }} </div>
+        <div class="content">
+            <div class="panelcontent">
+                <ocplot id="stackbarChart" dataset="graphData2" legendid="#plot2Legend"  stackbar=true height="235px" width="430px"></ocplot>
+                <div id="plot2Legend" class="plotLegendDiv"></div>
+            </div>
+        </div>
+
+        <div class="footer_panel">
+            <div class="footer-title-1">
+                <div class="footer-number-format">4.2</div>
+                <div class="footer-text-format"> {{ 'example.plot.PortCreatedLabel' | translate | uppercase }} </div>
+            </div>
+            <div class="footer-title-1">
+                <div class="footer-number-format">9.2</div>
+                <div class="footer-text-format">{{ 'example.plot.PortDestroyeddLabel' | translate | uppercase }} </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <br>
+    <button ng-click="randomizeData()">randomize data</button>
+
+</div>
+
+
+<br><br><hr>
+
+
+
+Html Code:
+<pre>
+  &lt;div container ng-controller="PlotExampleController"&gt;
+    &lt;ocplot dataset="graphData1">&lt;/ocplot&gt;
+    &lt;ocplot dataset="graphData2" legendid="#plot2Legend"  stackbar=true height="600px" width="300px">&lt;/ocplot&gt;
+    &lt;div id="plot2Legend">&lt;/div&gt;
+  &lt;/div&gt;
+</pre>
+
+Controller code:
+<pre>
+
+
+  var p = ng.module('plugins');
+
+
+  p.controller('PlotExampleController', ['$scope','$http',
+      function($scope, $http) {
+          $scope.graphData1 = [//this is sample data, a real graph will need data injected in this format
+              {
+                  label: "series1",
+                  data: [[-24, 2], [-18, 1.9], [-12, 1.6], [-6, 0.9], [0, 1.8]]
+              },
+              {
+                  label: "series2",
+                  data: [[-24, 3], [-18, 1.0], [-12, 2.6], [-6, 1.9], [0, 0.8]]
+              }
+          ];
+
+          $scope.graphData2 = [];//will read real data in from file
+
+          //load from a file, this could be a REST service instead
+          $http.get('./sample_data/sample_data.json').then(function(response){
+              $scope.graphData2 = response.data.plotdata || [];
+          });
+      }
+  ]);
+</pre>
+
+sample_data.json:
+<pre>
+{  "plotdata":[{
+      "label": "first", "data":[[-24, 1.7], [-18, 1.9], [-12, 2.1], [-6, 0.2], [0, 1.8]]
+    },
+    {
+      "label": "second", "data":[[-24, 0.7], [-18, 2.3], [-12, 0.2], [-6, 2.4], [0, 1.8]]
+    }
+  ]}
+</pre>

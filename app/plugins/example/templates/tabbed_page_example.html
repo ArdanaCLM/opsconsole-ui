@@ -1,0 +1,83 @@
+<h3>{{"example.tabbedpage" | translate}}</h3>
+<br>
+
+<tabbedpage pageList="myPages"></tabbedpage>
+
+<br>
+<br>
+<br>
+Attributes:
+<pre>
+There is only one attribute to specify for the 'tabbedpage' directive:
+- pageList
+      a list of objects which contain the following properties to be used for each tab:
+      1. header
+            name of the tabbed page
+      2. template
+            URL to the page's template
+</pre>
+
+<br>
+HTML Code:
+<pre>
+&lt;h3&gt;{{"example.tabbedpage" | translate}}&lt;/h3&gt;
+&lt;br&gt;
+
+&lt;tabbedpage pageList="myPages"&gt;&lt;/tabbedpage&gt;
+</pre>
+
+tabbed_page_content1.html
+<pre>
+&lt;div ng-controller="tabbedpageExampleController"&gt;
+    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+ labore et dolore magna aliqua.&lt;/p&gt;
+    &lt;br&gt;
+    &lt;button class="oc-btn oc-btn-big oc-btn-default" ng-click="doSomething()"&gt;
+        {{"example.tabbedpage.button" | translate}}
+    &lt;/button&gt;
+&lt;/div&gt;
+</pre>
+
+tabbed_page_content2.html
+<pre>
+&lt;div ng-controller="tabbedpageExampleController"&gt;
+    &lt;p&gt;Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea comm
+odo consequat.&lt;/p&gt;
+    &lt;br&gt;
+    &lt;button class="oc-btn oc-btn-big oc-btn-default" ng-click="doSomething()"&gt;
+        {{"example.tabbedpage.button" | translate}}
+    &lt;/button&gt;
+&lt;/div&gt;
+</pre>
+
+tabbed_page_content3.html
+<pre>
+&lt;div ng-controller="tabbedpageExampleController"&gt;
+    &lt;p&gt;Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudant
+ium, totam rem aperiam.&lt;/p&gt;
+    &lt;br&gt;
+    &lt;button class="oc-btn oc-btn-big oc-btn-default" ng-click="doSomething()"&gt;
+        {{"example.tabbedpage.button" | translate}}
+    &lt;/button&gt;
+&lt;/div&gt;
+</pre>
+
+<br>
+Controller Code:
+<pre>
+    var p = ng.module('plugins');
+
+    p.controller('tabbedpageExampleController', ['$scope',
+        function($scope) {
+            $scope.myPages = [
+                {header: 'example.tabbedpage.content1', template: 'example/templates/tabbed_page_content1.html'},
+                {header: 'example.tabbedpage.content2', template: 'example/templates/tabbed_page_content2.html'},
+                {header: 'example.tabbedpage.content3', template: 'example/templates/tabbed_page_content3.html'}
+            ];
+
+            $scope.doSomething = function() {
+                alert("Done!!");
+            };
+        }
+    ]);
+</pre>

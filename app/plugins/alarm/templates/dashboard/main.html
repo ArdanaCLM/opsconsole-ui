@@ -1,0 +1,44 @@
+<div class="octable_header_wrapper_row std-margin-top">
+    <div class="header-btn">
+        <button class="oc-btn oc-btn-default" ng-click="initTabCreate()" ng-disabled="ctrl.loadingMetrics" ng-bind="'monitoring_dashboard.create_tab.title' | translate"></button>
+    </div>
+</div>
+<tabbedpage pagelist="tabList" name="tabedPage" not-routing></tabbedpage>
+<stackablemodal
+  showattribute="showCreate"
+  name="chartCreateModal"
+  modaltemplateurl="'alarm/templates/dashboard/create_chart.html'">
+</stackablemodal>
+<stackablemodal
+  showattribute="showAddWidget"
+  name="addWidget"
+  modaltemplateurl="'alarm/templates/dashboard/add_widget.html'">
+</stackablemodal>
+<opsmodal showAttribute="showDeleteConfirm" type="confirm"
+  commit-action="deleteChart"
+  header-title="monitoring_dashboard.delete.modal.title">
+    <div ng-include="'alarm/templates/dashboard/delete_chart_confirm.html'"></div>
+    <modal-overlay show-attribute="$parent.$parent.showProgress"></modal-overlay>
+</opsmodal>
+<opsmodal showAttribute="showDownloadCsv" closable
+          class="donwload-csv"
+          headerTemplateUrl="alarm/templates/dashboard/download_csv_header.html"
+          footerTemplateUrl="alarm/templates/dashboard/download_csv_footer.html">
+    <div ng-include="'alarm/templates/dashboard/download_csv.html'"></div>
+</opsmodal>
+<opsmodal showAttribute="showCreateTab" type="confirm"
+  commit-action="createTab"
+  header-title="monitoring_dashboard.create_tab.title">
+    <div ng-include="'alarm/templates/dashboard/create_tab.html'"></div>
+</opsmodal>
+<opsmodal showAttribute="showEditeTab" type="confirm"
+  commit-action="commitEditTab"
+  header-title="monitoring_dashboard.create_tab.title">
+    <div ng-include="'alarm/templates/dashboard/create_tab.html'"></div>
+</opsmodal>
+<opsmodal showAttribute="showTabDeleteConfirm" type="confirm"
+  commit-action="deleteTab"
+  header-title="monitoring_dashboard.delete_tab">
+    <div ng-include="'alarm/templates/dashboard/delete_chart_confirm.html'"></div>
+    <modal-overlay show-attribute="$parent.$parent.showProgress"></modal-overlay>
+</opsmodal>

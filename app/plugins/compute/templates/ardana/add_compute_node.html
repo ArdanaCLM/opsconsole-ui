@@ -1,0 +1,92 @@
+<import src="$parent.$parent.$parent.computeHostService.addComputeNodeModalArdana.stackableScope"
+        target="modalOptions"/>
+<import src="$parent.modalForm" target="modalForm"/>
+<div class="left-form">
+    <h2 class="oc-heading">{{'compute.compute_nodes.ardana.add.title' | translate}}</h2>
+    <h3 class="oc-heading">{{'compute.compute_nodes.ardana.add.server.title' | translate}}</h3>
+    <!-- Server ID/NAME -->
+    <oc-input
+            label="{{'compute.compute_nodes.ardana.add.server.name' | translate}}"
+            type="text"
+            value="modalOptions.values.id"
+            name="inputName"
+            oc-required="true"
+            oc-tooltip="'compute.compute_nodes.ardana.add.server.name.tooltip'"
+            validate="modalOptions.validateServer"
+            validate-text="{{'compute.compute_nodes.ardana.add.server.name_invalid' | translate}}"></oc-input>
+    <!-- Server Role -->
+    <oc-input
+            label="{{'compute.compute_nodes.ardana.add.server.role' | translate}}"
+            type="select"
+            value="modalOptions.values.role"
+            name="inputRole"
+            select-options="modalOptions.selections.roles"
+            oc-disabled="modalOptions.selections.roles.length < 2"></oc-input>
+    <!-- Server Group -->
+    <oc-input
+            label="{{'compute.compute_nodes.ardana.add.server.group' | translate}}"
+            type="select"
+            value="modalOptions.values.group"
+            name="inputGroup"
+            select-options="modalOptions.selections.groups"
+            oc-disabled="modalOptions.selections.groups.length <= 0"></oc-input>
+    <!-- Server NIC MAPPING -->
+    <oc-input
+            label="{{'compute.compute_nodes.ardana.add.server.nic_mapping' | translate}}"
+            type="select"
+            value="modalOptions.values.nicMapping"
+            name="inputMapping"
+            select-options="modalOptions.selections.nicMappings"
+            oc-disabled="modalOptions.selections.nicMappings.length <= 0"></oc-input>
+    <!-- region  -->
+    <div ng-show="modalOptions.selections.regions && modalOptions.selections.regions.length > 0">
+        <oc-input
+                label="{{'common.region' | translate}}"
+                type="select"
+                value="modalOptions.values.region"
+                name="inputRegion"
+                select-options="modalOptions.selections.regions"
+                oc-disabled="modalOptions.selections.regions.length < 2"></oc-input>
+    </div>
+</div>
+<div class="right-form">
+    <h2 class="oc-heading">&nbsp;</h2>
+    <h3 class="oc-heading">{{'compute.compute_nodes.ardana.add.hardware.title' | translate}}</h3>
+    <!-- Server IP Address -->
+    <oc-input
+            label="{{'compute.compute_nodes.ardana.add.hardware.ip' | translate}}"
+            type="text"
+            value="modalOptions.values.ip"
+            name="inputIP"
+            oc-required="true"
+            validate="ipAddress"
+            validate-text="{{'compute.compute_nodes.ardana.add.hardware.ip_invalid' | translate}}"></oc-input>
+
+    <div ng-if="modalOptions.options.encryptionRequired" class="optionalEncryptionKey">
+        <h2 class="oc-heading">&nbsp;</h2>
+        <h3 class="oc-heading">{{'compute.compute_nodes.ardana.add.configuration.title' | translate}}
+            <div class="oc-info ardana-icon ardana-icon-Unknown_L"
+                 uib-tooltip="{{ 'compute.compute_nodes.ardana.encryption.tooltip' | translate }}"
+                 tooltip-placement="right"></div></h3>
+        <oc-input
+                label="{{'compute.compute_nodes.ardana.add.configuration.key' | translate}}"
+                type="text"
+                value="modalOptions.values.encryptionKey"
+                oc-required="true"
+                name="inputKey"></oc-input>
+    </div>
+
+
+</div>
+<div class="form-seperator"></div>
+<div class="oc-btn-group">
+    <button
+            class="oc-btn oc-btn-default"
+            ng-bind="'common.cancel' | translate"
+            ng-click="modalOptions.cancel();"></button>
+    <button
+            class="oc-btn oc-btn-primary"
+            ng-bind="'compute.compute_nodes.ardana.add.button.add' | translate"
+            ng-click="modalOptions.add();"
+            ng-disabled="!modalForm.$valid || modalForm.$pristine"></button>
+</div>

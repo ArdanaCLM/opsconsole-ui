@@ -1,0 +1,163 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+@import '../../../styles/components/_palette.scss';
+
+
+.activity_container {
+  height: 360px;
+  width: 550px;
+}
+
+.activity_subtitle {
+  color: black;
+}
+
+.alarm_table div.octable {
+    padding-top:10px;
+}
+
+.hr_topruler {
+    color: black;
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);
+    background-image:    -moz-linear-gradient(left, #ccc, #333, #ccc);
+    background-image:     -ms-linear-gradient(left, #ccc, #333, #ccc);
+    background-image:      -o-linear-gradient(left, #ccc, #333, #ccc);
+}
+
+.launch_plugins_divider {
+  border: 1px dotted $dividing-line;
+}
+
+.margin_to_the_right {
+  margin-right: 20px;
+}
+
+.no_left_right_pad {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.logging-padding-top {
+  padding-top: 65px;
+}
+.logging_container {
+  height: 360px;
+  width: 550px;
+}
+
+.logging_sub_panel {
+  height: 350px;
+  width: 540px;
+}
+.logging_subtitle {
+  width: 370px;
+  padding-bottom: 35px;
+}
+
+.monitoring_container {
+  height: 360px;
+}
+
+.monitoring_container_sub_panel {
+  height: 350px;
+  width: 540px;
+}
+.monitoring_container_subtitle {
+  color: black;
+}
+
+.alarmList {
+  .col-md-9 {
+    padding-left: 0;
+
+    alarmCard.grid-item-wide {
+      margin-right: 24px;
+    }
+  }
+
+  .col-md-3 {
+    padding-right: 5px;
+  }
+
+  > h4, .summaryAlarms >  div > div > h4 {
+    border-bottom: 1px solid $oc-alarm-light-gray;
+    padding-bottom: 10px;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    font-size: 17px;
+
+    span {
+      font-weight: 300;
+
+      .filter {
+        margin-top: -5px;
+      }
+    }
+  }
+
+  select {
+    font-size: 16px;
+    position: relative;
+    margin-left: 10px;
+  }
+}
+
+.summaryAlarms.controls {
+    margin-bottom: 20px;
+}
+
+.alarmCardList {
+    padding: 0;
+
+    alarmcard {
+        margin-right: 12px;
+        margin-bottom: 12px;
+    }
+    alarmcard:nth-child(3n) {
+        margin-right: 0;
+    }
+
+    .dropdown-menu > li:hover {
+        color: $grommet-white;
+    }
+
+    alarmcard.grid-item-wide .header .dropdown-menu {
+        height: auto;
+    }
+}
+
+.createCard {
+    oc-input .oc-input {
+        top: -1px;
+    }
+    oc-input .oc-input .dimension-container {
+        width: 285px;
+        padding-left: 10px;
+    }
+}
+
+.dash-alarm-list {
+  width: 1140px;
+}
+
+.typePicker {
+    margin-top: 40px;
+    margin-left: 30px;
+    h3.col-md-8 {
+        padding: 0;
+    }
+
+    .metric-picker-item label span {
+        padding-left: 80px;
+        position: relative;
+        left: -30px;
+        cursor: pointer;
+    }
+
+    .metric-picker-blocker {
+        display: none;
+    }
+}

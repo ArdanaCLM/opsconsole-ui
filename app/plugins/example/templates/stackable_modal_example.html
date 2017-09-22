@@ -1,0 +1,97 @@
+<h3>{{"example.stackablemodal" | translate}}</h3>
+<br>
+<button class="oc-btn oc-btn-big oc-btn-default" ng-click="showModal1()">
+    {{"example.stackablemodal.button1" | translate}}
+</button>
+<stackablemodal name="stack1" showAttribute="showModal1Flag" closeaction="closedTab1"
+    modalTemplateUrl="'example/templates/stackable_modal_content1.html'">
+</stackablemodal>
+
+<br>
+<br>
+<br>
+Attributes:
+<pre>
+The following are attributes you can specify when using the 'stackablemodal' directive:
+- name (required)
+      unique name of the stackable modal
+- showAttribute (required)
+      attribute that triggers the display of the stackable modal: show when true, hide when false
+- modalTemplateUrl (required)
+      Url to the modal's template
+</pre>
+
+<br>
+Html Code:
+<pre>
+&lt;h3&gt;{{"example.stackablemodal" | translate}}&lt;/h3&gt;
+&lt;br&gt;
+&lt;button class="oc-btn oc-btn-big oc-btn-default" ng-click="showModal1()"&gt;
+    {{"example.stackablemodal.button1" | translate}}
+&lt;/button&gt;
+&lt;stackablemodal name="stack1" showAttribute="showModal1Flag" closeaction="closedTab1"
+    modalTemplateUrl="'example/templates/stackable_modal_content1.html'"&gt;
+&lt;/stackablemodal&gt;
+</pre>
+stackable_modal_content1.html
+<pre>
+&lt;div ng-controller="StackableModalExampleController"&gt;
+    &lt;h3&gt;{{"example.stackablemodal.modal1" | translate}}&lt;/h3&gt;
+    &lt;br&gt;
+    &lt;button class="oc-btn oc-btn-big oc-btn-default" ng-click="showModal2()"&gt;
+        {{"example.stackablemodal.button2" | translate}}
+    &lt;/button&gt;
+    &lt;button class="oc-btn oc-btn-big oc-btn-default" ng-click="<mark>closeModal()</mark>"&gt;
+        {{"common.cancel" | translate}}
+    &lt;/button&gt;
+&lt;/div&gt;
+</pre>
+stackable_modal_content2.html
+<pre>
+&lt;div ng-controller="StackableModalExampleController"&gt;
+    &lt;h3&gt;{{"example.stackablemodal.modal2" | translate}}&lt;/h3&gt;
+    &lt;br&gt;
+    &lt;button class="oc-btn oc-btn-big oc-btn-default" ng-click="showModal3()"&gt;
+        {{"example.stackablemodal.button3" | translate}}
+    &lt;/button&gt;
+    &lt;button class="oc-btn oc-btn-big oc-btn-default" ng-click="<mark>closeModal()</mark>"&gt;
+        {{"common.cancel" | translate}}
+    &lt;/button&gt;
+&lt;/div&gt;
+</pre>
+stackable_modal_content3.html
+<pre>
+&lt;div ng-controller="StackableModalExampleController"&gt;
+    &lt;h3&gt;{{"example.stackablemodal.modal3" | translate}}&lt;/h3&gt;
+    &lt;br&gt;
+    &lt;button class="oc-btn oc-btn-big oc-btn-default" ng-click="<mark>closeModal()</mark>"&gt;
+        {{"common.cancel" | translate}}
+    &lt;/button&gt;
+&lt;/div&gt;
+</pre>
+
+<br>
+Controller Code:
+<pre>
+    var p = ng.module('plugins');
+
+    p.controller('StackableModalExampleController', ['$scope',
+        function($scope) {
+            $scope.closedTab1 = function(){
+                console.log('tabOneWasClosed!');
+            };
+            $scope.closedTab2 = function(){
+                console.log('tabTwoWasClosed!');
+            };
+            $scope.showModal1 = function() {
+                $scope.showModal1Flag = true;
+            };
+            $scope.showModal2 = function() {
+                <mark>$scope.addStack</mark>("example/templates/stackable_modal_content2.html", $scope.closedTab2);
+            };
+            $scope.showModal3 = function() {
+                <mark>$scope.addStack</mark>("example/templates/stackable_modal_content3.html");
+            };
+        }
+    ]);
+</pre>

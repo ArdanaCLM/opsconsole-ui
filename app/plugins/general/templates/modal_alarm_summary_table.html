@@ -1,0 +1,10 @@
+<!-- template for modal alarm table using server paging -->
+<div ng-if="$parent.$parent.$parent.listModalFlag"
+     id="modal_alarm_summary"
+     class="dash-alarm-list">
+  <alarm-summary titlekey="'alarm.summary.dashboard.page.title'"
+                 services="$parent.$parent.$parent.$parent.modalTableAlarmServices"
+                 hosts="$parent.$parent.$parent.$parent.modalTableAlarmHostnames"
+                 extra-query-params="$parent.$parent.$parent.$parent.modalTableAlarmQueryParams">
+  </alarm-summary>
+</div>

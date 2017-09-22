@@ -1,0 +1,28 @@
+<import src="$parent.$parent.$parent.$parent.$parent" target="ctrl"/>
+<div class="top-line">
+    <button type="button" class="btn btn-default selectControlButton tile-select-btn" ng-click="rowSelectionOccurred(data)"></button>
+    <div title="{{data.name}}" class="item-name" ng-class="{'selectable' : data.name.length > 40}">{{data.name}}</div>
+</div>
+<div class="state-line second-line">{{data.state}}, {{ctrl.bareMetalTypeDisplayFunction(data)}}</div>
+<div class="scrollable-tile">
+    <table class="full-width">
+        <tbody>
+            <tr class="text-line">
+                <td class="text-line-label-long">{{'compute.baremetal.table.macaddress' | translate}}</td>
+                <td class="text-line-value-long">{{data.mac_address}}</td>
+            </tr>
+            <tr class="text-line">
+                <td class="text-line-label-long">{{'compute.baremetal.table.iloaddress' | translate}}</td>
+                <td class="text-line-value-long">{{data.ilo_ip}}</td>
+            </tr>
+            <tr class="text-line">
+                <td class="text-line-label-long">{{'compute.baremetal.table.ilousername' | translate}}</td>
+                <td class="text-line-value-long">{{data.ilo_user}}</td>
+            </tr>
+            <tr class="text-line">
+                <td class="text-line-label-long">{{'compute.baremetal.table.ipaddress' | translate}}</td>
+                <td class="text-line-value-long">{{data.ip_address}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,23 @@
+<div class="top-line">
+    <button type="button" class="btn btn-default selectControlButton tile-select-btn" ng-click="rowSelectionOccurred(data)"></button>
+    <div title="{{data.name}}" class="item-name" ng-class="{'selectable-and-status' : data.name.length > 25}">{{data.name}}</div>
+    <div class="status-icon" ng-bind-html="data.ui_status | tableStatusFilter"></div>
+</div>
+<div class="scrollable-area-line">
+    <div class="scrollable-area-label">{{"alarm_explorer.table.header.dimension" | translate}}</div>
+    <div class="scrollable-area-value">{{data.dimension}}</div>
+</div>
+<div>
+    <table class="full-width">
+        <tbody>
+            <tr class="text-line">
+                <td class="text-line-label">{{"alarm_explorer.table.header.id" | translate}}</td>
+                <td class="text-line-value">{{data.id}}</td>
+            </tr>
+            <tr class="text-line">
+                <td class="text-line-label">{{"alarm_explorer.table.header.lastCheck" | translate}}</td>
+                <td class="text-line-value">{{data.lastCheck}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

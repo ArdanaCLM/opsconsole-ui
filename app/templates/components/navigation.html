@@ -1,0 +1,26 @@
+<div class="menu-wrapper" ng-class="{active: showMenu}">
+  <div class="menu">
+    <ul>
+      <li ng-repeat="navItem in nav">
+        <div class="section" ng-click="toggle($index)">
+          <i class="ardana-icon ardana-icon-{{navItem.icon}} section-icon"></i>
+
+          <a ng-if="! navItem.children" ng-click="hide()" href="#/{{navItem.pluginName}}{{navItem.path}}{{query}}">{{navItem.label | translate}}</a>
+          <a ng-if="navItem.children" class="header {{navItem.icon}}" ng-class="{expanded: navItem.expand}"
+                  >{{navItem.label | translate}}</i></a>
+          <i class="ardana-icon ardana-icon-Up expanded-icon" ng-show="navItem.expand"></i>
+        </div>
+
+        <ul ng-if="navItem.children">
+          <li ng-repeat="child in navItem.children" ng-class="{active: child.active}" ng-show="navItem.expand">
+            <a ng-if="! child.children" href="#/{{child.pluginName}}{{child.path}}{{query}}">{{child.label | translate}}</a>
+            <a ng-if="child.children">{{child.label | translate}}</a>
+            <ul ng-if="child.children">
+              <li ng-repeat="thisChild in child.children" ng-class="{active: thisChild.active}"><a ng-click="setMenuHeight()" href="#/{{thisChild.pluginName}}{{thisChild.path}}{{query}}">{{thisChild.label | translate}}</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

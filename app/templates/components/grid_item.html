@@ -1,0 +1,96 @@
+<div ng-class="{'col-md-3':type == 'horizontal', 'col-md-2':type == 'vertical' }"
+     ng-if="plotType == 'donut'">
+    <div class="grid-item-wide" ng-if="type == 'horizontal'">
+        <div class="header">
+            <div class="settings"><img ng-src="{{ gridHeaderImage }}"/></div>
+            <div class="text">
+                <div class="center">{{ title | translate | uppercase }}</div>
+            </div>
+        </div>
+        <modal-overlay show-attribute="progressData.showProgressIcon"></modal-overlay>
+        <div class="content" ng-transclude ng-click="gridAction()"
+             ng-class="{'pointer':labelData.actionType != 'undefined' }">
+        </div>
+        <div class="content-label">
+            <div ng-repeat="row in rows" ng-if="(row.label | lowercase) != 'total'"
+                 ng-class="{'content-label-align-4':rows.length == 4, 'content-label-align-3':rows.length == 3,
+                    'content-label-align-2':rows.length == 2, 'content-label-align-1':rows.length == 1,
+                    'pointer':row.actionType == 'anchor' || row.actionType == 'modal'}"
+                 ng-click="labelAction(row.actionType, row.actionData)" uib-tooltip="{{ row.data }}"
+                    tooltip-placement="top">
+                <div ng-class="{'content-label-ok':(row.status | lowercase) == 'ok', 'content-label-error':(row.status | lowercase) == 'error', 'content-label-warning':(row.status | lowercase) == 'warning', 'content-label-unknown':(row.status | lowercase) == 'unknown', 'content-label-blue':(row.status | lowercase) == 'blue'}">
+                    <div class="label-text-data">
+                        {{ row.data | default: "NA"}}
+                    </div>
+                    <div class="label-text">
+                        {{ row.label | translate | uppercase }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-item-thin" ng-if="type == 'vertical'">
+        <div class="header">
+            <div class="text">
+                <div class="center">{{ title | translate | uppercase }}</div>
+            </div>
+        </div>
+        <div class="settings"><img ng-src="{{ gridHeaderImage }}" style="width: 32px; height: 32px;"/></div>
+        <modal-overlay show-attribute="progressData.showProgressIcon"></modal-overlay>
+        <div class="content" ng-transclude>
+        </div>
+        <div class="content-label">
+            <div ng-repeat="row in rows">
+                <div ng-class="{'content-label-used':$first, 'content-label-total':$last}">
+                    <div class="label-text-data" ng-if="$first">
+                        {{ row.data | default: "NA"}}<span
+                            class="dataLabel">{{ row.dataUnit | translate | uppercase }}</span>
+                    </div>
+                    <div class="label-text-data" ng-if="$last">
+                        {{ row.data + rows[0].data | default: "NA"}}<span
+                            class="dataLabel">{{ row.dataUnit | translate | uppercase }}</span>
+                    </div>
+                    <div class="label-text" style="width: 100%">
+                        {{ row.label | translate }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Code for the plot-->
+<div ng-if="plotType == 'plot'" class="col-md-6">
+    <div class="grid-item-plot">
+        <div class="header">
+            <div class="settings"><img ng-src="{{ gridHeaderImage }}" style="width: 32px; height: 32px;"/></div>
+            <div class="text">
+                <div class="center">{{ title | translate | uppercase }}</div>
+            </div>
+        </div>
+        <modal-overlay show-attribute="progressData.showProgressIcon"></modal-overlay>
+        <div class="content" ng-transclude>
+        </div>
+        <div class="content-label">
+            <div ng-repeat="row in gridData" class="content-label-align">
+                <div ng-class="{'content-label-first':$first, 'content-label-last':$last}">
+                    <div class="label-text-data">
+                        {{ row.data | default: "NA"}}
+                    </div>
+                    <div class="label-text">
+                        {{ row.label | translate | uppercase }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<opsmodal showAttribute="gridModalFlag" closable
+          headerTemplateUrl="components/grid_item_modal_header.html"
+          nomodalfooter="true">
+    <div ng-include="'components/grid_item_modal_content.html'"></div>
+</opsmodal>

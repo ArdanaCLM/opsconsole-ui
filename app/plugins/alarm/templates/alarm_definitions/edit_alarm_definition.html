@@ -1,0 +1,119 @@
+<import src="$parent.$parent.$parent" target="ctrl"></import>
+<import src="$parent.$parent.$parent.$parent" target="pctrl"></import>
+<import src="$parent.$parent.$parent.definition" target="definition"></import>
+<div class="error-banner" ng-if="ctrl.alarmDefinitionErrorFlag || pctrl.alarmDefinitionErrorFlag">
+  <div class="error-icon"><i class="ardana-icon ardana-icon-Error_outline"></i></div>
+  <div class="error-body">
+    <div class="error-header">{{ctrl.$parent.modalEditing ? 'alarm_definitions.edit.error.title' : 'alarm_definitions.create.error.title' | translate}}</div>
+    <div>{{ctrl.errorMessage}}</div>
+  </div>
+</div>
+<div class="left-form">
+  <h2 class="oc-heading page-title">{{ctrl.$parent.modalEditing ? 'alarm_definitions.edit.modal.title' : 'alarm_definitions.create.modal.title' | translate}}</h2>
+  <h3 class="oc-heading section-title">{{'alarm_definitions.edit.modal.column1.title' | translate}}</h3>
+  <oc-input
+    label="alarm_definitions.table.header.name"
+    placeholder="alarm_definitions.table.header.name.placeholder"
+    type="text"
+    value="definition.name"
+    name="inputName"
+    oc-required="true"></oc-input>
+  <oc-input
+    label="alarm_explorer.table.header.id"
+    type="text"
+    value="definition.id"
+    name="inputID"
+    oc-disabled="true"
+    ng-show="ctrl.$parent.modalEditing"></oc-input>
+  <oc-input
+    label="alarm_definitions.table.header.description"
+    placeholder="alarm_definitions.table.header.description.placeholder"
+    type="textarea"
+    value="definition.description"
+    name="inputDescription"></oc-input>
+</div>
+<div class="right-form">
+  <h2 class="oc-heading page-title">&nbsp;</h2>
+  <h3 class="oc-heading section-title">{{'alarm_definitions.edit.modal.column2.title' | translate}}</h3>
+  <oc-input
+    ng-show="!ctrl.$parent.showExpressionFlag"
+    label="alarm_definitions.edit.modal.function"
+    type="select"
+    value="definition.mathFunction"
+    name="inputFunction"
+    select-options="ctrl.functionList"></oc-input>
+  <oc-input
+    ng-show="!ctrl.$parent.showExpressionFlag"
+    label="alarm_definitions.edit.modal.metric"
+    type="button"
+    action="ctrl.createAlarmDefinition.addStack('components/metrics/metric_picker.html')"
+    button-label="alarm_definitions.edit.select_metric"
+    name="inputMetric"
+    placeholder="{{definition.metric}}"
+    oc-disabled="ctrl.$parent.modalEditing"></oc-input>
+  <oc-input
+    ng-show="!ctrl.$parent.showExpressionFlag"
+    label="alarm_definitions.edit.modal.operator"
+    type="select"
+    value="definition.operator"
+    name="inputOperator"
+    select-options="ctrl.operatorList"></oc-input>
+  <oc-input
+    ng-show="!ctrl.$parent.showExpressionFlag"
+    label="alarm_definitions.edit.modal.value"
+    placeholder="alarm_definitions.edit.modal.value.placeholder"
+    type="text"
+    value="definition.value"
+    name="inputValue"
+    oc-required="!ctrl.$parent.showExpressionFlag"></oc-input>
+  <oc-input
+    ng-show="!ctrl.$parent.showExpressionFlag"
+    type="dimension"
+    dimensions="definition.dimension"
+    metric="definition.metric"
+    action="ctrl.createAlarmDefinition.addStack('components/metrics/dimension_picker.html')"
+    name="inputValue"
+    oc-disabled="ctrl.$parent.modalEditing"></oc-input>
+  <oc-input
+    ng-show="!ctrl.$parent.showExpressionFlag"
+    type="matchby"
+    dimensions="definition.matchBy"
+    metric="definition.metric"
+    action="ctrl.createAlarmDefinition.addStack('components/metrics/matchby_picker.html')"
+    name="inputValue"
+    oc-disabled="ctrl.$parent.modalEditing"></oc-input>
+  <oc-input
+    ng-show="ctrl.$parent.showExpressionFlag"
+    value="definition.expression"
+    oc-disabled="true"
+    type="textarea">
+  </oc-input>
+</div>
+<div class="col-md-8">
+  <h3 class="oc-heading section-title-column">{{'alarm_definitions.edit.modal.column3.title' | translate}}</h3>
+  <tabbedpage not-routing="true" class="alarmsNotification" pageList="ctrl.notificationsTabs"></tabbedpage>
+</div>
+<div class="form-seperator"></div>
+<div class="oc-btn-group">
+  <button
+    class="oc-btn oc-btn-default"
+    ng-bind="'common.cancel' | translate"
+    ng-click="ctrl.createAlarmDefinition.closeModal();"></button>
+  <button
+    ng-if="!ctrl.$parent.modalEditing"
+    class="oc-btn oc-btn-primary"
+    ng-bind="'alarm_definitions.action.table.button.create' | translate"
+    ng-click="ctrl.submitAlarmDefinition()"
+    ng-disabled="ctrl.disableCreateButtonFlag"></button>
+  <button
+    ng-if="ctrl.$parent.modalEditing"
+    class="oc-btn oc-btn-primary"
+    ng-bind="'alarm_definitions.action.table.button.edit' | translate"
+    ng-click="ctrl.$parent.editAlarmDefinition()"
+    ng-disabled="modalForm.$invalid"></button>
+  <button
+    ng-if="ctrl.$parent.modalEditing"
+    class="oc-btn oc-btn-primary"
+    ng-bind="'alarm_definitions.delete.modal.button.delete' | translate"
+    ng-click="ctrl.$parent.showDeleteModal(definition)"></button>
+</div>

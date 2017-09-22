@@ -1,0 +1,41 @@
+<div class="left-form" style="margin-top: 20px">
+
+    <h2 class="oc-heading">
+        {{ 'storage.block_storage.backend.volumetype.add.extra.specs' | translate:{ name:modalOptions.data.name } }}
+    </h2>
+
+    <oc-input name="snapshot_retention"
+              value="$parent.bsAddBackendControl.extra_specs[0].snapshot_retention"
+              label="storage.block_storage.backend.volumetype.add.extra.specs.input.snapshot.retention"
+              placeholder="storage.block_storage.backend.volumetype.add.extra.specs.placeholder.snapshot.retention"
+              type="text">
+    </oc-input>
+
+    <oc-input name="snapshot_expiration"
+              value="$parent.bsAddBackendControl.extra_specs[1].snapshot_expiration"
+              label="storage.block_storage.backend.volumetype.add.extra.specs.input.snapshot.expiration"
+              placeholder="storage.block_storage.backend.volumetype.add.extra.specs.placeholder.snapshot.expiration"
+              type="text">
+    </oc-input>
+
+    <oc-input name="snap_cpg"
+              value="$parent.bsAddBackendControl.extra_specs[2].snap_cpg"
+              label="storage.block_storage.backend.volumetype.add.extra.specs.input.snap.cpg"
+              placeholder="storage.block_storage.backend.volumetype.add.extra.specs.placeholder.snap.cpg"
+              type="text">
+    </oc-input>
+
+    <oc-input name="reserved_percentage"
+              value="$parent.bsAddBackendControl.extra_specs[3].reserved_percentage"
+              label="storage.block_storage.backend.volumetype.add.extra.specs.input.reserved.percentage"
+              placeholder="storage.block_storage.backend.volumetype.add.extra.specs.placeholder.reserved.percentage"
+              type="text">
+    </oc-input>
+
+    <oc-input name="over_subscription"
+              value="$parent.bsAddBackendControl.extra_specs[4].over_subscription"
+              label="storage.block_storage.backend.volumetype.add.extra.specs.input.over.subscription"
+              placeholder="storage.block_storage.backend.volumetype.add.extra.specs.placeholder.over.subscription"
+              type="text">
+    </oc-input>
+</div>

@@ -1,0 +1,93 @@
+<!-- template for alarm summary -->
+<div id="alarm_summary_main"
+     ng-show="showEmptyDataPageFlag==false && initAlarmTableDataLoadingFlag==false">
+    <!--new alarms -->
+    <div ng-if="hasNewAlarm" class="row">
+        <div class="col-md-12">
+            <div class="alarmList padding_bottom">
+                <!--new alarm tile -->
+                <h3 class="oc-heading section-title" ng-show="titlekey">{{'general.dashboard.alarm.new.title' | translate}}: {{titlekey | translate}}</h3>
+                <div class="latest-alarms-container">
+                    <div class="top-line">
+                        <oc-translate text="{{ 'alarm.summary.new.subtitle' | translate: {date: displayLatestRefreshTime.date} }}"></oc-translate>
+                        <div class="top-line-right" ng-click="showConfigureMenuFlag = !showConfigureMenuFlag">
+                            <div class="configure">{{'alarm.summary.new.configure' | translate}}</div>
+                            <button type="button" class="config-button">
+                                <i class="ardana-icon ardana-icon-Actions"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <modal-overlay show-attribute="newAlarmSummaryDataLoadingFlag"></modal-overlay>
+                    <div class="bottom-container">
+                        <div class="chart-container">
+                            <alarmcard  data="newAlarmCountSummaryData"
+                                        class="grid-item-wide flat"
+                                        vclick="toggleHeatBeatFilters">
+                            </alarmcard>
+                        </div>
+                        <div ng-show="showConfigureMenuFlag" class="config-menu">
+                            <oc-input class="config-dropdown"
+                                      label="general.dashboard.alarm.new.dropdown.title"
+                                      type="select"
+                                      value="$parent.deltaRefreshTime"
+                                      select-options="timeOptions">
+                            </oc-input>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--alarm data table -->
+    <h3 class="oc-heading section-title-table" ng-show="titlekey">{{'general.dashboard.alarm.all.title' | translate}}: {{titlekey | translate}}</h3>
+    <octable selectable pageable transformable actionmenu enumfilter sortcontrol expandable
+                 modelname="alarmTableData"
+                 configname="alarmTableConfig"
+                 loadflag="alarmTableDataLoadingFlag"
+                 tile-template-url="components/alarmsummary/table_tiletemplate.html"
+                 query-params="serverQueryParams"
+                 custom-enum-filter="tableStateEnumFilter"
+                 class="alarmtable">
+            <oct-std-header></oct-std-header>
+    </octable>
+    <!-- alarm detail dialog -->
+    <stackablemodal name="summaryAlarmDetailsModal" showAttribute="showAlarmDetailsModalFlag"
+                    modalTemplateUrl="'components/alarmsummary/alarm_details.html'">
+    </stackablemodal>
+    <!--set condition dialog -->
+    <opsmodal showAttribute="showAlarmSetConditionModalFlag" closable
+              class="setCndtn_modal"
+              close-action="cancelSetConditionModal"
+              headerTemplateUrl="components/alarmsummary/alarm_setcondition_header.html"
+              footerTemplateUrl="components/alarmsummary/alarm_setcondition_footer.html">
+        <div ng-include="'components/alarmsummary/alarm_setcondition.html'"></div>
+        <modal-overlay show-attribute="alarmSummaryModalOverlayFlag"></modal-overlay>
+    </opsmodal>
+    <!--delete alarm dialog -->
+    <opsmodal showAttribute="showAlarmDeleteModalFlag"
+              type="confirm"
+              header-title="alarm.summary.delete.modal.title"
+              commit-action="commitDeleteAlarm">
+        <div ng-include="'components/alarmsummary/alarm_delete.html'"></div>
+        <modal-overlay show-attribute="$parent.$parent.alarmSummaryModalOverlayFlag"></modal-overlay>
+    </opsmodal>
+
+    <div ng-controller="AlarmDefinitionCreationController">
+      <stackablemodal
+          name="createAlarmDefinition"
+          showAttribute="showCreateModalFlag"
+          modalTemplateUrl="'alarm/templates/alarm_definitions/edit_alarm_definition.html'">
+      </stackablemodal>
+    </div>
+</div>
+<empty-data-page show-attribute="showEmptyDataPageFlag"
+                 type="emptyDataPage.type"
+                 reason-message="emptyDataPage.reasonMessage"
+                 action-message="emptyDataPage.actionMessage"
+                 action-label="emptyDataPage.actionLabel"
+                 action="emptyDataPage.action">
+</empty-data-page>
+<!-- init table loading page mask -->
+<div class="empty-data-page" ng-if="initAlarmTableDataLoadingFlag">
+    <ocloading></ocloading>
+</div>

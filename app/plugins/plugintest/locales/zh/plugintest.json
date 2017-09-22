@@ -1,0 +1,20 @@
+{
+    "plugintest.home": "Plugin Test",
+    "plugintest.user": "User",
+    "plugintest.user_info": "User Information:",
+    "plugintest.auth_token": "Authentication Token",
+    "plugintest.auth_token_expires": "Token Expires",
+    "plugintest.projects": "Projects:",
+    "plugintest.project_name": "Project Name",
+    "plugintest.project_id": "Project ID",
+    "plugintest.item": "Item",
+    "plugintest.value": "Value",
+    "plugintest.rootscope": "Root Scope",
+    "plugintest.cookie": "Cookie",
+    "plugintest.build_version": "Build Version",
+    "plugintest.build_time": "Build Time",
+    "plugintest.build_sha": "Build SHA",
+    "plugintest.commit_date": "Commit Date",
+    "plugintest.id": "ID",
+    "plugintest.name": "Name"
+}

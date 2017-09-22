@@ -1,0 +1,22 @@
+<metriccard
+  ng-if="!capacity"
+  type="type"
+  data="data"
+  cmenu="menu"
+  ctitle="card.config.title"
+  showCondition="'true'"
+  altSummary="card.config.altsummary"
+  click="action()"
+  ng-class="{pointer: card.config.subType == 'applianceSummary' || card.config.subType == 'computeHosts'}"></metriccard>
+<ocloading ng-if="capacity && loading"></ocloading>
+<div ng-if="capacity && !loading && !noData" class="capacity-card">
+  <div class="capacity-title">{{card.title | translate}}</div>
+  <div class="capacity-body">{{ data.percent }}<span class="percent"> %</span></div>
+  <div class="capacity-subtext" ng-show="!card.virtual">{{card.physical ? 'compute_summary.capacity.utilized' : 'compute_summary.capacity.allocated' | translate: {max: data.max, used: data.data.count, units: card.units} }}</div>
+  <div class="capacity-subtext" ng-show="card.virtual">{{'compute_summary.capacity.virtual.allocated' | translate: {max: data.max, used: data.data.count, units: card.units} }}</div>
+</div>
+<div ng-if="capacity && !loading && noData" class="capacity-card">
+  <div class="capacity-title">{{card.title | translate}}</div>
+  <div class="capacity-body">{{'common.not_applicable' | translate}}</div>
+  <div class="capacity-subtext">{{'common.no_data_available' | translate}}</div>
+</div>

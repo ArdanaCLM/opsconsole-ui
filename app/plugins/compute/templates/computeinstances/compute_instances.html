@@ -1,0 +1,23 @@
+<div class="compute_main" id="compute_main"
+     ng-show="showEmptyDataPageFlag==false && initComputeInstancesDataLoading==false">
+    <octable pageable transformable actionmenu expandable enumfilter sortcontrol
+             modelname="compute_instances_data"
+             configname="compute_instances_table_config"
+             loadflag="computeInstancesDataLoading"
+             expand-template-url="compute/templates/computeinstances/table_expandtemplate.html"
+             tile-template-url="compute/templates/computeinstances/table_tiletemplate.html" class="stdcfg">
+        <oct-std-header></oct-std-header>
+    </octable>
+</div>
+<!-- show empty data page when data is empty or data error for compute instance table -->
+<empty-data-page show-attribute="showEmptyDataPageFlag"
+             type="emptyDataPage.type"
+             reason-message="emptyDataPage.reasonMessage"
+             action-message="emptyDataPage.actionMessage"
+             action-label="emptyDataPage.actionLabel"
+             action="emptyDataPage.action">
+</empty-data-page>
+<!-- init table loading page mask -->
+<div class="empty-data-page" ng-if="initComputeInstancesDataLoading">
+    <ocloading></ocloading>
+</div>

@@ -1,0 +1,38 @@
+<!--masthead notification content for popover-->
+<div ng-controller="MastheadNotificationController">
+  <div ng-if="notification.message_queue.length > 0"
+       class="popover-header">{{ 'masthead.notifs.new_notifs' | translate: {new:notification.message_stats.new, total: notification.message_queue.length} }}
+  </div>
+  <div ng-if="!notification.message_queue.length"
+       class="popover-header">{{ 'masthead.notifs.no_new_notifs' | translate}}
+  </div>
+<!--    filter might need it later...leave it here
+        <div class="control-section right-hand">
+            <div class="notif_filter_box" >
+                <span class="notif_filter_icon"></span>
+                <input class="notif_filter_input" ng-model="filterString" type="text"
+                       placeholder="{{'masthead.notifs.filter_by' | translate}}">
+                <button class="notif_filter_clear_button" ng-click="clearFilter();">
+                </button>
+            </div>
+        </div>
+ -->
+  <div class="notifs-list">
+    <div ng-repeat="item in notification.message_queue | reverseNotifications | filter: {message:filterString}"
+         class="notifs-item {{item.level}} {{item.status}}">{{item.message}}
+         <a href="" ng-if="item.action.func" ng-click="item.action.func(item.action.param)">{{item.action.label | translate}}</a>
+    </div>
+  </div>
+  <div class="popover-btns">
+    <div class="notifs-clear-btn">
+      <button class="oc-btn oc-btn-default"
+              ng-click="clear();">{{ 'masthead.notifs.clear_button' | translate}}
+      </button>
+    </div>
+    <div class="notifs-read-btn">
+      <button class="oc-btn oc-btn-default"
+              ng-click="markViewed();">{{ 'masthead.notifs.mark_button' | translate}}
+      </button>
+    </div>
+  </div>
+</div>

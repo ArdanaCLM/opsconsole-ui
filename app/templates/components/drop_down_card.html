@@ -1,0 +1,19 @@
+<div class="integratedtools_vcenterpanel">
+    <h3 class="oc-heading section-title">  {{ dataconfig.header.label | translate}} </h3>
+
+    <div class="system-summary-topruler-lighter"></div>
+    <h5 small class="integratedtools_vmwaretitle"> {{ dataconfig.header.description | translate }}</h5>
+    <div class="integratedtools_box">
+        <div class="system-summary-paneltop-medium row grid-row">
+            <div  ng-class="{'nonclickable':dataconfig.paneldisable}">
+                <div class="panel-body system-summary-panel-top" ng-disabled="dataconfig.paneldisable" ng-click="dataconfig.actionConfig[1].action()">
+                    <span class="system-summary-box-badge ">{{ dataconfig.count.count }}</span>
+
+                    <div class="system-summary-badge-text-small "> {{ dataconfig.count.label | translate }} </div>
+                    <ocloading ng-if="dataconfig.setflag"></ocloading>
+                </div>
+            </div>
+            <dropdownbutton configName="dataconfig"></dropdownbutton>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+NOTE! The application demo supports English and Japanese. To see the results of
+        localization, switch your browser language to Japanese
+
+<div container ng-controller="LocalizationExampleController">
+    <br>
+    Simple translation based on key:<br>
+    {{ 'common.save' | translate }}<br>
+    HTML:
+    <div ng-non-bindable><pre>
+        {{ 'common.save' | translate }}
+    </pre></div>
+
+    <br><br>
+    Parameter defined in-line:<br>
+    {{ 'example.demo.parameterized.1' | translate: '{username: "Bob"}' }}<br>
+    HTML:
+    <div ng-non-bindable><pre>
+        {{ 'example.demo.parameterized.1' | translate: '{username: "Bob"}' }}
+    </pre></div>
+
+    <br><br>
+    Parameter set by controller for scope:<br>
+    {{ 'example.demo.parameterized.1' | translate: translationData}}<br>
+    HTML:
+    <div ng-non-bindable><pre>
+        {{ 'example.demo.parameterized.1' | translate: translationData}}
+    </pre></div>
+
+    <br><br>
+    Multiple Parameters set by controller for scope:<br>
+    {{ 'example.demo.parameterized.2' | translate: translationData}}<br>
+    HTML:
+    <div ng-non-bindable><pre>
+        {{ 'example.demo.parameterized.2' | translate: translationData}}
+    </pre></div>
+
+    <br><br>
+    Date Example (controller set):<br>
+    {{ 'example.demo.parameterized.3' | translate: translationData}}<br>
+    HTML:
+    <div ng-non-bindable><pre>
+        {{ 'example.demo.parameterized.3' | translate: translationData}}
+    </pre></div>
+</div>
+
+<br><hr>
+Localization JSON:<br>
+<div ng-non-bindable><pre>
+{
+    "common.save" : "Save",
+    "example.demo.parameterized.1" : "{{username}} is logged in.",
+    "example.demo.parameterized.2" : "{{rawvalue}} {{units}} Free",
+    "example.demo.parameterized.3" : "{{username}} logged in last at {{sometime}}."
+}
+</pre></div>
+<br><br>
+
+Controller code:
+<pre>
+  p.controller('LocalizationExampleController', ['$scope', '$http', '$translate', '$filter', 'isUndefined',
+    function($scope, $http, $translate, $filter, isUndefined) {
+        if(isUndefined($scope.translationData)){
+            $scope.translationData = {};
+        }
+        var date = new Date();
+        $translate('example.demo.dateformat').then(function(format){
+            $scope.translationData.username = "Fred";
+            $scope.translationData.sometime = $filter('date')(date, format, date.getTimezoneOffset());
+        });
+
+        //load from a file, this could be a REST service instead
+        $http.get('./sample_data/sample_data.json').then(function(response){
+            var someData = response.data.localizationexample || [];
+            if(someData.length > 0){
+                $scope.translationData.rawvalue = someData[0].memoryUsed;
+                $scope.translationData.units = someData[0].units;
+            }
+        });
+    }
+  ]);
+</pre>

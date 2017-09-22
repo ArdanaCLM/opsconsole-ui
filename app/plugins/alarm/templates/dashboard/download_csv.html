@@ -1,0 +1,17 @@
+<import src="$parent.$parent.$parent.currentChartDownloadTarget" target="target"></import>
+
+<div class="control-section top-margin left-hand">
+  <div class="control-label label-spacing">{{'monitoring_dashboard.column_name' | translate}}:</div>
+  <span ng-repeat="d in target.data">
+    <input required name="{{inputName + $index}}" ng-model="d.label.label" class="control-input" type="text"/>
+    <span>&nbsp;</span>
+  </span>
+</div>
+<div class="control-section top-margin right-hand">
+  <div class="control-label label-spacing">{{'monitoring_dashboard.file_name' | translate}}:</div>
+  <input required name="filename" ng-model="target.fileName" class="control-input" type="text"/>
+  <span>&nbsp;</span>
+  <div class="control-label label-spacing">{{'monitoring_dashboard.include_times' | translate}}:</div>
+  <input name="includetimes" ng-model="target.includeTimes" class="control-input" type="checkbox"/>
+  <span>&nbsp;</span>
+</div>

@@ -1,0 +1,9 @@
+<import src="$parent.$parent.$parent" target="ctrl"></import>
+<ocloading class="center" ng-show="ctrl.loadingHeatMapData"></ocloading>
+<dynamic-heat-map
+  data="ctrl.memHeatMapData"
+  columns="20"
+  name="{{ctrl.currentProject}}"
+  ng-show="!ctrl.loadingHeatMapData && !ctrl.noHeatMapData"
+  clickfunc="ctrl.clickHeatmapElement" />
+<h4 ng-show="ctrl.noHeatMapData && !ctrl.loadingHeatMapData" class="center" ng-bind="'common.notabledata' | translate"></h4>

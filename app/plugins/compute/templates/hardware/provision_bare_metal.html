@@ -1,0 +1,56 @@
+<div class="col-md-12 baremetal-page">
+    <h2 class="oc-heading page-title">{{"compute.baremetal.provisioning" | translate}}: {{$parent.$parent.$parent.provisionBareMetalData.name}}</h2>
+    <div class="col-md-5 baremetal-input-field">
+        <ng-form name="$parent.$parent.$parent.provisionBareMetalFormInput">
+            <oc-input
+                    value="$parent.$parent.$parent.baremetalprovisionostype"
+                    name="baremetalostype"
+                    label="compute.baremetal.register.input.ostype"
+                    placeholder="compute.baremetal.register.input.placeholder.ostype"
+                    type="select"
+                    oc-disabled="$parent.$parent.$parent.baremetalRegisterDisable"
+                    oc-required="true"
+                    select-options="$parent.$parent.$parent.os_type_select_options"></oc-input>
+            <oc-input
+                    value="$parent.$parent.$parent.baremetalprovisionBootType"
+                    name="baremetalboottype"
+                    label="compute.baremetal.register.input.boottype"
+                    type="select"
+                    oc-disabled="$parent.$parent.$parent.baremetalRegisterDisable"
+                    oc-required="true"
+                    select-options="$parent.$parent.$parent.boot_type_select_options"></oc-input>
+            <oc-input
+                    value="$parent.$parent.$parent.baremetalprovisionosusername"
+                    name="baremetalosusername"
+                    label="compute.baremetal.register.input.osusername"
+                    placeholder="compute.baremetal.register.input.placeholder.osusername"
+                    oc-disabled="true"
+                    oc-required="true"
+                    validate="username"
+                    validate-text="ocvalidate.username"
+                    type="text"></oc-input>
+            <div class='register-password-input'>
+                <oc-input value="$parent.$parent.$parent.baremetalprovisionospassword"
+                          name="baremetalospassword"
+                          label="compute.baremetal.register.input.ospassword"
+                          placeholder="compute.baremetal.register.input.placeholder.ospassword"
+                          oc-disabled="$parent.$parent.$parent.baremetalRegisterDisable"
+                          oc-required="true"
+                          validate-text="ocvalidate.password"
+                          type="{{ $parent.$parent.$parent.inputOsPass ? 'text' : 'password'}}">
+                </oc-input>
+                <div class="register-showpass-two">
+                    <i class="gi-2x ardana-icon view-color"
+                       ng-class="{'ardana-icon-View_pressed': $parent.$parent.$parent.inputOsPass, 'ardana-icon-View': !$parent.$parent.$parent.inputOsPass}"
+                       ng-click="$parent.$parent.$parent.toggleShowOsPassword()"></i>
+                </div>
+            </div>
+        </ng-form>
+    </div>
+    <div class="col-md-12 baremetal-input-field">
+        <div style="padding:3px;">
+            <button class="oc-btn oc-btn-default" ng-click="closeModal()" ng-bind="'system.HPEoneview.connect.cancel' | translate"></button>
+            <button class="oc-btn oc-btn-primary" ng-disabled="$parent.$parent.$parent.provisionBareMetalFormInput.$invalid || $parent.$parent.$parent.bareMetalProvisionDone" ng-click="$parent.$parent.$parent.provisionBareMetalConfirm();" ng-bind="'compute.baremetal.provision.connect' | translate"></button>
+        </div>
+    </div>
+</div>

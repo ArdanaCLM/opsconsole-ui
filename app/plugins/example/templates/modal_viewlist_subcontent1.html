@@ -1,0 +1,9 @@
+<input name="username" type="text" class="control-input" placeholder="username" oc-validate="ipaddr_hostname"
+       ng-model="item.data.name" required />
+<error-span condition="userform.username" text="ocvalidate.username"></error-span>
+
+<br>
+These do NOT interact with the input above, they could though!
+<button ng-click="item.valid=false;">set item to invalid</button>
+<button ng-click="item.valid=true;">set item to valid</button>
+<button ng-click="item.label='yadayada';">set item to yadayada</button>

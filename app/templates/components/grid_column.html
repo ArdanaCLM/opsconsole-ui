@@ -1,0 +1,11 @@
+<div class="col-md-12">
+    <grid-item ng-repeat="row in rows" item-title="{{ row.title }}" item-type="row.gridType" item-row-data="row.data"
+               item-header-icon="{{ row.gridHeaderImage }}" plot-type="{{ row.plotType }}" item-grid-data="row.grid"
+               item-table-config="row.tableConfig" item-label-data="row.labelData" item-loading="row.progressData">
+
+        <div ng-if="row.line" style="margin-top:10px; margin-left:30px;">
+            <ocplot id="stackbarChart" legendid="row.legendid" dataset="row.data" height="200px" width="500px"
+                    stackbar="row.stackbar"/>
+        </div>
+    </grid-item>
+</div>

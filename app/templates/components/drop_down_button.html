@@ -1,0 +1,22 @@
+<div class=" row grid-row">
+    <div class="btn-group margin-left-btn">
+        <button type="button"
+                class="btn dropdown-toggle system-summary-box-button"
+                ng-if="(dataconfig.actionConfig && dataconfig.actionConfig.length > 0)"
+                ng-click="dataconfig.actionConfig[0].action()"
+                ng-disabled="dataconfig.dropOneDisable">
+            {{dataconfig.actionConfig[0].label | translate | uppercase}}
+        </button>
+        <button type="button" class="btn dropdown-toggle system-summary-box-caret"
+                data-toggle="dropdown" aria-expanded="false" ng-if="(dataconfig.actionConfig && dataconfig.actionConfig.length > 0)">
+            <span class="ardana-icon ardana-icon-Down expanded-icon" style="color:white;"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li ng-class="{'nonclickable':dataconfig.paneldisable}" ng-repeat="globalaction in dataconfig.actionConfig" ng-if="$index != 0">
+                <a class="pointer" style="min-width:225px;padding-top:20px;padding-bottom:20px;" ng-disabled="dataconfig.paneldisable" ng-click="globalaction.action()">
+                    {{ globalaction.label | translate | uppercase}}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

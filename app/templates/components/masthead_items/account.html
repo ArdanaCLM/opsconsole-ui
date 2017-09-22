@@ -1,0 +1,24 @@
+<!-- masthead user account content for popover -->
+<div ng-controller="MastheadSettingsController">
+  <div class="popover-header user-name">{{ user.username }}</div>
+  <div class="popover-account-items">
+      <div class="account-item"><i class="icon-item ardana-icon ardana-icon-Actions "></i>
+        <a class="pointer link-color" ng-click="showAccountSettingsModal()">{{ 'masthead.settings.account_settings' | translate }}</a>
+      </div>
+      <div class="account-item"><i class="icon-item ardana-icon ardana-icon-Logout"></i>
+          <a class="pointer link-color" ng-click="logout()">{{ 'masthead.account.logout' | translate }}</a>
+      </div>
+  </div>
+  <!-- account settings dialog -->
+  <stackablemodal name="accountSettingsModal"
+                  showAttribute="showAccountSettingsModalFlag"
+                  modalTemplateUrl="'components/masthead_items/settings.html'"
+                  closeaction="cancelAccountSettingsModal">
+  </stackablemodal>
+  <div class="oc-validate-error" ng-if="dataError">
+      <div class="text">{{ 'masthead.settings.error.retrieveuser' | translate }}</div>
+  </div>
+  <div ng-if="loading">
+      <ocloading></ocloading>
+  </div>
+</div>

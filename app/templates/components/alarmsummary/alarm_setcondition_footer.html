@@ -1,0 +1,10 @@
+<!-- template for alarm set condition footer -->
+<div align="right">
+    <button class="oc-btn oc-btn-big oc-btn-default" ng-click="$parent.$parent.cancelSetConditionModal()">
+        {{"common.cancel" | translate}}
+    </button>
+    <button id="alarmCommitSetConditionButtonId" disabled class="oc-btn oc-btn-big oc-btn-primary"
+            ng-click="$parent.$parent.commitSetConditions($parent.$parent.explorerData.summary)">
+        {{"alarm_explorer.setCndtn.setCndtnBtn" | translate}}
+    </button>
+</div>

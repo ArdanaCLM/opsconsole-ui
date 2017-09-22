@@ -1,0 +1,13 @@
+<div class="stackable-modal-wrapper">
+    <div ng-repeat="modal in modalList" class="stackable-modal-content content-{{$index}}">
+        <div class="close-button" ng-click="closeModal()">
+          <i class="ardana-icon ardana-icon-Close"></i>
+        </div>
+        <div class="content-form">
+            <ng-form name="modalForm">
+                <ng-include src="modalList[$index].template"></ng-include>
+            </ng-form>
+        </div>
+    </div>
+</div>
+<div class="modal-content-backdrop"></div>

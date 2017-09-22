@@ -1,0 +1,7 @@
+// Save this file as config.json in order to override values in the app/opscon_config.json file.
+// This is useful during development to specify alternate options, such as the bll URL, without
+// modifying the master file that is tracked in source control.
+{
+    "bll_url": "http://localhost:8084/v1/",
+    "proxy": true
+}

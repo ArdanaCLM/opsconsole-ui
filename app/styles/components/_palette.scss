@@ -1,0 +1,179 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+$body-background-color: #F0F0F0;
+$dividing-line: #CCCCCC;
+$widget-border: #BCBCBC;
+$table-header-border-color: #E0E0E0;
+
+/* GROMMET BASE COLORS */
+
+/* Primary */
+$grommet-green: #02D35F;
+$grommet-black: #333333;
+$grommet-white: #FFFFFF;
+$grommet-disabled-green: #CCEEE6;
+
+/* Neutrals */
+$grommet-slate: #425563;
+$grommet-bronze: #80746E;
+$grommet-dark-steel: #5F7A76;
+$grommet-charcoal: #767676;
+$grommet-grey: #C6C9CA;
+$grommet-shadow: #e7e7e7; /* UX supplied color */
+$grommet-silver: #F0F0F0;
+$grommet-cloud: #F6F6F6;
+$grommet-icon-grey: #D7D7D7;
+$grommet-menu-grey: #555;
+$grommet-unknown-grey: #CCC;
+$grommet-dark-grey: #555555;
+
+/* Forms */
+$grommet-form-border: #b0bebc;
+$grommet-form-border-disabled: #e9eded;
+$grommet-form-disabled: #bbb;
+$grommet-radio-color: #36B18D;
+
+$grommet-masthead-border: #dadada;
+$grommet-masthead-breadcrumb-border: #eee;
+$grommet-masthead-breadcrumb-color: #555;
+
+/* Meter Chart */
+$grommet-meter-gradient-1: #F2F2F2;
+$grommet-meter-gradient-2: #E5E5E5;
+$grommet-meter-gradient-3: #D9D9D9;
+$grommet-meter-gradient-4: #CBCBCB;
+
+/* vibrants */
+$grommet-turquoise: #2AD2C9;
+$grommet-orange: #FF8D6D;
+$grommet-purple: #614767;
+$grommet-red: #FF454F;
+$grommet-yellow: #FFD042;
+
+$oc-graph-blue-1: #0096d6;
+$oc-graph-blue-2: #59bbe4;
+$oc-graph-blue-3: #99d5ef;
+$oc-graph-blue-4: #d9eff9;
+$oc-graph-gray-1: #000000;
+$oc-graph-gray-2: #87898b;
+$oc-graph-gray-3: #b9b8bb;
+$oc-graph-gray-4: #e5e8e8;
+$oc-graph-gray-5: #aeaeae;
+$oc-graph-green-1: #008b2b;
+$oc-graph-green-2: #40a860;
+$oc-graph-green-3: #7fc595;
+$oc-graph-green-4: #bfe2ca;
+$oc-graph-purple-1: #822980;
+$oc-graph-purple-2: #8e3e8c;
+$oc-graph-purple-3: #c094bf;
+$oc-graph-purple-4: #e0c9df;
+$oc-graph-purple-5: #f2e9f2;
+$oc-graph-purple-6: #6600cc;
+$oc-graph-yellow-1: #ffd013;
+$oc-graph-brown-1: #9c5509;
+
+$oc-graph-color-1: $grommet-turquoise;
+$oc-graph-color-2: $grommet-orange;
+$oc-graph-color-3: $grommet-purple;
+$oc-graph-color-4: $oc-graph-blue-2;
+$oc-graph-color-5: $oc-graph-green-1;
+$oc-graph-color-6: $oc-graph-yellow-1;
+$oc-graph-color-7: $grommet-red;
+$oc-graph-color-8: $grommet-charcoal;
+
+$oc-alarm-ok-color: $grommet-green;
+$oc-ok-meter-color: $grommet-green;
+$oc-alarm-warning-color: $grommet-yellow;
+$oc-alarm-critical-color: $grommet-red;
+$oc-alarm-unknown-color: $grommet-unknown-grey;
+$oc-alarm-open-color: #000066;
+$oc-alarm-acknowledged-color: #0096D6;
+$oc-alarm-resolved-color: #848484;
+$oc-alarm-dark-gray: #555;
+$oc-alarm-light-gray: #a1a1a1;
+
+$oc-highlight: #02D35F;
+$oc-highlight-hover: #0578AC;
+$oc-border: #dddddd;
+
+$oc-icon-error: #D02020;
+$oc-icon-warning: #FFCD00;
+$oc-toast-black: #5a5a5a;
+$oc-toast-white: #FFFFFF;
+$oc-login-dark-gray: #555;
+$oc-login-med-gray: #9CAAA8;
+$oc-login-edit-bg-color: #F2F2F2;
+$oc-login-error: #FF0000;
+
+$grid-item-border-color: $widget-border;
+$grid-item-title-color: #999999;
+$grid-item-label-color: #999999;
+$grid-item-label-data-color: #000000;
+
+$donut-used-color: #00639A;
+$donut-free-color: #D8D9DB;
+$plot-guide-color: #CCCCCC;
+
+$status-error-color: #DC442F;
+$status-warning-color: #F4B51E;
+$status-ok-color: #42A425;
+$status-unknown-color: #848484;
+$status-disabled-color: #848484;
+
+$disabled-button-color: #dfdfdf;
+$selection-highlight-color: #c0e4f4;
+$filter-icon-fill: #BEBEBE;
+
+$utilized_fill_color: #e0e0e0;
+$soft-border-color: $widget-border;
+$mid-border-color: #999999;
+$expanded_background_color: #D5E4EB;
+
+$modal_background_color: black;
+$clear_button_text_color: #1E1E1E;
+
+$cancel_button_text_color: $oc-login-dark-gray;
+$cancel_button_border_color: #bbbbbb;
+
+$header_title_color: $oc-login-dark-gray;
+
+$fti_modal_header_color:                #f2f2f2;
+$fti_progress_bg_color:                 #e4e4e4;
+$fti_progress_border_color:             #bcbcbc;
+$fti_progress_bar_color:                #0096d9;
+$fti_section_separator:                 #aeaeae;
+$fti_backdrop:                          #999999;
+$control_bg_heading:                    #cccccc;
+
+$control_required_bg_color:             #f3f3f3;
+$control_required_border:               transparent;
+$control_optional_bg_color:             white;
+$control_optional_border:               #ACACAC;
+
+$control_invalid_color:                 #cc0000;
+$control_warning_color:                 $oc-alarm-warning-color;
+
+$switch_decorator_bg_color:             #fbfbfb;
+$editable_table_border_color:           #cbcbcb;
+$editable_table_border_color_2:         #d7d7d7;
+$editable_table_editor_separator_color: #c9c9c9;
+$separator_color:                       #c0c0c0;
+$fti_modal_drawer_bg_color:             #f7f7f7;
+
+$read_only_data_color:                  #999999;
+
+$common_input_bg_color: #F2F2F2;
+
+$oc-background-skyblue: #E3F3FA;
+
+$alternate_border_color: #e8e8e8;
+$dimension_content_color: #797979;
+$dimension_new_color: $fti_progress_border_color;
+
+$table_page_controls: #BFBFBF;
+
+$font-weight-semi-bold: 600;
+$font-weight-light: 300;
+$font-weight-lighter: 200;
+
+$utilized_color: #2ad2c9;

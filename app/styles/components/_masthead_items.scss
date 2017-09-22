@@ -1,0 +1,231 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+.menu-drawer-wrapper {
+  width: 100%;
+  position: absolute;
+  z-index: 997;
+  top: -577px;
+  @include transition(top 0.5s ease);
+  &.active {
+    top: 77px;
+  }
+  .menu-drawer {
+    margin: auto;
+    min-width: 926px;
+    max-width: 1244px;
+    height: 654px;
+    background-color: white;
+    border-top: 5px solid #0096d6;
+    border-bottom: 5px solid #0096d6;
+    .drawer-body {
+      margin-left: 69px;
+      margin-right: 69px;
+    }
+  }
+
+  .search_box {
+    background-color: #F2F2F2;
+    padding: 18px;
+    margin: 50px 0 50px 0;
+  }
+  .search_input {
+    background-color: #F2F2F2;
+    border: 0;
+    width: 600px;
+    &:focus {
+      outline-color: transparent;
+    }
+
+  }
+  .search_clear_button {
+    height: 32px;
+    background-color: $common_input_bg_color;
+    border: none;
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    background-position: 2px 0px;
+    background-image: url($close_icon);
+    padding-left: 28px;
+    float: right;
+    &:focus {
+      outline-color: transparent;
+    }
+  }
+
+  .search_icon {
+    background-image: url($search_icon);
+    background-repeat: no-repeat;
+    padding: 7px 42px 10px 0px;
+  }
+
+  .search_button {
+    text-transform: uppercase;
+    width: 200px;
+    &:focus {
+      outline-color: transparent;
+    }
+  }
+  .search_status {
+    padding-left: 20px;
+  }
+
+  .notif_filter_input {
+    background-color: #F2F2F2;
+    border: 0;
+    width: 200px;
+    padding: 5px 0 5px 5px;
+    &:focus {
+      outline-color: transparent;
+    }
+  }
+  .notif_filter_input::-ms-clear {
+    display: none;
+  }
+  .notif_filter_icon {
+    background-image: url($filter_icon);
+    background-repeat: no-repeat;
+      background-size: 24px;
+    padding: 0 30px 0 0;
+  }
+  .notif_filter_box {
+    margin:10px 5px 10px 0;
+      text-align:right;
+  }
+  .notif_filter_clear_button {
+    height: 32px;
+    background-color: $common_input_bg_color;
+    border: none;
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    background-position: 2px 4px;
+    background-image: url($close_icon);
+    padding-left:28px;
+    float: right;
+    &:focus {
+      outline-color: transparent;
+    }
+  }
+}
+
+.nolink:hover{
+  text-decoration: none;
+}
+
+.settings-overlay.popover-item {
+  .modal-overlay {
+    margin-left: 69px;
+    margin-right: 69px;
+  }
+}
+.masthead-popover {
+  max-width: 100%;
+  border-radius: 0px;
+  box-shadow: 0 0px 0px;
+  min-width: 400px;
+  min-height: 200px;
+  //some common styling for popover content
+  .popover-header {
+    margin-bottom: 30px;
+    margin-top: 20px;
+    vertical-align: top;
+    font-weight: $font-weight-semi-bold;
+    &.user-name {
+      font-size: 18px;
+      margin-bottom: 24px;
+      margin-left: 12px;
+    }
+  }
+  .popover-account-items {
+    font-size: 18px;
+    margin-left: 12px;
+    .icon-item {
+      margin-right: 12px;
+    }
+    .account-item {
+      margin-bottom: 12px;
+    }
+  }
+  .popover-res-btn {
+    width: 180px;
+    height: 120px;
+    display: inline-block;
+    vertical-align: top;
+    font-style: normal;
+    font-size: 16px;
+    text-align: center;
+    padding: 16px;
+    .link-icon-size {
+      font-size: 1.5em;
+    }
+  }
+  .popover-btns {
+    position: relative;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    height: 37px; //height of the button
+    .notifs-clear-btn {
+      position:absolute;
+      left:15px;
+    }
+    .notifs-read-btn {
+      position: absolute;
+      right:15px;
+    }
+    .account-btns {
+      float: left;
+    }
+  }
+  .notifs-list {
+    height: 250px;
+    width: 500px;
+    overflow-y: scroll;
+    margin: 10px 10px 10px 10px;
+    clear:both;
+  }
+  .notifs-item {
+    padding: 5px 0 5px 40px;
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    background-position: 5px top;
+    &.new {
+      font-weight: $font-weight-semi-bold;
+    }
+    &.error {
+      background-image: url($notif_icon_error);
+    }
+    &.warn {
+      background-image: url($notif_icon_warning);
+    }
+    &.info {
+      background-image: url($notif_icon_info);
+    }
+  }
+  .settings-popover {
+    width: 516px; //same as input size
+  }
+  .settings-password-input {
+    position: relative;
+    width: 487px;
+    input{
+      outline:none;
+    }
+  }
+  .settings-showpass {
+    position: absolute;
+    top:25px;
+    right:10px;
+    height:36px;
+    width: 36px;
+    cursor: pointer;
+    .view-color {
+      color: #696969;
+    }
+  }
+  .drilldown-popover {
+    margin-bottom: 15px;
+  }
+  .link-color {
+    color: $grommet-green;
+  }
+} //end of .masthead-popover
+

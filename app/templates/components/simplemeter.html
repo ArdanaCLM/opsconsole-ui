@@ -1,0 +1,15 @@
+<div class="simple_meter_container">
+    <div class="simple_meter_inner_container">
+        <div class="meter-background">
+            <div class="background-gradient-1"></div>
+            <div class="background-gradient-2"></div>
+            <div class="background-gradient-3"></div>
+            <div class="background-gradient-4"></div>
+        </div>
+        <div ng-style="fillstyle"
+             class="simple_meter_cell_filled"
+             ng-class="{'overflow-filled': value > 100}" ></div>
+    </div>
+    <div class="simplemeter_align_text"
+         ng-class="{'overflow-text': value > 100}">{{value}}<span ng-if="includePercentSign">%</span></div>
+</div><br>

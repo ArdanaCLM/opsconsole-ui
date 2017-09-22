@@ -1,0 +1,156 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+$donut_svg_height: 140px;
+$donut_svg_width: 140px;
+$horseshoe_svg_height: 130px;
+$horseshoe_svg_width: 130px;
+svgdonut {
+    height: $donut_svg_height;
+
+    figure {
+        position: relative;
+    }
+    svg {
+        display: inline-block;
+        position: relative;
+        opacity: 1;
+        width: $donut_svg_width;
+        height: $donut_svg_height;
+        margin-right: 48px;
+    }
+    .arcOk {
+        stroke: $oc-ok-meter-color;
+        stroke-width: 2px;
+        fill: none;
+        position: absolute;
+    }
+    .arcWarning {
+        stroke: $oc-alarm-warning-color;
+        stroke-width: 2px;
+        fill: none;
+        position: absolute;
+    }
+    .arcCritical {
+        stroke: $oc-alarm-critical-color;
+        stroke-width: 12px;
+        fill: none;
+        position: absolute;
+    }
+    .arcUnknown {
+        stroke: $oc-alarm-unknown-color;
+        stroke-width: 2px;
+        fill: none;
+        position: absolute;
+    }
+    svg:not(.ng-hide) + figcaption {
+        position: relative;
+        top: -15px;
+    }
+    figcaption {
+        display: inline-block;
+        height: $donut_svg_height;
+        ul {
+            list-style: none;
+            padding-left: 0;
+            li {
+                margin-bottom: 0;
+                line-height: 30px;
+                .title {
+                    min-width: 84px;
+                    display: inline-block;
+                }
+                .count {
+                    font-weight: bold;
+                    font-size: 18px;
+                }
+
+                .condition {
+                    display: inline-block;
+                    height: 15px;
+                    width: 15px;
+                    margin-right: 2px;
+                }
+                .condition.ok {
+                    background: $grommet-green;
+                }
+                .condition.warning {
+                    background: $grommet-yellow;
+                }
+                .condition.critical {
+                    background: $grommet-red;
+                }
+                .condition.unknown {
+                    background: $grommet-grey;
+                }
+            }
+        }
+    }
+  .header {
+    font-size: 18px;
+    margin-bottom: 35px;
+    font-weight: 300;
+  }
+}
+svghorseshoe {
+    width: 135px;
+
+    .header .text {
+        width: $horseshoe_svg_width;
+        text-align: center;
+        font-size: 16px;
+        line-height: 1;
+    }
+    figure {
+        position: relative;
+    }
+    svg {
+        display: inline-block;
+        position: relative;
+        opacity: 1;
+        width: $horseshoe_svg_width;
+        height: $horseshoe_svg_height;
+    }
+
+    .plotLine {
+        stroke: $oc-alarm-unknown-color;
+        stroke-width: 2px;
+        stroke-dasharray: 1% 5%;
+        fill: none;
+        position: absolute;
+    }
+
+    .dangerZone {
+        stroke: $oc-alarm-unknown-color;
+        stroke-width: 2px;
+        fill: none;
+        position: absolute;
+    }
+
+    .arc {
+        stroke: $grommet-turquoise;
+        stroke-width: 8px;
+        stroke-linecap: round;
+        fill: none;
+        position: absolute;
+        &.arc-warning {
+          stroke: $grommet-red;
+        }
+    }
+    circle {
+        stroke: $grommet-turquoise;
+        fill: #fff;
+        stroke-width: 3px;
+        &.circle-warning {
+          stroke: $grommet-red;
+        }
+    }
+
+    figcaption {
+        width: 135px;
+        text-align: center;
+    }
+
+  .red-text {
+    color: $grommet-red;
+  }
+}

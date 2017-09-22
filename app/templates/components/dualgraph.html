@@ -1,0 +1,21 @@
+<div class="header">
+	<div class="text">{{ctrl.ctitle}}</div>
+</div>
+
+<div class="upperGraph">
+	<label ng-if="ctrl.data.length > 0">
+		<div class="oc-value">{{ctrl.data.length}}</div>
+		<div class="oc-unit">
+			{{'alarm_explorer.title' | translate| uppercase}}
+		</div>
+	</label>
+	<canvas class="donut" width="180" height="180"></canvas>
+</div>
+
+<div class="lowerGraph">
+	<canvas class="bar" width="250" height="131"></canvas>
+	<label>
+        <span>{{"alarm.filter.status.open" | translate}}</span><span>{{"alarm.filter.status.acknowledged" | translate}}</span><span>{{"alarm.filter.status.resolved" | translate}}</span>
+	</label>
+</div>
+

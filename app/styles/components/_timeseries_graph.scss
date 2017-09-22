@@ -1,0 +1,101 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+timeseries {
+  .small-frame {
+    width: 560px;
+    height: 310px;
+    background-color: white;
+    padding: 20px;
+  }
+
+  .large-frame {
+    width: 1140px;
+    height: 310px;
+    background-color: white;
+    padding: 20px;
+  }
+
+  .header {
+    height: 40px;
+    width: 100%;
+    position: relative;
+    .title {
+      color: $grid-item-title-color;
+      font-size: $grid-item-header-text-size;
+    }
+    button {
+      background-position: 4px -4px;
+      width: 32px;
+      height: 32px;
+      background-color: transparent;
+      border: none;
+      background-image: url($inline_menu_trigger_icon);
+      background-repeat: no-repeat;
+    }
+  }
+
+  .open {
+    button{
+      background-image: url($inline_menu_trigger_active_icon);
+    }
+  }
+
+  .btn-group.open .dropdown-toggle {
+    box-shadow: none;
+  }
+
+  .dropdown-menu.hasInput{
+    outline-style: ridge;
+    outline-color: $oc-highlight;
+  }
+
+  button.actionMenuItem, li.actionMenuItem {
+    background-image: none;
+    width: 100%;
+    line-height: 31px;
+    color: black;
+    text-align: left;
+    padding-left:20px;
+  }
+
+  li.actionMenuSubheader {
+    color: $oc-highlight;
+    border-bottom: 1px solid $soft-border-color;
+  }
+
+  .legend-area {
+    height: 50px;
+    width: 100%;
+    .legend {
+      list-style: none;
+      padding-left: 10px;
+      padding-top: 20px;
+    }
+    .legend-icon {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+    }
+    .legend-text {
+      padding-left: 25px;
+      font-size: 12px;
+      color: $grid-item-title-color;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .wide-graph-legend {
+      height: 50px;
+    }
+    .tooltip-inner {
+      max-width: none;
+      text-align: left;
+      color: $grid-item-title-color;
+      font-size: 12px;
+    }
+  }
+
+  .graphLabel {
+    color: $grid-item-title-color;
+    font-size: $grid-item-header-text-size;
+  }
+}

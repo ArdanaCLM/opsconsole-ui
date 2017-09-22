@@ -1,0 +1,59 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+//todo- remove this first line as soon as sample landing page is removed
+.container {
+  background-color: transparent;
+}
+
+$icomoon-font-path: '/fonts';
+@import './components/_grommet_fonts.scss';
+
+//required files containing variables referenced in other places
+@import './components/_palette.scss';
+@import './components/_icons.scss';
+@import './components/_branding.scss';
+
+//require the mixins that are used on following files
+@import './components/_mixins.scss';
+
+//files dependent upon variables set in other scss files
+@import './components/_common.scss';
+@import './components/_round_svg.scss';
+@import './components/_dualgraph.scss';
+@import './components/_card_alarm.scss';
+@import './components/_card_metric.scss';
+@import './components/_project_picker.scss';
+@import './components/_timeseries.scss';
+@import './components/_utilization_meter.scss';
+@import './components/_colorwrappers.scss';
+@import './components/_table.scss';
+@import './components/_navigation.scss';
+@import './components/_grid_item.scss';
+@import './components/_masthead.scss';
+@import './components/_login.scss';
+@import './components/_notifications.scss';
+@import './components/_help.scss';
+@import './components/_oc_checkbox.scss';
+@import './components/_oc_radio.scss';
+@import './components/_first_time_install.scss';
+@import './components/_menus.scss';
+@import './components/_masthead_items.scss';
+@import './components/_modal.scss';
+@import './components/_editable_table.scss';
+@import './components/_select_list.scss';
+@import './components/_stackbar.scss';
+@import './components/_listviewselector.scss';
+@import './components/_timeseries_graph.scss';
+@import './components/_dimension_selector.scss';
+@import './components/_oc_input.scss';
+@import './components/_metric.scss';
+@import './components/_tabbed_page.scss';
+@import './components/_stackable_modal.scss';
+@import './components/_footer.scss';
+@import './components/_d3_graph.scss';
+@import './components/_heatmap.scss';
+@import './components/_toasts.scss';
+@import './components/_empty_data_page.scss';
+@import './components/_application_notifications.scss';
+@import './components/_dynamic_heatmap.scss';
+@import './components/_top_ten.scss';

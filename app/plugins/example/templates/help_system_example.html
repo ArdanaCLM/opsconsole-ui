@@ -1,0 +1,33 @@
+{{"example.reco.message" | translate}}<input name="reco.message" ng-model="reco.message"><br>
+{{"example.reco.url" | translate}}<helpfield helpKey="example.reco.urlhelp"><input name="reco.url" ng-model="reco.url"></helpfield><br>
+{{"example.reco.done" | translate}}<helpfield helpKey="example.reco.donehelp"><input name="reco.url" type=checkbox ng-model="reco.done"></helpfield><br>
+
+<button ng-click="addRecommendation()">{{"example.reco.addreco" | translate}}</button>
+<button ng-click="remRecommendation()">{{"example.reco.remreco" | translate}}</button>
+
+<br><br>
+
+HTML:
+<pre>
+{{"example.reco.message" | translate}}&lt;input name="reco.message" ng-model="reco.message"&gt;&lt;br&gt;
+{{"example.reco.url" | translate}}&lt;helpfield helpKey="example.reco.urlhelp"&gt;&lt;input name="reco.url" ng-model="reco.url"&gt;&lt;/helpfield&gt;&lt;br&gt;
+{{"example.reco.done" | translate}}&lt;helpfield helpKey="example.reco.donehelp"&gt;&lt;input name="reco.url" type=checkbox ng-model="reco.done"&gt;&lt;/helpfield>&lt;br&gt;
+
+&lt;button ng-click="addRecommendation()"&gt;{{"example.reco.addreco" | translate}}&lt;/button&gt;
+&lt;button ng-click="remRecommendation()"&gt;{{"example.reco.remreco" | translate}}&lt;/button&gt;
+</pre>
+
+Controller Code:
+<pre>
+    p.controller('HelpSystemExampleController', ['$scope', 'addRecommendation', 'remRecommendation',
+        function($scope, addRecommendation, remRecommendation){
+
+        $scope.addRecommendation = function(){
+            addRecommendation($scope.reco.message, $scope.reco.url, $scope.reco.done);
+        };
+
+        $scope.remRecommendation = function(){
+            remRecommendation($scope.reco.message, $scope.reco.url, $scope.reco.done);
+        };
+    }]);
+</pre>

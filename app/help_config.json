@@ -1,0 +1,49 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+{
+  //the help path will be help_base_url + "/" +  doc key
+  "help_base_url": "http://example.com/permalink/productname/versionnumber",
+  "help_default_page": "opsconsole_overview",
+  //if the doc is localized, the help path will be
+  //help_base_url + "/" + locale + "/"+ doc key
+  //"is_help_I10N": true,
+
+  //this the mapping between UI context to the doc keys
+  //key is the path of the UI page + "_" + the tab name
+  //value is the doc key for the doc
+  "context_help_keys_mapping": {
+    //tabbed page key is the last part of location.hash excluding the part
+    //starting "?" plus the tab name
+    "dashboard_alarms_summary_alarmsummary": "opsconsole_dashboard",
+    "alarm_explorer_definition": "opsconsole_alarm_definitions",
+    "alarm_explorer_explorer": "opsconsole_alarm_explorer",
+    "alarm_explorer_notifications": "opsconsole_notification_methods",
+    "compute_alarm_summary_alarmsummary": "opsconsole_compute_summary",
+    "networking_summary_alarmsummary": "opsconsole_networking_summary",
+    "compute_alarm_summary_inventorysummary": "opsconsole_compute_summary_inventory",
+    "compute_alarm_summary_capacitysummary": "opsconsole_compute_summary_capacity",
+    "block_storage_summary_alarmsummary": "opsconsole_block_storage_alarm",
+    "object_storage_summary_performancesummary": "opsconsole_perf_storage",
+    "object_storage_summary_inventorysummary": "opsconsole_invent_storage",
+    "object_storage_summary_capacitysummary": "opsconsole_cap_storage",
+    "object_storage_summary_alarmsummary": "opsconsole_alarmsum_storage",
+
+    "compute_alarm_summary_summary": "cs_opsconsole_compute_summary_summary",
+    "hardware_hardwareoneview": "cs_opsconsole_hardware_oneview",
+    "hardware_hardwarebaremetal": "cs_opsconsole_hardware_baremetal",
+
+    //non-tabbed page key is the last part of location.hash excluding the part
+    //starting "?"
+    "baremetal_instances": "opsconsole_compute_baremetals",
+    "dashboard": "opsconsole_my_dashboard_overview",
+    "logging": "opsconsole_logging",
+    "compute_nodes": "opsconsole_compute_hosts",
+    "compute_instances": "opsconsole_compute_instances",
+
+    "block_storage": "cs_opsconsole_block_storage_devices",
+    "system_networking": "cs_opsconsole_system_networking",
+    "appliance_list": "cs_opsconsole_appliances",
+    "integrated_tools": "cs_opsconsole_integrated_tools",
+    "backup_restore": "cs_opsconsole_backup_restore"
+  }
+}

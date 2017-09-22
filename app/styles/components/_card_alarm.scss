@@ -1,0 +1,429 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+@import '_palette.scss';
+@import '_icons.scss';
+@import '_common.scss';
+
+
+alarmcard.grid-item-wide {
+  position: relative;
+  display: inline-block;
+  width: 372px;
+  height: 175px;
+  border: none;
+  box-shadow: $grommet-box-shadow;
+
+  .header {
+    height: 60px;
+    text-align: left;
+    line-height: 1;
+    padding: 0 0 0 24px;
+    border-bottom: 1px solid $grommet-unknown-grey;
+
+    .text {
+      position: relative;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 24px 0 0 0;
+      font-size: 16px;
+      color: $grommet-menu-grey;
+    }
+
+    .dropDown {
+        cursor: pointer;
+        position: absolute;
+        top: 12px;
+        right: 12px;
+    }
+
+    .dropdown-toggle {
+        font-size: 23px;
+        line-height: 28px;
+    }
+
+    .dropdown-menu li {
+      font-size: 18px;
+      line-height: 2;
+      padding-left: 10px;
+      &:hover {
+        background-color: $grommet-green;
+        color: $grommet-white;
+      }
+    }
+  }
+
+  .upperRow {
+      padding: 24px;
+  }
+
+  .datum {
+    display: inline-block;
+    width: 64px;
+    margin-left: 2px;
+
+    .oc-value {
+      width: 100%;
+      height: 45px;
+      color: #fff;
+      line-height: 50px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: 100;
+      padding-top: 0px;
+      margin-bottom: 2px;
+    }
+    .oc-unit {
+      text-align: center;
+      font-size: 13px;
+      line-height: 2;
+      color: $oc-alarm-light-gray;
+      white-space: nowrap;
+    }
+  }
+  .datum:first-child {
+    margin-left: 10px;
+  }
+
+  .datum.critical {
+
+    .oc-value {
+      background: $oc-alarm-critical-color;
+      font-weight: $font-weight-semi-bold;
+    }
+  }
+  .datum.critical.zero {
+    border: none;
+
+    .oc-value {
+      background: none;
+      color: $oc-alarm-critical-color;
+      font-weight: normal;
+    }
+  }
+
+  .datum.warning {
+
+    .oc-value {
+      background: $oc-alarm-warning-color;
+      font-weight: $font-weight-semi-bold;
+    }
+  }
+  .datum.warning.zero {
+    border: none;
+
+    .oc-value {
+      background: none;
+      color: $oc-alarm-warning-color;
+      font-weight: normal;
+    }
+  }
+
+  .datum.unknown {
+
+    .oc-value {
+      background: $oc-alarm-unknown-color;
+      font-weight: $font-weight-semi-bold;
+    }
+  }
+  .datum.unknown.zero {
+    border: none;
+
+    .oc-value {
+      background: none;
+      color: $oc-alarm-unknown-color;
+      font-weight: normal;
+    }
+  }
+
+  .datum.total {
+      color: $oc-alarm-dark-gray;
+
+      .oc-value {
+          color: $grommet-slate;
+          font-weight: 400;
+      }
+  }
+}
+
+alarmcard.grid-item-wide:not(.flat) {
+  .lowerRow {
+    .datum {
+      position: absolute;
+      bottom: 0;
+      border: none;
+      background: $oc-login-edit-bg-color;
+      color: $oc-alarm-dark-gray;
+      width: 127px;
+      height: 68px;
+
+      .oc-value {
+        background: $oc-login-edit-bg-color;
+        color: $oc-alarm-dark-gray;
+      }
+      .oc-unit {
+        line-height: 1;
+        margin-top: -5px;
+      }
+    }
+
+    .datum:first-child {
+      left: 0;
+      margin: 0;
+      padding-left: 70px;
+    }
+
+    .datum:last-child {
+      right: 0;
+      margin: 0;
+      padding-right: 70px;
+    }
+  }
+}
+
+.latest-alarms-header {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: $font-weight-semi-bold;
+  height: 16px;
+  margin-top: 15px;
+  margin-bottom: 41px;
+}
+.latest-alarms-container {
+  height: 221px;
+  background-color: white;
+  box-shadow: $grommet-box-shadow;
+  margin: 12px 0px 20px 0px;
+  .top-line {
+    font-size: 16px;
+    color: $grommet-menu-grey;
+    padding: 24px 15px 0px 15px;
+    height: 60px;
+    border-bottom: 1px solid $grommet-unknown-grey;
+    .top-line-right {
+      display: flex;
+      float: right;
+      height: 0px;
+      cursor: pointer;
+      height: 25px;
+      .configure {
+        text-transform: uppercase;
+        color: $grommet-green;
+      }
+      .config-button {
+        font-size: 24px;
+        color: $grommet-black;
+        background-color: transparent;
+        border: none;
+        position: relative;
+        top: -5px;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+  .bottom-container {
+    display: flex;
+    position: relative;
+    .chart-container {
+      padding: 15px 0px 0px 15px;
+    }
+    .config-menu {
+      margin-top: 38px;
+      padding: 8px 0px 0px 15px;
+      cursor: pointer;
+      position: absolute;
+      right: 36px;
+
+      oc-input.config-dropdown .oc-input {
+        border: 2px solid $grommet-green;
+        width: 365px;
+      }
+    }
+  }
+}
+
+
+
+alarmcard.grid-item-wide.flat {
+  width: 100%;
+  height: auto;
+  border: none;
+  box-shadow: none;
+
+  .header {
+    display: none;
+  }
+
+  .upperRow, .lowerRow {
+    display: inline-block;
+  }
+
+  .datum {
+    margin-left: 15px;
+    width: 100px;
+    .oc-value {
+      height: 70px;
+      padding-top: 15px;
+    }
+  }
+
+  .datum:not(.zero) .oc-unit {
+    background: #fff;
+  }
+
+  .datum.critical {
+    margin-left: 0;
+  }
+
+  .datum.total .oc-value, .datum.open .oc-value {
+    color: $oc-alarm-unknown-color;
+  }
+
+  .datum.open.zero {
+    margin-left: 10px;
+  }
+
+  .datum.open:not(.zero) {
+    border: 1px solid $oc-alarm-unknown-color;
+
+    .oc-value {
+      color: $oc-alarm-unknown-color;
+      background: #fff;
+      border-bottom: 1px solid $oc-alarm-resolved-color;
+    }
+  }
+
+  .datum.total:not(.zero) {
+    .oc-value {
+      color: $oc-alarm-unknown-color;
+      background: #fff;
+    }
+  }
+
+  .datum.button_on{
+    .oc-unit {
+      border-bottom: 4px solid black;
+      margin-bottom: -4px;
+    }
+  }
+}
+
+.alarms-services {
+  alarmcard-service.grid-item-wide {
+    position: relative;
+    display: inline-block;
+    width: 264px;
+    height: 227px;
+    cursor: pointer;
+    border: none;
+
+    .header {
+      height: 45px;
+      text-align: center;
+      line-height: 1;
+      margin: 5px 0 0 0;
+
+      .text {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-size: 18px;
+      }
+    }
+
+    .datum {
+      display: inline-block;
+      width: 110px;
+      margin-left: 4px;
+      margin-bottom: 10px;
+
+      .oc-value {
+        width: 100%;
+        height: 50px;
+        color: #fff;
+        line-height: 50px;
+        text-align: center;
+        font-size: 32px;
+        font-weight: 300;
+        padding-top: 7px;
+      }
+      .oc-unit {
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+        line-height: 2;
+        color: $oc-alarm-light-gray;
+      }
+    }
+  }
+
+  alarmcard-service.grid-item-wide:not(.flat) {
+    .datum {
+      position: absolute;
+      bottom: 0;
+      border: none;
+      background: $oc-login-edit-bg-color;
+      color: $oc-alarm-dark-gray;
+      width: 300px;
+      height: 68px;
+
+      .oc-value {
+        background: $oc-login-edit-bg-color;
+        color: $oc-alarm-dark-gray;
+      }
+      .oc-unit {
+        line-height: 1;
+        margin-top: -5px;
+      }
+    }
+  }
+
+  alarmcard-service.grid-item-wide.flat {
+    width: 100%;
+    height: auto;
+    border: none;
+    background: none;
+
+    .header {
+      display: none;
+    }
+
+    .datum {
+      margin-right: 15px;
+    }
+
+    .datum:not(.zero) .oc-unit {
+      background: #fff;
+    }
+
+    .datum.total .oc-value{
+      color: $grommet-slate;
+    }
+
+    .datum.total:not(.zero) {
+      border: 1px solid $oc-alarm-unknown-color;
+
+      .oc-value {
+        color: $oc-alarm-unknown-color;
+        background: #fff;
+        border-bottom: 1px solid $oc-alarm-resolved-color;
+      }
+    }
+
+    .datum.button_on{
+      .oc-value {
+        background: $oc-highlight !important;
+        color: white !important;
+      }
+      .oc-unit {
+        background: $oc-highlight;
+        color: white;
+      }
+    }
+  }
+}

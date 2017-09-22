@@ -1,0 +1,40 @@
+<div class="top-line">
+    <div title="{{data.name}}" class="item-name" ng-class="{'selectable' : data.name.length > 40}">{{data['name']}}</div>
+    <div class="status-icon" ng-bind-html="data['ping_status'] | tableStatusFilter"></div>
+</div>
+<div class="second-line">{{data['hypervisor'] | customCase}}, {{data['state']}}</div>
+<table id="table-compact-tile-col1" class="full-width">
+    <tbody>
+    <tr ng-if="data['state'] != 'imported'" class="meter-line">
+        <td class="meter-label">{{"compute.compute_nodes.table.tile.row.label.cpu" | translate}}</td>
+        <td class="meter-chart"><ocsimplemeter
+                fillPct="{{data['allocated_cpu'] | calcPercent:data['total_cpu']}}"></ocsimplemeter>
+        </td>
+    </tr>
+
+    <tr ng-if="data['state'] != 'imported'" class="meter-line">
+        <td class="meter-label">{{"compute.compute_nodes.table.tile.row.label.memory" | translate}}</td>
+        <td class="meter-chart">
+                <ocsimplemeter fillPct="
+                        {{data['allocated_memory'] | calcPercent:data['total_memory']}}"></ocsimplemeter>
+        </td>
+    </tr>
+
+    <tr ng-if="data['state'] != 'imported'" class="meter-line">
+        <td class="meter-label">{{"compute.compute_nodes.table.tile.row.label.storage" | translate}}</td>
+        <td class="meter-chart">
+                <ocsimplemeter fillPct="
+                        {{data['allocated_storage'] | calcPercent:data['total_storage']}}"></ocsimplemeter>
+        </td>
+    </tr>
+    <tr ng-if="data['state'] == 'imported'">
+        <td class="na-cell">
+            {{"compute.table.data.usage_and_allocation.not_available" | translate}}
+        </td>
+    </tr>
+
+    <tr class="spaceUnder" ng-if="data['state'] == 'imported'">
+        <td></td>
+    </tr>
+    </tbody>
+</table>

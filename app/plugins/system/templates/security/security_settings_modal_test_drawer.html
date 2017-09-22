@@ -1,0 +1,26 @@
+<div class="control-section full-width">
+	<div class="control-heading" ng-bind="'Test Completed: Result' | translate | uppercase"></div>
+	<div class="test-results">
+		<div class="test-result">
+			<div class="icon inline" ng-class="{'error': this_data.auth_error}"></div>
+			<div class="result-text inline">
+				<div class="main-text" ng-bind="this_data.auth_error ? 'system.ldap.auth_error_message' : 'system.ldap.auth_message' | translate"></div>
+				<div class="sub-text" ng-bind="this_data.auth_error ? 'system.ldap.test_error_sub_message' : 'system.ldap.test_sub_message' | translate"></div>
+			</div>
+		</div>
+		<div class="test-result">
+			<div class="icon inline" ng-class="{'error': this_data.search_error}"></div>
+			<div class="result-text inline">
+				<div class="main-text" ng-bind="this_data.search_error ? 'system.ldap.search_error_message' : 'system.ldap.search_message' | translate"></div>
+				<div class="sub-text" ng-bind="this_data.search_error ? 'system.ldap.test_error_sub_message' : 'system.ldap.test_sub_message' | translate"></div>
+			</div>
+		</div>
+		<div class="test-result">
+			<div class="icon inline" ng-class="{'error': this_data.keystone_error}"></div>
+			<div class="result-text inline">
+				<div class="main-text" ng-bind="this_data.keystone_error ? 'system.ldap.keystone_error_message' : 'system.ldap.keystone_message' | translate"></div>
+				<div class="sub-text" ng-bind="this_data.keystone_error ? 'system.ldap.test_error_sub_message' : 'system.ldap.test_sub_message' | translate"></div>
+			</div>
+		</div>
+	</div>
+</div>

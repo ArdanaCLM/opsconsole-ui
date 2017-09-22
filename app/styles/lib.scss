@@ -1,0 +1,151 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+@import './components/_palette.scss';
+
+$icon-font-path: "/fonts/";
+$body-bg: $body-background-color;
+$font-family-sans-serif: "MetricHPE-Web";
+$font-size-base: 16px;
+
+$link-color: $grommet-green;
+$link-hover-color: darken($link-color, 15%) !important;
+
+$tooltip-bg: #FFF;
+$tooltip-color: #000;
+$tooltip-opacity: 1.0;
+
+$footer_space: 86px;
+
+@import '../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap';
+
+hr.slimhr{
+  margin-top: 3px;
+}
+
+$spinkit-spinner-color: $oc-highlight;
+
+@import '../bower_components/SpinKit/scss/spinners/7-three-bounce';
+
+.spinner-center {
+  width: 70px;
+  height: 24px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+.drawer-loading {
+  height: 252px;
+  padding-top:50px;
+}
+
+#mainContainer {
+    >.row {
+        overflow:   hidden;
+        min-height: 830px;
+    }
+
+    .main-body {
+        margin-bottom: $footer_space;
+    }
+
+    .main-body.menued {
+            margin-left: 270px;
+            margin-right: 0;
+            overflow-x: scroll;
+            width: calc(100% - 270px);//not clear this is doing anything
+
+            >ng-view {
+                width: 1143px;
+                display: block;
+            }
+
+    }
+}
+
+@media only screen and (min-width: 1340px) {
+  #mainContainer {
+    min-width:1328px;
+
+    >.row {
+      margin-left: auto;
+      margin-right: auto;
+      width: 1140px;
+      overflow: visible;
+    }
+
+    .main-body {
+      padding-left: 0;
+      padding-right: 0;
+      width: 1140px;
+    }
+
+    .main-body.menued {
+      left: 40px;
+      width: 1140px;
+      margin-left: 60px;
+    }
+  }
+}
+
+
+@media only screen and (min-width: 1465px) {
+    #mainContainer {
+        min-width:1463px;
+
+        >.row {
+            margin-left: auto;
+            margin-right: auto;
+            width: 1143px;
+            overflow: visible;
+        }
+
+        .main-body {
+            padding-left: 0;
+            padding-right: 0;
+            width: 1143px;
+        }
+
+        .main-body.menued {
+            left: 86px;
+            width: 1172px;
+            margin-left: 60px;
+        }
+    }
+}
+
+@media only screen and (min-width: 1640px) {
+    #mainContainer {
+        margin-left: 0;
+        min-width: 100%;
+
+        >.row {
+            margin-left: auto;
+            margin-right: auto;
+            width: 1143px;
+            overflow: visible;
+        }
+
+        .main-body {
+            padding-left: 0;
+            padding-right: 0;
+            width: 1143px;
+        }
+
+        .main-body.menued {
+            left: 0;
+            position: inherit;
+            width: 100%;
+            overflow: visible;
+        }
+    }
+}
+
+@media only screen and (min-width: 1754px) {
+    #mainContainer .main-body.menued {
+        margin-left: 0;
+    }
+}

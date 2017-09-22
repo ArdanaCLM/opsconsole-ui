@@ -1,0 +1,40 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+
+@import './_palette.scss';
+
+.empty-data-page {
+  font-size: 36px;
+  font-weight: $font-weight-semi-bold;
+  line-height: 1.2;
+  margin-top: 114px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 500px;
+  width: 650px;
+  text-align: center;
+  color: $grommet-dark-grey;
+  .icon-items {
+    .icon-big-size {
+      font-size: 100px;
+    }
+    .icon-mid-size {
+      font-size: 50px;
+    }
+    .big-margin {
+       margin-bottom: 30px;
+    }
+    .small-margin {
+      margin-bottom: 2px;
+    }
+  }
+  .error-text {
+    font-size: 48px;
+  }
+  .error-reason {
+    font-size: 14px;
+  }
+  .error-action {
+    font-size: 24px;
+  }
+}

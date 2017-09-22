@@ -1,0 +1,32 @@
+<div container ng-controller="DonutSVGExampleController">
+
+    <!-- -->
+    <svgdonut data=donut1Data ctitle="'title test'" />
+    <p>HTML Code:</p>
+    <pre>
+        &lt;svgdonut data=donut1Data ctitle="'title test'"&gt;
+    </pre>
+    <br><br>
+
+
+    <svgdonut data=donut1Data ctitle="'no graph'" withold="'graph'"/>
+    <p>HTML Code:</p>
+    <pre>
+        &lt;svgdonut data=donut1Data ctitle="'no graph'" withold="'graph'"&gt;
+    </pre>
+    <br><br>
+
+
+    <svgdonut data=donut1Data ctitle="'no legend'" withold="'legend'"/>
+    <p>HTML Code:</p>
+    <pre>
+        &lt;svgdonut data=donut1Data ctitle="'no legend'" withold="'legend'"&gt;
+    </pre>
+    <br><br>
+
+</div>
+
+Data format:
+<pre>
+    {'ok':{count:10},'warning':{count:20},'critical':{count:9},'unknown':{count:1}}
+</pre>

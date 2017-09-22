@@ -1,0 +1,37 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+.oc-toasts {
+  position: absolute;
+  right: 0;
+  top: 132px;
+  z-index: 1010;
+  .oc-toast {
+    height: 84px;
+    width: 428px;
+    background-color: $grommet-white;
+    z-index: 10;
+    margin: 10px;
+    opacity: 1;
+    box-shadow: $grommet-box-shadow;
+    transition-property: opacity;
+    transition-duration: 0.25s;
+    &.removed {
+      opacity: 0;
+    }
+    .toast-icon {
+      @extend .inline;
+      font-size: 24px;
+      margin: 24px;
+    }
+    .toast-text {
+      @extend .inline;
+      margin-top: 24px;
+      max-width: 280px;
+    }
+    .toast-close {
+      @extend .toast-icon;
+      cursor: pointer;
+      float: right;
+    }
+  }
+}

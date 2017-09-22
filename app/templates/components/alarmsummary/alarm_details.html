@@ -1,0 +1,163 @@
+<!--template of alarm details -->
+<import src="$parent.$parent.$parent.explorerData" target="explorerData"/>
+<import src="$parent.$parent.$parent.alarmSummaryControl" target="alarmControl"/>
+
+<div class="col-md-12 alarm-details">
+  <!-- alarm details header -->
+  <h2 class="oc-heading page-title">{{'alarm_explorer.details.table.title' | translate}}: {{explorerData.summary.name}}</h2>
+  <h3 class="oc-heading section-title">{{'alarm_explorer.details.table.title' | translate}}</h3>
+  <br>
+
+  <!-- alarm details -->
+  <div class="top-container">
+    <div class="col-md-6 left-col">
+      <table>
+        <tbody>
+          <tr>
+            <td class="alarm-details-label leftshift">
+              {{"alarm_explorer.table.header.state" | translate | uppercase}}:</td>
+            <td class="expanded-alarm-value">
+              <span class="alarm-tab-state" ng-bind-html="explorerData.summary.ui_status | tableStatusFilter" />
+                        {{explorerData.summary.state}}
+            </td>
+          </tr>
+          <tr>
+            <td class="alarm-details-label leftshift">
+              {{"alarm_explorer.details.table.alarm_name" | translate | uppercase}}:</td>
+            <td class="expanded-alarm-value">{{explorerData.summary.name}}</td>
+          </tr>
+          <tr>
+            <td class="alarm-details-label leftshift">
+            {{"alarm_definitions.table.header.description" | translate | uppercase}}:</td>
+            <td class="expanded-alarm-value">{{explorerData.summary.description[0]}}</td>
+          </tr>
+          <tr>
+            <td class="alarm-details-label leftshift">
+              {{"alarm_explorer.table.header.id" | translate | uppercase}}:</td>
+            <td class="expanded-alarm-value">{{explorerData.summary.id}}</td>
+          </tr>
+          <tr>
+            <td class="alarm-details-label leftshift">
+              {{"alarm_explorer.label.alarm_def_id" | translate | uppercase}}:</td>
+            <td class="expanded-alarm-value">{{explorerData.summary.alarmDefId}}</td>
+          </tr>
+          <tr>
+            <td class="alarm-details-label leftshift">
+              {{"alarm_explorer.table.header.lastCheck" | translate | uppercase}}:</td>
+            <td class="expanded-alarm-value">{{explorerData.summary.lastCheck}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-6 right-col">
+      <!--comments-->
+      <div class="alarm-details-label">{{"alarm_explorer.table.header.comment" | translate | uppercase}}:</div>
+      <textarea rows="10" cols="50" name="alarm_details_comment" class="text-area-box"
+                ng-model="explorerData.summary.statusInfo">{{explorerData.summary.statusInfo}}</textarea>
+      <!-- alarm buttons -->
+      <div class="action-btn-container">
+        <button class="oc-btn oc-btn-default"
+                ng-click="alarmControl.viewAlarmDefinition(explorerData.summary)">
+          {{"alarm_explorer.view_alarm_def" | translate}}
+        </button>
+        <button class="oc-btn oc-btn-default"
+                ng-click="alarmControl.commitUpdateComment(explorerData.summary)">
+          {{"alarm_explorer.details.table.update_comment" | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+  <hr class="alarm-hr small-margin-bottom">
+
+  <!-- alarm dimensions and value meta -->
+  <div class="alarm-loading">
+    <ocloading ng-show="alarmControl.alarmSummaryMetricModalOverlayFlag"/>
+  </div>
+  <!-- good alarm header-->
+  <h3 ng-show="alarmControl.metricDimensionCode == 0 || alarmControl.metricDimensionCode == 1"
+        class="oc-heading section-title">{{'alarm_explorer.table.header.dimension' | translate}}
+  </h3>
+  <!-- bad alarm header -->
+  <h3 ng-show="alarmControl.metricDimensionCode == 2 || alarmControl.metricDimensionCode == 3"
+        class="oc-heading section-title">{{'alarm.summary.detail.dimension.valuemeta' | translate}}
+  </h3>
+  <br>
+ <!-- good alarm or bad alarm with 1 metric dimension , show dimension -->
+  <div ng-if="(alarmControl.metricDimensionCode == 0 || alarmControl.metricDimensionCode == 2) && !alarmControl.alarmSummaryMetricModalOverlayFlag">
+      {{alarmControl.metricDetailsData[0].dimensions}}
+  </div>
+  <!-- bad alarm with 1 metric dimension and has value metas, show meta value-->
+  <div ng-if="alarmControl.metricDimensionCode == 2 && !alarmControl.alarmSummaryMetricModalOverlayFlag && alarmControl.hasValueMetaData">
+      <octable pageable sortcontrol
+             modelname="alarmControl.metricDetailsData[0].details"
+             configname="alarmControl.metricValueMetaTableConfig">
+      </octable>
+  </div>
+  <!-- bad alarm with 1 metric dimension and has no value metas, show suggestion-->
+  <div class="label-spacing" ng-if="alarmControl.metricDimensionCode == 2 && !alarmControl.alarmSummaryMetricModalOverlayFlag && !alarmControl.hasValueMetaData">
+      {{'alarm_explorer.history_table.metrics.checkhistory'| translate}}
+  </div>
+  <!-- only show tabbed section when we have multiple metrics -->
+  <div ng-if="(alarmControl.metricDimensionCode == 1 || alarmControl.metricDimensionCode == 3) && !alarmControl.alarmSummaryMetricModalOverlayFlag">
+      <tabbedpage not-routing="true" class="alarm-metric-dimension-valuemeta"
+                  pageList="alarmControl.valueMetaTabbedPages"></tabbedpage>
+  </div>
+  <hr class="alarm-hr small-margin-bottom">
+
+  <!-- alarm history-->
+  <div class="alarm-loading">
+    <ocloading ng-show="alarmControl.alarmSummaryModalOverlayFlag"/>
+  </div>
+  <h3 class="oc-heading section-title">{{'alarm_explorer.details.table.alarm_history.title' | translate}}</h3>
+  <br>
+  <!-- if have history data -->
+  <div ng-if="!alarmControl.alarmSummaryModalOverlayFlag && explorerData.summary.history && explorerData.summary.history.length > 0"
+       class="alarm-history-table">
+    <table class="full-width">
+      <tbody>
+        <tr ng-repeat="history in explorerData.summary.history">
+          <td class="col-md-4 alarm-history-row">
+            <span class="alarm-history-data">
+              {{"alarm_explorer.details.table.alarm_history.date" | translate | uppercase}}</span>
+            <span class="alarm-history-data">{{history.date}}</span><br>
+            <span class="alarm-history-data">
+              {{"alarm_explorer.details.table.alarm_history.was" | translate | uppercase}}</span>
+            <span class="alarm-history-data">{{history.was}}</span><br>
+            <span class="alarm-history-data">
+              {{"alarm_explorer.details.table.alarm_history.now" | translate | uppercase}}</span>
+            <span class="alarm-history-data">{{history.now}}</span>
+          </td>
+          <td class="col-md-8 alarm-history-row">
+            <span class="alarm-history-data">
+              {{"alarm_explorer.details.table.alarm_history.reason" | translate | uppercase}}</span>
+            <span class="alarm-history-data">{{history.reason}}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- if don't have history data -->
+  <div ng-if="!alarmControl.alarmSummaryModalOverlayFlag && (!explorerData.summary.history || explorerData.summary.history.length === 0)">
+    {{ 'alarm.summary.no_alarm_history' | translate }}
+  </div>
+  <hr class="alarm-hr">
+
+  <!-- host alarms-->
+  <div class="chart-area">
+    <div class="chart-left-col">
+      <h3 class="oc-heading section-title">{{'alarm.summary.details.host_alarms.title' | translate}}</h3>
+      <br>
+      <!-- host alarm states -->
+      <svgdonut data="explorerData.summary.hostAlarmsState.data"
+                ctitle="explorerData.summary.hostAlarmsState.title"/>
+    </div>
+    <!-- host utilization summary -->
+    <div class="chart-right-col">
+      <h3 class="oc-heading section-title">&nbsp;</h3>
+      <br>
+      <div class="host-details-header">{{explorerData.summary.hostDetails.host }}</div>
+      <host-utilization-details hostname="explorerData.summary.hostDetails.hostname">
+      </host-utilization-details>
+    </div>
+  </div>
+</div>

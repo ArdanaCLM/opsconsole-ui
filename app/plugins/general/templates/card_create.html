@@ -1,0 +1,64 @@
+<import src="$parent.$parent.$parent" target="ctrl"></import>
+
+<div class="createCard">
+    <h2 class="oc-heading page-title capitalize" ng-if="ctrl.newCardSelections.index == undefined">{{'general.dashboard.card.new.title.create' | translate}}</h2>
+    <h2 class="oc-heading page-title capitalize" ng-if="ctrl.newCardSelections.index != undefined">{{'general.dashboard.card.new.title.update' | translate}}</h2>
+    <h3 class="oc-heading section-title">{{'general.dashboard.card.new.label.definition' | translate}}</h3>
+    <ng-form name="CardCreateUpdateForm">
+        <oc-input ng-if="!ctrl.newCardSelections.staticName"
+            value="ctrl.newCardSelections.name"
+            name="cardname"
+            label="general.dashboard.card.new.card_name"
+            placeholder="general.dashboard.card.new.card_name_placeholder"
+            type="text"
+            oc-required="true">
+        </oc-input>
+
+        <oc-input ng-if="ctrl.newCardSelections.staticName"
+            value="ctrl.newCardSelections.name"
+            name="cardname"
+            label="general.dashboard.card.new.card_name"
+            placeholder="general.dashboard.card.new.card_name_placeholder"
+            type="text"
+            readonly="true">
+        </oc-input>
+
+        <oc-input
+            value="ctrl.modalCreateAlarmsServiceMode"
+            label="general.dashboard.card.new.dimension_type"
+            placeholder="general.dashboard.card.new.dimension_type_placeholder"
+            type="select"
+            select-options="ctrl.newCardType">
+        </oc-input>
+
+        <oc-input ng-if="ctrl.modalCreateAlarmsServiceMode == 'service'"
+                  type="collection"
+                  action="ctrl.cardCreationModal.addStack('general/templates/type_picker.html')"
+                  button-label="{{'general.dashboard.card.new.label.service' | translate}}"
+                  name="inputService"
+                  placeholder=""
+                  collection="ctrl.newCardSelections.serviceList">
+        </oc-input>
+
+        <oc-input ng-if="ctrl.modalCreateAlarmsServiceMode == 'hostname'"
+                  type="collection"
+                  action="ctrl.cardCreationModal.addStack('general/templates/type_picker.html')"
+                  button-label="{{'general.dashboard.card.new.label.hostname' | translate}}"
+                  name="inputHostname"
+                  placeholder=""
+                  collection="ctrl.newCardSelections.hnameList">
+        </oc-input>
+
+        <div class="buttonRow col-md-12">
+            <button class="oc-btn oc-btn-default float-left card" ng-click="ctrl.cancelNewDynCardModal(CardCreateUpdateForm)">{{'common.cancel' | translate}}</button>
+            <button ng-disabled="CardCreateUpdateForm.$invalid || !ctrl.hasCardChanged(CardCreateUpdateForm, ctrl.newCardSelections) || (ctrl.modalCreateAlarmsServiceMode == 'service' && ctrl.checkAllFalse(ctrl.newCardSelections.serviceList)) || (ctrl.modalCreateAlarmsServiceMode == 'hostname' && ctrl.checkAllFalse(ctrl.newCardSelections.hnameList))"  class="oc-btn oc-btn-primary float-left card" ng-click="ctrl.processNewDynCardModal(CardCreateUpdateForm)" disabled="disabled">
+                <span ng-if="ctrl.newCardSelections.index == undefined">
+                    {{'general.dashboard.card.new.confirm.create' | translate}}
+                </span>
+                <span ng-if="ctrl.newCardSelections.index !== undefined">
+                    {{'general.dashboard.card.new.confirm.update' | translate}}
+                </span>
+            </button>
+        </div>
+    </ng-form>
+</div>

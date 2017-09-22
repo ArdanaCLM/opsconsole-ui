@@ -1,0 +1,97 @@
+<div id="content">
+    <div>
+        <p class="conf">
+            {{ "sidebar.right_panel.content.conf" | translate }}
+        </p>
+
+        <div class="sidebar-input">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div>
+                        <label>
+                            <input type="radio" value="nics"
+                                   class="{{ node.id + '_radio_nics' }}" checked="checked"
+                                   ng-click="handleRadioSwitching($event, node.id, node.hypervisor, '_radio_nics', '_trunk_data', '_radio_switch', '_switch')">
+                            <span>{{ "compute.activate_from_action_menu.esx.nics" | translate }}</span>
+
+                            <div class="oc-info ardana-icon ardana-icon-Unknown_L"
+                                 uib-tooltip="{{ 'compute.activate.tooltip.truck' | translate:{type:'ESXi'} }}"
+                                 tooltip-placement="right"></div>
+                        </label>
+                    </div>
+                    <div class="esx_input">
+                        <input type="text" name="activate_esx_text"
+                               required
+                               ng-attr-id="{{ node.id + '_trunk_data' }}"
+                               ng-keyup="esx_validations($event, node.hypervisor)"
+                               onchange="angular.element(this).scope().sidebarInputChanged(this, angular.element(this).scope().node.hypervisor)">
+                    </div>
+                </div>
+
+                <div ng-if="$parent.$parent.$parent.$parent.esx_network_driver != '5900v'" class="col-md-6">
+                    <div>
+                        <label>
+                            <input type="radio" value="switch_name"
+                                   ng-click="handleRadioSwitching($event, node.id, node.hypervisor, '_radio_switch', '_switch', '_radio_nics', '_trunk_data')"
+                                   class="{{ node.id + '_radio_switch' }}">
+                        <span>{{ "compute.activate_from_action_menu.esx.switch_name" | translate }}
+                              <div class="oc-info ardana-icon ardana-icon-Unknown_L"
+                                   uib-tooltip="
+                                           {{ 'compute.activate.tooltip.vswitch_esx' | translate:{type:'ESXi'} }}"
+                                   tooltip-placement="right"></div></span>
+                        </label>
+                    </div>
+                    <div class="esx_input">
+                        <input type="text" name="activate_esx_text" required
+                               ng-attr-id="{{ node.id + '_switch' }}" style="display: none;"
+                               ng-keyup="esx_validations($event, node.hypervisor)"
+                               onchange="angular.element(this).scope().sidebarInputChanged(this, angular.element(this).scope().node.hypervisor)">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 extra_spacing">
+                <div class="col-md-6">
+                    <div>
+                        <label>
+                            <input type="radio" value="mgmt_nics"
+                                   class="{{ node.id + '_radio_mgmt_nics' }}" checked="checked"
+                                   ng-click="handleRadioSwitching($event, node.id, node.hypervisor, '_radio_mgmt_nics', '_mgmt_nics', '_radio_mgmt_switch', '_mgmt_switch')">
+                            <span>{{ "compute.activate_from_action_menu.esx.mgmt.nics" | translate }}</span>
+                        </label>
+                    </div>
+                    <div class="esx_input">
+                        <input type="text" name="activate_esx_text"
+                               required
+                               ng-attr-id="{{ node.id + '_mgmt_nics' }}"
+                               ng-keyup="esx_validations($event, node.hypervisor)"
+                               onchange="angular.element(this).scope().sidebarInputChanged(this, angular.element(this).scope().node.hypervisor)">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div>
+                        <label>
+                            <input type="radio" value="mgmt_switch_name"
+                                   ng-click="handleRadioSwitching($event, node.id, node.hypervisor, '_radio_mgmt_switch', '_mgmt_switch', '_radio_mgmt_nics', '_mgmt_nics')"
+                                   class="{{ node.id + '_radio_mgmt_switch' }}">
+                            <span>{{ "compute.activate_from_action_menu.esx.mgmt.switch_name" | translate }}</span>
+                        </label>
+                    </div>
+                    <div class="esx_input">
+                        <input type="text" name="activate_esx_text" required
+                               ng-attr-id="{{ node.id + '_mgmt_switch' }}" style="display: none;"
+                               ng-keyup="esx_validations($event, node.hypervisor)"
+                               onchange="angular.element(this).scope().sidebarInputChanged(this, angular.element(this).scope().node.hypervisor)">
+                    </div>
+                </div>
+            </div>
+
+            <div class=" col-md-12 extra_spacing">
+                <input type="checkbox" ng-attr-id="{{ node.id + '_isChecked' }}"
+                       ng-click="ShowWarning($event, node.name, node.hypervisor, $parent.$parent.$parent.$parent.$parent.$parent.modalDrawer)"/>
+                {{ "sidebar.right_panel.content.apply_settings" | translate: {type: "ESXi"} }}
+            </div>
+        </div>
+    </div>
+</div>

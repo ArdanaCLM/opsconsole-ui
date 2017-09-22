@@ -1,0 +1,537 @@
+<div id="alternateconfigstatusexample"></div>
+<octable filterable pageable modelname="statusData" actionmenu configname="statusTableConfig" tableid="'table1'">
+    <oct-std-header></oct-std-header>
+</octable>
+
+
+Html Code (alternate table config and status filter):
+<pre>
+  &lt;octable filterable pageable modelname="statusData" actionmenu configname="statusTableConfig" tableid="'table1'"&gt;
+    &lt;oct-std-header&gt;&lt;/oct-std-header&gt;
+  &lt;/octable&gt;
+</pre><br><hr style="border-top:4px solid black;"><br>
+
+
+<div id="singleselectexample"></div>
+<octable enumfilter pageable singleselect modelname="statusData" configname="statusTableConfig"
+         tableid="'statustable'" rowSelectionAttr="rwsl">
+    <oct-basic-header>
+        <span align="center">{{$parent.$parent.titleWithSelectionCount | translate}}</span>
+    </oct-basic-header>
+</octable>
+
+Html Code (alternate table config and status filter, with single select):
+<pre>
+  &lt;octable enumfilter pageable singleselect modelname="statusData" configname="statusTableConfig"
+    tableid="'statustable'" rowSelectionAttr="rwsl"&gt;
+     &lt;oct-basic-header&gt;&lt;span align="center"&gt;{ {$parent.$parent.titleWithSelectionCount | translate} }&lt;/span&gt;&lt;/oct-basic-header&gt;
+  &lt;/octable&gt;
+</pre><br><hr style="border-top:4px solid black;"><br><br><br>
+
+
+<div id="actiontransformtablexpandableexample"></div>
+<octable selectable transformable actionmenu expandable enumfilter sortcontrol
+         modelname="data"
+         expand-template-url="example/templates/table_example_div.html"
+         tile-template-url="example/templates/table_example_tiletemplate.html">
+    <oct-std-header></oct-std-header>
+</octable>
+</div>
+
+
+<a href="#/example/table_example?skipFti=true&filterField0=something&filterValue0=elephants&filterField1=name&filterValue1=Test">
+    test out drilldown!</a><br><br>
+
+Html Code (split attribute changes the style of the table, selectable adds selection capability):
+<pre>
+  &lt;octable selectable transformable actionmenu expandable enumfilter sortcontrol
+    modelname="data"
+    expand-template-url="example/templates/table_example_div.html"
+    tile-template-url="example/templates/table_example_tiletemplate.html"/&gt;
+    &lt;oct-std-header&gt;&lt;/oct-std-header&gt;
+</pre><br><hr style="border-top:4px solid black;"><br>
+
+Attributes List:
+        <table style="background-color:white; border:1px solid black;">
+            <thead>
+            <th class="col-md-3">Attribute Name</th>
+            <th class="col-md-3">Functionality</th>
+            </thead>
+            <tr style="background-color:white; border:1px solid black;">
+                <td>modelname</td>
+                <td>specifies the model in the parent scope that the data is loaded from (required)</td>
+            </tr>
+            <tr style="background-color:white; border:1px solid black;">
+                <td>loadflag</td>
+                <td>specifies the model in the parent scope that indicates (true/false) data is loading(optional)</td>
+            </tr>
+            <tr style="background-color:white; border:1px solid black;">
+                <td>configname</td>
+                <td>specifies the table config in the parent scope that the table config is loaded from (defaults to "tableConfig")</td>
+            </tr>
+            <tr style="background-color:white; border:1px solid black;">
+                <td>selectable</td>
+                <td>allows rows in the table to be selected</td>
+            </tr>
+            <tr style="background-color:white; border:1px solid black;">
+                <td>singleselect</td>
+                <td>allows a single row (and only a single row at a time) in the table to be selected</td>
+            </tr>
+            <tr style="background-color:white; border:1px solid black;">
+                <td>actionmenu</td>
+                <td>provides per-row and per-selection action menus, requires actionMenuConfig for in-line menu, and
+                    multiSelectActionMenuConfig for the above the table menu that passes in all selections</td>
+            </tr>
+            <tr style="background-color:white; border:1px solid black;">
+                <td>enumfilter</td>
+                <td>provides an enumerated filter control, requires the filterOptions config on one or more headers</td>
+            </tr>
+            <tr style="background-color:white; border:1px solid black;">
+                <td>sortcontrol</td>
+                <td>displays a sort control above the table, primarily for using with transformable tables</td>
+            </tr>
+            <tr style="background-color:white; border:1px solid black;">
+                <td>transformable</td>
+                <td>the table can swap to multiple views: tiles</td>
+            </tr>
+            <tr style="background-color:white; border:1px solid black;">
+                <td>expandTemplateUrl</td>
+                <td>path to the html template for the expanded view of the normal table</td>
+            </tr>
+            <tr style="background-color:white; border:1px solid black;">
+                <td>tileTemplateUrl</td>
+                <td>path to the html template for the 'tile' view of the table (non-expanded)</td>
+            </tr>
+            <tr style="background-color:white; border:1px solid black;">
+                <td>tileTemplateExpandedUrl</td>
+                <td>path to the html template for the 'tile' view of the table (expanded)</td>
+            </tr>
+            <tr style="background-color:white; border:1px solid black;">
+                <td>filterable</td>
+                <td>includes a plain text filter in the header</td>
+            </tr>
+            <tr style="background-color:white; border:1px solid black;">
+                <td>pageable</td>
+                <td>shows paging controls under the table</td>
+            </tr>
+            <tr style="background-color:white; border:1px solid black;">
+                <td>suppresscolon</td>
+                <td>shows paging controls under the table</td>
+            </tr>
+            <tr style="background-color:white; border:1px solid black;">
+                <td>class="modal_edit_table"</td>
+                <td>changes the style of the table to the modal edit style.. NOT an attribute, add 'modal_edit_table' as a class!</td>
+            </tr>
+        </table>
+
+<br><hr style="border-top:4px solid black;"><br>
+
+<div id="controllercode"></div>
+Controller code :
+<pre>
+    p.controller('TableExampleController', ['$scope', '$http', '$translate', '$filter',
+        function($scope, $http, $translate, $filter) {
+
+            $scope.nameStatusDisplayFunction = function(data){
+                var nameStatusFilter = $filter('tableStatusWithNameFilter');
+                var statusHtml = nameStatusFilter({name: data.name, status: data.status});
+                return statusHtml;
+            };
+
+            //this is an example of a filter function
+            var priceFilter = function(item, filterArgs){
+                if(angular.isUndefined(filterArgs)){
+                    return true;
+                } else {
+                    //check the min and max
+                    var priceNumber = Number(item.price.replace(/[^0-9\.]+/g,""));
+                    if((angular.isUndefined(filterArgs.min) || priceNumber > filterArgs.min) &&
+                        (angular.isUndefined(filterArgs.max) || priceNumber < filterArgs.max)){
+                        return true;
+                    }
+                    return false;
+                }
+            };
+
+            //filters that are passed into the tableConfig need to have a function and args
+            var highPriceFilter = {};
+            highPriceFilter.function = priceFilter;
+            highPriceFilter.args = {
+                min: 100.00,
+                max: undefined
+            };
+
+            //filters that are passed into the tableConfig need to have a function and args
+            var lowPriceFilter = {};
+            lowPriceFilter.function = priceFilter;
+            lowPriceFilter.args = {
+                min: 0.00,
+                max: 100.00
+            };
+
+            //this is a helper function keeping track of filters
+            //this controller is manually tracking the filters that it has added
+            //to its data. This function finds the location of those filters in the
+            //array in case they need to be removed
+            var priceFilterToggleIndex = function(obj){
+                var i;
+                for(i = 0; i < $scope.tableConfig.filters.length; i++){
+                    if($scope.tableConfig.filters[i].args.min === obj.args.min &&
+                        $scope.tableConfig.filters[i].args.max === obj.args.max){
+                        return i;
+                    }
+                }
+                return -1;
+            };
+
+            //sets only one filter on the table
+            $scope.setPriceFilterHigh = function(){
+                $scope.resetFilters();
+                $scope.tableConfig.filters.push(highPriceFilter);//add only the high price filter
+            };
+
+            //sets only one filter on the table
+            $scope.setPriceFilterLow = function($event){
+                $scope.resetFilters();
+                $scope.tableConfig.filters.push(lowPriceFilter);//add only the low price filter
+            };
+
+            //clears all existing *extra* filters and adds one specific one, the string filter on the
+            //input box will still exist if configured
+            $scope.resetFilters = function($event){
+                $scope.tableConfig.filters = [];//empty the filters list
+            };
+
+            //example of a toggler filter, where multiple filters can be additive
+            $scope.togglePriceFilterHigh = function($event){
+                if($($event.target).hasClass('unselected')){
+                    $scope.tableConfig.filters.push(highPriceFilter);
+                    $($event.target).removeClass('unselected');
+                } else {
+                    $scope.tableConfig.filters.splice(priceFilterToggleIndex(highPriceFilter), 1);
+                    $($event.target).addClass('unselected');
+                }
+            };
+
+            //example of a toggler filter, where multiple filters can be additive
+            $scope.togglePriceFilterLow = function($event){
+                if($($event.target).hasClass('unselected')){
+                    $scope.tableConfig.filters.push(lowPriceFilter);
+                    $($event.target).removeClass('unselected');
+                } else {
+                    $scope.tableConfig.filters.splice(priceFilterToggleIndex(lowPriceFilter), 1);
+                    $($event.target).addClass('unselected');
+                }
+            };
+
+            //load from a file, this could be a REST service instead
+            $http.get('./sample_data/sample_data.json').then(function(response){
+                var someData = response.data.tabledata || [];
+                if(someData.length > 0){
+                    $scope.data = someData;//"data" is the model name specified in the directive attribute
+                }
+
+                someData = response.data.statusTabledata || [];
+                if(someData.length > 0){
+                    $scope.statusData = someData;//"data" is the model name specified in the directive attribute
+                }
+            });
+
+            //example that blocks the elephants row from being selected
+            $scope.allowRowSelectionCheck = function(data){
+                if(data.something === 'elephants'){
+                    return false;
+                }
+                return true;
+            };
+
+            $scope.actionMenuPermissionsCheck = function(data, actionName){//rename and document this
+                var actionPermissions = {
+                    enabled: true,
+                    hidden: false
+                };
+
+                if(actionName === 'action2'){
+                    //if price is one of the values, enable/disable action2 based on the price
+                    if(!angular.isUndefined(data.price)){
+                        var decimalDelimiter = $translate.instant("number.decimal.delimiter");
+                        var replacementString = new RegExp("[^0-9\\" + decimalDelimiter + "]","g");
+                        var number1 = Number(data.price.replace(replacementString, ""));
+                        if(number1 > 100){
+                            actionPermissions = {
+                                enabled: true,
+                                hidden: false
+                            };
+                        } else {
+                            actionPermissions = {
+                                enabled: false,
+                                hidden: false
+                            };
+                        }
+                    } else {//if price isnt in the data field
+                        actionPermissions = {
+                            enabled: true,
+                            hidden: true
+                        };
+                    }
+                }
+
+                if(actionName === 'action3'){
+                    actionPermissions = {
+                        enabled: false,
+                        hidden: false
+                    };
+                }
+
+                return actionPermissions;
+            };
+
+            //headers will be parsed into columns
+            //filters is an optional config with additional filters to apply
+            //pageConfig is to customize paging settings if pageable is set on the table
+            $scope.tableConfig = {
+                headers: [
+                    {
+                        name: $translate.instant('example.column.name'),
+                        type: 'string',
+                        sortfield: 'something',
+                        displayfield: 'something',
+                        highlightExpand: true
+                    },
+                    {
+                        name: $translate.instant('example.column.price'),
+                        type: 'number',
+                        sortfield: 'price',
+                        displayfield: 'price',
+                        filterOptions: [{
+                            displayLabel: '$6',
+                            value: '$6'
+                        },{
+                            displayLabel: '$30',
+                            value: '$30'
+                        },{
+                            displayLabel: '$5',
+                            value: '$5'
+                        },{
+                            displayLabel: '$1,000',
+                            value: '$1,000'
+                        }]
+                    }
+                ],
+                //since these are selected by default, include them in the list
+                filters: [highPriceFilter, lowPriceFilter],
+                pageConfig: {
+                    page: 1,//1 is the default
+                    pageSize: 5//1000 is the default
+                },
+                methods:['showId'],
+                rowSelectionCheck: $scope.allowRowSelectionCheck,
+
+                actionMenuConfigFunction: $scope.actionMenuPermissionsCheck,
+                actionMenuConfig: [{
+                    label: $translate.instant('example.table.menu.action1'),
+                    name: 'action1',
+                    action: function(data){
+                        console.log('triggered action1');
+                    }
+                },{
+                    label: $translate.instant('example.table.menu.action2'),
+                    name: 'action2',
+                    action: function(data){
+                        console.log('triggered action2');
+                    }
+                },{
+                    label: $translate.instant('example.table.menu.action3'),
+                    name: 'action3',
+                    action: function(data){
+                        console.log('triggered action3');
+                    }
+                }],
+                multiSelectActionMenuConfig: [{
+                    label: $translate.instant('example.table.menu.action1'),
+                    name: 'multiSelectAction1',
+                    action: function(data){
+                        console.log('selected rows action1, data size is:' + data.length);
+                    }
+                },{
+                    label: $translate.instant('example.table.menu.action2'),
+                    name: 'multiSelectAction2',
+                    action: function(data){
+                        console.log('selected rows action2, data size is:' + data.length);
+                    }
+                },{
+                    label: $translate.instant('example.table.menu.action3'),
+                    name: 'multiSelectAction3',
+                    action: function(data){
+                        console.log('selected rows action3, data size is:' + data.length);
+                    }
+                }],
+                globalActionsConfig: [
+                    {
+                        label: $translate.instant('example.table.global.action1'),
+                        name: 'globalaction1',
+                        action: function(){
+                            console.log('triggered global action1');
+                        }
+                    },
+                    {
+                        label: $translate.instant('example.table.global.action2'),
+                        name: 'globalaction2',
+                        action: function(){
+                            console.log('triggered global action2');
+                        }
+                    }
+                ]
+            };
+
+            //headers will be parsed into columns
+            //filters is an optional config with additional filters to apply
+            //pageConfig is to customize paging settings if pageable is set on the table
+            $scope.otherTableConfig = {
+                headers: [
+                    {
+                        name: $translate.instant('example.column.price'),
+                        type: 'number',
+                        sortfield: 'price',
+                        displayfield: 'price'
+                    },
+                    {
+                        name: $translate.instant('example.column.name'),
+                        type: 'string',
+                        sortfield: 'something',
+                        displayfield: 'something'
+                    }
+
+                ],
+                //since these are selected by default, include them in the list
+                filters: [highPriceFilter, lowPriceFilter],
+                pageConfig: {
+                    page: 1,//1 is the default
+                    pageSize: 3//1000 is the default
+                }
+            };
+
+            $scope.showId = function(itemData){
+                //a more useful call here would use some data from the item and pass it along
+                //to a webservice... this is just an example of pulling data from the
+                //passed in data object
+                alert('itemId is:' + itemData.id);
+            };
+
+            //headers will be parsed into columns
+            //filters is an optional config with additional filters to apply
+            //pageConfig is to customize paging settings if pageable is set on the table
+            $scope.statusTableConfig = {
+                headers: [
+                    {
+                        name: $translate.instant('example.column.status'),
+                        type: 'status',
+                        sortfield: 'status',
+                        displayfield: 'status',
+                        filter: 'tableStatusFilter',
+                        hidden: true,
+                        filterOptions: [{
+                            displayLabel: $translate.instant('example.filter.status.unknown'),
+                            value: 'UNKNOWN'
+                        },{
+                            displayLabel: $translate.instant('example.filter.status.ok'),
+                            value: 'OK'
+                        },{
+                            displayLabel: $translate.instant('example.filter.status.warn'),
+                            value: 'WARN'
+                        },{
+                            displayLabel: $translate.instant('example.filter.status.error'),
+                            value: 'ERROR'
+                        }]
+                    },
+                    {
+                        name: $translate.instant('example.column.name'),
+                        type: 'string',
+                        sortfield: 'name',
+                        displayfield: 'name',
+                        specialColumnType: 'custom',
+                        customDisplayFilter: $scope.nameStatusDisplayFunction
+                    },
+                    {
+                        name: $translate.instant('example.column.freespace'),
+                        type: 'string',
+                        sortfield: 'freespace',
+                        displayfield: 'freespace',
+                        filterOptions: [{
+                            displayLabel: '10GB',
+                            value: '10GB'
+                        },{
+                            displayLabel: '100GB',
+                            value: '100GB'
+                        },{
+                            displayLabel: '1000GB',
+                            value: '1000GB'
+                        },{
+                            displayLabel: '110GB',
+                            value: '110GB'
+                        }]
+                    },
+                    {
+                        name: $translate.instant('example.column.freespacepct'),
+                        type: 'string',
+                        sortfield: 'freespace_pct',
+                        displayfield: 'freespace_pct',
+                        specialColumnType: 'percentmeter'
+                    }
+
+                ],
+
+                filters: [],
+                pageConfig: {
+                    page: 1,//1 is the default
+                    pageSize: 5//1000 is the default
+                },
+                //rowCustomizers are filters declared to change the appearance of a whole row based on the
+                //data in that row
+                rowCustomizers: ['statusRowHighlightFilter'],
+                actionMenuConfigFunction: $scope.actionMenuPermissionsCheck,
+                actionMenuConfig: [{
+                    label: $translate.instant('example.table.menu.action1'),
+                    name: 'action1',
+                    action: function(data){
+                        console.log('triggered action1');
+                    }
+                },{
+                    label: $translate.instant('example.table.menu.action2'),
+                    name: 'action2',
+                    action: function(data){
+                        console.log('triggered action2');
+                    }
+                },{
+                    label: $translate.instant('example.table.menu.action3'),
+                    name: 'action3',
+                    action: function(data){
+                        console.log('triggered action3');
+                    }
+                }],
+                globalActionsConfig: [
+                    {
+                        label: $translate.instant('example.table.global.action1'),
+                        name: 'globalaction1',
+                        action: function(){
+                            console.log('triggered global action1');
+                        }
+                    }
+                ]
+            };
+
+            $scope.$on('tableSelectionChanged', function($event, selections){
+                console.log('got a selections list of length:' + selections.length);
+                $scope.titleWithSelectionCount = $translate.instant('example.title.table.count', {num: selections.length});
+            });
+
+            $scope.titleWithSelectionCount = $translate.instant('example.title.table.count', {num: 0});
+
+        }
+    ]);
+</pre>
+<br>
+JSON data used:
+<a href="/sample_data/sample_data.json">JSON data for examples</a>
+
+</div>

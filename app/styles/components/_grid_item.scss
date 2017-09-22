@@ -1,0 +1,295 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+$grid-item-width-wide: 264px;
+$grid-item-width-thin: 166px;
+$grid-item-height: 415px;
+$grid-item-settings-gear-size: 32px;
+$grid-item-header-size-thin: 36px;
+$grid-item-header-size-wide: 50px;
+$grid-item-header-text-size: 14px;
+
+.pointer {
+  cursor: pointer;
+}
+
+@mixin grid-item($width, $header-height) {
+  width: $width;
+  height: $grid-item-height;
+  background-color: white;
+  border: 1px solid $grid-item-border-color;
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-style: normal;
+  .header {
+    height: $header-height;
+    width: 100%;
+    position: relative;
+  }
+  .content {
+    width: 100%;
+    height: calc(#{$grid-item-height} - #{$header-height});
+    overflow: hidden;
+  }
+}
+
+@mixin content-label-align($width) {
+  display: inline-block;
+  width: $width;
+  height: 90px;
+  border: 1px solid $grid-item-border-color;
+  margin-left: 7px;
+  text-align: center;
+  vertical-align: middle;
+  transform: translateY(+75%);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin content-label-type($color) {
+  transform: translateY(+30%);
+  display: inline-block;
+  .label-text-data {
+    color: $color;
+  }
+}
+
+.grid-item-plot {
+  width: 558px;
+  height: 413px;
+  background-color: white;
+  border: 1px solid $grid-item-border-color;
+  margin-bottom: 20px;
+  font-style: normal;
+
+  .header {
+    height: 42px;
+    width: 100%;
+    position: relative;
+    .settings {
+      display: inline-block;
+      background-image: none;
+      width: $grid-item-settings-gear-size;
+      height: $grid-item-settings-gear-size;
+      margin: 5px;
+    }
+
+    .text {
+      color: $grid-item-title-color;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      vertical-align: middle;
+      font-size: $grid-item-header-text-size;
+      .center {
+        text-align: center;
+        transform: translateY(+40%);
+      }
+    }
+  }
+  .content {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+  }
+
+  .content-label {
+    position: relative;
+    top: 40px;
+
+    .label-text-data {
+      font-size: 36px;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+    }
+
+    .label-text {
+      color: $grid-item-label-color;
+      text-align: center;
+      font-size: 12px;
+      margin-top: -10px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .content-label-align {
+      display: inline-block;
+      width: 250px;
+      height: 70px;
+      margin-left: 7px;
+      text-align: center;
+      vertical-align: middle;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .content-label-first {
+      display: inline-block;
+    }
+
+    .content-label-last {
+      display: inline-block;
+    }
+  }
+}
+
+.grid-item-wide {
+  @include grid-item($grid-item-width-wide, $grid-item-header-size-wide);
+  .header {
+    .text {
+      color: $grid-item-title-color;
+      position: absolute;
+      top: 5px;
+      bottom: 0;
+      right: 0;
+      vertical-align: middle;
+      width: calc(#{$grid-item-width-wide} - #{$grid-item-settings-gear-size} - 2px);
+      font-size: $grid-item-header-text-size;
+      .center {
+        text-align: center;
+        transform: translateY(+40%);
+      }
+    }
+    .settings {
+      display: inline-block;
+      background-image: none;
+      width: $grid-item-settings-gear-size;
+      height: $grid-item-settings-gear-size;
+      margin: 5px;
+    }
+  }
+
+  .content {
+    transform: translateY(+10%);
+  }
+
+  .content-label {
+    position: relative;
+    top: -170px;
+
+    .label-text-data {
+      font-size: 36px;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 58px;
+    }
+
+    .label-text {
+      color: $grid-item-label-color;
+      text-align: center;
+      font-size: 8px;
+      margin-top: -10px;
+      transform: translateY(+70%);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 55px;
+    }
+
+    .content-label-total {
+      margin-top: 30px;
+    }
+
+    .content-label-align-4 {
+      @include content-label-align(57px);
+    }
+
+    .content-label-align-3 {
+      @include content-label-align(76px);
+    }
+
+    .content-label-align-2 {
+      @include content-label-align(114px);
+    }
+
+    .content-label-align-1 {
+      @include content-label-align(228px);
+    }
+
+    .content-label-ok {
+      @include content-label-type($status-ok-color);
+    }
+
+    .content-label-error {
+      @include content-label-type($status-error-color);
+    }
+
+    .content-label-warning {
+      @include content-label-type($status-warning-color);
+    }
+
+    .content-label-unknown {
+      @include content-label-type($status-unknown-color);
+    }
+
+    .content-label-blue {
+      transform: translateY(+30%);
+      display: inline-block;
+      .label-text-data {
+        color: $oc-graph-blue-1;
+      }
+    }
+  }
+}
+
+.grid-item-thin {
+  @include grid-item($grid-item-width-thin, $grid-item-header-size-thin);
+  .header {
+    .text {
+      color: $grid-item-title-color;
+      position: absolute;
+      top: 5px;
+      bottom: 0;
+      right: 0;
+      vertical-align: middle;
+      width: calc(#{$grid-item-width-thin} - 10px);
+      font-size: $grid-item-header-text-size;
+      .center {
+        text-align: center;
+      }
+    }
+  }
+
+  .settings {
+    display: block;
+    background-image: none;
+    width: $grid-item-settings-gear-size;
+    height: $grid-item-settings-gear-size;
+    margin: 15px auto;
+    top: 10px;
+  }
+
+  .content-label {
+    position: relative;
+    top: -220px;
+
+    .label-text-data {
+      font-size: 36px;
+      text-align: center;
+      color: $grid-item-label-data-color;
+    }
+
+    .label-text {
+      color: $grid-item-label-color;
+      text-align: center;
+      font-size: 12px;
+      margin-top: -10px;
+    }
+
+    .content-label-total {
+      margin-top: 30px;
+    }
+  }
+
+  span.dataLabel {
+    color: $utilized_fill_color;
+  }
+}

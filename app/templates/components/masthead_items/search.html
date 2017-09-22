@@ -1,0 +1,22 @@
+<div ng-controller="SearchDrawerController">
+
+    <div class="search_box" ng-class="SearchDrawerController">
+
+        <span class="search_icon"></span>
+
+        <input class="search_input" ng-model="searchText" type="text"
+               placeholder="{{'masthead.search.placeholder' | translate}}">
+
+        <button class="search_clear_button" ng-click="clearSearch();">
+        </button>
+
+    </div>
+
+    <button class="globalActionsButton search_button"
+            ng-click="search();">{{ 'masthead.search.search_button' | translate}}
+    </button>
+    <span class="search_status">
+        <span ng-bind="searchStatus"></span>
+    </span>
+
+</div>

@@ -1,0 +1,120 @@
+<div class="left-form">
+    <oc-input name="hp_3par_iscsi_name"
+              value="$parent.bsRegisterControl.register3PARISCSIDevice.name"
+              label="storage.register.content.blockstoragedevice.general.name"
+              placeholder="storage.register.content.blockstoragedevice.general.name.placeholder"
+              oc-tooltip="'storage.register.content.blockstoragedevice.hp3parStoreServiscsi.name.tooltip'"
+              validate="englishonly"
+              validate-text="ocvalidate.englishonly"
+              oc-required="true"
+              type="text">
+    </oc-input>
+
+    <oc-input name="hp_3par_iscsi_ipaddress"
+              value="$parent.bsRegisterControl.register3PARISCSIDevice.ipaddress"
+              label="storage.register.content.blockstoragedevice.general.ipaddress"
+              placeholder="storage.register.content.blockstoragedevice.general.ipaddress.placeholder"
+              oc-tooltip="'storage.register.content.blockstoragedevice.general.ipaddress.tooltip'"
+              validate-text="ocvalidate.ipaddr_hostname"
+              validate="ipaddr_hostname"
+              oc-required="true"
+              type="text">
+    </oc-input>
+
+    <oc-input name="hp_3par_iscsi_port"
+              value="$parent.bsRegisterControl.register3PARISCSIDevice.portnumber"
+              label="storage.register.content.blockstoragedevice.general.portnumber"
+              oc-tooltip="'storage.register.content.blockstoragedevice.general.portnumber.tooltip'"
+              validate-text="ocvalidate.port"
+              validate="port"
+              oc-required="true"
+              type="text">
+    </oc-input>
+
+    <oc-input name="hp_3par_iscsi_username"
+              value="$parent.bsRegisterControl.register3PARISCSIDevice.username"
+              label="storage.register.content.blockstoragedevice.general.username"
+              placeholder="storage.register.content.blockstoragedevice.general.username.placeholder"
+              oc-tooltip="'storage.register.content.blockstoragedevice.general.username.tooltip'"
+              validate-text="ocvalidate.name"
+              oc-required="true"
+              type="text">
+    </oc-input>
+
+    <div class='register-password-input'>
+        <oc-input name="hp_3par_iscsi_password"
+                  value="$parent.bsRegisterControl.register3PARISCSIDevice.password"
+                  label="storage.register.content.blockstoragedevice.general.password"
+                  placeholder="storage.register.content.blockstoragedevice.general.password.placeholder"
+                  oc-tooltip="'storage.register.content.blockstoragedevice.general.password.tooltip'"
+                  validate-text="ocvalidate.password"
+                  oc-required="true"
+                  type="{{ $parent.bsRegisterControl.register3PARISCSIDevice.showPass1 ? 'text' : 'password'}}">
+        </oc-input>
+
+        <div class="register-showpass">
+            <i class="gi-2x ardana-icon view-color"
+               ng-class="{'ardana-icon-View_pressed': $parent.bsRegisterControl.register3PARISCSIDevice.showPass1, 'ardana-icon-View': !$parent.bsRegisterControl.register3PARISCSIDevice.showPass1}"
+               ng-click="$parent.bsRegisterControl.toggleRegisterShowPass('3ParISCSI')"></i>
+        </div>
+    </div>
+</div>
+
+<div class="right-form">
+    <div class="register-modal-header">{{ 'storage.register.content.blockstoragedevice.sanconfiguration.label' | translate }}</div>
+    <div class="check_input_box_body">
+        <i class="ardana-icon" click-proxy="[type='checkbox']"
+           ng-class="{'ardana-icon-Checkbox':!$parent.bsRegisterControl.register3PARISCSIDevice.copyDataToSANConf, 'ardana-icon-Check':$parent.bsRegisterControl.register3PARISCSIDevice.copyDataToSANConf,'green-color':$parent.bsRegisterControl.register3PARISCSIDevice.copyDataToSANConf}"></i>
+        <input class="_input_checkbox" type="checkbox"
+               ng-model="$parent.bsRegisterControl.register3PARISCSIDevice.copyDataToSANConf" checked/> <span>{{"storage.block_storage.register_storage_device.import.conf" | translate}}</span>
+    </div>
+    <oc-input name="hp_3par_iscsi_san_ip"
+              value="$parent.bsRegisterControl.register3PARISCSIDevice.sanipaddress"
+              label="storage.register.content.blockstoragedevice.sanconfiguration.ipaddress"
+              placeholder="storage.register.content.blockstoragedevice.sanconfiguration.ipaddress.placeholder"
+              oc-tooltip="'storage.register.content.blockstoragedevice.sanconfiguration.ipaddress.tooltip'"
+              validate-text="ocvalidate.ipaddr_hostname"
+              validate="ipaddr_hostname"
+              oc-required="true"
+              type="text">
+    </oc-input>
+
+    <oc-input name="hp_3par_iscsi_username"
+              value="$parent.bsRegisterControl.register3PARISCSIDevice.sanusername"
+              label="storage.register.content.blockstoragedevice.sanconfiguration.username"
+              placeholder="storage.register.content.blockstoragedevice.sanconfiguration.username.placeholder"
+              oc-tooltip="'storage.register.content.blockstoragedevice.sanconfiguration.username.tooltip'"
+              validate-text="ocvalidate.name"
+              oc-required="true"
+              type="text">
+    </oc-input>
+
+    <div class='register-password-input'>
+        <oc-input name="hp_3par_iscsi_san_password"
+                  value="$parent.bsRegisterControl.register3PARISCSIDevice.sanpassword"
+                  label="storage.register.content.blockstoragedevice.sanconfiguration.password"
+                  placeholder="storage.register.content.blockstoragedevice.sanconfiguration.password.placeholder"
+                  oc-tooltip="'storage.register.content.blockstoragedevice.sanconfiguration.password.tooltip'"
+                  validate-text="ocvalidate.password"
+                  oc-required="true"
+                  type="{{ $parent.bsRegisterControl.register3PARISCSIDevice.showPass2 ? 'text' : 'password'}}">
+        </oc-input>
+
+        <div class="register-showpass">
+            <i class="gi-2x ardana-icon view-color"
+               ng-class="{'ardana-icon-View_pressed': $parent.bsRegisterControl.register3PARISCSIDevice.showPass2, 'ardana-icon-View': !$parent.bsRegisterControl.register3PARISCSIDevice.showPass2}"
+               ng-click="$parent.bsRegisterControl.toggleRegisterShowPass('3ParISCSISan')"></i>
+        </div>
+    </div>
+
+    <oc-input name="hp_3par_iscsi_iscsi_ip"
+              value="$parent.bsRegisterControl.register3PARISCSIDevice.iscsi_ipaddress"
+              label="storage.register.content.blockstoragedevice.iscsiconfiguration.ipaddress"
+              placeholder="storage.register.content.blockstoragedevice.iscsiconfiguration.ipaddress.placeholder"
+              oc-tooltip="'storage.register.content.blockstoragedevice.iscsiconfiguration.ipaddress.tooltip'"
+              validate="multiple_ipAddress"
+              validate-text="ocvalidate.multiple_ipAddress"
+              oc-required="true"
+              type="text">
+    </oc-input>
+</div>

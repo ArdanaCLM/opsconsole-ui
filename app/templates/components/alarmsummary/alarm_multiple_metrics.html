@@ -1,0 +1,26 @@
+<!--template for multiple metrics dimensions and value meta content -->
+<import src="$parent.$parent.$parent.$parent.$parent.$parent.$parent.alarmSummaryControl"
+        target="alarmControl"/>
+<div class="metric-dimension-valuemeta">
+  <!-- only show dimension and metric name when we have multiple metrics -->
+  <table>
+    <tbody>
+    <tr>
+      <td class="col-md-2 no-padding-left"><h3 class="oc-heading">{{'alarm.summary.metavalue.dimension.label' | translate}}</h3></td>
+      <td class="col-md-10">{{alarmControl.metricDetailsData[lastPage].dimensions}}</td>
+    </tr>
+    <tr>
+      <td class="col-md-2 no-padding-left"><h3 class="oc-heading section-title-table">{{'alarm.summary.metric_name.label' | translate}}</h3></td>
+      <td class="col-md-10">{{alarmControl.metricDetailsData[lastPage].name}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <!-- only show value meta when we have a bad alarm with multiple metric dimensions -->
+  <div ng-show="alarmControl.metricDimensionCode == 3">
+    <!-- lastPage is the index of tabbed page, it should map to the metricDetails array index -->
+    <octable pageable sortcontrol
+             modelname="alarmControl.metricDetailsData[lastPage].details"
+             configname="alarmControl.metricValueMetaTableConfig">
+    </octable>
+  </div>
+</div>

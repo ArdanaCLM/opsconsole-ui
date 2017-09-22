@@ -1,0 +1,35 @@
+<div container ng-controller="HorseshoeSVGExampleController">
+
+    <!-- -->
+    <svghorseshoe data=hshoe1Data.data max=hshoe1Data.max label='' unit=hshoe1Data.unit  ctitle="'title test'"></svghorseshoe>
+    <svghorseshoe data=hshoe2Data.data max=hshoe2Data.max label=hshoe2Data.label unit=hshoe2Data.unit  ctitle="'Unicorn Kills'"></svghorseshoe>
+    <svghorseshoe data=hshoe3Data.data max=hshoe3Data.max label=hshoe3Data.label unit=hshoe3Data.unit  ctitle="'Battlestar Gauge'"></svghorseshoe>
+</div>
+<br><br>
+HTML Code:
+<pre>
+    &lt;svghorseshoe data=hshoe1Data max=hshoe1Max unit="hshoe1Unit" ctitle="'title test'"&gt;
+</pre>
+
+<div container ng-controller="HorseshoeSVGExampleController">
+    <svghorseshoe data=15 max=90  ctitle="'Just Nodes'" altsummary="'A BUNCH OF NODES'"></svghorseshoe>
+</div>
+
+HTML Code:
+<pre>
+    &lt;svghorseshoe data=15 max=90 ctitle="'title test'" altsummary="'A BUNCH OF NODES'"&gt;
+</pre>
+
+<div container ng-controller="HorseshoeSVGExampleController">
+    <svghorseshoe data=hshoe3Data.data max=hshoe3Data.max  ctitle="Percentage" altsummary="'NODES'" percentage></svghorseshoe>
+</div>
+
+HTML Code:
+<pre>
+    &lt;svghorseshoe data=hshoe1Data max=hshoe1Max ctitle="'title test'" altsummary="'NODES'" percentage&gt;
+</pre>
+
+Data format:
+<pre>
+    { 'data' : {'count':10}, 'max' : 100, 'label' : 'Widgets', 'unit' : 'XP/Lvl' }
+</pre>

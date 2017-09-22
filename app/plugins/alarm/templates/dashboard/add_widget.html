@@ -1,0 +1,48 @@
+<import src="$parent.$parent.$parent" target="ctrl"></import>
+<div class="alarm-details">
+<div class="col-md-7 metric-selector no-padding-left">
+  <div class="buttonRow">
+    <h2 class="oc-heading summary-header capitalize">{{'monitoring_dashboard.add_item_title_2' | translate}}</h2>
+    <button class="oc-btn oc-btn-primary float-right" ng-click="ctrl.addDashboardItems()">{{'monitoring_dashboard.add_item_confirm' | translate}}</button>
+  </div>
+
+</div>
+<div class="enum_filter_wrapper col-md-7 metric-selector">
+    <div class="octable_header_wrapper_enum_row enumerated_filter_control">
+        <span class="enum_filter_icon">
+          <i class="ardana-icon ardana-icon-Filter"></i>
+        </span>
+        <span class="enum_filter_input">
+          <input type="text" ng-model="itemsFilter"/>
+        </span>
+        <span class="enum_filter_clear" ng-click="itemsFilter=''">
+          <i class="ardana-icon ardana-icon-Close"></i>
+        </span>
+    </div>
+</div>
+<div class="dimension-selector-header col-sm-7">
+  <div class="dimension-header first">
+    {{'monitoring_dashboard.select_column' | translate}}
+  </div>
+  <div class="dimension-header second">
+    {{'monitoring_dashboard.item_column' | translate}}
+  </div>
+</div>
+
+<div ng-repeat="item in ctrl.currentDashboardItems | fuzzyBy: 'translatedTitle': itemsFilter">
+  <div class="metric-picker-item col-sm-7">
+    <div class="select">
+      <oc-checkbox
+        ng-model="item.$rowSelected"
+        oc-disabled="ctrl.disableDashboardItemSelect(item)"
+        ></oc-checkbox>
+    </div>
+    <div
+      class="dimension"
+      click-proxy="oc-checkbox[ng-model='item.$rowSelected'] input"
+      ng-class="{pointer: !ctrl.disableDashboardItemSelect(item)}"
+      ng-bind="item.translatedTitle">
+    </div>
+  </div>
+</div>
+</div>

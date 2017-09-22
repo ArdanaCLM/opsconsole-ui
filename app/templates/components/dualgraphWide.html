@@ -1,0 +1,62 @@
+<div class="header">
+	<div class="text">{{ctrl.ctitle}}</div> 
+</div>
+
+<div class="leftGraph">
+	<label class="overall">
+		<div class="oc-value">{{ctrl.data.length}}</div>
+		<div class="oc-unit">
+			ALARMS
+		</div>
+	</label>
+
+	<canvas class="stack" width="150" height="60"></canvas>
+
+	<label class="datum">
+		<div class="oc-value" style="color : {{ctrl.data.colors[0]}};">{{ctrl.data.sumData[0]}}</div>
+		<div class="oc-unit">
+			{{"alarm.filter.status.ok" | translate}}
+		</div>
+	</label>
+	<label class="datum">
+		<div class="oc-value" style="color : {{ctrl.data.colors[1]}};">{{ctrl.data.sumData[1]}}</div>
+		<div class="oc-unit">
+			{{"alarm.filter.status.warn" | translate}}
+		</div>
+	</label>
+	<label class="datum">
+		<div class="oc-value" style="color : {{ctrl.data.colors[2]}};">{{ctrl.data.sumData[2]}}</div>
+		<div class="oc-unit">
+			{{"alarm.filter.status.error" | translate}}
+		</div>
+	</label>
+	<label class="datum">
+		<div class="oc-value" style="color : {{ctrl.data.colors[3]}};">{{ctrl.data.sumData[3]}}</div>
+		<div class="oc-unit">
+			{{"alarm.filter.status.unknown" | translate}}
+		</div>
+	</label>
+</div>
+
+<div class="rightGraph">
+	<canvas class="bar" width="130" height="60"></canvas>
+
+	<label class="datum">
+		<div class="oc-value" style="color : {{ctrl.data.colors[4]}};">{{ctrl.data.sumData[4]}}</div>
+		<div class="oc-unit">
+			{{"alarm.filter.status.open" | translate}}
+		</div>
+	</label>
+	<label class="datum">
+		<div class="oc-value" style="color : {{ctrl.data.colors[5]}};">{{ctrl.data.sumData[5]}}</div>
+		<div class="oc-unit">
+			{{"alarm.filter.status.acknowledged" | translate}}
+		</div>
+	</label>
+	<label class="datum">
+		<div class="oc-value" style="color : {{ctrl.data.colors[6]}};">{{ctrl.data.sumData[6]}}</div>
+		<div class="oc-unit">
+			{{"alarm.filter.status.resolved" | translate}}
+		</div>
+	</label>
+</div>

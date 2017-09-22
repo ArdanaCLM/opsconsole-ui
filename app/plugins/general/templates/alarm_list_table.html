@@ -1,0 +1,11 @@
+<!--dashboard alarm list table -->
+<import src="$parent.$parent.$parent" target="dashControl"/>
+<div class="dash-alarm-list">
+  <span class="common_modal_header">{{"general.dashboard.list.title" | translate}}</span>
+  <octable class="alarm_table altstyle" enumfilter pageable selectable
+             modelname="dashControl.alarmExplorerData"
+             custom-enum-filter="dashControl.tblFilter"
+             configname="dashControl.summary_table_config">
+        <oct-std-header></oct-std-header>
+  </octable>
+</div>

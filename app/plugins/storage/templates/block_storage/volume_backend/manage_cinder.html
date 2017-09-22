@@ -1,0 +1,26 @@
+<h2 class="oc-heading page_title">{{ "storage.manage.cinder.header.title" | translate }}</h2>
+<import src="$parent.$parent.$parent" target="bsVolumeBackendControl"/>
+
+<octable enumfilter selectable modelname="bsVolumeBackendControl.manage_cinder"
+         configname="bsVolumeBackendControl.manage_cinder_table_config"
+         loadflag="bsVolumeBackendControl.manageCinderDataLoading">
+    <oct-std-header></oct-std-header>
+</octable>
+
+
+<div class="manage_cinder_bottom_btns">
+    <button class="oc-btn oc-btn-default" ng-click="closeModal()"
+            ng-bind="'common.cancel' | translate">
+    </button>
+
+    <button class="oc-btn oc-btn-primary"
+            ng-click="bsVolumeBackendControl.addCinderBackend(addStack)"
+            ng-bind="'storage.block_storage.manage_cinder.add_backend' | translate"
+            ng-disabled="bsVolumeBackendControl.manageCinderDataLoading">
+    </button>
+
+    <button class="oc-btn oc-btn-primary" ng-click="bsVolumeBackendControl.removeCinderBackend()"
+            ng-bind="'storage.block_storage.manage_cinder.remove_backend' | translate"
+            ng-disabled="bsVolumeBackendControl.manageCinderDataLoading || (bsVolumeBackendControl.driverListSeletedData.length == 0)">
+    </button>
+</div>

@@ -1,0 +1,29 @@
+<!--template for compute baremetal instances tile template -->
+<div class="top-line">
+    <button type="button" class="btn btn-default selectControlButton tile-select-btn" ng-click="rowSelectionOccurred(data)"></button>
+    <div title="{{data.node}}" class="item-name" ng-class="{'selectable-and-status' : data.node.length > 25}">{{data.node}}</div>
+</div>
+<div class="state-line">{{data.power_state}}</div>
+<div class="scrollable-tile">
+    <table class="full-width">
+        <tbody>
+            <tr class="text-line">
+                <td class="text-line-label-long">{{"compute.baremetal.instance.nodestate" | translate}}</td>
+                <td class="text-line-value">{{data.node_state}}</td>
+            </tr>
+            <tr class="text-line">
+                <td class="text-line-label-long">{{"compute.baremetal.instance.maintenance" | translate}}</td>
+                <td class="text-line-value">{{data.maintenance}}</td>
+            </tr>
+            <tr class="text-line">
+                <td class="text-line-label-long">{{"compute.table.row.header.instance" | translate}}</td>
+                <td class="text-line-value">{{data.instance}}</td>
+            </tr>
+            <tr class="text-line">
+                <td class="text-line-label-ex-long">{{"compute.baremetal.instance.status" | translate}}</td>
+                <td class="text-line-value">{{data.instance_status}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

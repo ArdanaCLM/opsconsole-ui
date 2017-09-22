@@ -1,0 +1,9 @@
+<h2>{{ctrl.ctitle}}<a class="btnExpand" href="javascript:void(0)" ng-if="ctrl.data.zoneData.length > 0" ng-click="ctrl.showZones = ! ctrl.showZones" ng-class="{closeable : ctrl.showZones}"> >  {{ctrl.showZones}}</a></h2>
+
+<dualgraph-wide data="ctrl.data" class="grid-item-wide"></dualgraph-wide>
+
+<div class="zoneContainer" ng-class="{hidden : ! ctrl.showZones}">
+	<div class="zones" ng-repeat="(key, datum) in ctrl.data.zoneData">
+		<dualgraph-small data="datum" ctitle="datum.ctitle" class="grid-item-wide"></dualgraph-small>
+	</div>
+</div>

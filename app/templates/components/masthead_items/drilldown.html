@@ -1,0 +1,24 @@
+<!--masthead resources drilldown content for popover-->
+<div class="drilldown-popover" ng-controller="MastheadDrillDownController">
+  <div class="popover-header">{{ 'masthead.drilldown.doc.header' | translate }}</div>
+  <div class="popover-res-btn drilldown">
+    <div><i class="ardana-icon ardana-icon-Link link-icon-size"></i></div>
+    <a class="pointer link-color" ng-click="openTenantConsole()">{{ 'masthead.drilldown.doc.tenant_console' | translate }}</a>
+  </div>
+  <!--   <div class="drilldown-btn doc has-margin">
+        <a class="pointer drilldown_a" ng-click="openApplicationConsole()">{{ 'masthead.drilldown.doc.lifecycle_console' | translate }}</a>
+    </div>
+    <div class="drilldown-btn doc has-margin">
+        <a class="pointer drilldown_a" ng-click="openCicdConsole()">{{ 'masthead.drilldown.doc.cicd_console' | translate }}</a>
+    </div>
+    <div class="drilldown-btn doc has-margin">
+        <a class="pointer drilldown_a" ng-click="openLifecycleConsole()">{{ 'masthead.drilldown.doc.management_console' | translate }}</a>
+    </div> -->
+  <div class="popover-res-btn drilldown">
+    <div><i class="ardana-icon ardana-icon-Link link-icon-size"></i></div>
+    <a class="pointer link-color" ng-click="openLoggingConsole()">{{ 'masthead.drilldown.doc.logging_console' | translate }}</a>
+  </div>
+    <!--  <div class="drilldown-btn analytics has-margin">
+        <a class="pointer drilldown_a" ng-click="openTimeSeriesConsole()">{{ 'masthead.drilldown.doc.timeseries_console' | translate }}</a>
+    </div> -->
+</div>

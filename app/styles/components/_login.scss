@@ -1,0 +1,226 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+
+$images_base_path: "/images";
+
+$background_image: "#{$images_base_path}/page-background.png";
+$server_image: '#{$images_base_path}/login-page-midground-art.png';
+
+.login-edit-base {
+  left: 0px;
+  top: -5px;
+  width: calc(100% - 40px);
+  height: 36px;
+  background-color: transparent;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 16px;
+  text-decoration: none;
+  color: $oc-login-dark-gray;
+  text-align: left;
+  border-color: transparent;
+  outline-style: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding:2px;
+  border:none;
+}
+
+.login-edit {
+  @extend .login-edit-base;
+  border-color: transparent;
+
+  &:required,
+  &:invalid,
+  &:-moz-submit-invalid{
+    outline:none !important;
+    border: none !important;
+    box-shadow: none;
+  }
+
+}
+
+.login-edit-error {
+  @extend .login-edit-base;
+  border:2px solid;
+  border-color: transparent transparent  $oc-login-error  $oc-login-error;
+}
+
+.login-text {
+  color: $grommet-menu-grey;
+  font-weight:400;
+  padding-left:12px;
+  font-size:14px;
+  padding-top: 10px;
+}
+
+#login-btn {
+  margin: 25px auto 0px 33px;
+  .oc-btn-big {
+    height: 40px;
+    line-height:40px;
+    width: 160px;
+    font-weight:$font-weight-semi-bold;
+    font-size: 16px;
+  }
+}
+
+.login-body {
+  background-color: transparent;
+  overflow: hidden;
+}
+
+
+.login-error-icon {
+  margin: 25px 5px 3px 15px;
+  font-size:35px;
+  color:white;
+  width: 65px;
+  height: 40px;
+  z-index: 5;
+}
+
+#opscon-login-logo {
+  position: absolute;
+  left: 45px;
+  top: 600px;
+  width: 75px;
+  height: 75px;
+  z-index:6;
+  img {
+    height:75px;
+  }
+}
+
+.login-branded-logo{
+  width:80%;
+  height:auto;
+  margin-left:-70px;
+}
+
+#login-block {
+  position: relative;
+  left: 80px;
+  top: 150px;
+  width: 375px;
+  height: 413px;
+  background-color: white;
+  @extend .inline;
+}
+
+#login-white-box-legacy {
+  position: absolute;
+  left: 0px;
+  top: 40px;
+  width: 375px;
+  height: 413px;
+  background-color: white;
+  z-index:5;
+}
+
+#login-white-box-stdcfg {
+  position: absolute;
+  padding-top: 60px;
+  left: -60px;
+  top: 60px;
+  height: 360px;
+  background-color: rgba(255,255,255,0.95);
+  z-index:5;
+}
+
+#login-error-box {
+  display: flex;
+  position: absolute;
+  left: -60px;
+  top: 490px;
+  width: 390px;
+  height: 90px;
+  background-color: $oc-login-error;
+  z-index:5;
+}
+
+.login-error-message {
+  padding: 25px 10px;
+  color: #ffffff;
+  z-index:5;
+}
+
+.logineye{
+  top: -40px;
+  left: 290px;
+  color: #696969;
+  font-size:24px;
+  position: relative;
+}
+
+#product-title {
+  color: $oc-login-med-gray;
+  padding-top: 45px;
+  padding-bottom: 0px;
+  background-color: transparent;
+  font-size: 30px;
+}
+
+#product-title-ops {
+  color: $oc-login-dark-gray;
+  padding-top: 30px;
+  padding-bottom: 0px;
+  background-color: transparent;
+  font-size: 36px;
+  font-weight: $font-weight-semi-bold;
+  margin-left:35px;
+}
+
+#server-image {
+  @extend .inline;
+  width: 315px;
+  height: 605px;
+  background-image: url($server_image);
+  position: absolute;
+  left: 471px;
+  top: 85px;
+  z-index: 6;
+}
+
+#login-background {
+  height:100vh;
+  background-image: url($login_background_image);
+  background-repeat: no-repeat;
+  background-size:cover;
+  opacity: 1.0;
+}
+
+#username_border_frame,
+#password_border_frame{
+  height: 62px;
+  width: 325px;
+  margin: 15px 35px;
+  border: 1px solid  $oc-login-med-gray;
+  background-color:white;
+  &.login-edit-error{
+    border-color: $oc-login-error;
+  }
+}
+
+#username_border_frame{
+  margin-bottom:0px;
+}
+
+#password_border_frame{
+  border-top:none;
+  margin-top:0px;
+}
+
+.login_bonus_logo{
+  position:absolute;
+  left: 850px;
+  top: 540px;
+  width: 300px;
+  height: auto;
+}
+
+div[ng-controller="AuthenticationController"] {
+  overflow: hide;
+}

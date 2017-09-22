@@ -1,0 +1,287 @@
+
+
+<h3>Simple Validation</h3>
+<p>This will provide basic text input validation using pre-defined validations. <br> It will also enable the "OK" button once all required fields are filled and valid.</p>
+
+<p>With this, it is easy to validate in input field using a predefined validation "type". If the validation fails, the input field is
+    highlighted in red and the appropriate message is made visible.
+</p>
+<p>
+    Here is an example of the input tag:
+<pre>
+       &lt;input name="<span style="color:green;">env_hostname</span>" type="text"  oc-validate="<span style="color:green;"><i>[type]</i></span>"  ng-model="imported.hostname"/&gt;
+<span style="color:green;font-style:italic;"> input must have a name ————^                                 ^———— directive specifies validation type</span>
+</pre>
+    And immediately after it would be the error message (in an error-span element):
+<pre>
+       &lt;error-span condition="<span style="color:green;">common.env_hostname</span>"   text="<span style="color:green;">ocvalidate.hostname</span>"&gt;&lt;/error-span&gt;
+               <span style="color:green;font-style:italic;">&lt;form&gt; name ————^    ^———— &lt;input&gt; name             ^———— error message (typically "ocvalidate" plus validation type)</span>
+</pre>
+    The validation <i>[type]</i> can be either:
+<ul>
+        <li>A value in the ocValidators constant,                   like this:  &nbsp; &nbsp;   <samp>oc-validate="ocValidators.cidr"</samp></li>
+        <li>A function to be called (with the current value),       like this:      &nbsp; &nbsp;   <samp>oc-validate="myfunc"</samp><br>
+           where: <samp>scope.myfunc = function(curVal) {... returns true if valid }</samp></li>
+    </ul>
+
+
+<div class="row example-bg">
+  <div class="col-md-3">
+      <br>
+      Try it out: <br>
+    <form name="userform" role="form" validate>
+        <br>
+      <div class="form-group">
+
+        <input name="username" type="text" class="control-input" placeholder="username" oc-validate="ocValidators.ipaddr_hostname" ng-model="user.name" required />
+        <error-span condition="userform.username" text="ocvalidate.username"></error-span>
+
+      </div>
+      <div class="form-group">
+
+        <input name="email" type="email" placeholder="Email" ng-model="user.email" class="control-input" oc-validate="ocValidators.email"/>
+        <error-span condition="userform.email" text="ocvalidate.email"></error-span>
+
+      </div>
+      <button class="btn btn-primary" type="submit" ng-disabled="userform.$invalid">OK!</button>
+        <br><br>
+    </form>
+  </div>
+</div>
+
+<h4> Add <i>ocValidators</i> to the controller:</h4>
+<pre>
+p.controller('MyController', ['$scope', 'ocValidators', function($scope, ocValidators) {
+    $scope.ocValidators = ocValidators;
+}]);
+</pre>
+<h4>HTML:</h4>
+<span style="color:red"> Red</span> shows what needs to be added for validation<br>
+<span style="color:blue">Blue</span> shows the input name matching the error-span condition<br>
+<span style="color:green">Green</span> indicates 2 of the supported validator types (username and email, see helpers.js for a full list).
+<pre>
+&lt;form name="userform" role="form" validate&gt;
+
+  &lt;div class="form-group"&gt;
+     &lt;input name="<span style="color:blue">username</span>" type="text" <span style="color:red;">class="control-input"</span> <span style="color:red;">oc-validate="ocValidators.<span style="color:green">username</span>"</span> required
+               placeholder="username" ng-model="user.name"/&gt;
+     <span style="color:red;">&lt;error-span condition="userform.<span style="color:blue">username</span>" text="ocvalidate.<span style="color:green">username</span>"&gt;&lt;/error-span&gt;</span>
+  &lt;/div&gt;
+
+  &lt;div class="form-group"&gt;
+     &lt;input name="<span style="color:blue">email</span>" type="email" placeholder="Email" ng-model="user.email" <span style="color:red;">class="control-input"</span>
+                <span style="color:red;">oc-validate="ocValidators.<span style="color:green">email</span>"</span>/&gt;
+     <span style="color:red;">&lt;error-span condition="userform.<span style="color:blue">email</span>" text="ocvalidate.<span style="color:green">email</span>"&gt;&lt;/error-span&gt;</span>
+  &lt;/div&gt;
+
+  &lt;button class="btn btn-primary" type="submit" ng-disabled="userform.$invalid"&gt;OK!&lt;/button&gt;
+&lt;/form&gt;
+</pre>
+
+<h3>Custom validation</h3>
+<p>The matches directive validates that the passwords match</p>
+<div class="row">
+  <div class="col-md-3">
+    <form name="user" role="form" validate>
+      <div class="form-group">
+        <input type="text" placeholder="Username" ng-model="user.name" required class="form-control"/>
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="Password" ng-model="user.password" required class="form-control"/>
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="Confirm Password" matches="user.password" ng-model="user.password_confim" required class="form-control"/>
+      </div>
+      <div class="form-group">
+        <input type="email" placeholder="Email" ng-model="user.email" class="form-control"/>
+      </div>
+      <button class="btn btn-primary" type="submit" ng-disabled="user.$invalid">OK!</button>
+    </form>
+  </div>
+</div>
+
+<h4>HTML:</h4>
+<pre>
+&lt;form name="user" role="form" validate ng-controller="validatePassword"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;input type="text" placeholder="Username" ng-model="user.name" required class="form-control"&gt;&lt;/input&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;input type="password" placeholder="Password" ng-model="user.password" required class="form-control"&gt;&lt;/input&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;input type="password" placeholder="Confirm Password" matches="user.password" ng-model="user.password_confim" required class="form-control"&gt;&lt;/input&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;input type="email" placeholder="Email" ng-model="user.email" class="form-control"&gt;&lt;/input&gt;
+  &lt;/div&gt;
+  &lt;button class="btn btn-primary" type="submit" ng-disabled="user.$invalid"&gt;OK!&lt;/button&gt;
+&lt;/form&gt;
+</pre>
+
+<h4>Javascript:</h4>
+<pre>
+p.directive('matches', function() {
+  return {
+    require: "ngModel",
+    restrict: "A",
+    scope: {
+      otherValue: "=matches"
+    },
+    link: function(scope, element, attributes, ngModel) {
+      ngModel.$validators.matches = function(modelValue) {
+        return modelValue === scope.otherValue;
+      };
+
+      scope.$watch("otherValue", function() {
+        ngModel.$validate();
+      });
+    }
+  };
+});
+</pre>
+
+<h3>Advanced Custom validation</h3>
+<p>The validate-username directive validates that the username starts with admin_</p>
+<div class="row">
+  <div class="col-md-3">
+    <form name="user" role="form" validate>
+      <div class="form-group">
+        <input type="text" placeholder="Username" ng-model="user.name" validate-username required class="form-control"/>
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="Password" ng-model="user.password" required class="form-control"/>
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="Confirm Password" matches="user.password" ng-model="user.password_confim" required class="form-control"/>
+      </div>
+      <div class="form-group">
+        <input type="email" placeholder="Email" ng-model="user.email" class="form-control"/>
+      </div>
+      <button class="btn btn-primary" type="submit" ng-disabled="user.$invalid">OK!</button>
+    </form>
+  </div>
+</div>
+
+<h4>HTML:</h4>
+<pre>
+&lt;form name="user" role="form" validate ng-controller="validatePassword"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;input type="text" placeholder="Username" ng-model="user.name" validate-username required class="form-control"&gt;&lt;/input&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;input type="password" placeholder="Password" ng-model="user.password" required class="form-control"&gt;&lt;/input&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;input type="password" placeholder="Confirm Password" matches="user.password" ng-model="user.password_confim" required class="form-control"&gt;&lt;/input&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;input type="email" placeholder="Email" ng-model="user.email" class="form-control"&gt;&lt;/input&gt;
+  &lt;/div&gt;
+  &lt;button class="btn btn-primary" type="submit" ng-disabled="user.$invalid"&gt;OK!&lt;/button&gt;
+&lt;/form&gt;
+</pre>
+
+<h4>Javascript:</h4>
+<pre>
+p.directive('matches', function() {
+  return {
+    require: "ngModel",
+    restrict: "A",
+    scope: {
+      otherValue: "=matches"
+    },
+    link: function(scope, element, attributes, ngModel) {
+      ngModel.$validators.matches = function(modelValue) {
+        return modelValue === scope.otherValue;
+      };
+
+      scope.$watch("otherValue", function() {
+        ngModel.$validate();
+      });
+    }
+  };
+});
+
+p.directive('validateUsername', function() {
+  return {
+    require: "ngModel",
+    restrict: "A",
+    link: function(scope, element, attributes, ngModel) {
+      ngModel.$validators.matches = function(modelValue) {
+        //usernamed must match admin_*
+        return /admin_.*/.exec(modelValue) !== null;
+      };
+    }
+  };
+});
+</pre>
+
+<h3>Custom form element validation</h3>
+<p>The validation of the custom form element is more complicated than a browser supplied one.</p>
+<form name="form">
+  <custom-form ng-model="form.custom_value"></custom-form>
+  <div style="color:red;" ng-show="form.$invalid">INVALID</div>
+</form>
+
+<h4>HTML:</h4>
+<pre>
+&lt;form name="form"&gt;
+  &lt;custom-form ng-model="form.custom_value"&gt;&lt;/custom-form&gt;
+  &lt;div style="color:red;" ng-show="form.$invalid"&gt;INVALID&lt;/div&gt;
+&lt;/form&gt;
+</pre>
+
+<h4>Custom element HTML:</h4>
+<pre>
+&lt;div class="input-group"&gt;
+  &lt;div class="input-group-btn"&gt;
+    &lt;button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"&gt;{{type}} &lt;span class="caret"&gt;&lt;/span&gt;&lt;/button&gt;
+    &lt;ul class="dropdown-menu" role="menu"&gt;
+      &lt;li&gt;&lt;a value="string" ng-click="selectType($event)"&gt;String&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a value="number" ng-click="selectType($event)"&gt;Number&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;input type="text" class="form-control" placeholder="{{inputPlaceholder}}" ng-model="value"&gt;
+&lt;/div&gt;
+</pre>
+
+<h4>Custom element Javascript:</h4>
+<pre>
+p.directive('customForm', function() {
+  return {
+    restrict: "E",
+    require: "ngModel",
+    templateUrl: "example/templates/custom_form.html",
+    scope: {},
+    link: function(scope, element, attributes, ngModel) {
+
+
+
+      scope.type = "string";
+
+      scope.selectType = function(event) {
+        scope.type = $(event.target).attr("value");
+      };
+
+      ngModel.$validators.validateCustom = function() {
+        if(scope.type === "string") {
+          return /.+/.exec(scope.value) !== null;
+        } else if(scope.type === "number") {
+          return /^\d+$/.exec(scope.value) !== null;
+        } else {
+          return false;
+        }
+      }
+
+      scope.$watch('value', function() {
+        ngModel.$setViewValue(scope.value);
+      });
+
+      scope.$watch('type', function() {
+        ngModel.$validate()
+      });
+    }
+  };
+});
+</pre>

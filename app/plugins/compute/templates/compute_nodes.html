@@ -1,0 +1,85 @@
+<div class="compute_main" id="compute_main">
+
+    <div ng-show="showEmptyDataPageComputeHostFlag==false && initComputeDataLoading==false">
+        <!-- This table config is for stdcfg and is validated by default-->
+        <octable pageable transformable actionmenu expandable enumfilter sortcontrol
+                 modelname="compute_nodes_data"
+                 configname="compute_nodes_table_config"
+                 loadflag="computeDataLoading"
+                 expand-template-url="compute/templates/table_expandtemplate.html"
+                 tile-template-url="compute/templates/table_tiletemplate.html"
+                 class="stdcfg">
+            <oct-std-header></oct-std-header>
+        </octable>
+    </div>
+
+    <!-- Code for ardana actions -->
+    <!-- add compute host modal for ardana -->
+    <stackablemodal name="addComputeNodeStackableArdanaName"
+                    showAttribute="computeHostService.addComputeNodeModalArdana._show"
+                    modalTemplateUrl="'compute/templates/ardana/add_compute_node.html'"
+                    closeaction="computeHostService.addComputeNodeModalArdana.stackableScope.cancel">
+    </stackablemodal>
+
+    <!-- entering encryption key modal, then invoke confirmation for action -->
+    <stackablemodal id="askEncryptionStackableArdanaId" name="askEncryptionStackableArdanaName"
+                    showAttribute="computeHostService.askEncryptionModalArdana._show"
+                    modalTemplateUrl="'compute/templates/ardana/encryption_compute_node.html'"
+                    closeaction="computeHostService.askEncryptionModalArdana.stackableScope.clearAndClose">
+    </stackablemodal>
+
+    <!-- logview for error message of action-->
+    <stackablemodal id="logViewArdanaModalId" name="logViewArdanaModalName"
+                    showAttribute="computeHostService.logViewArdana.show"
+                    modalTemplateUrl="'compute/templates/ardana/log_view.html'">
+    </stackablemodal>
+
+    <!--confirm add host ardana -->
+    <opsmodal showAttribute="computeHostService.showConfirmAddModalFlag"
+              type="confirm"
+              commit-action="computeHostService.commitAddHost_Ardana"
+              header-title="compute.compute_nodes.ardana.add.infoModal.title">
+        <div ng-include="'compute/templates/ardana/add_host_confirm.html'"></div>
+        <modal-overlay show-attribute="computeHostService.updatingHostOverlayFlag"></modal-overlay>
+    </opsmodal>
+
+    <!--confirm delete host ardana -->
+    <opsmodal showAttribute="computeHostService.showConfirmDeleteModalFlag"
+              type="confirm"
+              commit-action="computeHostService.commitDeleteHost_Ardana"
+              header-title="compute.compute_nodes.ardana.delete.confirm.title">
+        <div ng-include="'compute/templates/ardana/delete_host_confirm.html'"></div>
+        <modal-overlay show-attribute="computeHostService.updatingHostOverlayFlag"></modal-overlay>
+    </opsmodal>
+
+    <!--confirm deactivate host ardana -->
+    <opsmodal showAttribute="computeHostService.showConfirmDeactivateModalFlag"
+              type="confirm"
+              commit-action="computeHostService.commitDeactivateHost_Ardana"
+              header-title="compute.compute_nodes.ardana.deactivate.title">
+        <div ng-include="'compute/templates/ardana/deactivate_host_confirm.html'"></div>
+        <modal-overlay show-attribute="computeHostService.updatingHostOverlayFlag"></modal-overlay>
+    </opsmodal>
+
+    <!--confirm activate host ardana -->
+    <opsmodal showAttribute="computeHostService.showConfirmActivateModalFlag"
+              type="confirm"
+              commit-action="computeHostService.commitActivateHost_Ardana"
+              header-title="compute.compute_nodes.ardana.activate.title">
+        <div ng-include="'compute/templates/ardana/activate_host_confirm.html'"></div>
+        <modal-overlay show-attribute="computeHostService.updatingHostOverlayFlag"></modal-overlay>
+    </opsmodal>
+
+    <!-- show empty data page when data is empty or data error for compute host table -->
+    <empty-data-page show-attribute="showEmptyDataPageComputeHostFlag"
+                     type="emptyDataPage.computeHost.type"
+                     reason-message="emptyDataPage.computeHost.reasonMessage"
+                     action-message="emptyDataPage.computeHost.actionMessage"
+                     action-label="emptyDataPage.computeHost.actionLabel"
+                     action="emptyDataPage.computeHost.action">
+    </empty-data-page>
+    <!-- init table loading page mask -->
+    <div class="empty-data-page" ng-if="initComputeDataLoading">
+        <ocloading></ocloading>
+    </div>
+</div>

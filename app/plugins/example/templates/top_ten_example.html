@@ -1,0 +1,25 @@
+<h3>JS:</h3>
+<pre>
+  $scope.topTenData = [
+   ...
+    {
+      size: "15TB", //the size displayed as utilized
+      utilization: 78, //the percent utilization used for width of bar
+      name: "Project 44" //the name that is displayed on first line
+    },
+   ...
+  ];
+</pre>
+<h3>HTML:</h3>
+<pre>
+  &lt;oc-top-ten data="topTenData" legend="true" legendTitle="'Project Utilization'"&gt;&lt;/oc-top-ten&gt;
+</pre>
+
+<oc-top-ten data="topTenData" legend="true" legendtitle="'Project Utilization'"></oc-top-ten>
+
+<h3>HTML:</h3>
+<pre>
+  &lt;oc-top-ten sortby="size" data="topTenData" legend="true" legendTitle="'Project Utilization'"&gt;&lt;/oc-top-ten&gt;
+</pre>
+
+<oc-top-ten sortby="size" data="topTenData" legend="true" legendtitle="'TB'"></oc-top-ten>

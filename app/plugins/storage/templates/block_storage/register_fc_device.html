@@ -1,0 +1,125 @@
+<div class="checkbox-area">
+    <oc-checkbox ng-model="$parent.bsRegisterControl.autoDiscoverSelected"
+                 ng-click="$parent.bsRegisterControl.autoDiscoverBllCall()">
+    </oc-checkbox>
+    <div class="checkbox-text">{{ 'storage.block_storage.register.checkbox.auto_discover' | translate }}</div>
+</div>
+
+<octable singleselect pageable ng-show="$parent.bsRegisterControl.autoDiscoverSelected"
+         tableid="autoDiscoverTable"
+         modelname="$parent.bsRegisterControl.autoDiscoverTableData"
+         configname="$parent.bsRegisterControl.auto_discover_table_config"
+         loadflag="$parent.bsRegisterControl.autoDiscoverLoadFlag">
+</octable>
+
+<div class="input-col-container">
+    <div class="left-form">
+        <oc-input name="hp_3par_fc_name"
+                  value="$parent.bsRegisterControl.register3PARFCDevice.name"
+                  label="storage.register.content.blockstoragedevice.general.name"
+                  placeholder="storage.register.content.blockstoragedevice.general.name.placeholder"
+                  oc-tooltip="'storage.register.content.blockstoragedevice.hp3parStoreServFC.name.tooltip'"
+                  validate="englishonly"
+                  validate-text="ocvalidate.englishonly"
+                  oc-disabled="$parent.bsRegisterControl.usingAutoDiscoveryForFC"
+                  oc-required="true"
+                  type="text">
+        </oc-input>
+
+        <oc-input name="hp_3par_fc_ipaddress"
+                  value="$parent.bsRegisterControl.register3PARFCDevice.ipaddress"
+                  label="storage.register.content.blockstoragedevice.general.ipaddress"
+                  placeholder="storage.register.content.blockstoragedevice.general.ipaddress.placeholder"
+                  oc-tooltip="'storage.register.content.blockstoragedevice.general.ipaddress.tooltip'"
+                  validate-text="ocvalidate.ipaddr_hostname"
+                  validate="ipaddr_hostname"
+                  oc-required="true"
+                  type="text">
+        </oc-input>
+
+        <oc-input name="hp_3par_fc_port"
+                  value="$parent.bsRegisterControl.register3PARFCDevice.portnumber"
+                  label="storage.register.content.blockstoragedevice.general.portnumber"
+                  oc-tooltip="'storage.register.content.blockstoragedevice.general.portnumber.tooltip'"
+                  validate-text="ocvalidate.port"
+                  validate="port"
+                  oc-required="true"
+                  type="text">
+        </oc-input>
+
+        <oc-input name="hp_3par_fc_username"
+                  value="$parent.bsRegisterControl.register3PARFCDevice.username"
+                  label="storage.register.content.blockstoragedevice.general.username"
+                  placeholder="storage.register.content.blockstoragedevice.general.username.placeholder"
+                  oc-tooltip="'storage.register.content.blockstoragedevice.general.username.tooltip'"
+                  validate-text="ocvalidate.name"
+                  oc-required="true"
+                  type="text">
+        </oc-input>
+
+        <div class='register-password-input'>
+            <oc-input name="hp_3par_fc_password"
+                      value="$parent.bsRegisterControl.register3PARFCDevice.password"
+                      label="storage.register.content.blockstoragedevice.general.password"
+                      placeholder="storage.register.content.blockstoragedevice.general.password.placeholder"
+                      oc-tooltip="'storage.register.content.blockstoragedevice.general.password.tooltip'"
+                      validate-text="ocvalidate.password"
+                      oc-required="true"
+                      type="{{ $parent.bsRegisterControl.register3PARFCDevice.showPass1 ? 'text' : 'password'}}">
+            </oc-input>
+
+            <div class="register-showpass">
+                <i class="gi-2x ardana-icon view-color"
+                   ng-class="{'ardana-icon-View_pressed': $parent.bsRegisterControl.register3PARFCDevice.showPass1, 'ardana-icon-View': !$parent.bsRegisterControl.register3PARFCDevice.showPass1}"
+                   ng-click="$parent.bsRegisterControl.toggleRegisterShowPass('3ParFC')"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-form">
+        <div class="check_input_box_body">
+            <i class="ardana-icon" click-proxy="[type='checkbox']"
+               ng-class="{'ardana-icon-Checkbox':!$parent.bsRegisterControl.register3PARFCDevice.copyDataToSANConf, 'ardana-icon-Check':$parent.bsRegisterControl.register3PARFCDevice.copyDataToSANConf,'green-color':$parent.bsRegisterControl.register3PARFCDevice.copyDataToSANConf}"></i>
+            <input class="_input_checkbox" type="checkbox"
+                   ng-model="$parent.bsRegisterControl.register3PARFCDevice.copyDataToSANConf" checked/> <span>{{"storage.block_storage.register_storage_device.import.conf" | translate}}</span>
+        </div>
+        <oc-input name="hp_3par_fc_san_ip"
+                  value="$parent.bsRegisterControl.register3PARFCDevice.sanipaddress"
+                  label="storage.register.content.blockstoragedevice.sanconfiguration.ipaddress"
+                  placeholder="storage.register.content.blockstoragedevice.sanconfiguration.ipaddress.placeholder",
+                  oc-tooltip="'storage.register.content.blockstoragedevice.sanconfiguration.ipaddress.tooltip'"
+                  validate-text="ocvalidate.ipaddr_hostname"
+                  validate="ipaddr_hostname"
+                  oc-required="true"
+                  type="text">
+        </oc-input>
+
+        <oc-input name="hp_3par_fc_san_username"
+                  value="$parent.bsRegisterControl.register3PARFCDevice.sanusername"
+                  label="storage.register.content.blockstoragedevice.sanconfiguration.username"
+                  placeholder="storage.register.content.blockstoragedevice.sanconfiguration.username.placeholder"
+                  oc-tooltip="'storage.register.content.blockstoragedevice.sanconfiguration.username.tooltip'"
+                  validate-text="ocvalidate.name"
+                  oc-required="true"
+                  type="text">
+        </oc-input>
+
+        <div class='register-password-input'>
+            <oc-input name="hp_3par_fc_san_password"
+                      value="$parent.bsRegisterControl.register3PARFCDevice.sanpassword"
+                      label="storage.register.content.blockstoragedevice.sanconfiguration.password"
+                      placeholder="storage.register.content.blockstoragedevice.sanconfiguration.password.placeholder"
+                      oc-tooltip="'storage.register.content.blockstoragedevice.sanconfiguration.password.tooltip'"
+                      validate-text="ocvalidate.password"
+                      oc-required="true"
+                      type="{{ $parent.bsRegisterControl.register3PARFCDevice.showPass2 ? 'text' : 'password'}}">
+            </oc-input>
+
+            <div class="register-showpass">
+                <i class="gi-2x ardana-icon view-color"
+                   ng-class="{'ardana-icon-View_pressed': $parent.bsRegisterControl.register3PARFCDevice.showPass2, 'ardana-icon-View': !$parent.bsRegisterControl.register3PARFCDevice.showPass2}"
+                   ng-click="$parent.bsRegisterControl.toggleRegisterShowPass('3ParFCSan')"></i>
+            </div>
+        </div>
+    </div>
+</div>

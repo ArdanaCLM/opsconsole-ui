@@ -1,0 +1,60 @@
+$footer_height: 190px;
+$footer_space: 86px;
+
+// The next few styles implement the "sticky footer" solution suggested at
+// http://www.cssstickyfooter.com/using-sticky-footer-code.html for forcing the
+// footer to the bottom of the screen even when the content only takes up a
+// portion of the full height.
+html, body {
+  height: 100%;
+}
+
+#wrap {
+  min-height: 100%;
+}
+
+#main {
+  overflow: auto;
+  padding-bottom: $footer_height;
+}
+
+/* Opera Fix*/
+body:before {
+  content: "";
+  height: 100%;
+  float: left;
+  width: 0;
+  margin-top: -32767px;
+}
+
+/*.main-footer {
+  margin-top: -1 * $footer_height;
+  height: $footer_height;
+  clear: both;
+
+  // End of extra styles to implement "sticky footer"
+
+  background-color: black;
+  color: white;
+
+  .ardanaLogo {
+      display: inline-block;
+      background-image: url($ardana_logo_rev);
+      background-repeat: no-repeat;
+      height: 110px;
+      width: 190px;
+      margin-top: 27px;
+      margin-left: 40px;
+  }
+
+  .copyright {
+      display: inline-block;
+      margin-left: 40px;
+      margin-bottom: 20px;
+  }
+  .links {
+      display: inline-block;
+      float:right;
+      margin-right: 30px;
+  }
+}*/

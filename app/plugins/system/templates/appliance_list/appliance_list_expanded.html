@@ -1,0 +1,96 @@
+<import src="$parent.$parent.$parent.selectionData" target="data"/>
+<import src="$parent.$parent.$parent.$parent" target="ctrl"/>
+<div class="applianceExpanded detail-page">
+
+<h2 class="oc-heading page-title">{{"system.applianceslist.details.subtitle" | translate}}: {{data.hostname}}</h2>
+
+<div class="col-md-7 left-col">
+    <table>
+        <tbody>
+            <tr>
+                <td class="appDtlLabel leftshift">{{"system.applianceslist.field.hostname" | translate | uppercase}}:</td>
+                <td class="expanded_system_value">{{data.hostname}}</td>
+            </tr>
+            <tr>
+                <td class="appDtlLabel leftshift">{{"system.applianceslist.field.role" | translate | uppercase}}:</td>
+                <td class="expanded_system_value">
+                    {{data.role}}</td>
+            </tr>
+            <tr>
+                <td class="appDtlLabel leftshift">{{"system.applianceslist.field.region" | translate | uppercase}}:</td>
+                <td class="expanded_system_value">
+                    {{data.region}}</td>
+            </tr>
+            <tr>
+                <td class="appDtlLabel leftshift">{{"system.applianceslist.field.failurezone" | translate | uppercase}}:</td>
+                <td class="expanded_system_value">
+                    {{data["failure-zone"]}}</td>
+            </tr>
+            <tr>
+                <td class="appDtlLabel leftshift long">{{"CAPACITY" | translate | uppercase}}:</td>
+                <td class="expanded_system_value">
+                    <svghorseshoe   data=ctrl.details.compute.data
+                                    percentage
+                                    max=ctrl.details.compute.max
+                                    unit=ctrl.details.compute.unit
+                                    ctitle=ctrl.details.compute.title
+                                    altsummary="{{'common.host.compute.utilization' | translate}}"/>
+
+                    <svghorseshoe   data=ctrl.details.memory.data
+                                    percentage
+                                    max=ctrl.details.memory.max
+                                    unit=ctrl.details.memory.unit
+                                    ctitle=ctrl.details.memory.title/>
+
+                    <svghorseshoe   data=ctrl.details.storage.data
+                                    percentage
+                                    max=ctrl.details.storage.max
+                                    unit=ctrl.details.storage.unit
+                                    ctitle=ctrl.details.storage.title/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="col-md-5 left-col">
+    <table class="col-md-12">
+    <tbody>
+        <tr>
+            <td class="appDtlLabel long col-md-2 leftshift compact">
+              {{"system.applianceslist.field.filesystems" | translate | uppercase}}:</td>
+            <td class="col-md-12 appDetValue">
+                <div ng-repeat="vol in data['disk-model']['volume-groups'][0]['logical-volumes']">
+                    <div class="col-md-12">
+                        <span class="name">{{vol.name}} </span>
+                        <span class="mount">( {{vol.mount}} )</span>
+                    </div>
+                    <!--span class="size col-md-4">: {{vol.size}} </span-->
+                    <ocsimplemeter fillPct="{{ctrl.details.fs[vol.mount]}}" class="col-md-12"></ocsimplemeter>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+<div class="">
+    <table class="col-md-12">
+    <tbody>
+        <tr>
+            <td class="appDtlLabel long col-md-1 leftshift">
+              {{"system.applianceslist.field.interfaces" | translate | uppercase}}:
+            </td>
+            <td class="appDetValue">
+                <div ng-repeat="(iface_name,iface_val) in data.net_data" class="">
+                    <div ng-repeat="(net_name,net_val) in iface_val" class="ethBox col-md-3">
+                        <h5 class="name"> {{net_val["network-group"]}} ({{iface_name}})</h5>
+                        <p><span class="lbl">{{"system.details.networks.ipaddr" | translate | uppercase}}:</span>      <span class="val">{{net_val.addr}}</span></p>
+                        <p><span class="lbl">{{"system.applianceslist.field.cidr" | translate | uppercase}}:</span>    <span class="val">{{net_val.cidr}}</span></p>
+                        <p><span class="lbl">{{"system.details.networks.gateway" | translate | uppercase}}:</span> <span class="val">{{net_val["gateway-ip"]}}</span></p>
+                        <p><span class="lbl">{{"system.details.networks.vlanid" | translate | uppercase}}:</span> <span class="val">{{net_val["vlan-id"]}}</span></p>
+                        <p><span class="lbl">{{"system.applianceslist.field.taggedvlan" | translate | uppercase}}:</span> <span class="val">{{net_val["tagged-vlan"]}}</span></p>
+                    </div>
+                </div>
+            </td>
+</div>
+
+</div>

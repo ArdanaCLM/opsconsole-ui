@@ -1,0 +1,57 @@
+<div container ng-controller="NotificationExampleController">
+    <br><b>Notifications</b><br><br>
+    Simple notifications can be displayed at the top of the page with a background status color and a message.<br><br>
+    The notification bar provides a way to cycle through the notifications and well as a way to clear a notification.
+    The "X" button on the right side of the notification header clears the current message.  The left and right arrows
+    scroll through the notification messages.<br><br>
+    The following API call can be used in a controller to add the notification:<br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>addNotification(status, translation_key);</i><br><br>
+    The message translation key is a defined tag for a localized string, found for each localized language folder in the
+    "locals" folder.<br><br>
+    <b>Status:</b><br><br>
+    The following status strings map to a background color in the notification header.<br><br>
+    <table style="width:40%">
+        <tr>
+            <th>Status</th>
+            <th>Background Color</th>
+        </tr>
+        <tr>
+            <td>info</td>
+            <td>green</td>
+        </tr>
+        <tr>
+            <td>warn</td>
+            <td>yellow</td>
+        </tr>
+        <tr>
+            <td>error</td>
+            <td>red</td>
+        </tr>
+    </table>
+    <br>
+    <b>JavaScript:</b><br><br>
+    <div ng-non-bindable><pre>
+     addNotification('info', 'common.welcome');
+     addNotification('warn', 'common.test_message');
+     addNotification('error', 'common.test_message2');
+    </pre></div>
+
+    <b>Example Controller:</b><br><br>
+    <p>
+    &nbsp;&nbsp;&nbsp; p.controller('ExampleController', ['$scope', <b>'addNotification'</b>,<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function($scope, <b>addNotification</b>) {<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$scope.doSomething = function(){<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>...</b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>addNotification('warn', 'common.welcome');</b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>...</b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    &nbsp;&nbsp;&nbsp;]);<br>
+    </p>
+
+    <br>
+    <b>Generate A Notification:</b><br><br>
+    <select ng-model="stat" ng-options="status.name for status in notification_status"></select>
+    <select ng-model="mess" ng-options="message.name for message in notification_messages"></select>
+    <button class="button" ng-controller="NotificationExampleController" ng-click="addNotification()">Add</button>
+</div>

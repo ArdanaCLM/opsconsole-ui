@@ -1,0 +1,14 @@
+<div id="object_storage_performance" ng-controller="ObjectStoragePerformanceSummaryController">
+    <div class="performance-upper">
+        <h3 class="oc-heading section-title">{{ "storage.object_storage.performance_summary.header" | translate }}</h3>
+        <div class="metric_tiles">
+            <div class="tiles" ng-repeat="tile in performance_tiles">
+                <metriccard type="'range'" ctitle="tile.title" data="tile.data" showCondition="tile.condition" ctitleback="tile.ctitleback" slideover="tile.slideover"> </metriccard>
+            </div>
+        </div>
+    </div>
+
+    <div class="object-lower">
+        <tabbedpage not-routing="true" pageList="objectPerformanceSummaryPages"></tabbedpage>
+    </div>
+</div>

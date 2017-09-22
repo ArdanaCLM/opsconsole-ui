@@ -1,0 +1,36 @@
+<div class="header" ng-if="ctitle">
+  <div class="text">{{ctitle | uppercase}}</div>
+</div>
+<figure>
+  <svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g>
+      <path class="plotLine" d = "M29.00389385755379 107.89848881466276 A56 56 0 1 1 103.19190816349992 105.95580729067355"></path>
+      <path class="dangerZone" d = "M125.76787658359648 70.31650030760714 A61 61 0 0 1 106.6018999638124 109.6125757987694"></path>
+      <path class="arc" ng-class="{'arc-warning': overflow == true}" horseshoed = "gData" ng-if="max && data !== undefined"></path>
+      <circle ng-class="{'circle-warning': overflow == true}" r=0 ng-if="max && data !== undefined" />
+    </g>
+
+    <g>
+      <text x="50%" y="75" fill={{fillColor}} font-size="34px" text-anchor="middle" ng-if="!percentage && data.count!==undefined">{{data.count / max * 100 | number:1}}</text>
+      <text x="50%" y="75" fill={{fillColor}} font-size="34px" text-anchor="middle" ng-if="!percentage && data.count===undefined">{{data / max * 100 | number:1}}</text>
+      <text x="50%" y="75" fill={{fillColor}} font-size="34px" text-anchor="middle" ng-if="percentage && (max) && data.count!==undefined">{{data.count / max * 100 | number:1}}%</text>
+      <text x="50%" y="75" fill={{fillColor}} font-size="34px" text-anchor="middle" ng-if="percentage && (max) && data.count===undefined">{{data / max * 100 | number:1}}%</text>
+      <text x="50%" y="90" fill={{fillColor}} font-size="15px" text-anchor="middle" ng-if="data!==undefined && max!==undefined">{{ 'common.data.used' | translate }}</text>
+      <text x="50%" y="90" fill={{fillColor}} font-size="15px" text-anchor="middle" ng-if="max===undefined || data===undefined">{{ 'common.data.none' | translate }}</text>
+    </g>
+  </svg>
+
+  <figcaption ng-hide="altsummary || dynsummary">
+      <p ng-show="max" ng-if="label != undefined && !angular.isNumber(data)">{{'horseshoe.with.label' | translate: {cur_value:data.count, max_value:max, unit:unit} }} {{label}}</p>
+      <p ng-show="max" ng-if="label != undefined && angular.isNumber(data)">{{'horseshoe.with.label' | translate: {cur_value:data, max_value:max, unit:unit} }} {{label}}</p>
+      <p ng-show="max" ng-if="label == undefined && !angular.isNumber(data)">{{'horseshoe.default.label' | translate: {cur_value:data.count, max_value:max, unit:unit} }}</p>
+      <p ng-show="max" ng-if="label == undefined && angular.isNumber(data)">{{'horseshoe.default.label' | translate: {cur_value:data, max_value:max, unit:unit} }}</p>
+      <p ng-hide="max">{{'common.data.none' | translate}}</p>
+  </figcaption>
+  <figcaption ng-show="altsummary">
+      <p>{{altsummary}}</p>
+  </figcaption>
+  <figcaption ng-show="dynsummary">
+      <p>{{dynsummary}}</p>
+  </figcaption>
+</figure>

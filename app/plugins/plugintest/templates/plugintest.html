@@ -1,0 +1,19 @@
+<div class="row">
+  <grid config="grid"></grid>
+</div>
+<div class="row col-md-12">
+    <label class="ng-scope">{{ 'plugintest.user_info' | translate }}</label>
+    <br>
+    <div ng-controller="PlugintestController">
+       <octable modelname="userData" configname="userTableConfig"/>
+    </div>
+    <br>
+
+    <label class="ng-scope">{{ 'plugintest.projects' | translate }}</label>
+    <br>
+    <div ng-controller="PlugintestController">
+       <octable modelname="projectData" configname="projectTableConfig"/>
+    </div>
+
+    <div id="plugintest_footer" style="height:50px"/>
+</div>

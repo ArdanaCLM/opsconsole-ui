@@ -1,0 +1,177 @@
+<!-- (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP -->
+<!-- (c) Copyright 2017 SUSE LLC -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ops Console</title>
+    <link rel="icon" type="image/vnd.microsoft.icon" href="images/icons/logos/favicon.ico?v=1">
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="images/icons/logos/favicon.ico?v=2">
+    <!-- build:csslib styles/lib.css -->
+    <link rel="stylesheet" type="text/css" href="styles/lib.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-dragula/dist/dragula.css">
+    <!-- endbuild -->
+    <!-- build:css styles/app.css -->
+    <link rel="stylesheet" type="text/css" href="styles/app.css">
+    <!-- plugins:css -->
+    <!-- endinject -->
+    <!-- endbuild -->
+    <!-- locales:json -->
+    <!-- endinject -->
+  </head>
+
+  <body ng-class="{'login-body': is_login_screen()}" id="ops_console_body" ng-strict-di>
+    <!-- The "wrap" and "main" divs implement the "sticky footer" solution suggested by
+          http://www.cssstickyfooter.com/using-sticky-footer-code.html for forcing the footer to the
+          bottom of the page.  There are CSS entries in _footer.scss that accompany this change
+    -->
+    <div id="wrap">
+      <div id="main">
+        <div class="spinner-center" ng-if="false"><!-- Will be hidden when the app starts -->
+          <div class="sk-spinner sk-spinner-three-bounce">
+            <div class="sk-bounce1"></div>
+            <div class="sk-bounce2"></div>
+            <div class="sk-bounce3"></div>
+          </div>
+        </div>
+        <div id="communication-error" ng-if="master_error" style="display: none;" ng-bind="'common.communication_error' | translate"></div><!-- Will be shown if app start has a problem -->
+        <div ng-if="!master_error">
+          <div>
+            <div ng-if="is_login_screen()">
+              <oc-application-notifications notifications="applicationNotifications"></oc-application-notifications>
+              <div class="ng-show-notification" ng-if="global_notification_message">
+                <ocnotification></ocnotification>
+              </div>
+              <ng-view></ng-view>
+            </div>
+
+            <div ng-if="auth_token && !is_login_screen()">
+              <oc-application-notifications notifications="applicationNotifications"></oc-application-notifications>
+              <oc-toasts notifications="toastNotifications"></oc-toasts>
+            </div>
+
+            <div class="container" ng-if="!is_login_screen()" id="mainContainer">
+                <div ng-if="auth_token && !is_login_screen()">
+                    <oc-masthead show-menu="$root.menu_active"></oc-masthead>
+                </div>
+              <div class="row">
+                <div ng-if="auth_token && !is_login_screen()">
+                    <oc-navigation show-menu="$root.menu_active"></oc-navigation>
+                </div>
+                <div class="col-md-12 main-body">
+                  <h2 class="oc-heading page-title" ng-bind="$root.pageTitle | translate"></h2>
+                  <ng-view></ng-view>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- end of main -->
+    </div> <!-- end of wrap -->
+
+    <!-- build:jslib scripts/lib.js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <!-- bower:js -->
+    <!-- endinject -->
+    <script src="bower_components/moment/locale/en-au.js"></script>
+    <script src="bower_components/moment/locale/en-ca.js"></script>
+    <script src="bower_components/moment/locale/ja.js"></script>
+    <script src="bower_components/moment/locale/zh-cn.js"></script>
+    <script src="bower_components/moment/locale/zh-tw.js"></script>
+    <script src="bower_components/moment/locale/en-gb.js"></script>
+    <script src="bower_components/flot/jquery.flot.pie.js"></script>
+    <script src="bower_components/flot/jquery.flot.time.js"></script>
+    <script src="bower_components/flot/jquery.flot.selection.js"></script>
+    <script src="bower_components/flot/jquery.flot.fillbetween.js"></script>
+    <script src="bower_components/flot/jquery.flot.stack.js"></script>
+    <script src="bower_components/lodash/dist/lodash.js"></script>
+    <script src="bower_components/angular-dragula/dist/angular-dragula.js"></script>
+    <script src="bower_components/object-hash/dist/object_hash.js"></script>
+    <!-- endbuild -->
+
+
+    <!-- build:js scripts/app.js -->
+    <script src="scripts/templates.js"></script>
+    <script src="scripts/plugin_system.js"></script>
+    <!-- plugins:js -->
+    <!-- endinject -->
+    <script src="scripts/helpers.js"></script>
+    <script src="scripts/operations_ui.js"></script>
+    <script src="scripts/services/preferences_service.js"></script>
+    <script src="scripts/services/ardana_service.js"></script>
+    <script src="scripts/components/app_service.js"></script>
+    <script src="scripts/components/utils/style.js"></script>
+    <script src="scripts/components/utils/sortUtils.js"></script>
+    <script src="scripts/components/dimension_selector.js"></script>
+    <script src="scripts/components/plot/plot_directive.js"></script>
+    <script src="scripts/components/plot/plot_controller.js"></script>
+    <script src="scripts/components/timeseries/timeseries_controller.js"></script>
+    <script src="scripts/components/timeseries/timeseries.js"></script>
+    <script src="scripts/components/timeseries/timeseries_graph_controller.js"></script>
+    <script src="scripts/components/timeseries/metric_chart.js"></script>
+    <script src="scripts/components/utilization_meter/simple_meter_directive.js"></script>
+    <script src="scripts/components/navigation_directive.js"></script>
+    <script src="scripts/components/ocmasthead_directive.js"></script>
+    <script src="scripts/components/notification_directive.js"></script>
+    <script src="scripts/components/table/octable_filters.js"></script>
+    <script src="scripts/components/table/octable_directive.js"></script>
+    <script src="scripts/components/table/octable_headerdirectives.js"></script>
+    <script src="scripts/components/listviewselector/list_view_selector.js"></script>
+    <script src="scripts/components/grid/grid_item_directive.js"></script>
+    <script src="scripts/components/grid/grid_column_directive.js"></script>
+    <script src="scripts/components/grid/grid_directive.js"></script>
+    <script src="scripts/components/loading_spinner.js"></script>
+    <script src="scripts/components/utils/helpfield_directive.js"></script>
+    <script src="scripts/components/oc_checkbox.js"></script>
+    <script src="scripts/components/oc_radio.js"></script>
+    <script src="scripts/components/first_time_install/import.js"></script>
+    <script src="scripts/components/first_time_install/modal_drawer.js"></script>
+    <script src="scripts/components/oc_heatmap_directive.js"></script>
+    <script src="scripts/components/modal/modal_dialog.js"></script>
+    <script src="scripts/components/modal/overlay.js"></script>
+    <script src="scripts/components/modal/stackable_modal.js"></script>
+    <script src="scripts/components/select_list.js"></script>
+    <script src="scripts/components/oc_translate.js"></script>
+    <script src="scripts/components/dual_graph/dualgraph_directive.js"></script>
+    <script src="scripts/components/dual_graph/dualgraph_container_directive.js"></script>
+    <script src="scripts/components/dual_graph/dualgraph_wide_directive.js"></script>
+    <script src="scripts/components/dual_graph/dualgraph_small_directive.js"></script>
+    <script src="scripts/components/svg_round/svgdonut_directive.js"></script>
+    <script src="scripts/components/svg_round/svghorseshoe_directive.js"></script>
+    <script src="scripts/components/slideover_directive.js"></script>
+    <script src="scripts/components/metricCard_directive.js"></script>
+    <script src="scripts/components/alarmCard_directive.js"></script>
+    <script src="scripts/components/alarmcard_service_directive.js"></script>
+    <script src="scripts/components/alarmsummary/alarm_summary_directive.js"></script>
+    <script src="scripts/components/tabbed_page.js"></script>
+    <script src="scripts/controllers/main_controller.js"></script>
+    <script src="scripts/controllers/authentication_controller.js"></script>
+    <script src="scripts/controllers/search_drawer_controller.js"></script>
+    <script src="scripts/controllers/masthead_settings_controller.js"></script>
+    <script src="scripts/controllers/masthead_notification_controller.js"></script>
+    <script src="scripts/controllers/masthead_help_controller.js"></script>
+    <script src="scripts/controllers/masthead_drilldown_controller.js"></script>
+    <script src="scripts/controllers/helpsystem_controller.js"></script>
+    <script src="scripts/components/oc_input_directive.js"></script>
+    <script src="scripts/components/masthead_popover.js"></script>
+    <script src="scripts/components/d3_graphs.js"></script>
+    <script src="scripts/components/d3_multi_chart.js"></script>
+    <script src="scripts/components/click_proxy.js"></script>
+    <script src="scripts/components/host_utilization_details_directive.js"></script>
+    <script src="scripts/components/drop_down_card.js"></script>
+    <script src="scripts/components/drop_down_button.js"></script>
+    <script src="scripts/components/project_picker_directive.js"></script>
+    <script src="scripts/services/toast_notifications_service.js"></script>
+    <script src="scripts/components/toasts.js"></script>
+    <script src="scripts/components/empty_data_page_directive.js"></script>
+    <script src="scripts/services/application_notifications_service.js"></script>
+    <script src="scripts/services/compute_host_helper_service.js"></script>
+    <script src="scripts/components/oc_application_notifications.js"></script>
+    <script src="scripts/components/dynamic_heat_map_directive.js"></script>
+    <script src="scripts/components/top_ten_directive.js"></script>
+    <script src="scripts/boot.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

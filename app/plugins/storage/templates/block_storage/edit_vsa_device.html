@@ -1,0 +1,52 @@
+<div class="left-form">
+    <oc-input name="hp_storevirtual_name"
+              value="$parent.bsEditControl.registerVSADevice.clustername"
+              label="storage.register.content.blockstoragedevice.general.clustername"
+              validate="englishonly"
+              validate-text="ocvalidate.englishonly"
+              oc-required="true"
+              type="text">
+    </oc-input>
+
+    <oc-input name="hp_storevirtual_ip"
+              value="$parent.bsEditControl.registerVSADevice.ipaddress"
+              label="storage.register.content.blockstoragedevice.general.ipaddress_vsa"
+              validate-text="ocvalidate.ipAddress"
+              validate="ipAddress"
+              oc-required="true"
+              type="text">
+    </oc-input>
+
+    <oc-input name="hp_storevirtual_port"
+              value="$parent.bsEditControl.registerVSADevice.portnumber"
+              label="storage.register.content.blockstoragedevice.general.portnumber"
+              validate-text="ocvalidate.port"
+              validate="port"
+              oc-required="true"
+              type="text">
+    </oc-input>
+
+    <oc-input name="hp_storevirtual_account_username"
+              value="$parent.bsEditControl.registerVSADevice.username"
+              label="storage.register.content.blockstoragedevice.general.accountconfigruation.username"
+              validate-text="ocvalidate.name"
+              oc-required="true"
+              type="text">
+    </oc-input>
+
+    <div class='register-password-input'>
+        <oc-input name="hp_storevirtual_account_password"
+                  value="$parent.bsEditControl.registerVSADevice.password"
+                  label="storage.register.content.blockstoragedevice.general.accountconfigruation.password"
+                  validate-text="ocvalidate.password"
+                  oc-required="true"
+                  type="{{ $parent.bsEditControl.registerVSADevice.showPass ? 'text' : 'password'}}">
+        </oc-input>
+
+        <div class="register-showpass">
+            <i class="gi-2x ardana-icon view-color"
+               ng-class="{'ardana-icon-View_pressed': $parent.bsEditControl.registerVSADevice.showPass, 'ardana-icon-View': !$parent.bsEditControl.registerVSADevice.showPass}"
+               ng-click="$parent.bsEditControl.toggleRegisterShowPass('vsa')"></i>
+        </div>
+    </div>
+</div>

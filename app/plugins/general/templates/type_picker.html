@@ -1,0 +1,46 @@
+<import src="$parent.$parent.$parent" target="ctrl"></import>
+<div class="typePicker">
+
+<h2 class="oc-heading">{{'general.dashboard.card.new.metric.title' | translate}}</h2>
+<div class="buttonRow col-md-8">
+    <h3 class="oc-heading summary-header" ng-if="ctrl.modalCreateAlarmsServiceMode == 'service'">{{'general.dashboard.card.new.picker.service' | translate}}</h3>
+    <h3 class="oc-heading summary-header" ng-if="ctrl.modalCreateAlarmsServiceMode == 'hostname'">{{'general.dashboard.card.new.picker.hostname' | translate}}</h3>
+    <button class="oc-btn oc-btn-primary float-right card" ng-click="closeModal()">{{'general.dashboard.card.new.select.dimensions' | translate}}</button>
+</div>
+<div class="enum_filter_wrapper col-md-8 metric-selector">
+    <div class="octable_header_wrapper_enum_row enumerated_filter_control">
+        <span class="enum_filter_icon ardana-icon ardana-icon-Filter">
+        </span>
+        <span class="enum_filter_input">
+          <input type="text" ng-model="metricFilter"/>
+        </span>
+        <span class="enum_filter_clear ardana-icon ardana-icon-Close" ng-click="metricFilter=''">
+        </span>
+    </div>
+</div>
+
+<div ng-repeat="service in (ctrl.newCardSelections.serviceList | fuzzy: metricFilter)" ng-if="ctrl.modalCreateAlarmsServiceMode == 'service'">
+  <div class="metric-picker-item col-md-8">
+    <label>
+        <oc-checkbox
+            ng-model="service.value">
+        </oc-checkbox>
+        <span>service={{service.title}}</span>
+    </label>
+  </div>
+  <div class="col-md-7 metric-picker-blocker"></div>
+</div>
+
+<div ng-repeat="hostname in (ctrl.newCardSelections.hnameList | fuzzy: metricFilter)" ng-if="ctrl.modalCreateAlarmsServiceMode == 'hostname'">
+  <div class="metric-picker-item col-md-8">
+    <label>
+        <oc-checkbox
+            ng-model="hostname.value">
+        </oc-checkbox>
+        <span>hostname={{hostname.title}}</span>
+    </label>
+  </div>
+  <div class="col-md-7 metric-picker-blocker"></div>
+</div>
+
+</div>

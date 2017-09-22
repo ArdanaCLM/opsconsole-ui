@@ -1,0 +1,1284 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+@import './_common.scss';
+@import './_palette.scss';
+
+$table-line-height: 32px;//todo - consider moving this out to a general config file
+$table-background-color: white;
+$table-header-bottom-border-width: 0px;
+$header-item-height: 60px;
+$filter-input-height: 32px;//couple pixels shorter than the item-height
+
+.octable table tbody tr.table-notification {
+  height: 25px;
+  padding: 0;
+  td {
+    height: 25px;
+    padding: 2px;
+    line-height: 25px;
+    border: none;
+    color: $grommet-white;
+    &.notification-message:before {
+      top:-15px;
+      left:30px;
+      display: inline-block;
+      position: relative;
+      content: '';
+      height: 0px;
+      border-style: solid;
+      border-width: 0 0 10px 10px;
+      transform: rotate(225deg);
+    }
+  }
+  &.error {
+    background-color: $grommet-red;
+    td.notification-message:before {
+      border-color: transparent transparent $grommet-red transparent;
+    }
+    td {
+      background-color: $grommet-red;
+    }
+  }
+  &.warning {
+    background-color: $grommet-yellow;
+    td.notification-message:before {
+      border-color: transparent transparent $grommet-yellow transparent;
+    }
+    td {
+      background-color: $grommet-yellow;
+    }
+  }
+  &.success {
+    background-color: $grommet-green;
+    td.notification-message:before {
+      border-color: transparent transparent $grommet-green transparent;
+    }
+    td {
+      background-color: $grommet-green;
+    }
+  }
+  &.info {
+    background-color: $grommet-white;
+    color: $grommet-black;
+    border-top: 1px solid $table-header-border-color;
+    td.notification-message:before {
+      width: 13px;
+      height: 13px;
+      background-color: $grommet-white;
+      border-color: $table-header-border-color;
+      top:-14px;
+      transform: rotate(135deg);
+      border-width: 0 0 1px 1px;
+    }
+    td {
+      background-color: $grommet-white;
+      color: $grommet-black;
+    }
+  }
+}
+
+.octable table thead{
+  border: none;
+}
+
+.octable table thead th{
+  font-weight: normal;
+  white-space: nowrap;
+}
+
+.octable table.withborder{
+  border: 1px solid $body-background-color;
+}
+
+.octable table thead th,
+.octable table thead th.sortable{
+  line-height: $table-line-height;
+  background-color: white;
+  border-width: 0px 1px $table-header-bottom-border-width 1px !important;
+  border-color: transparent;
+  border-style: solid;
+  border-bottom-color: $body-background-color !important;
+  padding-left: 15px;
+}
+
+.octable table thead th.sortable{
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 16px 16px;
+  border-bottom-width: $table-header-bottom-border-width !important;
+  padding-left: 15px;
+  padding-right: 20px;
+}
+
+.octable table thead th.selectableHeader{
+  width: 50px;
+  min-width: 50px;
+}
+
+.sortHeaderBase {
+  border-bottom-width: 4px !important;
+  border-bottom-color: $oc-highlight !important;
+}
+
+.octable table thead th.sortable.sortdesc{
+  @extend .sortHeaderBase;
+  background-image: url($descend_arrow);
+  font-weight: bold;
+}
+
+.octable table thead th.sortable.sortasc{
+  @extend .sortHeaderBase;
+  background-image: url($ascend_arrow);
+  font-weight: bold;
+}
+
+.octable > table > tbody > tr{
+  background-color: $table-background-color;
+  > td {
+    line-height: $table-line-height;
+  }
+}
+
+.octable tbody tr.splitRow{
+  background-color: $table-background-color;
+  border-style: solid;
+  border-width:10px 0px;
+  border-color: $body-background-color;
+}
+
+.table_mode_btn{
+  height: 25px;
+  width: 25px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border:0px;
+  padding:0px;
+  margin: 0px 0px;
+  vertical-align: middle;
+}
+
+button.table_mode_btn:focus,
+button.table_mode_btn:active{
+  outline-color: transparent;
+
+}
+
+.octable{
+  margin-bottom: 17px;
+}
+
+.octable table.table{
+  margin-bottom: 5px;
+  box-shadow: $grommet-box-shadow;
+}
+
+.altstyle {
+  .octable_std_header {
+    box-shadow: none;
+  }
+
+  .octable {
+    table.table {
+      box-shadow: none;
+    }
+  }
+}
+
+.solid_table_btn{
+  @extend .table_mode_btn;
+  .listsort{
+    font-size: 24px;
+    color: $grommet-grey;
+  }
+}
+
+.solid_table_btn.selected{
+  .listsort{
+    color: $grommet-green;
+  }
+}
+
+.tile_table_btn{
+  @extend .table_mode_btn;
+  .cardsort{
+    font-size: 24px;
+    color: $grommet-grey;
+  }
+}
+
+.tile_table_btn.selected{
+  @extend .table_mode_btn;
+  .cardsort{
+    color: $grommet-green;
+  }
+}
+
+.table_filter{
+  background-image: url($filter_icon);
+  background-size: 16px 16px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: right;
+  line-height: $header-item-height;
+  vertical-align: top;//note, this shouldnt be neccessary - TODO- investigate
+}
+
+.filterButton{
+  opacity: 1.0;
+}
+
+.filterButton.unselected{
+  opacity: 0.70;
+}
+
+.pagebtn{
+  height:32px;
+  width:32px;
+  background-repeat:no-repeat;
+  border:none;
+  background-color:transparent;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.pagebtn.disabled{
+  opacity: 0.35;
+}
+
+.pagebtn.prev {
+  background-image: url($page_prev_icon);
+}
+
+.pagebtn.next {
+  background-image: url($page_next_icon);
+}
+
+.pagebtn.first {
+  background-image: url($page_first_icon);
+}
+
+.pagebtn.last {
+  background-image: url($page_last_icon);
+}
+
+.octable .selectRow{
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: 10px 15px;
+  background-image: url($unselected_icon);
+  cursor: pointer;
+}
+
+.octable .selectRow.selectBladeRow{
+  background-position: 10px 7px;
+}
+
+.octable .selectTile .selectRow{
+  width: 100%;
+  white-space: nowrap;
+  background-position: 10px 10px;
+}
+
+.octable .splitRow .selectRow{
+  width: 40px;
+}
+
+.btn.selectControlButton{
+  width: 50px;
+  min-width: 50px;
+  height: $header-item-height;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url($unselected_icon);
+  background-size: 16px 16px;
+  border: none;
+  float: left;
+}
+
+.btn.selectControlButton.tile-select-btn {
+  position: relative;
+  right: 7px;
+  top: -1px;
+  background-color: transparent;
+  min-width: 30px;
+  width: 30px;
+}
+
+.btn.selectControlButton:focus,
+.btn.selectControlButton:hover,
+.btn.selectControlButton:active{
+  outline-color: transparent;
+  background-color: transparent;
+  outline: none;
+  box-shadow:none;
+}
+
+.btn.selectControlCaret{
+  height: $header-item-height;
+  width: 30px;
+  min-width: 30px;
+  border-radius: 0px 5px 0px 0px;
+  float: left;
+  border: 1px solid $widget-border;
+}
+
+.basic_header_row_controls{
+  float: left;
+}
+
+.octable .tableRowSelected .selectRow,
+.open > .btn-default.dropdown-toggle.selectControlButton,
+.btn.selectControlButton.allRowsSelected,
+.tableRowSelected .selectControlButton {
+  background-image: url($selected_icon);
+  background-size: 16px 16px;
+  fill: $grommet-green;
+}
+
+.enum_filter_wrapper{
+  float: left;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  border: 1px solid $soft-border-color;
+  min-height: 54px;
+  .row_count {
+    width: 10%;
+    margin-top: 14px;
+    display: block;
+    font-weight: 600;
+  }
+}
+
+.octable .selectTile{
+  width: 100%;
+  border-top: 1px solid $utilized_fill_color;
+  height: 55px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.btn-group.row_selection_control_menu{
+  display:inline-block;
+  vertical-align: top;
+  margin-right: 25px;
+  height: 35px;
+  padding-left: 0px !important;
+  :focus{
+    outline-color: transparent;
+  }
+}
+
+.octable .actionRow {
+  width: 40px;
+  line-height: $table-line-height;
+  padding: 0px;
+  height: 55px;
+
+  &.image-padding {
+    padding-left: 9px;
+    padding-right: 9px;
+  }
+
+  button {
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    border: none;
+    background-repeat: no-repeat;
+    margin-top: 5px;
+    img {
+      width: 24px;
+      height: 24px;
+      fill: $grommet-charcoal;//note, this isnt working currently!
+    }
+  }
+
+  .open {
+    button{
+      box-shadow: none;
+      img {
+        background-color: $grommet-grey;
+        fill: $grommet-green;//note, this isnt working currently!
+      }
+    }
+  }
+
+  button.actionMenuItem,
+  li.actionMenuItem {
+    background-image: none;
+    width: 100%;
+    line-height: 31px;
+    color: black;
+    text-align: left;
+    padding-left:20px;
+    white-space: nowrap;
+  }
+
+  li.actionMenuSubheader {
+    color: $oc-highlight;
+    border-bottom: 1px solid $soft-border-color;
+  }
+
+  li.actionMenuOptionheader{
+    color: $oc-highlight;
+    border-bottom: 1px solid $soft-border-color;
+  }
+
+  li.actionMenuSpacer{
+    height: $table-line-height;
+  }
+
+}
+
+.octable .btn-group {
+  button.actionMenuItem:focus {
+    outline-color: transparent;
+  }
+  button.actionMenuItem.disabled{
+    opacity: 0.50;
+  }
+  button.actionMenuItem, li.actionMenuItem {
+    width: 100%;
+    line-height: 32px;
+    height: 32px;
+    color: black;
+    text-align: left;
+    padding-left: 20px;
+    background-color: white;
+    border: none;
+    padding-top: 2px;
+    white-space: nowrap;
+  }
+  li.actionMenuOptionheader, li.actionMenuSubheader {
+    color: $oc-highlight;
+    border-bottom: 1px solid $soft-border-color;
+  }
+}
+
+.octable .notApplicableCell{
+  background-color: $body-background-color;
+}
+
+.octable .notApplicableIconCell{
+  margin-left: 10px;
+  background-repeat: no-repeat;
+  display: block;
+  height: 24px;
+  width: 24px;
+  opacity: 0.3;
+  background-size: 24px 24px;
+  background-image: url($unknown_icon_default);
+}
+
+.multirowActionItem{
+  cursor: pointer;
+  background-image: none;
+  width: 100%;
+  line-height: $table-line-height;
+  color: black;
+  text-align: left;
+  padding-left:20px;
+  background-color: transparent;
+  border:none;
+  &.disabled{
+    opacity: 0.50;
+  }
+}
+
+.select_free_action_row{
+  float: right;
+}
+
+.table_icon_base {
+  margin-left: 10px;
+  background-repeat: no-repeat;
+  display: block;
+  height: 24px;
+  width: 24px;
+  background-size: 24px 24px;
+}
+
+.table_status_icon_base {
+  @extend .table_icon_base;
+  margin-left:10px;
+}
+
+.table_error_status{
+  @extend .table_status_icon_base;
+  background-image: url($notif_icon_error);
+}
+
+.table_warn_status{
+  @extend .table_status_icon_base;
+  background-image: url($notif_icon_warning);
+}
+
+.table_disabled_status{
+  @extend .table_status_icon_base;
+  background-image: url($notif_icon_warning);//TODO
+}
+
+.table_unknown_status{
+  @extend .table_status_icon_base;
+  background-image: url($unknown_status_icon);
+}
+
+.table_ok_status{
+  @extend .table_status_icon_base;
+  background-image: url($notif_icon_info);
+}
+
+.table_progress_status{
+  @extend .table_status_icon_base;
+  background-image: url($table_progress_status);
+}
+
+.table_done_status{
+  @extend .table_status_icon_base;
+  background-image: url($table_done_status);
+}
+
+.table_status_div{
+  line-height: $table-line-height;
+  vertical-align: text-bottom;
+}
+
+.table_rowcolor_error td{
+  color: $status-error-color;
+}
+
+.table_rowcolor_warn td{
+  color: $status-warning-color;
+}
+
+.table_rowcolor_ok td{
+  color: $status-ok-color;
+}
+
+.table_rowcolor_unknown td{
+  color: $status-unknown-color;
+}
+
+.octable .tableTile{
+  padding: 15px 5px 0px 5px;
+}
+
+.octable .table_wrapper_padder{
+  margin:10px;
+  padding-left: 0px !important;//override bootstrap to allow content to span the whole tile
+  padding-right: 0px !important;//override bootstrap to allow content to span the whole tile
+}
+
+.popupadjust {
+  position: relative;
+}
+octable .dropdown-menu {
+  border-radius: 0px;
+  min-width: 200px; //make it a little longer than default 160
+  left:-41px;
+  right:0;
+}
+.popupadjust .dropdown-menu {
+  left: -156px;
+}
+
+.btn-group.open .dropdown-toggle{
+  box-shadow: none;
+}
+
+.global-btn-container{
+  display:flex;
+}
+oct-global-actions-control .global-btn-container {
+    background: $grommet-silver;
+    padding-left: 30px;
+}
+stackablemodal oct-global-actions-control .global-btn-container {
+    background: $grommet-white;
+}
+
+.embedded-btn {
+  position: absolute;
+  z-index: 15;
+  left: -52px;
+  padding-top: 7px;
+  border: none;
+  background-color: transparent;
+}
+
+.more-icon {
+  font-size: 24px;
+}
+
+.std-margin-top {
+  margin-top: 15px;
+}
+
+.big-margin-bottom {
+  margin-bottom: 30px;
+}
+
+.small-margin-bottom {
+  margin-bottom: 7px;
+}
+
+.octable_header_wrapper_row{
+  display:inline-block;
+  vertical-align: top;
+  width:100%;
+}
+
+.octable_std_header{
+  border: none;
+  background-color: white;
+  margin: 0 0 24px 0px;
+  padding: 21px 24px 21px 10px;
+  box-shadow: $grommet-box-shadow;
+  min-height: 96px;
+  .enum_filter {
+    width: calc(100% - 68px);
+    padding-right: 20px;
+  }
+  .btn-group.row_selection_control_menu {
+      margin-left: -5px;
+  }
+  .btn.selectControlButton {
+      width: 20px;
+      min-width: 20px;
+  }
+}
+
+.octable_global_action_container {
+  position: relative;
+  display: block;
+  .global_action_header {
+    position: absolute;
+    top: -67px;
+    right: 0px;
+  }
+}
+octable[selectable] .octable_global_action_container {
+    min-height: 190px;
+}
+
+oct-global-actions-control .dropdown-toggle i.ardana-icon,
+oct-multi-row-actions-control .dropdown-toggle i.ardana-icon {
+    padding: 0 0 0 70px;
+}
+
+.octable_header_wrapper_enum_row{
+  display:inline-flex;
+  cursor: pointer;
+  @extend .octable_header_wrapper_row;
+  float: left;
+  width: 100%;
+}
+
+.octable .table_loading_indicator{
+  background-image: url($loading_indicator);
+  background-repeat: no-repeat;
+  height: $table-line-height;
+  width: 100%;
+  background-position: 50% 0%;
+}
+
+.octable .table_loading_container {
+  background-image: none;
+  height: $table-line-height;
+  width: 100%;
+  background-position: 50% 0%;
+}
+
+.octable .table,
+.octable .table > tbody,
+.octable .table > tbody > tr,
+.octable .table > tbody > tr > td{
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+.octable .table > tbody > tr > td{
+  vertical-align: top;
+  padding-left: 15px;
+  border-top: 1px solid $table-header-border-color;
+}
+
+.octable .table > tbody .blade_action_control {
+  vertical-align: top;
+}
+
+.octable .tile_no_data_msg {
+  background-color: white;
+  text-align:center;
+  line-height: 32px;
+  padding: 8px;
+  margin: 0px 16px;
+}
+
+.sort_control_drop{
+  height: $header-item-height;
+  line-height: $table-line-height;
+  border: 1px solid $widget-border;
+}
+
+.enum_filter_icon{
+  color:$grommet-charcoal;
+  background-color: white;
+  font-size:24px;
+  line-height: $table-line-height;
+  display:inline-block;
+  vertical-align: middle;
+  width: 34px;
+  height: 34px;
+  margin-top:10px;
+}
+
+.enum_filter_input{
+  line-height: 22px;
+  border-right:none;
+  width:90%;
+  background-color: white;
+  overflow:auto;
+  display:inline-block;
+  padding-left: 35px;//to account for filter icon
+  //min-height: calc(#{$header-item-height} - 2px);//accounts for the border
+  cursor: pointer;
+  min-height: 45px;
+  padding-right: 10px;
+}
+
+.enum_filter_input_overflow{
+  height: 70px;
+}
+
+.enum_filter_clear{
+  display:inline-block;
+  color: $grommet-black;
+  background-color: transparent;
+  border-left:none;
+  font-size: 25px;
+  margin-top: 13px;
+  width: 32px;
+  cursor: pointer;
+}
+
+.enum_filter_menu_container{
+  top: -20px;
+  left: 40px;
+  z-index: 20;
+}
+
+.enum_filter_tag_base{
+  height: 24px;
+  background-color: white;
+  border: 1px solid $grommet-green;
+  border-radius: 4px;
+  vertical-align: top;
+  margin-top: 2px;
+}
+
+.enum_filter_value_tag{
+  @extend .enum_filter_tag_base;
+  border: 2px solid $grommet-unknown-grey;
+  line-height: 12px;
+  font-size: 12px;
+  margin-top: 6px;
+  margin-bottom: 4px;
+  margin-right: 12px;
+  padding-right: 4px;
+  vertical-align: middle;
+  color: $grommet-dark-grey;
+  .ardana-icon-Close{
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+}
+.enum_filter_value_tag:hover{
+  border: 2px solid $grommet-green;
+  color: $grommet-black;
+}
+.enum_filter_value_tag:focus{
+  outline-style: none;
+}
+
+.enumFilterSelection{
+  height: $header-item-height;
+  line-height: $header-item-height;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-bottom: 1px solid black;
+  padding-left:5px;
+  padding-right:5px;
+  white-space: nowrap;
+  input{
+    height: $filter-input-height;
+    line-height: $filter-input-height;
+    border: none;
+  }
+  input:focus{
+    outline-style: none;
+  }
+}
+
+.dropdown-menu.hasInput{
+  outline-style: ridge;
+  outline-color: $oc-highlight;
+}
+
+.dropdown-menu > li:hover,
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li:hover > button:not(:disabled),
+.btn:hover.globalActionsMenuButton:hover{
+  cursor: pointer;
+}
+
+.dropdown-menu > li:hover{
+  //background-color: $grommet-green;
+  > button:not(:disabled).actionMenuItem{
+    background-color: $grommet-green;
+    color: white;
+  }
+}
+
+//these override the default dropdown css
+.enum_filter_menu{
+  border-radius: 0px !important;
+  border: 1px solid black !important;
+  border-bottom: none !important;
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.basic-header-filter-container{
+  padding-right:0px !important;
+  float: right !important;
+  .enum_filter_wrapper{
+    float:right;
+  }
+}
+
+.globalActionsButtonCommon{
+  background-color: transparent;
+  color: black;
+  padding-top: 2px;
+  height: $header-item-height;
+  line-height: $header-item-height;
+  border-color: $grommet-grey !important;
+}
+
+.oc-btn.oc-btn-primary.globalActionsButton,
+.open > .globalActionsMenuButton.btn-default.dropdown-toggle{
+  @extend .globalActionsButtonCommon;
+}
+
+.globalActionsButton:hover{
+  color: white !important;
+}
+
+button[disabled].globalActionsMenuButton{
+  opacity: 0.35;
+}
+
+.oc-btn.oc-btn-primary.globalActionsButton:hover{
+  background-color: $grommet-green !important;
+  color: white !important;
+}
+
+.globalActionsMenuButton{
+  @extend .globalActionsButtonCommon;
+  border-radius: 0px;
+}
+
+.btn.btn-default.globalActionsCaret{
+  height: $header-item-height;
+  background-color: $grommet-green;
+  background-image: url($dropdown_arrow_white);
+  background-repeat:no-repeat;
+  background-position: 0px 12px;
+  border-radius: 0px;
+  float:right;
+  .caret{
+    color: transparent;
+  }
+}
+
+.btn.btn-default.globalActionsCaret:hover,
+.btn.btn-default.globalActionsCaret:active,
+.btn.btn-default.globalActionsCaret:focus{
+  background-color: $grommet-green;
+}
+
+.selectedRowActionsButton{
+  @extend .globalActionsButtonCommon;
+  float: left;
+  cursor: hand;
+  border-radius: 0px 5px 0px 5px !important;
+}
+
+.selectedRowActionsButton:hover{
+  background-color: $oc-highlight-hover !important;
+}
+
+.multirowActionItem.disabled,
+button.multirowActionItem.disabled,
+button.multirowActionItem.disabled:hover{
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.selectedRowActionsMenuButton{
+  @extend .globalActionsButtonCommon;
+  border-radius: 0px 0px 0px 5px !important;
+}
+
+.selectedRowActionsMenuButton:hover{
+  background-color: $oc-highlight-hover !important;
+}
+
+.selectedRowActionsCaret{
+  height: $header-item-height;
+  border-color: $oc-highlight !important;
+  border-radius: 0px 5px 0px 0px !important;
+}
+
+.clickable_content{
+  cursor: pointer;
+  &.highlight{
+    color: $grommet-green;
+  }
+}
+
+.modal_edit_table .octable{
+  table {
+    border: 1px solid $fti_progress_border_color;
+    thead {
+      th {
+        background-color: white;
+        font-size: 13px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        height: 27px;
+        line-height: 27px;
+        font-weight: normal;
+        &.sortdesc,
+        &.sortasc{
+          font-weight: bold;
+          color: black;
+        }
+      }
+    }
+    tbody {
+      .selectRow{
+        background-position: 9px 2px;
+      }
+
+      tr {
+        td {
+          font-size: 14px;
+          padding-top: 4px;
+          padding-bottom: 4px;
+          height: 27px;
+          line-height: 27px;
+        }
+      }
+    }
+  }
+}
+
+.midborder,
+.large_row_content_box .inner_table.midborder{
+  border-color: $mid-border-color;
+}
+
+.table_action_link{
+  text-decoration: underline;
+  cursor:pointer;
+}
+
+.table_status_icon{
+  height: 24px;
+  width: 24px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.octable .rowSelectionDisabled{
+  opacity: 0.2;
+}
+
+.actionableHeader{
+  height: 55px;
+  width: 50px;
+}
+
+.full-width {
+  width: 100%
+}
+
+
+.scrollable-tile {
+  height: 130px;
+  overflow-y: auto;
+}
+.scrollable-tile-high {
+  height: 230px;
+  overflow-y: auto;
+}
+
+.tile-view {
+  border: 1px solid $utilized_fill_color;
+  box-shadow: $grommet-box-shadow;
+  color: $grommet-black;
+  background-color: white;
+  font-size: 16px;
+  padding: 0;
+  .table-notification {
+    padding-left: 15px;
+    padding-right: 15px;
+    color: $grommet-white;
+    &.error {
+      background-color: $grommet-red;
+    }
+    &.warning {
+      background-color: $grommet-yellow;
+    }
+    &.success {
+      background-color: $grommet-green;
+    }
+    &.info {
+      background-color: $grommet-white;
+      color: $grommet-black;
+      border-top: 1px solid $table-header-border-color;
+    }
+  }
+  .tile-content {
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    .top-section {
+      height: 75px;
+    }
+    .top-line {
+      display: flex;
+      .item-name {
+        font-size: 18px;
+        font-weight: $font-weight-semi-bold;
+        padding-top: 20px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .long-name {
+        width: 450px;
+      }
+      .selectable {
+        width: 250px;
+      }
+      .selectable-and-status {
+        width: 200px;
+      }
+      .status-icon {
+        margin: 15px 0px 0px 0px
+      }
+    }
+    .state-line {
+      position: relative;
+      left: 30px;
+      top: -20px;
+    }
+    .second-line {
+      text-transform: capitalize;
+    }
+    .second-header {
+      text-transform: capitalize;
+      margin: 10px 0px 20px 0px;
+    }
+    .with-select-btn {
+      position: relative;
+      top: -17px;
+      padding-left: 30px;
+    }
+    .meter-line {
+      height: 20px;
+      margin-top: 15px;
+      text-transform: uppercase;
+      display: flex;
+      .meter-label {
+        width: 55%;
+      }
+      .meter-chart {
+        width: 45%;
+        padding-top: 5px;
+      }
+    }
+    .scrollable-area-line {
+      display: flex;
+      padding-top: 10px;
+      height: 105px;
+      .scrollable-area-label {
+        width: 30%;
+        text-transform: uppercase;
+      }
+      .scrollable-area-value {
+        background-color: $grommet-shadow;
+        width: 70%;
+        height: 88px;
+        overflow-y: auto;
+        margin-bottom: 15px;
+      }
+    }
+    .text-line {
+      display: flex;
+      padding-top: 5px;
+      .text-line-label {
+        width: 30%;
+        text-transform: uppercase;
+      }
+      .text-line-value {
+        width: 70%;
+        overflow-wrap: break-word;
+      }
+      .text-line-label-long {
+        width: 40%;
+        text-transform: uppercase;
+      }
+      .text-line-value-long {
+        width: 60%;
+      }
+      .text-line-label-ex-long {
+        width: 70%;
+        text-transform: uppercase;
+      }
+    }
+    .text-line-long {
+      display: flex;
+      .text-line-label {
+        width: 40%;
+        text-transform: uppercase;
+      }
+      .text-line-value {
+        width: 60%;
+        padding-bottom: 10px;
+      }
+    }
+    .text-line-long-label {
+      display: flex;
+      .text-line-label {
+        width: 65%;
+        text-transform: uppercase;
+        padding-bottom: 10px;
+      }
+      .text-line-value {
+        width: 35%;
+      }
+    }
+    .top-spacing {
+      margin-top: 15px;
+    }
+  }
+}
+
+.blade-tile-compact {
+  .blade-title {
+    font-size: 16px;
+    width: 100%;
+  }
+  .tile-title {
+    font-size: 16px;
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+  .paragraph {
+    font-size: 14px;
+    font-weight: 300 !important;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    height: 90px;
+  }
+  .member_label {
+    border-right: solid 1px black;
+    padding-right: 7px;
+    font-weight: 300 !important;
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: clip;
+    line-height: 35px;
+    text-align: right;
+    vertical-align: top;
+  }
+  .member_value {
+    padding-left: 7px;
+    font-size: 14px;
+    font-weight: normal;
+    white-space: normal;
+    line-height: 20px;
+    text-align: left;
+  }
+  .capitalized {
+    text-transform: capitalize;
+  }
+  .blade-margin-bottom {
+    margin-bottom: 7px;
+  }
+  .tile-margin-bottom {
+    margin-bottom: 30px;
+  }
+}
+
+span.utilmeter span {
+  color: #000;
+  margin-left: 5px;
+}
+
+span.utilmeter .progress {
+  background-color: #FFFFFF !important;
+}
+
+.util-meter {
+  float: left;
+  font-size: 22px;
+  height: 24px;
+  width: 100px;
+}
+
+.table-page-controls .table-page-desc {
+  @extend .inline;
+  padding-left: 15px;
+  height: 100%;
+  line-height:32px;
+  padding-top: 18px;
+  color: $table_page_controls;
+}
+
+.details-selection-controls{
+  float: right;
+  margin-right: 50px;
+  .selectionButton {
+    @extend .pagebtn;
+    outline: none;
+    margin-top:0px;
+  }
+  .selectionButton[disabled] {
+    opacity: 0.30;
+  }
+}
+
+
+div.view_controls{
+  height: 54px;
+  width: 24px;
+  position: relative;
+  right: -2px;
+  .solid_table_btn{
+    margin-bottom: 5px;
+  }
+}
+
+.octable_header_wrapper_row_zero{
+  height:0px;
+}

@@ -1,0 +1,8 @@
+<!--template for delete alarm modal content-->
+<div class="confirm-center">
+  <p class="bold center">
+  <oc-translate
+          text="{{ 'alarm.summary.delete.confirm.line1' | translate: {selected: $parent.$parent.$parent.selectedDataLength, total: $parent.$parent.$parent.alarmTableDataTotal} }}"/>
+  </p>
+  <p class="center">{{'common.delete.confirm.line2' | translate}}</p>
+</div>

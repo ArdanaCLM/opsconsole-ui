@@ -1,0 +1,15 @@
+<!--template for system networking page -->
+<div class="system-networking">
+    <octable pageable actionmenu enumfilter sortcontrol expandable
+             modelname="networkTableData"
+             configname="networkTableConfig"
+             loadflag="networkDataLoading">
+        <oct-std-header></oct-std-header>
+    </octable>
+    <!-- edit modal -->
+    <stackablemodal name="systemEditNetworkModal"
+                    showAttribute="showEditNetworkModalFlag"
+                    modalTemplateUrl="'system/templates/sys_networking/networking_table_expandtemplate.html'"
+                    closeaction="cancelEditNetworkModal">
+    </stackablemodal>
+</div>

@@ -1,0 +1,28 @@
+<div container ng-controller="UtilizationExampleController">
+    Plain simple meter (with white background for example):
+    <div style="width: 150px; background-color:white; height: 280px;">
+        <ocsimplemeter fillPct="29" value="29%"></ocsimplemeter>
+        <ocsimplemeter fillPct="57" value="8GB"></ocsimplemeter>
+        <ocsimplemeter fillPct="81%"></ocsimplemeter>
+        from scope:
+        <ocsimplemeter fillPct="{{graphData1[0].value}}"></ocsimplemeter>
+        Reversed:
+        <ocsimplemeter reversefill fillPct="25"></ocsimplemeter>
+
+    </div>
+
+    <br>
+    Html Code:
+    <br>
+    NOTE the div is just there as an example backdrop
+    <pre>
+        &lt;div style="width: 200px; background-color:white; height: 280px;"&gt;
+            &lt;ocsimplemeter fillPct="29" value="29%"&gt;&lt;/ocsimplemeter&gt;
+            &lt;ocsimplemeter fillPct="57" value="8GB"&gt;&lt;/ocsimplemeter&gt;
+            &lt;ocsimplemeter fillPct="81%" &gt;&lt;/ocsimplemeter&gt;
+            &lt;ocsimplemeter fillPct="{{graphData1[0].value}}" &gt;&lt;/ocsimplemeter&gt;
+            Reversed:
+            &lt;ocsimplemeter reversefill fillPct="25" &gt;&lt;/ocsimplemeter&gt;
+        &lt;/div&gt;
+    </pre>
+</div>

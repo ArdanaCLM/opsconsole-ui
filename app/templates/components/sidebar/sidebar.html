@@ -1,0 +1,100 @@
+<div class="sidebar">
+    <div class="sidebar-left-col">
+        <h4>{{ "sidebar.left_panel.header" | translate:{count: getNotDisabledNodesCount()} }}</h4>
+
+        <div class="inner-sidebar">
+            <ul class="side-bar-list" id="side-bar-Tab">
+                <li ng-repeat="node in getDataModel()" ng-if="!node.disabled" ng-class="{ active:$first }"
+                    ng-click="rowClick($event); $event.preventDefault()" nodeType="{{ node.hypervisor }}">
+                    <div ng-class="$first ? 'oc-arrow' : 'empty-oc-arrow'"></div>
+                    <div class="empty-oc-action"></div>
+                    <div class="side-bar-row-text">
+                        <a href="#{{ node.id }}" class="text-adjustment">{{ node.name }}</a>
+                    </div>
+                </li>
+                <li ng-repeat="node in getDataModel()" ng-if="node.disabled" class="disabled"
+                    ng-click="$event.preventDefault()">
+                    <div class="empty-oc-arrow"></div>
+                    <div class="oc-disabled"></div>
+                    <div class="side-bar-row-text">
+                        <a href="#{{ node.id }}" class="text-adjustment">{{ node.name }}
+                            {{ "sidebar.disabled.message" | translate: {msg: node.disabled_msg} }}</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="side-bar-footer">
+            <button class="oc-btn oc-btn-x-small custom-btn" id="prevtab" ng-click="prevClick()">
+                {{ "sidebar.left_panel.button.prev" | translate }}
+            </button>
+            <button class="oc-btn oc-btn-x-small custom-btn pull-right" id="nexttab" ng-click="nextClick()">
+                {{ "sidebar.left_panel.button.next" | translate }}
+            </button>
+        </div>
+    </div>
+
+    <!-- Code for the right side content-->
+    <div class="sidebar-right-col">
+        <div class="tab-content">
+            <div ng-repeat="node in getDataModel()" id="{{ node.id }}" class="tab-pane" ng-class="{ active:$first }"
+                 ng-if="(node.hypervisor | uppercase) === 'KVM' && !node.disabled" nodeType="{{ node.hypervisor }}">
+                <h3>{{ "sidebar.right_panel.header" | translate: {name: node.name,  type: (node.hypervisor | customCase)} }}</h3>
+
+                <div ng-include="'components/sidebar/sidebar_kvm.html'"></div>
+            </div>
+
+            <div ng-repeat="node in getDataModel()" id="{{ node.id }}" class="tab-pane" ng-class="{ active:$first }"
+                 ng-if="(node.hypervisor | uppercase) === 'HYPERV' && !node.disabled" nodeType="{{ node.hypervisor }}">
+                <h3>{{ "sidebar.right_panel.header" | translate: {name: node.name,  type: (node.hypervisor | customCase)} }}</h3>
+
+                <div ng-include="'components/sidebar/sidebar_hyperv.html'"></div>
+            </div>
+
+            <div ng-repeat="node in getDataModel()" id="{{ node.id }}" class="tab-pane" ng-class="{ active:$first }"
+                 ng-if="(node.hypervisor | uppercase) === 'ESX' && !node.disabled" nodeType="{{ node.hypervisor }}">
+                <h3>{{ "sidebar.right_panel.header" | translate: {name: node.name,  type: (node.hypervisor | customCase)} }}</h3>
+                <div ng-include="'components/sidebar/sidebar_esx.html'"></div>
+            </div>
+
+            <div ng-repeat="node in getDataModel()" id="{{ node.id }}" class="tab-pane" ng-class="{ active:$first }"
+                 ng-if="(node.hypervisor | uppercase) === 'UNKNOWN' && !node.disabled" nodeType="{{ node.hypervisor }}">
+                <!-- TODO: when hypervisor type is unknown -->
+                <h3>{{ "sidebar.right_panel.header" | translate: {name: node.name,  type: (node.hypervisor | customCase)} }}</h3>
+
+                <div class="activate-compute-dlg-text">
+                    <span>{{ "compute.activate_from_action_menu.hypervisor_types" | translate | uppercase }}</span>
+                    <hr>
+                </div>
+
+                <!-- Code for Hypervisor dropdown -->
+                <div class="hypervisor_type">
+                    <select class="activate-compute-dlg-select" ng-model="hypervisorTypeChoice"
+                            ng-change="updateSelectedItem(hypervisorTypeChoice)"
+                            ng-options="item.name for item in addComputeNodeChoices track by item.value">
+                    </select>
+                </div>
+
+                <div ng-if="hypervisorTypeChoice.value == 'kvm'" class="kvm_content row">
+                    <div ng-include="'components/sidebar/sidebar_kvm.html'"></div>
+                </div>
+
+
+                <!-- Code for HYPERV -->
+                <div ng-if="hypervisorTypeChoice.value == 'hyperv'" class="hyperv_content row">
+                    <div ng-include="'components/sidebar/sidebar_hyperv.html'"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Code for the Content Footer-->
+        <div class="content-footer">
+            <button class="oc-btn oc-btn-big custom-btn" id="skipAct" ng-click="skipAct()">
+                {{ "sidebar.right_panel.button.skip" | translate }}
+            </button>
+            <button class="oc-btn oc-btn-primary oc-btn-big custom-btn" id="queueAct" ng-click="queueAct()"
+                    disabled="disabled">
+                {{ "sidebar.right_panel.button.queue" | translate }}
+            </button>
+        </div>
+    </div>
+</div>

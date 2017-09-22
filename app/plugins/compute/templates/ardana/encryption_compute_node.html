@@ -1,0 +1,30 @@
+<import src="$parent.$parent.$parent.computeHostService.askEncryptionModalArdana.stackableScope"
+        alt="$parent.$parent.$parent.computeHostServiceFromDetail.askEncryptionModalArdana.stackableScope"
+        target="modalOptions"/>
+<import src="$parent.modalForm" target="modalForm"/>
+<div class="left-form">
+    <h2 class="oc-heading">{{'compute.compute_nodes.ardana.encryption.title' | translate}}:</h2>
+    <h3 class="oc-heading">{{'compute.compute_nodes.ardana.encryption.configuration.title' | translate}}:
+        <div class="oc-info ardana-icon ardana-icon-Unknown_L"
+             uib-tooltip="{{ 'compute.compute_nodes.ardana.encryption.tooltip' | translate }}"
+             tooltip-placement="right"></div>
+    </h3>
+    <oc-input
+            label="{{'compute.compute_nodes.ardana.encryption.configuration.key' | translate}}"
+            type="text"
+            value="modalOptions.values.encryptionKey"
+            oc-required="true"
+            name="inputKey"></oc-input>
+</div>
+<div class="form-seperator"></div>
+<div class="oc-btn-group">
+    <button
+            class="oc-btn oc-btn-secondary"
+            ng-bind="'common.cancel' | translate"
+            ng-click="modalOptions.clearAndClose(false);"></button>
+    <button
+            class="oc-btn oc-btn-primary"
+            ng-bind="'compute.compute_nodes.ardana.encryption.button.ok' | translate"
+            ng-click="modalOptions.clearAndClose(true);"
+            ng-disabled="!modalForm.$valid"></button>
+</div>

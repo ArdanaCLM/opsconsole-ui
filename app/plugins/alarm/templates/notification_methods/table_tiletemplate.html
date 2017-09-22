@@ -1,0 +1,16 @@
+<div class="top-line">
+    <button type="button" class="btn btn-default selectControlButton tile-select-btn" ng-click="rowSelectionOccurred(data)"></button>
+    <div title="{{data.name}}" class="item-name">{{data.name}}</div>
+</div>
+<table class="full-width top-spacing">
+    <tbody>
+        <tr class="text-line">
+            <td class="text-line-label">{{"notification_methods.table.header.type" | translate}}</td>
+            <td class="text-line-value">{{data.type}}</td>
+        </tr>
+        <tr class="text-line">
+            <td class="text-line-label">{{"notification_methods.table.header.address" | translate}}</td>
+            <td class="text-line-value">{{data.address}}</td>
+        </tr>
+    </tbody>
+</table>

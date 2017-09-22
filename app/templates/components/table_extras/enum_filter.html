@@ -1,0 +1,64 @@
+<span class="enum_filter_wrapper col-md-12">
+    <div class="octable_header_wrapper_enum_row enumerated_filter_control col-md-12" ng-if="showEnumFilter"
+         ng-click="triggerEnumFilter($event)">
+        <span class="enum_filter_icon ardana-icon ardana-icon-Filter"/>
+        <span class="enum_filter_input"
+              ng-style="enum_input_height" align="left">
+              <button ng-repeat="filter in enumFilters" class="enum_filter_value_tag"
+                      ng-click="clearEnumeratedFilter($event, filter)"
+                      ng-disabled="filter.readonly">
+              <span>{{filter.displayname | translate | uppercase}} : {{filter.displayvalue | translate}}</span>
+              <span class="ardana-icon" ng-class="{'ardana-icon-Close': !filter.readonly}"/></button>
+        </span>
+        <span class="row_count">{{filterDataModelLength()}} {{'common.items' | translate}}</span>
+        <!--span class="enum_filter_clear float-right" ng-click="clearAllEnumFilters($event)">
+          <i class="ardana-icon ardana-icon-Close"></i>
+        </span   MAY return in 4.0 -->
+    </div>
+    <div class="octable_header_wrapper_row_zero col-md-12">
+        <div class="btn-group enum_filter_menu_container" ng-style="enum_menu_pos" uib-dropdown is-open="enumFilterOpen">
+            <ul class="dropdown-menu enum_filter_menu" uib-dropdown-menu role="menu">
+                <li ng-if="!tableConfig.hasNoAnyColumnFilter" ng-click="enumFilterAllColumnSelected($event)"
+                    class="enumFilterSelection" >{{'table.anycolumn' | translate | uppercase}}
+                </li>
+                <!-- hack for exact dimension filter -->
+                <li ng-if="tableConfig.hasDimensionFilter" ng-click="enumFilterDimensionSelected($event)"
+                    class="enumFilterSelection" >{{'table.dimension' | translate | uppercase}}
+                </li>
+                <!-- hack for exact alarm id filter, only show it once -->
+                <li ng-if="tableConfig.hasAlarmIdFilter && (isIdFilterOn !== true)" ng-click="enumFilterAlarmIdSelected($event)"
+                    class="enumFilterSelection" >{{'table.alarmid' | translate | uppercase}}
+                </li>
+                <li ng-if="!isServerPaging" ng-repeat="header in tableConfig.headers | hasEnumeratedFilters"
+                    ng-click="enumFilterColumnSelected($event, header)"
+                    class="enumFilterSelection" >{{header.name | translate | uppercase}}
+                </li>
+              <li ng-if="isServerPaging" ng-repeat="header in tableHeaderFilter | canShowEnumFilters "
+                    ng-click="enumFilterColumnSelected($event, header)"
+                    class="enumFilterSelection" >{{header.name | translate | uppercase}}
+              </li>
+            </ul>
+        </div>
+        <div class="btn-group enum_filter_menu_container" ng-style="enum_menu_pos" uib-dropdown is-open="enumFilterSelectionOpen">
+            <ul class="dropdown-menu enum_filter_menu" uib-dropdown-menu role="menu">
+                <li ng-if="!angular.isUndefined(columnFilterList.options)" ng-repeat="filter in columnFilterList.options"
+                    ng-click="enumFilterValueSelected($event, filter, columnFilterList.header)"
+                    class="enumFilterSelection">
+                    {{filter.displayLabel | translate}}
+                </li>
+            </ul>
+        </div>
+        <div class="btn-group enum_filter_menu_container" ng-style="enum_menu_pos" uib-dropdown is-open="enumFilterTextSelectionOpen">
+            <ul class="dropdown-menu enum_filter_menu hasInput" uib-dropdown-menu role="menu">
+                <li class="enumFilterSelection hasinput" ng-click="filterValueFieldClicked($event)">
+                    <input ng-show="dimensionFilterSelected !== true" type="text" ng-model="textFilter" id="enum_text_filter_input"
+                           placeholder="{{'table.filterValuePlaceholder' | translate}}"
+                           ng-keypress="filterValueFieldChanged($event, textFilter); ($event.which === 13)?textFilter='':0"/>
+                    <input ng-show="dimensionFilterSelected === true" type="text" ng-model="textFilter" id="enum_text_filter_input"
+                           placeholder="{{'table.dimensionFilterValuePlaceholder' | translate}}"
+                           ng-keypress="filterValueFieldChanged($event, textFilter); ($event.which === 13)?textFilter='':0"/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</span>

@@ -1,0 +1,11 @@
+<!--template for confirming deactivate host ardana content-->
+<import src="$parent.computeHostService"
+        alt="$parent.computeHostServiceFromDetail"
+        target="service"/>
+<div class="confirm-center less-padding-top">
+  <div class="bold">
+  <oc-translate
+      text="{{ 'compute.compute_nodes.ardana.deactivate.p0' | translate: {host: service.ardanaConfirmData.name} }}"/>
+  </div>
+  <p>{{'compute.compute_nodes.ardana.deactivate.p1' | translate}}</p>
+</div>

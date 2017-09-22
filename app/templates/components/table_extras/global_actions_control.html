@@ -1,0 +1,41 @@
+<div class="btn-group global-btn-container" ng-if="(tableConfig.globalActionsConfig && tableConfig.globalActionsConfig.length > 0) || selectedRowActionsMenu || selectedRowActionsButton">
+    <div ng-if="tableConfig.globalActionsConfig.length === 1">
+        <button type="button" class="oc-btn oc-btn-primary"
+                ng-if="(tableConfig.globalActionsConfig && tableConfig.globalActionsConfig.length > 0)"
+                ng-click="tableConfig.globalActionsConfig[0].action()",
+                ng-disabled="tableConfig.globalActionsConfigFunction && tableConfig.globalActionsConfigFunction(tableData, tableConfig.globalActionsConfig[0].name)">
+            {{tableConfig.globalActionsConfig[0].label | translate | uppercase}}
+        </button>
+    </div>
+
+    <div ng-if="tableConfig.globalActionsConfig.length === 2">
+        <button type="button" class="oc-btn oc-btn-primary"
+                ng-click="tableConfig.globalActionsConfig[0].action()",
+                ng-disabled="tableConfig.globalActionsConfigFunction && tableConfig.globalActionsConfigFunction(tableData, tableConfig.globalActionsConfig[0].name)">
+            {{tableConfig.globalActionsConfig[0].label | translate | uppercase}}
+        </button>
+        <button type="button" class="oc-btn oc-btn-primary"
+                ng-click="tableConfig.globalActionsConfig[1].action()",
+                ng-disabled="tableConfig.globalActionsConfigFunction && tableConfig.globalActionsConfigFunction(tableData, tableConfig.globalActionsConfig[0].name)">
+            {{tableConfig.globalActionsConfig[1].label | translate | uppercase}}
+        </button>
+    </div>
+
+    <div ng-if="tableConfig.globalActionsConfig.length >= 3">
+        <button type="button" class="oc-btn oc-btn-primary"
+                ng-click="tableConfig.globalActionsConfig[0].action()",
+                ng-disabled="tableConfig.globalActionsConfigFunction && tableConfig.globalActionsConfigFunction(tableData, tableConfig.globalActionsConfig[0].name)">
+            {{tableConfig.globalActionsConfig[0].label | translate | uppercase}}
+        </button>
+        <button type="button" class="oc-btn oc-btn-primary dropdown-toggle"
+                data-toggle="dropdown"
+                ng-disabled="tableConfig.globalActionsConfigFunction && tableConfig.globalActionsConfigFunction(tableData, tableConfig.globalActionsConfig[0].name)">
+            {{'table.dropdown.more' | translate | uppercase}}<i class="ardana-icon ardana-icon-Drop-down_Arrow"></i>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="globalAction in tableConfig.globalActionsConfig" ng-if="$index != 0">
+                <a ng-click="globalAction.action()" ng-disabled="angular.isUndefined(globalAction.disabled) || globalAction.disabled">{{ globalAction.label | translate }}</a>
+            </li>
+        </ul>
+    </div>
+</div>

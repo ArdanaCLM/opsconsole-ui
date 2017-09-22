@@ -1,0 +1,125 @@
+<!-- template for compute baremetal instance node details page -->
+<import src="$parent.$parent.$parent.baremetalNodeDetailsData" target="data"/>
+<import src="$parent.$parent.$parent" target="baremetalInstCtrl"/>
+<import src="$parent.$parent.$parent.selectedData" target="selectedData"/>
+
+<div class="col-md-12 detail-page">
+    <h2 class="oc-heading page-title">{{ 'compute.baremetal.instance.node.detail' | translate }}: {{ (data.name && data.name !== 'None') ? data.name : data.id }}</h2>
+    <ocloading ng-show="baremetalInstCtrl.showModalOverlayFlag"></ocloading>
+    <div ng-if="!baremetalInstCtrl.showModalOverlayFlag && data.id" class="col-container">
+        <div class="col-container less-padding-top">
+            <div class="left-col long">
+                <div class="oc-h3">{{ 'compute.baremetal.instance.node.subdetail' | translate }}</div>
+                <table>
+                    <tbody>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "common.name" | translate | uppercase }}</td>
+                            <td>{{data.name}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "common.uuid" | translate | uppercase }}</td>
+                            <td>{{data.id}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.baremetal.instance.powerstate" | translate | uppercase }}</td>
+                            <td>{{data.power_state}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.baremetal.instance.nodestate" | translate | uppercase }}</td>
+                            <td>{{data.node_state}}</td>
+                            </td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.baremetal.instance.maintenance" | translate | uppercase }}</td>
+                            <td>{{data.maintenance}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.baremetal.instance.maintenance_reason" | translate | uppercase }}</td>
+                            <td>{{data.maintenance_reason}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.baremetal.instance.reservation" | translate | uppercase }}</td>
+                            <td>{{data.reservation}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.baremetal.instance.chassis" | translate | uppercase }}</td>
+                            <td>{{data.chassis_uuid}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "common.instance" | translate | uppercase }}</td>
+                            <td ng-if="data.instance ==='' ">{{data.instance}}</td>
+                            <td ng-if= "data.instance !=='' " class="clickable"
+                                ng-click="closeModal();$parent.$parent.$parent.$parent.$parent.showInstanceDetailsModal(selectedData)">{{data.instance}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text block-text-label">{{ "compute.baremetal.instance.lasterror" | translate | uppercase }}</td>
+                            <td>{{data.last_error}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="oc-h3 margin-top-24">{{ 'compute.baremetal.instance.driver.details' | translate }}</div>
+                <table>
+                    <tbody>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.baremetal.instance.driver" | translate | uppercase }}</td>
+                            <td>{{data.driver}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text block-text-label">{{ "compute.baremetal.instance.driver_info" | translate | uppercase }}</td>
+                            <td>{{data.driver_info}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="right-col short">
+                <div class="oc-h3">{{ 'compute.baremetal.instance.node.properties' | translate }}</div>
+                  <table>
+                    <tbody>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "common.label.memory" | translate | uppercase }}</td>
+                            <td>{{data.mem_mb}} {{ "common.memory.mb" | translate }}</td>
+                            </td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.baremetal.instance.local_storage" | translate | uppercase }}</td>
+                            <td>{{data.local_gb}} {{ "common.unit.GB" | translate }}</td>
+                            </td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "common.label.cpus" | translate | uppercase }}</td>
+                            <td>{{data.cpus}}</td>
+                            </td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.baremetal.instance.cpuarch" | translate | uppercase }}</td>
+                            <td>{{data.cpu_arch}}</td>
+                            </td>
+                        </tr>
+                        <tr ng-if="data.boot_mode" class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.baremetal.instance.boot_mode" | translate | uppercase }}</td>
+                            <td>{{data.boot_mode}}</td>
+                            </td>
+                        </tr>
+                        <tr ng-if="data.boot_option" class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.baremetal.instance.boot_option" | translate | uppercase }}</td>
+                            <td>{{data.boot_option}}</td>
+                            </td>
+                        </tr>
+                        <tr ng-if="!data.boot_mode && !data.boot_option" class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.baremetal.instance.capabilities" | translate | uppercase }}</td>
+                            <td>{{data.capabilities}}</td>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> <!--end of col-container -->
+    </div>
+    <div class="button-area">
+        <button class="oc-btn oc-btn-default"
+                ng-bind="'compute.baremetal.instance.delete_node' | translate"
+                ng-click="closeModal(); baremetalInstCtrl.showConfirmDeleteNodeModal()"
+                ng-disabled="!baremetalInstCtrl.isValidToActivateDeleteNode(selectedData) || baremetalInstCtrl.showModalOverlayFlag">
+        </button>
+    </div>
+</div>

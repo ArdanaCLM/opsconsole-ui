@@ -1,0 +1,47 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+@import './components/_common.scss';
+@import './components/_palette.scss';
+
+.dimension-selector {
+  border: 1px solid $alternate_border_color;
+  width: 470px;
+  height: 110px;
+  overflow-y: auto;
+  :nth-child(even) {
+    float: right;
+  }
+  .dimension {
+    border: 1px solid $dimension_content_color;
+    color: $dimension_content_color;
+    border-radius: 9px;
+    width: 210px;
+    height: 30px;
+    margin: 6px;
+    padding-top: 5px;
+    padding-left: 20px;
+    font-size: 13px;
+    @extend .inline;
+    .dimension-inner-text {
+      @extend .inline;
+      width: 167px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      height: 18px;
+    }
+    .remove {
+      float: right;
+      font-size: 30px;
+      margin-top: -11px;
+      margin-right: 4px;
+      @extend .pointer;
+    }
+    &.new {
+      border: 1px dashed $dimension_new_color;
+      color: $dimension_new_color;
+      padding-left: 0;
+      text-align: center;
+      @extend .pointer;
+    }
+  }
+}

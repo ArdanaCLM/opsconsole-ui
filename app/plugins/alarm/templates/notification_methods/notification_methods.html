@@ -1,0 +1,46 @@
+<div id="notification_methods_main" ng-controller="NotificationMethodsController">
+    <div ng-show="showEmptyDataPageFlag==false && initNotificationDataLoadingFlag==false">
+        <octable selectable pageable transformable actionmenu enumfilter sortcontrol modelname="notificationData"
+        configname="notificationTableConfig"
+        loadflag="notificationDataLoadingFlag"
+        tile-template-url="alarm/templates/notification_methods/table_tiletemplate.html">
+            <oct-std-header></oct-std-header>
+        </octable>
+    </div>
+
+    <!--delete modal -->
+    <opsmodal showAttribute="showDeleteModalFlag"
+              type="confirm"
+              header-title="notification_methods.delete.modal.title"
+              commit-action="commitDeleteNotification">
+        <div ng-include="'alarm/templates/notification_methods/delete_notification.html'"></div>
+        <modal-overlay show-attribute="$parent.$parent.showDeleteNotificationProgress"></modal-overlay>
+    </opsmodal>
+
+    <!-- edit modal -->
+    <stackablemodal name="notificateionMethodEditModal"
+                    showAttribute="showEditModalFlag"
+                    modalTemplateUrl="'alarm/templates/notification_methods/create_notification.html'"
+                    closeaction="closeEditModal">
+    </stackablemodal>
+
+    <!-- create modal -->
+    <stackablemodal name="notificateionMethodCreateModal"
+                    showAttribute="showCreateModalFlag"
+                    modalTemplateUrl="'alarm/templates/notification_methods/create_notification.html'"
+                    closeaction="closeCreateModal">
+    </stackablemodal>
+
+    <!-- show empty data page when data empty or data error for notification method table -->
+    <empty-data-page show-attribute="showEmptyDataPageFlag"
+                 type="emptyDataPage.type"
+                 reason-message="emptyDataPage.reasonMessage"
+                 action-message="emptyDataPage.actionMessage"
+                 action-label="emptyDataPage.actionLabel"
+                 action="emptyDataPage.action">
+    </empty-data-page>
+    <!-- init table loading page mask -->
+    <div class="empty-data-page" ng-if="initNotificationDataLoadingFlag">
+        <ocloading></ocloading>
+    </div>
+</div>

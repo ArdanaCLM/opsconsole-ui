@@ -1,0 +1,14 @@
+<div ng-repeat="notification in notifications" class="oc-application-notification" ng-class="notification.type">
+  <div class="container">
+    <div class="icon">
+      <i ng-if="notification.type == 'warning'" class="ardana-icon ardana-icon-Alert"></i>
+      <i ng-if="notification.type == 'error'" class="ardana-icon ardana-icon-Error_outline"></i>
+      <i ng-if="notification.type == 'info'" class="ardana-icon ardana-icon-Notification"></i>
+      <i ng-if="notification.type == 'success'" class="ardana-icon ardana-icon-Active_L"></i>
+    </div>
+    <div class="text" ng-bind="notification.text | translate"></div>
+    <div class="remove" ng-click="remove(notification.id)">
+      <i class="ardana-icon ardana-icon-Close"></i>
+    </div>
+  </div>
+</div>

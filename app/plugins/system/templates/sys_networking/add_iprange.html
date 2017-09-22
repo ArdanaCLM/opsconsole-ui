@@ -1,0 +1,30 @@
+<!-- add ip ranges template -->
+<import src="$parent.$parent.$parent" target="networkingCtrl"></import>
+<div class="col-md-8 system-networking">
+    <h2 class="oc-heading page-title">{{ 'system.networking.addiprange' | translate }}</h2>
+    <div class="col-container">
+    <ng-form name="systemAddIpRangeForm">
+         <oc-input name="oneIpRange"
+                   value="networkingCtrl.newIpRange"
+                   label="system.networking.iprange"
+                   validate="networkingCtrl.validateIpRange"
+                   custom-validate-text="networkingCtrl.invalidIpRangeMsg"
+                   oc-required="true"
+                   placeholder="{{ 'system.networking.iprange.placeholder' | translate }}"
+                   type="ip"
+                   oc-tooltip="'system.networking.iprange.tooltip'">
+         </oc-input>
+         <div class="update-buttons">
+            <button class="oc-btn oc-btn-default"
+                    ng-bind="'common.cancel' | translate"
+                    ng-click="networkingCtrl.cancelAddIpRangeModal(); closeModal();">
+            </button>
+            <button class="oc-btn oc-btn-primary"
+                    ng-bind="'system.networking.addiprange' | translate"
+                    ng-click="networkingCtrl.addIpRange(); closeModal();"
+                    ng-disabled="systemAddIpRangeForm.$pristine || !systemAddIpRangeForm.$valid">
+            </button>
+         </div>
+    </ng-form>
+    </div>
+</div>

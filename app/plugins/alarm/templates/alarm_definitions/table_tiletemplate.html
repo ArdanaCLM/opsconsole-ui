@@ -1,0 +1,22 @@
+<div class="top-line">
+    <button type="button" class="btn btn-default selectControlButton tile-select-btn" ng-click="rowSelectionOccurred(data)"></button>
+    <div title="{{data.name}}" class="item-name" ng-class="{'selectable' : data.name.length > 30}">{{data.name}}</div>
+</div>
+<div class="scrollable-tile">
+    <div class="text-line-long">
+        <div class="text-line-label">{{"alarm_definitions.table.header.description" | translate}}</div>
+        <div class="text-line-value">{{data['description']}}</div>
+    </div>
+    <table class="full-width">
+        <tbody>
+            <tr class="text-line">
+                <td class="text-line-label-long">{{"alarm_definitions.table.header.severity" | translate}}</td>
+                <td class="text-line-value-long">{{data["severity"]}}</td>
+            </tr>
+            <tr class="text-line">
+                <td class="text-line-label-long">{{"alarm_definitions.table.header.notifications" | translate}}</td>
+                <td class="text-line-value-long">{{data["notifications"]}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

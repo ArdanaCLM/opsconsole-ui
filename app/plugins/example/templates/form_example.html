@@ -1,0 +1,117 @@
+<h3>html:</h3>
+<pre>
+  &lt;ng-form name="thisForm"&gt;
+    &lt;oc-input
+        ng-model="username"
+        name="username"
+        label="example.label.vlan"
+        placeholder="example.label.vlan_placeholder"
+        type="text"
+        validate="vlan"
+        oc-tooltip="'This is some tooltip text'"
+        validate-text="example.label.vlan_error"&gt;&lt;/oc-input&gt;
+    &lt;oc-input
+        ng-model="username2"
+        name="username2"
+        label="example.label.vlan"
+        placeholder="example.label.vlan_placeholder"
+        type="text"
+        validate="vlan"
+        oc-tooltip="'example.tooltip4'"
+        validate-text="example.label.vlan_error"&gt;&lt;/oc-input&gt;
+    &lt;oc-input
+        ng-model="email"
+        label="example.label.email"
+        name="useremail"
+        placeholder="example.label.email_placeholder"
+        type="text"
+        validate="email"
+        validate-text="example.label.email_error"&gt;&lt;/oc-input&gt;
+    &lt;oc-input
+        ng-model="number"
+        label="example.label.number"
+        placeholder="example.label.number_placeholder"
+        type="select"
+        select-options="select_options"&gt;&lt;/oc-input&gt;
+    &lt;oc-input
+        ng-model="username3"
+        name="username3"
+        label="example.label.vlan"
+        placeholder="example.label.vlan_placeholder"
+        type="text"
+        validate="vlan"
+        validate-text="example.label.vlan_error"&gt;&lt;/oc-input&gt;
+  &lt;/ng-form&gt;
+  &lt;p&gt;Form.$valid: {{thisForm.$valid}}&lt;/p&gt;
+</pre>
+
+<div style="background-color: white;">
+  <ng-form name="thisForm">
+    <oc-input
+        value="username"
+        oc-disabled="disableInput"
+        oc-required="requireInput"
+        name="username"
+        label="example.label.vlan"
+        placeholder="example.label.vlan_placeholder"
+        type="text"
+        validate="vlan"
+        oc-tooltip="'This is some tooltip text'"
+        validate-text="example.label.vlan_error"></oc-input>
+    <oc-input
+        value="username2"
+        oc-disabled="disableInput"
+        oc-required="requireInput"
+        name="username2"
+        label="example.label.vlan"
+        placeholder="example.label.vlan_placeholder"
+        type="text"
+        validate="vlan"
+        oc-tooltip="'example.tooltip4'"
+        validate-text="example.label.vlan_error"></oc-input>
+    <oc-input
+        value="settings.user.email"
+        oc-disabled="disableInput"
+        oc-required="requireInput"
+        label="example.label.email"
+        name="useremail"
+        placeholder="example.label.email_placeholder"
+        type="text"
+        validate="email"
+        validate-text="example.label.email_error"></oc-input>
+    <oc-input
+        value="number"
+        oc-disabled="disableInput"
+        oc-required="requireInput"
+        label="example.label.number"
+        placeholder="example.label.number_placeholder"
+        type="select"
+        select-options="select_options"></oc-input>
+    <oc-input
+        value="username3"
+        oc-disabled="disableInput"
+        oc-required="requireInput"
+        name="username3"
+        label="example.label.vlan"
+        placeholder="example.label.vlan_placeholder"
+        type="text"
+        validate="vlan"
+        validate-text="example.label.vlan_error"></oc-input>
+  </ng-form>
+  <button ng-click="disableInput=!disableInput">Disable</button>
+  <button ng-click="requireInput=!requireInput">Toggle Required</button>
+  <p>Form.$valid: {{thisForm.$valid}}, {{username}} {{disableInput}} {{requireInput}}</p>
+
+
+
+
+  </br>
+  </br>
+  </br>
+  </br>
+  <oc-radio label="one" value="one" name=switch ng-model="radioValue" />
+  <oc-radio label="two" value="two" name=switch ng-model="radioValue" />
+  <oc-radio label="three" value="three" name=switch ng-model="radioValue" />
+  <oc-radio label="four" value="four" name=switch ng-model="radioValue" />
+  <oc-radio label="five" value="five" name=switch ng-model="radioValue" />
+</div>

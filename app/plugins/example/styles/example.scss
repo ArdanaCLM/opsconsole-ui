@@ -1,0 +1,109 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+.example-blue {
+	color: blue;
+}
+
+.example-bg {
+  background-color: white;
+}
+.example_modal_title_style{
+  line-height: 60px;
+  margin-left: 50px;
+}
+
+.example_modal_alt_size{
+  .oc-modal-wrapper{
+    .close_modal {
+      left: 95%;
+    }
+    .oc-modal {
+      height: 300px;
+      width: 600px;
+      .oc-modal-drawer {
+        .oc-body-drawer {
+          height: 90px;
+        }
+      }
+    }
+  }
+}
+
+
+.barchart_tile{
+  width: 460px  !important;
+  height: 420px !important;
+  position: relative;
+  background-color: white;
+  display:inline-table;
+  margin:10px;
+  vertical-align: center;
+  background-repeat: no-repeat;
+  background-position: 2% 3%;
+  background-size: 25px 20px;
+
+  .content{
+    position: absolute;
+    left:0;
+    bottom:0;
+    right:0;
+    top:15%;
+  }
+
+}
+.footer{
+   font-size:12px;
+   width: 470px  !important;
+   height: 100px !important;
+   margin-top: 300px;
+   margin-left: 20px;
+   margin-bottom:5px;
+   display: inline-flex;
+}
+
+.barchart_tile:before{
+  content:"";
+  display:block;
+}
+
+.barchart_image {
+  background-image: url("/images/icons/infra/host_32x32.svg");
+}
+
+.graphcontent {
+  margin-left: 25px;
+  height: 250px;
+  width : 450px;
+  margin-right: 5px;
+}
+
+.bargraphtitle{
+  font-size:18px;
+  height: 30px;
+  width: 450px;
+  text-align: center;
+  margin-top: 10px;
+  color: rgba(4, 32, 35, 0.26);
+}
+
+.footer-title-1 {
+
+  width:225px;
+  margin-top:5px;
+  display:inline-block;
+}
+
+.footer-number-format {
+  text-align: center;
+  font-size:24px;
+ color: rgba(4, 32, 35, 0.26);
+}
+.footer-text-format {
+  margin-left:30px;
+  font-size:14px;
+  color: rgba(4, 32, 35, 0.26);
+}
+
+[ng-controller="d3graph_example"] .charts_top {
+  margin-bottom: 25px;
+}

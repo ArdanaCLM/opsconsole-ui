@@ -1,0 +1,15 @@
+<h2>JS:</h2>
+<pre>
+  $scope.heatMapData = [
+    ...
+    {
+      value: data.value || undefined,
+      total: data.allocation,
+      title: data.value === undefined ? $translate.instant("common.not_applicable") : number + '%'
+    }
+    ...
+  ];
+</pre>
+<button ng-click="generateData()" class="oc-btn oc-btn-primary">Generate Data</button>
+<dynamic-heat-map data="heatMapData" columns="15" name="example.heatmap" overlay="example/templates/dynamic_heatmap_overlay.html"></dynamic-heat-map>
+<!-- <dynamic-heat-map data="heatMapData" type="freeflow" height="500" width="1000"></dynamic-heat-map> -->

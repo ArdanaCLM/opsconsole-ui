@@ -1,0 +1,15 @@
+<!-- masthead help content for popover -->
+<div ng-controller="MastheadHelpController">
+    <div class="popover-header">{{ 'masthead.help.doc.header' | translate }}</div>
+    <div class="popover-res-btn help">
+      <div><i class="ardana-icon ardana-icon-Link link-icon-size"></i></div>
+      <a class="pointer link-color" ng-click="openHelpPage()">{{ 'masthead.help.doc.get_help' | translate }}</a>
+    </div>
+
+    <!-- Only show build info if the buildinfo tag is in the url -->
+    <div ng-if="buildinfo" style="float: right; margin-top: 265px;">
+        <ul style="list-style: none;">
+            <li ng-repeat="(key, value) in version">{{key}}: {{value}}</li>
+        </ul>
+    </div>
+</div>

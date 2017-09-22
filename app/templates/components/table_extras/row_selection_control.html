@@ -1,0 +1,6 @@
+<div class="btn-group row_selection_control_menu"
+     ng-if="selectable && !singleSelect && (filterDataModelLength() > 0)">
+    <button type="button" class="btn btn-default selectControlButton" ng-click="toggleSelection()"
+            ng-class="{'allRowsSelected' : allSelected}">
+    </button>
+</div>

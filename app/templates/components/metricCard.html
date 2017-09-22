@@ -1,0 +1,72 @@
+<div class="content active">
+    <div class="header">
+    	<div class="text" ng-class="{'short': ctrl.cmenu}">{{ ctrl.ctitle | translate | uppercase }}</div>
+
+      <span class="dropDown" ng-if="ctrl.cmenu">
+          <div class="btn-group popupadjust" uib-dropdown>
+              <span class="dropdown-toggle ardana-icon ardana-icon-More" uib-dropdown-toggle>
+              </span>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                  <li ng-repeat="menuItem in $parent.ctrl.cmenu"
+                      class="lineItem"
+                      ng-if="!($index === 2 && ctrl.idx === 0)"
+                      ng-show="!menuItem.show || (menuItem.show && menuItem.show(config))">
+                      <div ng-click="menuItem.action(ctrl.idx)"
+                              class="actionMenuItem">{{ menuItem.label | translate }}</div>
+                  </li>
+              </ul>
+          </div>
+      </span>
+    </div>
+
+    <div ng-click="click && action()">
+
+      <div ng-if="ctrl.type == 'range'">
+          <div class="value">
+              {{ctrl.data.value}} <span class="unit">{{ctrl.data.unit}}</span>
+          </div>
+
+          <div class="range">
+              {{ctrl.data.range | translate | uppercase}}
+          </div>
+
+          <div class="condition ardana-icon" ng-class="condIcon" ng-show="ctrl.showcondition">
+          </div>
+      </div>
+
+      <div ng-if="ctrl.type == 'alarmList'">
+          <div class="dataArea">
+              <p class="total" ng-if="!ctrl.data.altTotal">
+                  {{ ctrl.data.ok.count + ctrl.data.warning.count + ctrl.data.critical.count + ctrl.data.unknown.count }}
+              </p>
+
+              <p class="total" ng-if="ctrl.data.altTotal">
+                  {{ ctrl.data.altTotal.count }}
+              </p>
+              <span class="ok" ng-if="ctrl.data.ok.alt">{{ctrl.data.ok.altCount}}M</span>
+              <span class="ok" ng-if="!ctrl.data.ok.alt" ng-click="setSelectedColor('green')">{{ctrl.data.ok.count}}</span>
+              <span class="warning" ng-if="ctrl.data.warning.alt">{{ctrl.data.warning.altCount}}M</span>
+              <span class="warning" ng-if="!ctrl.data.warning.alt" ng-click="setSelectedColor('yellow')">{{ctrl.data.warning.count}}</span>
+              <span class="critical" ng-if="ctrl.data.critical.alt">{{ctrl.data.critical.altCount}}M</span>
+              <span class="critical" ng-if="!ctrl.data.critical.alt" ng-click="setSelectedColor('red')">{{ctrl.data.critical.count}}</span>
+              <span class="unknown" ng-if="ctrl.data.unknown.alt">{{ctrl.data.unknown.altCount}}M</span>
+              <span class="unknown" ng-if="!ctrl.data.unknown.alt" ng-click="setSelectedColor('gray')">{{ctrl.data.unknown.count}}</span>
+          </div>
+      </div>
+
+      <div ng-if="ctrl.type == 'alarmDonut'">
+          <svgdonut data="ctrl.data" withold="'legend'"/>
+      </div>
+
+      <div ng-if="ctrl.type == 'horseshoeGraph'">
+         <div >
+          <svghorseshoe data="ctrl.data.data"
+                        max="ctrl.data.max"
+                        unit="ctrl.data.unit"
+                        label="ctrl.data.label"
+                        dynsummary="ctrl.data.altsummary"
+                        percentage/>
+           </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<span class="common_modal_header">{{ "storage.block_storage.manage_cpgs.header" | translate }}</span>
+<import src="$parent.$parent.$parent" target="bsManageCPGControl"/>
+
+<octable enumfilter selectable modelname="bsManageCPGControl.manage_cpgs" tableid="manageCPGTable"
+         configname="bsManageCPGControl.manage_cpgs_table_config"
+         loadflag="bsManageCPGControl.cpgDataLoading"
+         class="modal_edit_table">
+    <oct-std-header></oct-std-header>
+</octable>
+
+<div class="manage_cinder_bottom_btns">
+    <button class="oc-btn oc-btn-default" ng-click="bsManageCPGControl.close_manage_cpgs_modal()"
+            ng-bind="'common.cancel' | translate">
+    </button>
+
+    <button class="oc-btn oc-btn-primary"
+            ng-click="bsManageCPGControl.loadAddCPGsModel(addStack)"
+            ng-bind="'common.add_item' | translate: {item: 'CPGs'}"
+            ng-disabled="bsManageCPGControl.cpgDataLoading">
+    </button>
+
+    <button class="oc-btn oc-btn-primary cpg_remove_btn"
+            ng-bind="'common.remove_item' | translate: {item: 'CPGs'}"
+            ng-disabled="bsManageCPGControl.remove_cpgs_selections_len == 0"
+            ng-click="bsManageCPGControl.loadRemoveCPGsModel(addStack)">
+    </button>
+</div>
+
+
+<modal-overlay show-attribute="bsManageCPGControl.showCPGOverlay"></modal-overlay>

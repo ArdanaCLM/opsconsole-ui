@@ -1,0 +1,21 @@
+.oc-radio {
+    font-weight: normal;
+    font-size: 14px;
+    color: $grommet-menu-grey;
+    display: block;
+    cursor: pointer;
+
+  div.inline {
+    white-space: nowrap;
+  }
+
+  [type="radio"] {
+    display: none;
+  }
+
+  i {
+    color: $grommet-radio-color;
+    margin-right: 10px;
+    font-size: 18px;
+  }
+}

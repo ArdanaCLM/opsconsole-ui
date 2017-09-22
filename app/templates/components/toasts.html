@@ -1,0 +1,14 @@
+<div class="oc-toasts">
+  <div class="oc-toast" ng-repeat="toast in notifications" ng-class="{removed: toast.remove}">
+    <div class="toast-icon">
+      <i ng-if="toast.type == 'warning'" class="ardana-icon ardana-icon-Alert color-warning"></i>
+      <i ng-if="toast.type == 'error'" class="ardana-icon ardana-icon-Error_outline color-critical"></i>
+      <i ng-if="toast.type == 'info'" class="ardana-icon ardana-icon-Notification color-neutral"></i>
+      <i ng-if="toast.type == 'success'" class="ardana-icon ardana-icon-Active_L color-success"></i>
+    </div>
+    <div class="toast-text" ng-bind="toast.text | translate"></div>
+    <div class="toast-close" ng-click="close(toast.id)">
+      <i class="ardana-icon ardana-icon-Close"></i>
+    </div>
+  </div>
+</div>

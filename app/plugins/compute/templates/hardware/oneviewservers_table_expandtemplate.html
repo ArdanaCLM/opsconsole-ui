@@ -1,0 +1,106 @@
+<!-- template for hardware servers table expand -->
+<import src="$parent.$parent.$parent.selectionData" target="data"/>
+<import src="$parent.$parent.$parent.$parent" target="hardwareCtrl"/>
+<oct-next-prev-ctrl class="col-md-12"/>
+
+<div class="col-md-12 detail-page">
+    <h2 class="oc-heading page-title-no-top-margin">{{ 'compute.hardware.server.detail' | translate }}: {{data.name}}</h2>
+    <ocloading ng-show="hardwareCtrl.showModalOverlayFlag"></ocloading>
+    <div ng-if="!hardwareCtrl.showModalOverlayFlag" class="col-container">
+        <div class="col-container">
+            <div class="left-col long">
+                <h3 class="oc-heading section-title">{{ 'compute.hardware.server.detail' | translate }}</h3>
+                <table>
+                    <tbody>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.hardware.model" | translate | uppercase }}</td>
+                            <td>{{data.model}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.hardware.serial_number" | translate | uppercase }}</td>
+                            <td>{{data.serial_number}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.hardware.power" | translate | uppercase }}</td>
+                            <td>{{data.power_state}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "common.state" | translate | uppercase }}</td>
+                            <td>{{data.ace_state}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.hardware.cluster" | translate | uppercase }}</td>
+                            <td>{{data.cluster_name}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.hardware.usedby" | translate | uppercase }}</td>
+                            <td>{{data.usedby}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.hardware.ov_appliance" | translate | uppercase }}</td>
+                            <td>{{data.oneview_name}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.hardware.logical_enclosure" | translate | uppercase }}</td>
+                            <td>{{data.logical_enclosure}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.hardware.hypervisor" | translate | uppercase }}</td>
+                            <td>{{data.hypervisor}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.hardware.form_factor" | translate | uppercase }}</td>
+                            <td>{{data.form_factor}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "common.label.memory" | translate | uppercase }}</td>
+                            <td>{{data.memory}} {{ "common.memory.mb" | translate }}</td>
+                            </td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.hardware.processor_count" | translate | uppercase }}</td>
+                            <td>{{data.processor_count}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.hardware.processor_speed" | translate | uppercase }}</td>
+                            <td>{{data.processor_speed}} {{ "common.speed.mhz" | translate }}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.hardware.processor_type" | translate | uppercase }}</td>
+                            <td>{{data.processor_type}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.hardware.gpu" | translate | uppercase }}</td>
+                            <td>{{data.gpu}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3 class="oc-heading section-title-table">{{ 'compute.hardware.server.profile_detail' | translate }}</h3>
+                <table>
+                    <tbody>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.hardware.server_profile" | translate | uppercase }}</td>
+                            <td>{{data.profile_name}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.hardware.local_storage_type" | translate | uppercase }}</td>
+                            <td>{{data.local_storage}}</td>
+                        </tr>
+                         <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.hardware.storage_type" | translate | uppercase }}</td>
+                            <td>{{data.storage_type}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.hardware.storage_pool_device_type" | translate | uppercase }}</td>
+                            <td>{{data.storage_pool_device_type}}</td>
+                        </tr>
+                        <tr class="item-line short-item">
+                            <td class="item-label long-text">{{ "compute.hardware.storage_pool_raid" | translate | uppercase }}</td>
+                            <td>{{data.storage_pool_raid}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> <!--end of col-container -->
+    </div>
+</div>

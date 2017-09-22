@@ -1,0 +1,81 @@
+// (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+// (c) Copyright 2017 SUSE LLC
+.gi-2x { font-size: 2em; }
+.gi-3x { font-size: 3em; }
+.gi-4x { font-size: 4em; }
+.gi-5x { font-size: 5em; }
+
+$image_base_path: "/images";
+
+$icon_base_path: "#{$image_base_path}/icons";
+$graph_images_base_path: "#{$image_base_path}/graphimages";
+
+$descend_arrow : "#{$icon_base_path}/descend/Down_black.svg";
+$ascend_arrow : "#{$icon_base_path}/ascend/Up_black.svg";
+
+$filter_icon : "#{$icon_base_path}/filter/filter.svg";
+
+$settings_gear: "#{$icon_base_path}/settings/settings_32x32.svg";
+
+$page_first_icon:'#{$icon_base_path}/paging/paginate-first-open.svg';
+$page_prev_icon: '#{$icon_base_path}/paging/paginate-previous-open.svg';
+$page_next_icon: '#{$icon_base_path}/paging/paginate-next-open.svg';
+$page_last_icon: '#{$icon_base_path}/paging/paginate-last-open.svg';
+
+$close_icon : '#{$icon_base_path}/logos/close_32x32.svg';
+
+$error_icon: '#{$icon_base_path}/status/critical_s.svg';
+$warning_icon: '#{$icon_base_path}/status/warning_s.svg';
+$ok_icon: '#{$icon_base_path}/status/active_s.svg';
+$unknown_icon : '#{$icon_base_path}/status/unknown_s.svg';
+$unknown_status_icon : '#{$icon_base_path}/status/unknown_m.svg';
+
+$error_icon_colored: '#{$icon_base_path}/status/icon-state-error.svg';
+$error_icon_white: '#{$icon_base_path}/status/error_white_32x32.png';
+$warning_icon_colored: '#{$icon_base_path}/status/icon-state-warning.svg';
+$ok_icon_colored: '#{$icon_base_path}/status/icon-state-ok.svg';
+$unknown_icon_colored : '#{$icon_base_path}/status/icon-state-unknown.svg';
+$unknown_icon_default : '#{$icon_base_path}/status/unknown_32x32.svg';
+$resolved_icon_colored: '#{$icon_base_path}/status/resolved_32x32.svg';
+$alternate_warning_icon: '#{$icon_base_path}/status/warnning_32x32.png';
+$table_done_status: '#{$image_base_path}/icons/table/completed.GIF';
+$table_progress_status: '#{$image_base_path}/icons/table/in-progress.GIF';
+
+$selected_icon: '#{$icon_base_path}/table/Check_green.svg';
+$unselected_icon: '#{$icon_base_path}/table/Empty_Check.svg';
+
+$dropdown_arrow_white: '#{$icon_base_path}/misc/Drop-down_Arrow_white.svg';
+
+$inline_menu_trigger_icon: '#{$icon_base_path}/table/More_Black-01.svg';
+$inline_menu_trigger_active_icon: '#{$icon_base_path}/table/icon-menu-active-horiz.svg';
+
+$close_icon: '#{$icon_base_path}/close/close_32x32.svg';
+
+$search_icon: '#{$icon_base_path}/masthead/search_32x32.svg';
+$help_icon: '#{$icon_base_path}/masthead/help_black.svg';
+$help_icon_selected: '#{$icon_base_path}/masthead/help_selected.svg';
+$help_icon_blue: '#{$icon_base_path}/masthead/help_blue_32x32.svg';
+$user_settings_icon: '#{$icon_base_path}/masthead/user_settings_black.svg';
+$user_settings_icon_selected: '#{$icon_base_path}/masthead/user_settings_selected.svg';
+$notification_icon: '#{$icon_base_path}/status/notification_black.svg';
+$notification_icon_selected: '#{$icon_base_path}/status/notification_selected.svg';
+$app_drilldown_icon: '#{$icon_base_path}/masthead/app_black.svg';
+$app_drilldown_icon_selected: '#{$icon_base_path}/masthead/app_selected.svg';
+
+$notif_icon_error:'#{$icon_base_path}/status/critical_m.svg';
+$notif_icon_error_white:'#{$icon_base_path}/status/error_white.svg';
+$notif_icon_warning:'#{$icon_base_path}/status/warning_m.svg';
+$notif_icon_info: '#{$icon_base_path}/status/active_m.svg';
+
+$loading_indicator: '#{$image_base_path}/loading.gif';
+
+$icon-check-white: '#{$icon_base_path}/status/icon-check-white.png';
+$icon-state-unreachable: '#{$icon_base_path}/status/icon-state-unreachable.png';
+$icon-x-white: '#{$icon_base_path}/status/icon-x-white.png';
+$row-arrow-selection-image: '#{$icon_base_path}/misc/icon-selected-sideways-trimmed.png';
+
+$empty_donut_graph: '#{$graph_images_base_path}/empty-ring-chart.svg';
+
+$document_placed_icon: '#{$image_base_path}/help/document_placed.png';
+
+$analytics_icon: '#{$image_base_path}/help/analytics.png';
