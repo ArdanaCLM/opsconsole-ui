@@ -152,10 +152,6 @@
                 }]
             };
 
-            var req_activation_states = {
-                operation: 'eon_compute_list'
-            };
-
             var todayDate = new Date();
             var timestamp = todayDate.getTime();
             var seventhDayTimestamp = timestamp - (6 * 24 * 60 * 60 * 1000);

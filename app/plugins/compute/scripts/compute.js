@@ -10,7 +10,7 @@
       {
         slug: 'compute',
         envs: ['stdcfg'],
-        needBllPlugins: ['compute','nova', 'monitor', 'ace', 'ironic', 'baremetal'],
+        needBllPlugins: ['compute','nova', 'monitor', 'ironic'],
         type: 'menu',
         label: 'compute.main_menu',
         icon: 'Chip',
