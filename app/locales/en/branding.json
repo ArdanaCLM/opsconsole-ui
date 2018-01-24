@@ -1,6 +1,6 @@
 {
-    "branding.product.login.title" : "OpenStack",
-    "branding.pageTitle.title" : "OpenStack Operations Console",
-    "branding.masthead.title": "Ops Console",
-    "footer.copyright": "Company ProductName - Copyright YEAR. All rights reserved."
+    "branding.product.login.title" : "SUSE OpenStack Cloud",
+    "branding.pageTitle.title" : "SUSE OpenStack Cloud Operations Console",
+    "branding.masthead.title": "SUSE OpenStack Cloud Ops Console",
+    "footer.copyright": "SUSE OpenStack Cloud Operations Console - Copyright 2018. All rights reserved."
 }
