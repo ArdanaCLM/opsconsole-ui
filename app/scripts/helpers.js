@@ -1,5 +1,5 @@
 // (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
-// (c) Copyright 2017 SUSE LLC
+// (c) Copyright 2017-2018 SUSE LLC
 (function (ng) {
     'use strict';
 
@@ -2284,7 +2284,7 @@
                 var req = {
                     operation: 'alarm_count',
                     metric_dimensions: {control_plane: controlPlanes, cluster: clusters},
-                    group_by: "state, severity"
+                    group_by: "state,severity"
                 };
                 bllApiRequest.get('monitor', req).then(
                     function(data) {
@@ -2310,7 +2310,7 @@
             var req = {
                 operation: 'alarm_count',
                 metric_dimensions: {control_plane: group.control_plane, cluster: group.cluster},
-                group_by: "dimension_name, dimension_value, state, severity",
+                group_by: "dimension_name,dimension_value,state,severity",
                 dimension_name_filter: "hostname"
             };
             bllApiRequest.get('monitor', req).then(
@@ -2405,7 +2405,7 @@
             var host_alarm_data = $q.defer();
             var req_alarms = {
                 'operation': 'alarm_count',
-                'group_by': 'state, severity',
+                'group_by': 'state,severity',
                 'metric_dimensions': {}
             };
 

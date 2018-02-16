@@ -1,5 +1,5 @@
 // (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
-// (c) Copyright 2017 SUSE LLC
+// (c) Copyright 2017-2018 SUSE LLC
 (function (ng) {
     'use strict';
     var p = ng.module('plugins');
@@ -1047,7 +1047,7 @@
                 //    name: "swiftlm.load.host.val.five"
                 //}, req2 = {
                 //    "operation": "alarm_count",
-                //    "group_by": "dimension_name, dimension_value, severity, state"
+                //    "group_by": "dimension_name,dimension_value,severity,state"
                 //};
                 ////get host/cluster list
                 //var promises = [bllApiRequest.get('monitor', req), bllApiRequest.get('monitor', req2)];
