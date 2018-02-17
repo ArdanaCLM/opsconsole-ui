@@ -1,5 +1,5 @@
 // (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
-// (c) Copyright 2017 SUSE LLC
+// (c) Copyright 2017-2018 SUSE LLC
 /**
  * This is to handle the directive <alarm-summary></alarm-summary>
  * This directive needs to be used with alarm plugin
@@ -87,7 +87,7 @@
 
                         var req = {
                             "operation": "alarm_count",
-                            "group_by": "dimension_name, dimension_value",
+                            "group_by": "dimension_name,dimension_value",
                             "dimension_name_filter": "service"
                         };
                         bllApiRequest.get('monitor', req).then(function (res) {
@@ -824,7 +824,7 @@
                     var callBLLForNewAlarmSummaryData = function (cutOffTime) {
                         var req_alarms = {
                             'operation': 'alarm_count',
-                            'group_by': 'state, severity'
+                            'group_by': 'state,severity'
                         };
 
                         if (!isUndefined(cutOffTime)) {

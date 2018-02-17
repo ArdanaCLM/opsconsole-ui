@@ -1,5 +1,5 @@
 // (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
-// (c) Copyright 2017 SUSE LLC
+// (c) Copyright 2017-2018 SUSE LLC
 (function (ng) {
   'use strict';
 
@@ -147,7 +147,7 @@
                 var promises = getCompute();
                 promises.push(bllApiRequest.get('monitor', {
                     "operation": "alarm_count",
-                    "group_by": "dimension_name, dimension_value, severity, state"
+                    "group_by": "dimension_name,dimension_value,severity,state"
                 }));
                 $q.all(promises).then(function(res) {
                     var  compute_res = res[0],
@@ -201,7 +201,7 @@
             servicesSummary: function() {
               return [bllApiRequest.get('monitor', {
                   "operation": "alarm_count",
-                  "group_by": "dimension_name, dimension_value, severity, state"
+                  "group_by": "dimension_name,dimension_value,severity,state"
               })];
             },
             computeCapacityCard: function() {
