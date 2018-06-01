@@ -1,5 +1,5 @@
 // (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
-// (c) Copyright 2017 SUSE LLC
+// (c) Copyright 2017-2018 SUSE LLC
 (function (ng) {
 
     'use strict';
@@ -159,7 +159,7 @@
         function deactivate(node, encryptionKey) {
             return _singleOp(node, 'deactivating', function() {
                 var data = {
-                    path: playbooksAPI + 'ardana_stop',
+                    path: playbooksAPI + 'ardana-stop',
                     request_data: {
                         limit: node.name,
                         encryptionKey: encryptionKey
@@ -187,7 +187,7 @@
         function activate(node, encryptionKey) {
             return _singleOp(node, 'activating', function() {
                 var data = {
-                    path: playbooksAPI + 'ardana_start',
+                    path: playbooksAPI + 'ardana-start',
                     request_data: {
                         limit: node.name,
                         encryptionKey: encryptionKey
