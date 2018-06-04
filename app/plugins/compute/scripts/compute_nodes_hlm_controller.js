@@ -1,5 +1,5 @@
 // (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
-// (c) Copyright 2017 SUSE LLC
+// (c) Copyright 2017-2018 SUSE LLC
 (function (ng) {
 
     'use strict';
@@ -363,7 +363,7 @@
 
             function processComputeData(compute_data, ardanaOverrides) {
                 var state;
-                // Check if ardana_start or ardana_stop has run/is running on this node. If so override the
+                // Check if ardana-start or ardana-stop has run/is running on this node. If so override the
                 // monasca state until it has had a chance to catch up
                 if (angular.isDefined(ardanaOverrides.start[compute_data.name])) {
                     // If the process is alive, 'ing' it. Otherwise 'ed' it.
