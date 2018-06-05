@@ -75,15 +75,15 @@
         /**
          * @ngdoc method
          * @description Returns the ardana playbook log for the given process reference
-         * @param {string} pRef process reference
+         * @param {string} id process reference
          *
          * @returns {object} promise containing bll response
          */
-        function getLog(pRef) {
-            if (!pRef) {
-                return $q.reject('pRef must not be empty');
+        function getLog(id) {
+            if (!id) {
+                return $q.reject('id must not be empty');
             }
-            return bllApiRequest.get('ardana', {path: playsAPI + pRef + '/log'})
+            return bllApiRequest.get('ardana', {path: playsAPI + id + '/log'})
                 .then(_.partial(_handleBllResponse));
         }
 
@@ -349,9 +349,9 @@
                     httpFunc()
                         .then(_.partial(_handleBllResponse))
                         .then(function(data) {
-                            if (data && data.data && data.data.pRef) {
+                            if (data && data.data && data.data.id) {
                                 // We get back a process ID, so we need to start monitoring from that process
-                                var pref = data.data.pRef;
+                                var pref = data.data.id;
                                 that.poll(pref, deferred);
                             } else {
                                 deferred.resolve(data);

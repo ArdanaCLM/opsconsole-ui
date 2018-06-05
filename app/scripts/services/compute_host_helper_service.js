@@ -1,5 +1,5 @@
 // (c) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
-// (c) Copyright 2017 SUSE LLC
+// (c) Copyright 2017-2018 SUSE LLC
 (function (ng) {
     'use strict';
     ng.module('operations-ui').service('computeHostHelperService', [
@@ -251,12 +251,12 @@
                 .then(function (data) {
                     // Successfully submitted (model changed, validation passed, ready deploy ran,
                     // deploy started).
-                    var pRef = _.get(data.data, 'pRef');
+                    var id = _.get(data.data, 'id');
                     addNotification(
                         "info",
                         $translate.instant(
                             "compute.compute_nodes.ardana.add.notification.deploy_started",
-                            {'name': self.addHostServer.id, 'processId': pRef}
+                            {'name': self.addHostServer.id, 'processId': id}
                         )
                     );
                     //wnen adding compute host is in progress
@@ -266,7 +266,7 @@
                     self.showConfirmAddModalFlag = false;
                     self.updatingHostOverlayFlag = false;
 
-                    ArdanaService.poll(pRef, '')
+                    ArdanaService.poll(id, '')
                         .then(function () {
                             addNotification(
                                 "info",
@@ -753,26 +753,26 @@
         this.logViewArdana = {
             show: false,
             stackableScope: {
-                pRef: undefined,
+                id: undefined,
                 log: undefined
             },
             //template: "compute/templates/Ardana/log_view.html",
             colouriser: AnsiColoursService.getInstance(),
             addCustomNotification: function (level, message, error) {
                 // The error object may come from a failed request or the response to a metadata request
-                var action, pRef, log;
+                var action, id, log;
                 if (error) {
-                    pRef = _.get(error, "data.error.pRef") || _.get(error, "data.pRef");
+                    id = _.get(error, "data.error.id") || _.get(error, "data.id");
                     log = _.get(error, "data.error.log") || _.get(error, "data.log");
                 }
 
                 // Only added the action obj if we have something to link to
-                if (pRef || log) {
+                if (id || log) {
                     action = {
                         label: "compute.compute_nodes.ardana.notification.action.label",
                         func: self.logViewArdana.showLog,
                         param: {
-                            pRef: pRef,
+                            id: id,
                             log: log
                         }
                     };
@@ -785,11 +785,11 @@
                     // Already have a log, show it straight away
                     self.logViewArdana.stackableScope.log =
                         self.logViewArdana.colouriser.ansiColoursToHtml(log);
-                } else if (opts.pRef) {
+                } else if (opts.id) {
                     // No log, show 'fetching' message and reach out to the backend
                     self.logViewArdana.stackableScope.log = $translate.instant(
                         "compute.compute_nodes.ardana.logView.fetching");
-                    ArdanaService.getLog(opts.pRef).
+                    ArdanaService.getLog(opts.id).
                     then(function (logData) {
                     self.logViewArdana.stackableScope.log =
                         self.logViewArdana.colouriser.ansiColoursToHtml(logData.data.log);
@@ -834,7 +834,7 @@
             //init logview
             self.logViewArdana.show = false;
             self.logViewArdana.stackableScope = {
-                pRef: undefined,
+                id: undefined,
                 log: undefined
             };
 
