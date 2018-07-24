@@ -122,7 +122,7 @@
                 bllApiRequest.get('ardana', {path: playsAPI + pref})
                     .then(_.partial(_handleBllResponse))
                     .then(function(data) {
-                        if (data.data.alive) {
+                        if (! data.data.endTime) {
                             // Poll again later
                             that.poll(pref, deferred, reTryCount);
                         } else {
@@ -503,12 +503,12 @@
                     // Process is eligible if it's still running, if all related processes have stopped, fall
                     // back on the default means of gathering status to avoid permanently populating a stale
                     // status
-                    if (meta.alive) {
+                    if (! meta.endTime) {
                         // Is it a start run ...
                         var hostName = meta.commandString.match(findStartLimitRegEx);
                         if (hostName && hostName.length > 1) {
                             // Set/Overwrite any previous start for the host
-                            result.start[hostName[1]] = !!meta.alive;
+                            result.start[hostName[1]] = true;
                             // Clear any older stop runs for the host
                             result.stop[hostName[1]] = undefined;
                         } else {
@@ -516,7 +516,7 @@
                             hostName = meta.commandString.match(findStopLimitRegEx);
                             if (hostName && hostName.length > 1) {
                                 // Set/Overwrite any previous start for the host
-                                result.stop[hostName[1]] = !!meta.alive;
+                                result.stop[hostName[1]] = true;
                                 // Clear any older start runs for the host
                                 result.start[hostName[1]] = undefined;
                             }
