@@ -54,7 +54,9 @@
 
                         var userList;
                         if(angular.isDefined(data.dashboards) && angular.isDefined(data.dashboards["CENTRAL.DASHBOARD"])){
-                          userList = prefSaver.getDefaultPrefs().dashboards["CENTRAL.DASHBOARD"].ALARMSUMMARY;
+                            userList = data.dashboards["CENTRAL.DASHBOARD"].ALARMSUMMARY;
+                        } else {
+                            userList = prefSaver.getDefaultPrefs().dashboards["CENTRAL.DASHBOARD"].ALARMSUMMARY;
                         }
                         if(angular.isDefined(userList)) {
                             userList.forEach(function(datum) {
