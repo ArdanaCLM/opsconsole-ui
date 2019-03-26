@@ -614,7 +614,7 @@
                      */
                     var callBLLForAlarmTotalData = function () {
                         var req_alarms = {
-                            'operation': 'alarm_count'
+                            'operation': 'alarm_list'
                         };
 
                         if (!scope.isHostBased) {
@@ -631,8 +631,8 @@
                         return bllApiRequest.get('monitor', req_alarms).then(
                             function (response) {
                                 var data = response.data || [];
-                                if (!isUndefined(data) && !(isUndefined(data.counts))) {
-                                    scope.alarmTableDataTotal = data.counts[0][0];
+                                if (!isUndefined(data) && !(isUndefined(data.length))) {
+                                    scope.alarmTableDataTotal = data.length;
                                     log('info',
                                         'Successfully finished getting the alarm total data = ' +
                                         scope.alarmTableDataTotal);
