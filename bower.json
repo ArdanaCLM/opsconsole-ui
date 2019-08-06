@@ -25,6 +25,7 @@
     "angular-translate-interpolation-messageformat": "~2.11.1",
     "angular-flot": "^0.0.6",
     "flot": "~0.8.3",
+    "ipaddr": "~1.9.1",
     "jquery": "~2.2.0",
     "moment": "~2.10.6",
     "SpinKit": "~1.0.1",

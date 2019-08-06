@@ -495,6 +495,9 @@
 
         // Some things can be validated with regexs:
         'ipAddress': ipAddress,
+        'ipAddressv4v6': function(value) {
+            return ipaddr.isValid(value);
+        },
         'multiple_ipAddress': multiple_ipAddress,
         'hostname': hostname,
         'ipaddr_hostname': ipaddr_hostname,
